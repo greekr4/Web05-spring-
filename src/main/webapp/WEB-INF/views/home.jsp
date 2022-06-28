@@ -25,14 +25,40 @@ response.setCharacterEncoding("utf-8");
 
 <table>
   <tr>
-    <th>아이디</th>
-    <th>비밀번호</th>
+    <th>seq</th>
+    <th>state</th>
+    <th>grade</th>
+    <th>email</th>
+    <th>pw</th>
+    <th>name</th>
+    <th>phonenum</th>
+    <th>addr1</th>
+    <th>addr2</th>
+    <th>zipcode</th>
+    <th>login_cnt</th>
+    <th>regdate</th>
+    <th>login_date</th>
+    <th>moddate</th>
+    
   </tr>
 
  <c:forEach items="${list }" var="aa">
   <tr>
+  	<td>${aa.seq }</td>
+  	<td>${aa.state }</td>
+  	<td>${aa.grade }</td>
     <td>${aa.email }</td>
     <td>${aa.pw }</td>
+    <td>${aa.name }</td>
+    <td>${aa.phonenum }</td>
+    <td>${aa.addr1 }</td>
+    <td>${aa.addr2 }</td>
+    <td>${aa.zipcode }</td>
+    <td>${aa.login_cnt }</td>
+    <td>${aa.regdate }</td>
+    <td>${aa.login_date }</td>
+    <td>${aa.moddate }</td>
+ 
   </tr>
 
 
