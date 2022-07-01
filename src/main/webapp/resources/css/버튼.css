@@ -1,0 +1,52 @@
+.btn_black{
+    background: #222;
+    border: 1px solid #222;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+}
+.btn_black:hover{
+    background: #4e4f58;
+    border: 1px solid #4e4f58;
+    transition-duration: 0.5s;
+}
+
+.btn_white{
+    background: #fff;
+    border: 1px solid #999;
+    color: #222;
+    font-weight: 500;
+    cursor: pointer;
+}
+.btn_white:hover{
+    border: 1px solid #000;
+    transition-duration: 0.5s;
+}
+
+
+.btn_gray{
+    background: #4e4f58;
+    border: 1px solid #4e4f58;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+}
+.btn_gray:hover{
+    background: #222;
+    border: 1px solid #222;
+    transition-duration: 0.5s;
+}
+
+.btn_clear{
+    background: #00000000;
+    border: 1px solid #222;
+    color: black;
+    font-weight: 500;
+    cursor: pointer;
+}
+.btn_clear:hover{
+    background: #222;
+    border: 1px solid #222;
+    color: #fff;
+    transition-duration: 0.5s;
+}

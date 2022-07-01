@@ -1,0 +1,104 @@
+@charset "utf-8";
+/* 로그인 */
+#contents {
+    clear: both;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.login_wrap {
+    margin: 50px auto;
+}
+
+.login_wrap h1 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.login_form {
+    border: 1px solid #777;
+    width: 400px;
+    margin: 50px auto;
+    margin-bottom: 10px;
+}
+
+.login_wrap button {
+    background: #222;
+    border: 1px solid #222;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.login_wrap button:hover {
+    background: #4e4f58;
+    border: 1px solid #4e4f58;
+}
+
+.member_login_box {
+    display: flex;
+    flex-wrap: wrap;
+    width: 400px;
+    height: 150px;
+}
+
+.id_box {
+    width: 200px;
+    height: 100px;
+}
+
+.login_btn_box {
+    width: 200px;
+    height: 100px;
+}
+
+.login_btn_box button {
+    display: block;
+    margin: 20% auto;
+    height: 55px;
+    width: 180px;
+}
+
+.login_form h1 {
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.login_form input {
+    display: block;
+    margin: 10px;
+}
+
+.id_save_box {
+    width: 100%;
+    height: 30px;
+}
+
+.id_save_box input {
+    display: inline;
+
+}
+
+.join_btn_wrap {
+    border: 1px solid #777;
+    width: 400px;
+    height: 80px;
+    margin: 10px auto;
+}
+
+.join_btn_box {
+    margin: 5px;
+}
+
+.join_btn_wrap button {
+    border: 1px solid #777;
+    width: calc(378px/3);
+    height: 70px;
+
+}
+
+/* /로그인 */

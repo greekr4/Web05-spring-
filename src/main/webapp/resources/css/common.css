@@ -1,0 +1,355 @@
+@charset "utf-8";
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+    color: blue;
+}
+
+.btn_black{
+    background: #222;
+    border: 1px solid #222;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+}
+.btn_black:hover{
+    background: #4e4f58;
+    border: 1px solid #4e4f58;
+    transition-duration: 0.5s;
+}
+
+.btn_white{
+    background: #fff;
+    border: 1px solid #999;
+    color: #222;
+    font-weight: 500;
+    cursor: pointer;
+}
+.btn_white:hover{
+    border: 1px solid #000;
+    transition-duration: 0.5s;
+}
+
+
+.btn_gray{
+    background: #4e4f58;
+    border: 1px solid #4e4f58;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+}
+.btn_gray:hover{
+    background: #222;
+    border: 1px solid #222;
+    transition-duration: 0.5s;
+}
+
+.btn_clear{
+    background: #00000000;
+    border: 1px solid #222;
+    color: black;
+    font-weight: 500;
+    cursor: pointer;
+}
+.btn_clear:hover{
+    background: #222;
+    border: 1px solid #222;
+    color: #fff;
+    transition-duration: 0.5s;
+}
+
+#wrap{
+width: 100%;
+
+}
+#hd {
+    width: 100%;
+    clear: both;
+    border-bottom: 1px solid rgb(230, 230, 230);
+}
+
+#container {
+    width: 100%;
+    clear: both;
+    overflow: hidden;
+}
+
+#footer {
+    width: 100%;
+    clear: both;
+}
+
+
+
+/* 헤더 */
+#hd .hd_wrap {
+    width: 1400px;
+    height: 100px;
+    margin: 0 auto;
+}
+#hd .hd_wrap .logo{
+    float: left;
+    margin-right: 70px;
+}
+#hd .hd_wrap .logo img{
+    display: block;
+    height: 100px;
+}
+
+
+
+#hd .hd_wrap ul li.main {
+    float: left;
+    margin-right: 45px;
+    font-size: 16px;
+    margin-top: 45px;
+}
+
+#hd .hd_wrap ul.gnb li.logo {
+    width: 200px;
+    margin-top: 0;
+    margin-right: 85px;
+}
+
+
+#hd .hd_wrap ul li ul {
+    position: absolute;
+    display: none;
+    top: 100px;
+    /* border: 1px solid #000;
+    background-color: #fff; */
+    font-size: 0.8em;
+    z-index: 999;
+}
+
+/* --MY페이지 메뉴-- */
+#hd .hd_wrap ul li.main2 ul {
+    position: absolute;
+    /* display: none; */
+    top: 100px;
+    /* border: 1px solid #000;
+    background-color: #fff; */
+    font-size: 0.8em;
+    z-index: 999;
+}
+#hd .hd_wrap ul li.main2 {
+    float: left;
+    margin-right: 45px;
+    font-size: 16px;
+    margin-top: 45px;
+}
+
+#hd .hd_wrap ul li.main2 ul li {
+    position: relative;
+    text-align: left;
+}
+
+
+
+
+#hd .sub_box{
+    display: none;
+    position: absolute;
+    z-index: 998;
+    left: 520px;
+    top: 100px;
+    width: 800px;
+    height: 200px;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-top: 0;
+}
+
+#hd .sub_box2{
+    display: none;
+    position: absolute;
+    z-index: 998;
+    left: 1475px;
+    top: 100px;
+    width: 90px;
+    height: 85px;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-top: 0;
+}
+
+/* #hd .hd_wrap ul.user_menu li.main ul {
+    position: absolute;
+    display: none;
+    top: 70px;
+    border: 1px solid #000;
+    background-color: #fff;
+    z-index: 999;
+} */
+
+/* #hd .hd_wrap ul.gnb li.main:hover ul {
+    display: block;
+} */
+
+#hd .hd_wrap ul li ul li {
+    position: relative;
+    text-align: left;
+}
+
+#hd .hd_wrap ul li ul li a {
+    line-height: 30px;
+
+}
+
+/* .underline {
+    line-height: 1.2;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 3em;
+    font-weight: 700;
+    background-image: linear-gradient(transparent calc(100% - 3px), #000 3px);
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    transition: background-size 0.8s;
+    color: #000;
+    cursor: pointer;
+  }
+  @media (min-width: 1000px) {
+    .underline {
+      font-size: 5em;
+    }
+  }
+  .underline.yellow {
+    background-image: linear-gradient(transparent 60%, #F8CD07 40%);
+  }
+  .underline:hover {
+    background-size: 100% 100%;
+  } */
+
+
+#hd .hd_wrap ul li ul li:after{
+   display: block;
+   content: '';
+   border-bottom: 1px solid #000;
+   transform: scaleX(0);
+   transition: transform 250ms ease-in-out;
+}
+
+
+#hd .hd_wrap ul li ul li:hover:after{
+
+    color: black;
+    font-weight: bold;
+    transform: scaleX(1);
+}
+
+
+#hd .hd_wrap .user_bar .user_menu {
+    float: right;
+}
+
+#hd .hd_wrap .user_bar .user_menu li.main {
+    float: left;
+    margin-right: 15px;
+    font-size: 16px;
+}
+#hd .hd_wrap .user_bar .user_menu li.main2 {
+    float: left;
+    margin-right: 15px;
+    font-size: 16px;
+}
+
+
+#hd .hd_wrap .util_bar .util_menu {
+    float: right;
+
+}
+
+
+#hd .hd_wrap .util_bar .util_menu li.main {
+    float: left;
+    margin-right: 15px;
+    font-size: 16px;
+
+}
+
+/* /헤더 */
+
+
+
+/* 푸터 */
+
+#ft{
+    background-color: #222;
+    color: #fff;
+}
+
+.ft_wrap{
+    clear: both;
+    width: 1400px;
+    height: 300px;
+    margin: 0px auto;
+}
+
+.ft_info{
+    height: 200px;
+    padding-top: 50px;
+    border-bottom: 1px solid #777;
+}
+
+.ft_info_list{
+    display: -webkit-box;
+    margin-top: 10px;
+}
+.ft_info_list_1{
+    margin-top: 50px;
+}
+
+.ft_info_list dt , .ft_info_list dd  {
+margin-right: 10px;
+float: left;
+color: #aaa;
+font-size: 0.9em;
+height: 30px;
+}
+
+.ft_info_box{
+    float: left;
+}
+
+.ft_info_box2{
+float: right;
+}
+.ft_info_list3{
+    margin-top: 35px;
+}
+.ft_info_box h1,.ft_info_box2 h1{
+    font-size: 22px;
+}
+.ft_info_list3 h2{
+    font-size: 30px;
+    margin-bottom: 18px;
+    font-weight: 600;
+}
+
+.ft_info2{
+    height: 50px;
+    padding-top: 30px;
+}
+.ft_copylight{
+    float: left;
+}
+.ft_copylight p{
+    color: #bbb;
+}
+.ft_a_box{
+    float: right;
+}
+.ft_a_box a{
+    color: #bbb;
+    margin-left: 15px;
+}
+/* /푸터 */
+
+
+
+
+

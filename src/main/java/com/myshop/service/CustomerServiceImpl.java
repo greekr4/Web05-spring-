@@ -19,4 +19,15 @@ public class CustomerServiceImpl implements CustomerService {
 		return dao.CustomerList();
 	}
 
+	@Override
+	public CustomerDTO CustomerLogin(CustomerDTO DTO) throws Exception {
+		return dao.CustomerLogin(DTO);
+	}
+
+	@Override
+	public void CustomerJoin(CustomerDTO DTO) throws Exception {
+		dao.CustomerJoin(DTO);
+		
+	}
+
 }

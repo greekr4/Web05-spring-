@@ -22,4 +22,17 @@ public class CustomerDAOImpl implements CustomerDAO {
 		return sqlSession.selectList(namespace+".CustomerList");
 	}
 
+
+	@Override
+	public CustomerDTO CustomerLogin(CustomerDTO DTO) throws Exception {
+		return sqlSession.selectOne(namespace+".CustomerLogin",DTO);
+	}
+
+
+	@Override
+	public void CustomerJoin(CustomerDTO DTO) throws Exception {
+		sqlSession.insert(namespace+".CustomerJoin",DTO);
+		
+	}
+
 }

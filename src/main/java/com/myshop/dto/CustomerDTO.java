@@ -2,7 +2,6 @@ package com.myshop.dto;
 
 import java.util.Date;
 
-
 import lombok.Data;
 
 
@@ -18,8 +17,8 @@ public class CustomerDTO {
 	private String addr1;		//주소
 	private String addr2;		//상세주소
 	private String zipcode;		//우편번호
+	private int cnt;			//로그인카운트
 	private Date regdate;		//가입일자
-	private int login_cnt;		//로그인 카운트
 	private Date login_date;	//최종로그인
 	private Date moddate;		//수정일자
 	}

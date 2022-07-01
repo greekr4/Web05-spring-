@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.myshop.CustomerMapper">
+
+	<!-- 멤버리스트 -->
+	<select id="CustomerList" resultType="com.myshop.dto.CustomerDTO">
+		select * from customer order by seq desc
+	</select>
+	
+	
+	
+	
+	<!-- 로그인 -->
+	<select id="CustomerLogin" resultType="com.myshop.dto.CustomerDTO">
+		select * from customer where email = #{email}
+	</select>
+	
+	<!-- 
+
+	가입 
+	<insert id="CustomerJoin">
+		insert into customer(state, grade, email, pw, name, phonenum, addr1,addr2, zipcode, login_cnt, regdate)
+		values(1, 1, #{email}, #{pw}, #{name}, #{phonenum}, #{addr1}, #{addr2}, #{zipcode} ,0, now());
+	</insert>
+	
+	
+	수정
+	<update id="CustomerEdit">
+		update from customer set pw = #{pw}, name = #{name}, phonenum = #{phonenum}, addr1 = #{addr1}, addr2 = #{addr2}, zipcode = #{zipcode}
+		
+	</update>
+	 -->
+
+</mapper>
