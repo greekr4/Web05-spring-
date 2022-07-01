@@ -77,7 +77,7 @@
                         <c:if test="${!empty sid }">
                         <li class="main2">Mypage
                             <ul>
-                                <li class="sub"><a href="">나의정보</a></li>
+                                <li class="sub"><a href="${path }/Customer/Mypage">나의정보</a></li>
                                 <li class="sub"><a href="">주문정보</a></li>
                             </ul>
                         </li>

@@ -58,15 +58,13 @@ public class CustomerController {
 	//회원가입 폼
 	@RequestMapping("/JoinForm")
 	public String JoinForm(@ModelAttribute("CustomerDTO") CustomerDTO DTO, Model model,BindingResult result) throws Exception {
-//		CustomerValidator aa = new CustomerValidator();
-//		aa.validate(DTO, result);
-//		if(result.hasErrors()) {
-//			System.out.println("에러에러에러에러");
-//		}
-
-		
-		
 		return "/Customer/JoinForm";
+	}
+	
+	//마이페이지
+	@RequestMapping("/Mypage")
+	public String Mypage(){
+		return "/Customer/Mypage";
 	}
 	
 	//로그인
