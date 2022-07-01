@@ -1,5 +1,6 @@
 package com.myshop.controller;
 
+import java.io.PrintWriter;
 import java.util.Locale;
 
 import javax.inject.Inject;
@@ -16,10 +17,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.myshop.dto.CustomerDTO;
 import com.myshop.service.CustomerService;
-import com.myshop.util.ScriptUtils;
 
 /**
  * Handles requests for the application home page.
@@ -38,9 +39,6 @@ public class CustomerController {
 	
 	@Inject
 	private HttpSession session;
-	
-	@Inject
-	private HttpServletResponse response;
 	
 	
 	// JSP 연결
@@ -103,14 +101,43 @@ public class CustomerController {
 	public String Join(@ModelAttribute("CustomerDTO") CustomerDTO DTO, Model model,BindingResult result) throws Exception{
 		System.out.println(DTO);
 		if(DTO.getEmail() != null) {
+			
 			DTO.setPw(pwdEncoder.encode(DTO.getPw()));
-			service.CustomerJoin(DTO);
+			if(service.CustomerJoin(DTO) > 0) {
+				//가입성공
+				return "redirect:../";
+			}else {
+				//가입실패 어차피 500뜨긴함
+				return "/Customer/JoinForm";
+			}
 		}else {
 			return "/Customer/JoinForm";
 		}
-
+	}
+	
+	//아이디체크
+	@RequestMapping(value = "IDCK", method = RequestMethod.GET)
+	public void IDCK(@RequestParam String email, HttpServletResponse response) throws Exception{
+		CustomerDTO DTO = new CustomerDTO();
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; utf-8");
+		PrintWriter out = response.getWriter();
 		
-		return "redirect:../";
+		DTO.setEmail(email);
+		if(service.CustomerLogin(DTO) == null) {
+			out.println("<script>"
+					+ "if (!confirm('"+DTO.getEmail()+"을 사용하시겠습니까?')) {" + 
+					"opener.document.getElementById('email').readOnly = false;"
+					+ "opener.document.getElementById('email').style.background = '';"
+					+ "} else {"
+					+ "opener.document.getElementById('email').readOnly = true;"
+					+ "opener.document.getElementById('email').style.background = '#bbb'"
+					+ "}"
+					+ "</script>");	
+		}else {
+			out.println("<script>alert('사용 불가능');</script>");	
+		}
+		
 		
 	}
 

@@ -10,5 +10,5 @@ public interface CustomerDAO {
 	//로그인처리
 	public CustomerDTO CustomerLogin(CustomerDTO DTO) throws Exception;
 	//회원가입
-	public void CustomerJoin(CustomerDTO DTO) throws Exception;
+	public int CustomerJoin(CustomerDTO DTO) throws Exception;
 }

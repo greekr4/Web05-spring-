@@ -25,8 +25,8 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public void CustomerJoin(CustomerDTO DTO) throws Exception {
-		dao.CustomerJoin(DTO);
+	public int CustomerJoin(CustomerDTO DTO) throws Exception {
+		return dao.CustomerJoin(DTO);
 		
 	}
 

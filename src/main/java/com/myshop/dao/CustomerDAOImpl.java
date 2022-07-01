@@ -30,8 +30,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 
 	@Override
-	public void CustomerJoin(CustomerDTO DTO) throws Exception {
-		sqlSession.insert(namespace+".CustomerJoin",DTO);
+	public int CustomerJoin(CustomerDTO DTO) throws Exception {
+		return sqlSession.insert(namespace+".CustomerJoin",DTO);
 		
 	}
 

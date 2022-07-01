@@ -41,7 +41,7 @@ response.setCharacterEncoding("utf-8");
 
 .login_form {
     border: 1px solid #777;
-    width: 400px;
+    width: 300px;
     margin: 50px auto;
     margin-bottom: 10px;
 }
@@ -103,7 +103,7 @@ response.setCharacterEncoding("utf-8");
 
 .join_btn_wrap {
     border: 1px solid #777;
-    width: 400px;
+    width: 300px;
     height: 80px;
     margin: 10px auto;
 }
@@ -114,7 +114,7 @@ response.setCharacterEncoding("utf-8");
 
 .join_btn_wrap button {
     border: 1px solid #777;
-    width: calc(376px/3);
+    width: calc(282px/2);
     height: 70px;
 
 }
@@ -136,70 +136,26 @@ response.setCharacterEncoding("utf-8");
             <div id="container_wrap">
                 <div class="login_wrap">
                 <h1>회원가입</h1>
-                <form action="${path }/Customer/Login" method="POST">
+         <form:form modelAttribute="CustomerDTO" action="${path }/Customer/Join">
                 <div class="login_form">
                     <div class="member_login_box">
                         <div class="id_box">
                             
-                            <table>
-                            <!-- (email,pw,name,phonenum,addr1,addr2,zipcode,regdate) -->
-                            <tr>
-                            <td><input type="text" placeholder="이메일" name="email"></td>
-                            <td><button>중복확인</button></td>
-                            </tr>
-                            
-                            <tr>
-                            <td><input type="password" placeholder="pw" name="pw"></td>
-                            <td></td>
-                            </tr>
-                            
-                            <tr>
-                            <td><input type="password" placeholder="pw2" name="pw2"></td>
-                            <td></td>
-                            </tr>
-                            <tr>
-                            <td><input type="text" placeholder="name" name="name"></td>
-                            <td></td>
-                            </tr>
-                            <tr>
-                            <td><input type="text" placeholder="phonenum" name="phonenum"></td>
-                            <td></td>
-                            </tr>
-                            <tr>
-                            <td><input type="text" placeholder="addr1" name="addr1"></td>
-                            <td><input type="text" placeholder="zipcode" name="zipcode"></td>
-                            </tr>
-                            <tr>
-                            <td><input type="text" placeholder="addr2" name="addr2"></td>
-                            <td></td>
-                            </tr>
-                            
-                            
-                            </table>
-                            <br>
-                            
-                            
-                            
-                        </div>
-
-                    </div>
-                </div>
-            </form>
-            <div class="join_btn_wrap">
-                <div class="join_btn_box">
-                <button>가입</button>
-                <button>아이디찾기</button>
-                <button>비밀번호찾기</button>
-                </div>
-            </div>
-            
-            <!-- 실험 -->
-            			<form:form modelAttribute="CustomerDTO" action="${path }/Customer/Join">
+                           <!-- 실험 -->
+            				<iframe name="hiddenf" style="display: none;"></iframe>
                             <table>
                             <!-- (email,pw,name,phonenum,addr1,addr2,zipcode,regdate) -->
                             <tr>
                             <td><form:input path="email" placeholder="email"/></td>
-                            <td><button>중복확인</button></td>
+                            <td>
+                            <button style="width: 100px;" type="button" id="IDCK">중복확인</button>
+                            <script type="text/javascript">
+                            $('#IDCK').click(function(){
+                            	var email_val = $('#email').val();
+                            	window.open('${path}/Customer/IDCK?email='+email_val,'hiddenf');
+							});
+                            </script>
+                            </td>
                             </tr>
                             
                             <tr>
@@ -211,7 +167,7 @@ response.setCharacterEncoding("utf-8");
                             
                             <tr>
                             <td>
-                            <input type="text">
+                            <input type="text" placeholder="pw 확인">
                             </td>
                             <td></td>
                             </tr>
@@ -229,18 +185,32 @@ response.setCharacterEncoding("utf-8");
                             </tr>
                             <tr>
                             <td><form:input path="addr1" placeholder="addr1"/></td>
-                            <td><form:input path="addr2" placeholder="addr2"/></td>
+                            <td><form:input path="zipcode" placeholder="zipcode" cssStyle="width:100px; margin:0;"/></td>
                             </tr>
                             <tr>
-                            <td><form:input path="zipcode" placeholder="zipcode"/></td>
+                            <td><form:input path="addr2" placeholder="addr2"/></td>
                             <td></td>
                             </tr>
                             
                             
                             </table>
-                            <form:button>ddd</form:button>
-                            </form:form>
-                             <!-- 실험끝 -->
+                            
+
+
+                        </div>
+
+                    </div>
+                </div>
+            <div class="join_btn_wrap">
+                <div class="join_btn_box">
+                <form:button>회원가입</form:button>
+                <button type="reset">취소</button>
+                </div>
+                                           
+            </div>
+        </form:form>
+            
+           
             </div>
         </div>
 
