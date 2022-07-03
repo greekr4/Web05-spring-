@@ -14,9 +14,15 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 	
 	
 	
-	<!-- 로그인 -->
+	<!-- 로그인/아이디체크/상세 -->
 	<select id="CustomerLogin" resultType="com.myshop.dto.CustomerDTO">
-		select * from customer where email = #{email}
+		select a.*,b.name as 'state_val',c.name as 'grade_val' from customer a
+		inner join codemaster b
+		on (a.state = b.value and b.code = 'cs')
+		inner join codemaster c 
+		on (a.grade = c.value and c.code = 'cg')
+		where email = #{email}
+
 	</select>
 	
 
@@ -26,6 +32,8 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 		insert into customer(email,pw,name,phonenum,addr1,addr2,zipcode,regdate)
 		values(#{email},#{pw},#{name},#{phonenum},#{addr1},#{addr2},#{zipcode},now());
 	</insert>
+	
+
 	
 		<!-- 
 	수정

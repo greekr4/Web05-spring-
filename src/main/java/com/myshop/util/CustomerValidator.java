@@ -20,6 +20,7 @@ public class CustomerValidator implements Validator {
 		if(Email == null || Email.trim().isEmpty()) {
 			System.out.println("야야 null or Empty");
 			errors.rejectValue("name", "trouble");
+			
 		}
 
 	}

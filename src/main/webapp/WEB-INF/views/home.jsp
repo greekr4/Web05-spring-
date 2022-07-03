@@ -16,7 +16,6 @@ response.setCharacterEncoding("utf-8");
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insert title here</title>
     <script src="https://code.jquery.com/jquery-latest.js"></script>
-    <link rel="stylesheet" href="${path }/resources/css/reset.css">
     <link rel="stylesheet" href="${path }/resources/css/common.css">
     <link rel="stylesheet" href="${path }/resources/css/main.css">
 </head>

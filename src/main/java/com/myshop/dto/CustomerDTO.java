@@ -9,7 +9,9 @@ import lombok.Data;
 public class CustomerDTO {
 	private int seq;			//식별번호
 	private int state;			//회원상태
+	private String state_val;	//상태+코드마스터
 	private int grade;			//회원등급
+	private String grade_val;	//등급+코드마스터
 	private String email;		//이메일(아이디)
 	private String pw;			//비밀번호
 	private String name;		//이름
@@ -22,4 +24,5 @@ public class CustomerDTO {
 	private Date login_date;	//최종로그인
 	private Date moddate;		//수정일자
 	}
+
 

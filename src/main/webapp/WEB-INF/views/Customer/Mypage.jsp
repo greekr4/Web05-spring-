@@ -17,18 +17,24 @@ response.setCharacterEncoding("utf-8");
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insert title here</title>
     <script src="https://code.jquery.com/jquery-latest.js"></script>
-    <link rel="stylesheet" href="${path }/resources/css/reset.css">
+
     <link rel="stylesheet" href="${path }/resources/css/common.css">
     <link rel="stylesheet" href="${path }/resources/css/main.css">
+    <link rel="stylesheet" href="${path }/resources/css/style.css">
     <style>
-   /* 초기화 */
+        /* 초기화 */
         * { margin: 0; padding: 0;}
         ul { list-style: none; } 
         a { text-decoration: none; color: #222; }
         html, body { height: 100%;}
         #container{clear: both; width: 100%;}
         .container_wrap{clear: both; width: 100%; }
-        .main_wrap{clear: both; width: 1400px; margin: 0 auto; }
+        .main_wrap{
+            clear: both;
+            width: 1400px;
+            margin: 0 auto;
+            margin-top: 2%;
+        }
         /* /초기화 */
         /* 왼쪽 메뉴 */
         #left_gnb{
@@ -61,33 +67,70 @@ response.setCharacterEncoding("utf-8");
             color: #222;
         }
         /* /왼쪽 메뉴 */
-        
-        .btn_black { width: 80px; height: 30px;}
-
-        /* 마이페이지 메인 */
-        .mypage_box { display: block; width: 1100px; padding-top: 30px; padding-left: 40px; float: left; }
-        .mypage_tb { display: table; border-collapse: collapse; width: 500px; margin-left: 30px; margin-top: 45px; }
-        .mypage_tb tr { display: table-row; height: 60px; }
-        .mypage_tb tr td { display: table-cell; width: 25%; font-size: 16px; font-weight: lighter;  border-bottom: 1px solid #aaaaaa; }
-        .mypage_td_btn { text-align: right; }
-        .mypage_tb_td1 { text-align: center; }
-        .mypage_tb_tdright, .mypage_tb_td2_1  { text-align: right; padding-right: 15px; }
-        .mypage_tb_tdright.tdright1 { border: 1px solid #aaaaaa; border-left: 0;}
-        
+        /* 오른쪽 페이지 초기화 */
+        .page{width: 100%; position: relative;}
+        /* /오른쪽 초기화 */
+        /* 마이페이지 */
+        .art1 {float: left; margin-left: 5%;}
+        .my_title{margin-left: 3.5%; font-size: 1.2em;}
+        .table{display: table; border-collapse: collapse; width: 500px;}
+        .table tr{display: table-row; height: 70px;}
+        .table tr td{display: table-cell; border-bottom: 1px solid #aaaaaa;}
+        .table tr td:first-child{padding-left: 20px;}
+        .table tr:nth-child(1) td{border: none;}
+        .table tr:nth-child(1) td:last-child{text-align: right;}
+        .table tr:nth-child(2) td:last-child{text-align: center;}
+        .table tr:nth-child(3) td:last-child{text-align: right;}
+        .table tr:nth-child(3) td:last-child::after{
+            content: ">";
+            padding-left: 10px;
+            color: #4285f4;
+            font-weight: 600;
+        }
+        .table tr:nth-child(4) td:last-child{text-align: right;}
+        .table tr:nth-child(4) td:last-child::after{
+            content: ">";
+            padding-left: 10px;
+            color: #4285f4;
+            font-weight: 600;
+        }
+        .table tr:nth-child(5) td{border-right:  1px solid #aaaaaa;}
+        .table tr:nth-child(5) td:first-child::after{
+            content: ">";
+            padding-left: 70%;
+            color: #4285f4;
+            font-weight: 600;
+        }
+        .table tr:nth-child(5) td:last-child{
+            border-right: none;
+            padding-left: 20px;
+        }
+        .table tr:nth-child(5) td:last-child::after{
+            content: ">";
+            padding-left: 67%;
+            color: #4285f4;
+            font-weight: 600;
+        }
+        .table .btn_black{
+            padding: 6px 20px 6px 20px;
+        }
+        /* /마이페이지 */
         /* 최근 본 상품 */
-        .lately_look { display: block; }
-        .lately_tit { display: block; width: 180px; font-size: 18px; }
-        .lately_detail { height: auto;}
-        .lately_detail div { float: left; line-height: 0;  }
-        .lately_detail div:nth-child(4) { clear: both; }
+        .lately_look {display: block; float: left; margin-left: 10%;}
+        .lately_tit {display: block; width: 180px; font-size: 18px; margin-bottom: 5%;}
+        .lately_detail div { line-height: 0; float: left;}
+        .lately_detail div:nth-child(4){clear: both; float: left;}
         .lately_detail div button { width: 130px; height: 140px; border: 0; }
         .lately_detail button img { width: 100%; height: 100%; }
+        /* /최근 본 상품 */
+        /* 입금/결제 */
+        .order_info{float: left; margin-left: 18%; margin-top: 5%; width: 82%;}
+        .info-title{font-size: 1.2em; margin-bottom: 2%;}
+        .order_info ul li{float: left; width: 10%; height: auto; margin-right: 20%; position: relative;}
+        .order_info ul li:last-child{margin-right: 0;}
+        .order_info ul li img{width: 100%; height: auto;}
+        /* /입금/결제 */
 
-
-        .square_box_top { margin: 50px 15px 15px 100px; }
-        .square_box_top ul li { float: left; padding: 20px 60px 20px 60px; text-align: center; border: 1px solid #dbdbdb;
-            line-height: 2em;  }
-        .square_box_top ul li h3 { width: 100px; font-size: 16px; }
 </style>
 </head>
 <body>
@@ -102,7 +145,9 @@ response.setCharacterEncoding("utf-8");
 
         <div id="container">
             <div id="container_wrap">
-               <section class="main_wrap">
+              
+                <section class="main_wrap">
+
                     <!-- 왼쪽 메뉴 -->
                     <div id="left_gnb">
                         <ul>
@@ -116,116 +161,111 @@ response.setCharacterEncoding("utf-8");
                         </ul>
                     </div>
                     <!-- /왼쪽 메뉴 -->
-
-                    <!-- 오른쪽 메뉴 -->
-                    <div class="mypage_box">
-                        <h2 class="tit">마이페이지</h2>
-                        
-                        <section class="mypage_section1">
-                            <table class="mypage_tb">
+                    
+                    <div class="page" id="page1">
+                        <!-- 마이페이지 -->
+                        <article class="art1">
+                            <div class="mypage_wrap">
+                            <h4 class="my_title">마이페이지</h4>
+                            <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td class="mypage_tb_td1">이메일</td>
-                                        <td colspan="2" class="mypage_tb_td2">123456@naver.com</td>
-                                        <td class="mypage_td_btn">
-                                            <input type="button" class="btn_black" value="정보수정">
-                                        </td>
+                                        <td>이메일</td>
+                                        <td colspan="2">${DTO.email }</td>
+                                        <td><input type="button" value="정보수정" class="btn_black"></td>
                                     </tr>
                                     <tr>
-                                        <td class="mypage_tb_td1">휴대전화</td>
-                                        <td colspan="3" class="mypage_tb_td2">010-1234-5678</td>
+                                        <td>휴대전화</td>
+                                        <td colspan="3">${DTO.phonenum }</td>
                                     </tr>
                                     <tr>
-                                        <td class="mypage_tb_td1 mypage_tb_td1_td2">회원등급</td>
-                                        <td colspan="3" class="mypage_tb_td2_1">7</td>
+                                        <td>회원등급</td>
+                                        <td colspan="3">${DTO.grade_val }</td>
                                     </tr>
                                     <tr>
-                                        <td class="mypage_tb_td1 mypage_tb_td1_td2">적립금</td>
-                                        <td colspan="3" class="mypage_tb_td2_1">1000P</td>
+                                        <td>적립금</td>
+                                        <td colspan="3">1000</td>
                                     </tr>
-                                    <tr class="last">
-                                        <td class="mypage_tb_td1">Q&A</td>
-                                        <td class="mypage_tb_tdright tdright1">></td>
-                                        <td class="mypage_tb_td1">1:1 상담문의</td>
-                                        <td class="mypage_tb_tdright tdright2">></td>
+                                    <tr>
+                                        <td colspan="2"><a href="">Q&A</a></td>
+                                        <td colspan="2"><a href="">1:1문의</a></td>
                                     </tr>
                                 </tbody>
                             </table>
-
-                            <div class="lately_look">
-                                <h4 class="lately_tit">최근 본 상품</h4>
+                        </article>
+                        <!-- /마이페이지 -->
+                        <article class="lately_look">
+                            <h4 class="lately_tit">최근 본 상품</h4>
+                            <div class="lately_detail">
                                 <div class="lately_detail">
-                                    <div class="lately_detail">
-                                        <button>
-                                            <img src="${path }/resources/img/mypage/sample1.jpg" alt="sample1">
-                                        </button>
-                                    </div>
-                                    <div class="lately_detail">
-                                        <button>
-                                            <img src="${path }/resources/img/mypage/sample2.jpg" alt="sample2">
-                                        </button>
-                                    </div>
-                                    <div class="lately_detail">
-                                        <button>
-                                            <img src="${path }/resources/img/mypage/sample3.jpg" alt="sample3">
-                                        </button>
-                                    </div>
-                                    <div class="lately_detail">
-                                        <button>
-                                            <img src="${path }/resources/img/mypage/sample4.jpg" alt="sample4">
-                                        </button>
-                                    </div>
-                                    <div class="lately_detail">
-                                        <button>
-                                            <img src="${path }/resources/img/mypage/sample5.jpg" alt="sample5">
-                                        </button>
-                                    </div>
-                                    <div class="lately_detail">
-                                        <button>
-                                            <img src="${path }/resources/img/mypage/sample6.jpg" alt="sample6">
-                                        </button>
-                                    </div>
+                                    <button>
+                                        <img src="${path }/resources/img/mypage/sample1.jpg" alt="sample1">
+                                    </button>
+                                </div>
+                                <div class="lately_detail">
+                                    <button>
+                                        <img src="${path }/resources/img/mypage/sample2.jpg" alt="sample2">
+                                    </button>
+                                </div>
+                                <div class="lately_detail">
+                                    <button>
+                                        <img src="${path }/resources/img/mypage/sample3.jpg" alt="sample3">
+                                    </button>
+                                </div>
+                                <div class="lately_detail">
+                                    <button>
+                                        <img src="${path }/resources/img/mypage/sample4.jpg" alt="sample4">
+                                    </button>
+                                </div>
+                                <div class="lately_detail">
+                                    <button>
+                                        <img src="${path }/resources/img/mypage/sample5.jpg" alt="sample5">
+                                    </button>
+                                </div>
+                                <div class="lately_detail">
+                                    <button>
+                                        <img src="${path }/resources/img/mypage/sample6.jpg" alt="sample6">
+                                    </button>
                                 </div>
                             </div>
-                        
-                            <!-- <div class="order_info">
-                                <h2>주문 정보</h2>
-                                <div class="square_box_top">
-                                    <ul class="">
-                                        <a href="">
-                                            <li class="square_box_bgi1">
-                                                <img src="${path }/resources/img/mypage/orderlist.png">
-                                                <h3 class="">입금/결제</h3>
-                                                n건
-                                            </li>
-                                        </a>
-                                        <a href="">
-                                            <li class="square_box_bgi2">
-                                                <img src="${path }/resources/img/mypage/delivery_wait.png">
-                                                <h3 class="">배송준비중</h3>
-                                                n건
-                                            </li>
-                                        </a>
-                                        <a href="">
-                                            <li class="square_box_bgi3">
-                                                <img src="${path }/resources/img/mypage/delivery_ing.png">
-                                                <h3 class="">배송중</h3>
-                                                n건
-                                            </li>
-                                        </a>
-                                        <a href="">
-                                            <li class="square_box_bgi4">
-                                                <img src="${path }/resources/img/mypage/delivery_fin.png">
-                                                <h3 class="">배송완료</h3>
-                                                n건
-                                            </li>
-                                        </a>
-                                    </ul>
-                                </div>
-                            </div> -->
+                        </article>
 
-                        </section>
-                    </div>
+                        <article class="order_info">
+                            <h4 class="info-title">주문 정보</h4>
+                            <ul>
+                                <li>
+                                    <a href="">
+                                        <img src="${path }/resources/img/mypage/orderlist.png" alt="img1">
+                                        <p>입금/결제</p>n건
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <img src="${path }/resources/img/mypage/delivery_wait.png" alt="img2">
+                                        <p>배송준비중</p>n건
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <img src="${path }/resources/img/mypage/delivery_ing.png" alt="img3">
+                                        <p>배송중</p>n건
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <img src="${path }/resources/img/mypage/delivery_fin.png" alt="img4">
+                                        <p>배송완료</p>n건
+                                    </a>
+                                </li>
+                            </ul>
+                        </article>
+
+                        <article>
+                            <h4>장바구니</h4>
+                        </article>
+
+                    </div>                      
+                        
                 </section>
 
             

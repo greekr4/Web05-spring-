@@ -62,9 +62,22 @@ public class CustomerController {
 	}
 	
 	//마이페이지
-	@RequestMapping("/Mypage")
-	public String Mypage(){
+	@RequestMapping(value = "/Mypage",method = RequestMethod.GET)
+	public String Mypage(Model model) throws Exception{
+		String sid = (String)session.getAttribute("sid");
+		CustomerDTO DTO = new CustomerDTO();
+		DTO.setEmail(sid);
+		DTO = service.CustomerLogin(DTO);
+		model.addAttribute("DTO",DTO);
+		
+		
 		return "/Customer/Mypage";
+	}
+	
+	//마이페이지
+	@RequestMapping("/JoinOK")
+	public String JoinOK(){
+		return "/Customer/JoinOK";
 	}
 	
 	//로그인
@@ -103,7 +116,7 @@ public class CustomerController {
 			DTO.setPw(pwdEncoder.encode(DTO.getPw()));
 			if(service.CustomerJoin(DTO) > 0) {
 				//가입성공
-				return "redirect:../";
+				return "redirect:../Customer/JoinOK";
 			}else {
 				//가입실패 어차피 500뜨긴함
 				return "/Customer/JoinForm";
@@ -124,16 +137,14 @@ public class CustomerController {
 		DTO.setEmail(email);
 		if(service.CustomerLogin(DTO) == null) {
 			out.println("<script>"
-					+ "if (!confirm('"+DTO.getEmail()+"을 사용하시겠습니까?')) {" + 
-					"opener.document.getElementById('email').readOnly = false;"
-					+ "opener.document.getElementById('email').style.background = '';"
-					+ "} else {"
-					+ "opener.document.getElementById('email').readOnly = true;"
-					+ "opener.document.getElementById('email').style.background = '#bbb'"
-					+ "}"
+					+ "opener.document.getElementById('idno').style.display = 'none';"
+					+ "opener.document.getElementById('idok').style.display = 'block';"
 					+ "</script>");	
 		}else {
-			out.println("<script>alert('사용 불가능');</script>");	
+			out.println("<script>"
+					+ "opener.document.getElementById('idok').style.display = 'none';"
+					+ "opener.document.getElementById('idno').style.display = 'block';"
+					+ "</script>");	
 		}
 		
 		
