@@ -12,11 +12,15 @@
                     </li>
                 </ul>
                 <ul class="gnb">
-                    <div class="sub_box"></div>
+                    <li class="main">
+                        <ul>
+                            <li class="sb"><div class="sub_box"></div></li>
+                        </ul>
+                    </li>
                     <li class="main">
                         정육·계란
                         <ul>
-                            <li class="sub"><a href="">소고기</a></li>                           </li>
+                            <li class="sub"><a href="${path }/Product/Menu">소고기</a></li>                 
                             <li class="sub"><a href="">돼지고기</a></li>
                             <li class="sub"><a href="">계란류</a></li>
                         </ul>
@@ -67,7 +71,6 @@
                 </ul>
                 <!-- 오른쪽 정렬이라 순서 반대-->
 
-                <div class="sub_box2"></div>
                 <div class="user_bar">
                     <ul class="user_menu">
                     	<c:if test="${empty sid }">
@@ -75,6 +78,16 @@
                         <li class="main"><a href="${path }/Customer/Agreement">Join</a></li>
                         </c:if>
                         <c:if test="${!empty sid }">
+
+						<c:if test="${fn:contains(sid,'admin') }">
+						<li class="main"><a href="${path }/Admin/AdminOrderList">관리자메뉴</a></li>
+						</c:if>
+                        
+                        <li class="main2">
+                            <ul>
+                                <li class="sb"><div class="sub_box2"></div></li>
+                            </ul>
+                        </li>
                         <li class="main2">Mypage
                             <ul>
                                 <li class="sub"><a href="${path }/Customer/Mypage">나의정보</a></li>
@@ -97,8 +110,6 @@
                         //$(this).find('ul').css('display','block');
                         $('.main').find('ul').slideUp('fast');
                         $('.main2').find('ul').slideUp('fast');
-                        $('.sub_box').slideUp('fast');
-                        $('.sub_box2').slideUp('fast');
                         if ($(this).find('ul').css('display') == 'none') {
                             $('.sub_box').slideDown('fast');
                             $('.main').children('ul').slideDown('fast');
@@ -111,8 +122,6 @@
                         //$(this).find('ul').css('display','block');
                         $('.main2').find('ul').slideUp('fast');
                         $('.main').find('ul').slideUp('fast');
-                        $('.sub_box').slideUp('fast');
-                        $('.sub_box2').slideUp('fast');
                         if ($(this).find('ul').css('display') == 'none') {
                             $('.sub_box2').slideDown('fast');
                             $('.main2').children('ul').slideDown('fast');

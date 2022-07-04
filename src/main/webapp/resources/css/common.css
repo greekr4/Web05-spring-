@@ -8,12 +8,12 @@ ul { list-style: none; }
 a {text-decoration: none;color: #222;}
 html, body { height: 100%;}
 
-#wrap{
+.wrap{
 width: 100%;
 
 }
 #hd {
-	
+   
     width: 100%;
     clear: both;
     border-bottom: 1px solid rgb(230, 230, 230);
@@ -38,16 +38,17 @@ width: 100%;
     height: 100px;
     margin: 0 auto;
 }
+
 #hd .hd_wrap .logo{
     float: left;
-    margin-right: 70px;
+    width:140px;
+    margin-top:1%;
+    margin-right:4%;
 }
 #hd .hd_wrap .logo img{
     display: block;
-    height: 100px;
+    width:100%;
 }
-
-
 
 #hd .hd_wrap ul li.main {
     float: left;
@@ -99,11 +100,10 @@ width: 100%;
 
 
 #hd .sub_box{
-    display: none;
-    position: absolute;
+    position: relative;
     z-index: 998;
-    left: 520px;
-    top: 100px;
+    left: 2.5%;
+    top: 0;
     width: 800px;
     height: 200px;
     background-color: #fff;
@@ -112,11 +112,10 @@ width: 100%;
 }
 
 #hd .sub_box2{
-    display: none;
-    position: absolute;
+    position: relative;
     z-index: 998;
-    left: 1475px;
-    top: 100px;
+    left:0;
+    top: 0;
     width: 90px;
     height: 85px;
     background-color: #fff;
@@ -172,7 +171,10 @@ width: 100%;
   } */
 
 
-#hd .hd_wrap ul li ul li:after{
+
+
+
+#hd .hd_wrap ul li ul li.sub:after{
    display: block;
    content: '';
    border-bottom: 1px solid #000;
@@ -181,12 +183,14 @@ width: 100%;
 }
 
 
-#hd .hd_wrap ul li ul li:hover:after{
+#hd .hd_wrap ul li ul li.sub:hover:after{
 
     color: black;
     font-weight: bold;
     transform: scaleX(1);
 }
+
+
 
 
 #hd .hd_wrap .user_bar .user_menu {
@@ -225,6 +229,8 @@ width: 100%;
 /* 푸터 */
 
 #ft{
+   width:100%;
+   margin-top:4%;
     background-color: #222;
     color: #fff;
 }
@@ -295,8 +301,3 @@ float: right;
     margin-left: 15px;
 }
 /* /푸터 */
-
-
-
-
-

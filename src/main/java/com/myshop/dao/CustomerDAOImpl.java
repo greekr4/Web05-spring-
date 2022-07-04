@@ -24,8 +24,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 
 	@Override
-	public CustomerDTO CustomerLogin(CustomerDTO DTO) throws Exception {
-		return sqlSession.selectOne(namespace+".CustomerLogin",DTO);
+	public CustomerDTO CustomerInfo(CustomerDTO DTO) throws Exception {
+		return sqlSession.selectOne(namespace+".CustomerInfo",DTO);
 	}
 
 

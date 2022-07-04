@@ -20,7 +20,7 @@ response.setCharacterEncoding("utf-8");
     <link rel="stylesheet" href="${path }/resources/css/main.css">
 </head>
 <body>
-   <div id="wrap">
+   <div class="wrap">
         <header id="hd">
             <div class="hd_wrap">
              <c:import url="./hd.jsp"/>

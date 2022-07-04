@@ -20,8 +20,8 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public CustomerDTO CustomerLogin(CustomerDTO DTO) throws Exception {
-		return dao.CustomerLogin(DTO);
+	public CustomerDTO CustomerInfo(CustomerDTO DTO) throws Exception {
+		return dao.CustomerInfo(DTO);
 	}
 
 	@Override

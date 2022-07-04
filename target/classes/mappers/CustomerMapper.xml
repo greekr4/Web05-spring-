@@ -8,19 +8,24 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 
 	<!-- 멤버리스트 -->
 	<select id="CustomerList" resultType="com.myshop.dto.CustomerDTO">
-		select * from customer order by seq desc
+		select a.*,b.name as 'state_val',c.name as 'grade_val' from customer a
+		inner join codemaster b 
+		on(a.state = b.value and b.code = 'cg')
+		inner join codemaster c 
+		on(a.grade = c.value and c.code = 'cs')
+		order by a.seq desc
 	</select>
 	
 	
 	
 	
 	<!-- 로그인/아이디체크/상세 -->
-	<select id="CustomerLogin" resultType="com.myshop.dto.CustomerDTO">
+	<select id="CustomerInfo" resultType="com.myshop.dto.CustomerDTO">
 		select a.*,b.name as 'state_val',c.name as 'grade_val' from customer a
 		inner join codemaster b
-		on (a.state = b.value and b.code = 'cs')
+		on (a.state = b.value and b.code = 'cg')
 		inner join codemaster c 
-		on (a.grade = c.value and c.code = 'cg')
+		on (a.grade = c.value and c.code = 'cs')
 		where email = #{email}
 
 	</select>

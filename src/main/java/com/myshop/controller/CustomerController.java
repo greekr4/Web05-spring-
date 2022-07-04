@@ -67,7 +67,7 @@ public class CustomerController {
 		String sid = (String)session.getAttribute("sid");
 		CustomerDTO DTO = new CustomerDTO();
 		DTO.setEmail(sid);
-		DTO = service.CustomerLogin(DTO);
+		DTO = service.CustomerInfo(DTO);
 		model.addAttribute("DTO",DTO);
 		
 		
@@ -83,17 +83,20 @@ public class CustomerController {
 	//로그인
 	@RequestMapping(value = "/Login", method = RequestMethod.POST)
 	public String LoginForm(Locale locale, Model model,CustomerDTO DTO) throws Exception {
-		CustomerDTO loginDTO = service.CustomerLogin(DTO);
+		CustomerDTO loginDTO = service.CustomerInfo(DTO);
 		
 		if(loginDTO != null) {
 			if(pwdEncoder.matches(DTO.getPw(), loginDTO.getPw()) == true) {
+				session.setAttribute("sdto", loginDTO);
 				session.setAttribute("sid", loginDTO.getEmail());
 				return "redirect:../";
 			}else {
 				//비번틀림
+				System.out.println("비밀번호X");
 			}
 		}else {
 			//아이디 없음
+			System.out.println("아이디X");
 		}
 		
 		return "redirect:LoginForm";
@@ -135,7 +138,7 @@ public class CustomerController {
 		PrintWriter out = response.getWriter();
 		
 		DTO.setEmail(email);
-		if(service.CustomerLogin(DTO) == null) {
+		if(service.CustomerInfo(DTO) == null) {
 			out.println("<script>"
 					+ "opener.document.getElementById('idno').style.display = 'none';"
 					+ "opener.document.getElementById('idok').style.display = 'block';"
