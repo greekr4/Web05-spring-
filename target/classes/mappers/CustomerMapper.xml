@@ -50,12 +50,31 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 
 
 	
-		<!-- 
-	수정
+	
+	<!-- 수정 -->
 	<update id="CustomerEdit">
-		update from customer set pw = #{pw}, name = #{name}, phonenum = #{phonenum}, addr1 = #{addr1}, addr2 = #{addr2}, zipcode = #{zipcode}
-		
+		update customer set pw = #{pw}, name = #{name}, phonenum = #{phonenum}, addr1 = #{addr1}, addr2 = #{addr2}, zipcode = #{zipcode}, grade = #{grade} where seq=#{seq}
 	</update>
-	 -->
+	
+	<!-- 삭제 -->
+	<delete id="CustomerDel">
+		delete from customer where seq = #{seq}
+	</delete>	
+	
+	<!-- 검색 -->
+	<select id="CustomerList_Search_name" resultType="com.myshop.dto.CustomerDTO">
+		select * from Customer where name like #{name} order by seq desc
+	</select>
+	
+	<select id="CustomerList_Search_email" resultType="com.myshop.dto.CustomerDTO">
+		select * from Customer where email like #{email} order by seq desc
+	</select>
+	
+	<select id="CustomerList_Search_phonenum" resultType="com.myshop.dto.CustomerDTO">
+		select * from Customer where phonenum like #{phonenum} order by seq desc
+	</select>
+
+
+	
 
 </mapper>

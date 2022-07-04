@@ -3,6 +3,7 @@ package com.myshop.dto;
 import java.util.Date;
 
 import lombok.Data;
+import lombok.Getter;
 
 
 @Data

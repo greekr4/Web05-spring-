@@ -175,6 +175,14 @@ response.setCharacterEncoding("utf-8");
          outline: none;
 		}
         /* /투명인풋 */
+        .msgbox{
+	    position: absolute;
+	    left: 160px;
+	    bottom: -20px;
+        }
+        #incode_form{
+        position: relative;
+        }
     </style>
 </head>
 <body>
@@ -201,20 +209,20 @@ response.setCharacterEncoding("utf-8");
                         <div class="page_content">
                         <!--  전송중 div -->
                         <div id="sending_wrap" style="position: relative;" >
-                        <div id="sending" style="display: none; position: absolute; width: 100%; height: 100px; background-color: #fff;">
+                        <div id="sending" style="display: none; position: absolute; width: 100%; height: 115px; background-color: #fff; z-index: 990;">
                         <h1 style="text-align: center; margin: 30px; ">전송중입니다.</h1>
                         </div>
                         </div>
-                        
+                        <!--  /전송중 div -->
                             <!-- 검색 -->
                             <div class="search_box">
-                                <form action="/myapp/board/news_search" method="POST">
+                                <form action="${path }/Admin/CusList_Search" method="POST">
                                     <select name="search_type">
                                         <option value="1">이름</option>
-                                        <option value="2">ㅁㅁ</option>
+                                        <option value="2">이메일</option>
+                                        <option value="3">핸드폰번호</option>
                                     </select>
-                                    <input type="hidden" id="type" name="type" value="2">
-                                    <input type="text" id="search" name="search">
+                                    <input type="text" id="search_val" name="search_val">
                                     <button type="submit" class="btn_clear">검색</button>
                                 </form>
                             </div>
@@ -226,7 +234,9 @@ response.setCharacterEncoding("utf-8");
                                     <tbody>
                                         <tr>
                                             <td><input type="text" id="name" name="name" class="incode" placeholder="이름"></td>
-                                            <td><input type="text" id="email" name="email" class="incode" placeholder="이메일"></td>
+                                            <td>
+                                            <input type="text" id="email" name="email" class="incode" placeholder="이메일" onchange="emailCheck();">
+                                            </td>
                                             <td><input type="text" id="pw" name="pw" class="incode" placeholder="비밀번호"></td>
                                             <td><input type="text" id="phonenum" name="phonenum" class="incode" placeholder="핸드폰번호"></td>
                                             <td><input type="text" id="addr1" name="addr1" class="incode" placeholder="주소"></td>
@@ -248,8 +258,14 @@ response.setCharacterEncoding("utf-8");
                                         </tr>
                                     </tbody>
                                 </table>
+                                <div class="msgbox_wrap">
+	 								<div class="msgbox">
+	                                <label id="idok" style="font-size: 14px; color: blue; display: none;">사용 가능</label>
+	                                <label id="idno" style="font-size: 14px; color: red; display: none;">사용 불가능</label>
+	                                </div>
+                                </div>
                             </form>
-                            
+                               
                            
 
 
@@ -258,12 +274,13 @@ response.setCharacterEncoding("utf-8");
                                 <thead>
                                     <tr>
                                         <th>no</th>
-                                        <th>이름</th>
+                                        <th style="width: 10%;">이름</th>
                                         <th>등급</th>
                                         <th>이메일주소</th>
-                                        <th>핸드폰번호</th>
-                                        <th>주소</th>
-                                        <th>로그인카운트</th>
+                                        <th style="width: 10%;">비밀번호</th>
+                                        <th style="width: 10%;">핸드폰번호</th>
+                                        <th style="width: 20%;">주소</th>
+                                        <th>CNT</th>
                                         <th>가입일</th>
                                         <th>최종접속일</th>
                                         <th>버튼</th>
@@ -365,10 +382,16 @@ response.setCharacterEncoding("utf-8");
                                         	</c:choose>
 
                                         </td>
-                                        <td><input type="text" id="email" class="outcode out_email" value="${DTO.email }"></td>
+                                        <td><input type="text" id="email" class="outcode out_email" value="${DTO.email }" readonly="readonly"></td>
+                                        <td>
+                                        <input type="text" id="pw" class="outcode out_pw" value="" placeholder="변경시 입력">
+                                        <input type="hidden" id="out_hpw" class="out_hpw" value="${DTO.pw }">
+                                        </td>
                                         <td><input type="text" id="phonenum" class="outcode out_phonenum" value="${DTO.phonenum }"></td>
                                         <td>
                                         <input type="text" id="addr1" class="outcode out_addr1" value="${DTO.addr1 }">
+                                        <input style="width: 40%; text-align: center;" type="text" id="addr2" class="outcode out_addr2" value="${DTO.addr2 }">
+                                        <input style="width: 40%; text-align: left;" type="text" id="zipcode" class="outcode out_zipcode" value="(${DTO.zipcode })">
                                         </td>
                                         <td>${DTO.cnt }</td>
                                         <td><fmt:formatDate value="${DTO.regdate }" pattern="YY-MM-dd"/></td>
@@ -405,6 +428,16 @@ response.setCharacterEncoding("utf-8");
 $('.gnb_sub_menu').eq(2).find('a').css('font-weight','bold');
 
 
+function emailCheck() {
+    var email_val = $('#email').val();
+    if(email==""){
+        alert("이메일 주소를 입력하여 주시기 바랍니다.");
+        return false;
+    } else {
+    	window.open('${path}/Customer/IDCK?email='+email_val,'hiddenf');
+    }
+}
+
 
 function edit(seq,index) {
 	var out_name_val = $('.out_name').eq(index).val();
@@ -412,17 +445,38 @@ function edit(seq,index) {
 	var out_email_val = $('.out_email').eq(index).val();
 	var out_phonenum_val = $('.out_phonenum').eq(index).val();
 	var out_addr1_val = $('.out_addr1').eq(index).val();
-	
-	alert(out_name_val);
+	var out_addr2_val = $('.out_addr2').eq(index).val();
+	var out_zipcode_val = $('.out_zipcode').eq(index).val();
+	out_zipcode_val = out_zipcode_val.substring(1).slice(0,-1);
+	if ($('.out_pw').eq(index).val() == ''){
+		var out_pw_val = $('.out_hpw').eq(index).val();
+	}else{
+		var out_pw_val = $('.out_pw').eq(index).val();
+	}
+/* 	alert(out_name_val);
 	alert(out_grade_val);
 	alert(out_email_val);
+	alert(out_pw_val);
 	alert(out_phonenum_val);
 	alert(out_addr1_val);
+	alert(out_addr2_val);
+	alert(out_zipcode_val); */
+	
+	window.open('${path}/Customer/Edit?name='+out_name_val+'&grade='+out_grade_val+"&phonenum="+out_phonenum_val+"&addr1="+out_addr1_val+"&addr2="+out_addr2_val+"&zipcode="+out_zipcode_val+"&pw="+out_pw_val+"&seq="+seq,'hiddenf');
+	
+	
 }
 
 function del(seq,index) {
-	alert(seq+'삭제');
-	alert(index+'번째');
+	
+    if (!confirm("정말 삭제하시겠습니까?")) {
+		return;
+    } else {
+    	window.open('${path}/Customer/Del?seq='+seq,'hiddenf');
+    }
+    
+    
+
 }
 
 function addsubmit() {

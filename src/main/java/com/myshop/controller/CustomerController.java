@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.myshop.dto.CustomerDTO;
 import com.myshop.service.CustomerService;
 
+import au.com.dius.pact.core.model.HttpResponse;
+
 /**
  * Handles requests for the application home page.
  */
@@ -157,5 +159,38 @@ public class CustomerController {
 		
 		
 	}
+	
+	//정보수정
+	@RequestMapping("Edit")
+	public void Edit(@RequestParam int seq, @RequestParam int grade, @RequestParam String pw,@RequestParam String name,@RequestParam String phonenum,@RequestParam String addr1,@RequestParam String addr2,@RequestParam String zipcode,HttpServletResponse response) throws Exception{
+		CustomerDTO DTO = new CustomerDTO();
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;utf-8");
+		
+		DTO.setPw(pw);		DTO.setName(name);		DTO.setPhonenum(phonenum);
+		DTO.setAddr1(addr1);		DTO.setAddr2(addr2);		DTO.setZipcode(zipcode);
+		DTO.setGrade(grade);		DTO.setSeq(seq);
+		service.CustomerEdit(DTO);
+		PrintWriter out = response.getWriter();
+		out.println("<script>"
+				+ "alert('수정되었습니다.');"
+				+ "opener.location.reload();"
+				+ "</script>");
+	}
+	
+	//삭제
+	@RequestMapping("Del")
+	public void Del(@RequestParam int seq,HttpServletResponse response) throws Exception {
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;utf-8");
+		PrintWriter out = response.getWriter();
+		service.CustomerDel(seq);
+		out.println("<script>"
+				+ "alert('삭제되었습니다.');"
+				+ "opener.location.reload();"
+				+ "</script>");
+		
+	}
+	
 
 }

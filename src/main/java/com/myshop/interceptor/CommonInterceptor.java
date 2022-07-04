@@ -18,16 +18,14 @@ public class CommonInterceptor extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		HttpSession session = request.getSession();
-		
 		CustomerDTO sdto = (CustomerDTO) session.getAttribute("sdto");
-		
 		if (sdto == null) {
 			//로그인 안됐음
 			response.sendRedirect("/myapp/Customer/LoginForm"); 
 			return false;
 		} else if (sdto.getGrade() != 15) {
 				//관리자없음
-				return false;
+			return false;
 			} 
 		//모든 예외처리 통과함
 		return true;

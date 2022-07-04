@@ -49,4 +49,36 @@ public class CustomerDAOImpl implements CustomerDAO {
 		
 	}
 
+
+	@Override
+	public void CustomerEdit(CustomerDTO DTO) throws Exception {
+		sqlSession.update(namespace+".CustomerEdit",DTO);
+		
+	}
+
+
+	@Override
+	public void CustomerDel(int seq) throws Exception {
+		sqlSession.delete(namespace+".CustomerDel",seq);
+		
+	}
+
+
+	@Override
+	public List<CustomerDTO> CustomerList_Search_name(String name) throws Exception {
+		return sqlSession.selectList(namespace+".CustomerList_Search_name",name);
+	}
+
+
+	@Override
+	public List<CustomerDTO> CustomerList_Search_email(String email) throws Exception {
+		return sqlSession.selectList(namespace+".CustomerList_Search_email",email);
+	}
+
+
+	@Override
+	public List<CustomerDTO> CustomerList_Search_phonenum(String phonenum) throws Exception {
+		return sqlSession.selectList(namespace+".CustomerList_Search_phonenum",phonenum);
+	}
+
 }

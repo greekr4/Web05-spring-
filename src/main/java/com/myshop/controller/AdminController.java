@@ -1,5 +1,6 @@
 package com.myshop.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.myshop.dto.CategoryDTO;
 import com.myshop.dto.CustomerDTO;
@@ -66,6 +68,31 @@ public class AdminController {
 
 		model.addAttribute("List",List);
 		return "/Admin/CusDorList";
+	}
+	
+	//회원리스트_검색
+	@RequestMapping("CusList_Search")
+	public String CusList_Search(Locale locale,Model model,@RequestParam int search_type,@RequestParam String search_val) throws Exception{
+		List<CustomerDTO> List = new ArrayList<CustomerDTO>();
+		
+		switch (search_type) {
+		case 1:
+			String name = "%"+search_val+"%";
+			List = CustomerService.CustomerList_Search_name(name);
+			break;
+		case 2:
+			String email = "%"+search_val+"%";
+			List = CustomerService.CustomerList_Search_email(email);
+			break;
+		case 3:
+			String phonenum = "%"+search_val+"%";
+			List = CustomerService.CustomerList_Search_phonenum(phonenum);
+			break;
+		}
+		 
+		
+		model.addAttribute("List",List);
+		return "/Admin/CusList";
 	}
 	
 	//카테고리관리
