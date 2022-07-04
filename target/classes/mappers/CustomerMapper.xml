@@ -27,8 +27,17 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 		inner join codemaster c 
 		on (a.grade = c.value and c.code = 'cs')
 		where email = #{email}
-
 	</select>
+	
+	
+	<!-- 로그인 카운트 -->
+	<update id="CustomerLoginCnt">
+		update customer set cnt = cnt + 1 where email = #{email}
+	</update>
+	<!-- 로그인 데이트 -->
+	<update id="CustomerLoginDate">
+		update customer set login_date = now() where email = #{email}
+	</update>
 	
 
 

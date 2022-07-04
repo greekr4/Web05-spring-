@@ -21,7 +21,7 @@ response.setCharacterEncoding("utf-8");
     <link rel="stylesheet" href="${path }/resources/css/common.css">
     <link rel="stylesheet" href="${path }/resources/css/main.css">
     <link rel="stylesheet" href="${path }/resources/css/style.css">
- <style>
+   <style>
         /* 초기화 */
         * { margin: 0; padding: 0;}
         ul { list-style: none; } 
@@ -142,16 +142,17 @@ response.setCharacterEncoding("utf-8");
         <div id="container">
             <div id="container_wrap">
 	       <section class="main_wrap">
-					<jsp:include page="./AdminLeftMenu.jsp"/>
+					<jsp:include page="./LeftMenu.jsp"/>
                     <!-- 주문관리 - 주문관리 -->
-                    <article class="page">
+                     <!-- 회원관리 - 휴면회원 -->
+                    <article class="page" id="page4">
                         <div class="page_content">
-                             <!-- 검색 -->
+                            <!-- 검색 -->
                             <div class="search_box">
                                 <form action="/myapp/board/news_search" method="POST">
                                     <select name="search_type">
                                         <option value="1">이름</option>
-                                        <option value="2">주문번호</option>
+                                        <option value="2">ㅁㅁ</option>
                                     </select>
                                     <input type="hidden" id="type" name="type" value="2">
                                     <input type="text" id="search" name="search">
@@ -159,73 +160,44 @@ response.setCharacterEncoding("utf-8");
                                 </form>
                             </div>
                             <!-- /검색 -->
-                            <!-- 주문서 테이블 -->
+                            <!-- 회원 목록 -->
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>주문번호</th>
-                                        <th>주문상태</th>
-                                        <th>입금상태</th>
-                                        <th>총 금액</th>
+                                        <th>no</th>
                                         <th>이름</th>
-                                        <th>주문일자</th>
+                                        <th>등급</th>
+                                        <th>이메일주소</th>
+                                        <th>핸드폰번호</th>
+                                        <th>주소</th>
+                                        <th>로그인카운트</th>
+                                        <th>가입일</th>
+                                        <th>최종접속일</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                	<c:forEach items="${List }" var="DTO">
+                                	<c:if test="${DTO.state == 3}">
                                     <tr>
-                                        <td><a href="./orderDetail.html">197</a></td>
-                                        <td>접수중</td>
-                                        <td>입금완료</td>
-                                        <td>100, 000원</td>
-                                        <td>조재영</td>
-                                        <td>22-06-27</td>
+                                        <td><a href="">${DTO.seq }</a></td>
+                                        <td>${DTO.name }</td>
+                                        <td>${DTO.grade_val }</td>
+                                        <td>${DTO.email }</td>
+                                        <td>${DTO.phonenum }</td>
+                                        <td>${DTO.addr1 } ${DTO.addr2 }</td>
+                                        <td>${DTO.cnt }</td>
+                                        <td><fmt:formatDate value="${DTO.regdate }" pattern="YY-MM-dd"/></td>
+                                        <td><fmt:formatDate value="${DTO.login_date }" pattern="MM-dd HH:mm" timeZone="Seoul Asia"/>
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <td><a href="./orderDetail.html">197</a></td>
-                                        <td>접수중</td>
-                                        <td>입금완료</td>
-                                        <td>100, 000원</td>
-                                        <td>조재영</td>
-                                        <td>22-06-27</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="./orderDetail.html">197</a></td>
-                                        <td>접수중</td>
-                                        <td>입금완료</td>
-                                        <td>100, 000원</td>
-                                        <td>조재영</td>
-                                        <td>22-06-27</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="./orderDetail.html">197</a></td>
-                                        <td>접수중</td>
-                                        <td>입금완료</td>
-                                        <td>100, 000원</td>
-                                        <td>조재영</td>
-                                        <td>22-06-27</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="./orderDetail.html">197</a></td>
-                                        <td>접수중</td>
-                                        <td>입금완료</td>
-                                        <td>100, 000원</td>
-                                        <td>조재영</td>
-                                        <td>22-06-27</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="./orderDetail.html">197</a></td>
-                                        <td>접수중</td>
-                                        <td>입금완료</td>
-                                        <td>100, 000원</td>
-                                        <td>조재영</td>
-                                        <td>22-06-27</td>
-                                    </tr>
+                                    </c:if>
+                                     </c:forEach>
                                 </tbody>
                             </table>
-                            <!-- 주문서 테이블 -->
+                            <!-- /회원 목록 -->
                         </div>
                     </article>
-                   <!-- /주문관리 - 주문관리 -->
+                        <!-- /회원관리 - 휴면회원 -->
                 </section>
 
             </div>
@@ -241,7 +213,7 @@ response.setCharacterEncoding("utf-8");
 
 
 <script type="text/javascript">
-$('.gnb_sub_menu').eq(0).find('a').css('font-weight','bold');
+$('.gnb_sub_menu').eq(3).find('a').css('font-weight','bold');
 </script>
  </body>
 </html>

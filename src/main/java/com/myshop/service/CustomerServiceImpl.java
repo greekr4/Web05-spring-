@@ -30,4 +30,16 @@ public class CustomerServiceImpl implements CustomerService {
 		
 	}
 
+	@Override
+	public void CustomerLoginCnt(CustomerDTO DTO) throws Exception {
+		dao.CustomerLoginCnt(DTO);
+		
+	}
+
+	@Override
+	public void CustomerLoginDate(CustomerDTO DTO) throws Exception {
+		dao.CustomerLoginDate(DTO);
+		
+	}
+
 }

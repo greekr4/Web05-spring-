@@ -21,7 +21,7 @@ response.setCharacterEncoding("utf-8");
     <link rel="stylesheet" href="${path }/resources/css/common.css">
     <link rel="stylesheet" href="${path }/resources/css/main.css">
     <link rel="stylesheet" href="${path }/resources/css/style.css">
-   <style>
+ <style>
         /* 초기화 */
         * { margin: 0; padding: 0;}
         ul { list-style: none; } 
@@ -127,6 +127,18 @@ response.setCharacterEncoding("utf-8");
             text-align: center;
         }
         /* /페이지 공통 - 리스트 테이블 */
+        /* 게시판관리 - 공지사항 */
+        .btn_group{
+            display: block;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        .btn_group input[type="button"]{
+            padding: 7px 20px 8px 20px;
+            font-size: 14px;
+        }
+        /* 게시판관리 - 공지사항 */
     </style>
 </head>
 <body>
@@ -142,17 +154,16 @@ response.setCharacterEncoding("utf-8");
         <div id="container">
             <div id="container_wrap">
 	       <section class="main_wrap">
-					<jsp:include page="./AdminLeftMenu.jsp"/>
-                    <!-- 주문관리 - 주문관리 -->
-                     <!-- 회원관리 - 휴면회원 -->
-                    <article class="page" id="page4">
+					<jsp:include page="./LeftMenu.jsp"/>
+                     <!-- 게시판관리 - 공지사항 -->
+                    <article class="page">
                         <div class="page_content">
                             <!-- 검색 -->
                             <div class="search_box">
                                 <form action="/myapp/board/news_search" method="POST">
                                     <select name="search_type">
-                                        <option value="1">이름</option>
-                                        <option value="2">ㅁㅁ</option>
+                                        <option value="1">제목</option>
+                                        <option value="2">내용</option>
                                     </select>
                                     <input type="hidden" id="type" name="type" value="2">
                                     <input type="text" id="search" name="search">
@@ -160,41 +171,34 @@ response.setCharacterEncoding("utf-8");
                                 </form>
                             </div>
                             <!-- /검색 -->
-                            <!-- 회원 목록 -->
+                            <!-- 제품 목록 -->
                             <table class="table">
                                 <thead>
                                     <tr>
                                         <th>no</th>
-                                        <th>이름</th>
-                                        <th>등급</th>
-                                        <th>이메일주소</th>
-                                        <th>핸드폰번호</th>
-                                        <th>주소</th>
-                                        <th>로그인카운트</th>
-                                        <th>가입일</th>
-                                        <th>최종접속일</th>
+                                        <th>제목</th>
+                                        <th>조회수</th>
+                                        <th>작성일</th>
+                                        <th>작성자</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                	<c:forEach items="${List }" var="DTO">
                                     <tr>
-                                        <td><a href="">${DTO.seq }</a></td>
-                                        <td>${DTO.name }</td>
-                                        <td>${DTO.grade_val }</td>
-                                        <td>${DTO.email }</td>
-                                        <td>${DTO.phonenum }</td>
-                                        <td>${DTO.addr1 } ${DTO.addr2 }</td>
-                                        <td>${DTO.cnt }</td>
-                                        <td><fmt:formatDate value="${DTO.regdate }" pattern="YY-MM-dd"/></td>
-                                        <td>${DTO.login_date }</td>
-                                    </tr>
-                                     </c:forEach>
+                                        <td>3</td>
+                                        <td><a href="/myapp/board/more2.html">충격 재영이 브론즈</a></td>
+                                        <td>8080</td>
+                                        <td>2022-06-30</td>
+                                        <td>관리자</td>
+                                    </tr>                            
                                 </tbody>
                             </table>
-                            <!-- /회원 목록 -->
+                            <!-- /제품 목록 -->
+                            <div class="btn_group">
+                                <input type="button" class="btn_black" value="등록">
+                            </div>
                         </div>
                     </article>
-                        <!-- /회원관리 - 휴면회원 -->
+                    <!-- /게시판관리 - 공지사항 -->
                 </section>
 
             </div>
@@ -210,7 +214,7 @@ response.setCharacterEncoding("utf-8");
 
 
 <script type="text/javascript">
-$('.gnb_sub_menu').eq(0).find('a').css('font-weight','bold');
+$('.gnb_sub_menu').eq(6).find('a').css('font-weight','bold');
 </script>
  </body>
 </html>

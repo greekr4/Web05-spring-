@@ -89,6 +89,8 @@ public class CustomerController {
 			if(pwdEncoder.matches(DTO.getPw(), loginDTO.getPw()) == true) {
 				session.setAttribute("sdto", loginDTO);
 				session.setAttribute("sid", loginDTO.getEmail());
+				service.CustomerLoginCnt(loginDTO);
+				service.CustomerLoginDate(loginDTO);
 				return "redirect:../";
 			}else {
 				//비번틀림

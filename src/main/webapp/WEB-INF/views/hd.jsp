@@ -80,7 +80,7 @@
                         <c:if test="${!empty sid }">
 
 						<c:if test="${fn:contains(sid,'admin') }">
-						<li class="main"><a href="${path }/Admin/AdminOrderList">관리자메뉴</a></li>
+						<li class="main"><a href="${path }/Admin/OrderList">관리자메뉴</a></li>
 						</c:if>
                         
                         <li class="main2">

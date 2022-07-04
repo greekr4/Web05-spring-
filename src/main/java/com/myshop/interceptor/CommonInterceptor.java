@@ -19,25 +19,18 @@ public class CommonInterceptor extends HandlerInterceptorAdapter{
 			throws Exception {
 		HttpSession session = request.getSession();
 		
-		//세션아이디 및 정보 불러오기
-		//String sid = (String) session.getAttribute("sid");
 		CustomerDTO sdto = (CustomerDTO) session.getAttribute("sdto");
 		
 		if (sdto == null) {
 			//로그인 안됐음
 			response.sendRedirect("/myapp/Customer/LoginForm"); 
 			return false;
-		} else {
-			//로그인 됐음
-			if (sdto.getGrade() == 9) {
-				//관리자권한
-				return true;
-			} else {
-				//권한없음
-				response.sendRedirect("../"); 
+		} else if (sdto.getGrade() != 9) {
+				//관리자없음
 				return false;
-			}
-		}
+			} 
+		//모든 예외처리 통과함
+		return true;
 		
 		
 	}

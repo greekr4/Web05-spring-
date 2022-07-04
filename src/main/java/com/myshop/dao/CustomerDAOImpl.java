@@ -35,4 +35,18 @@ public class CustomerDAOImpl implements CustomerDAO {
 		
 	}
 
+
+	@Override
+	public void CustomerLoginCnt(CustomerDTO DTO) throws Exception {
+		sqlSession.update(namespace+".CustomerLoginCnt",DTO);
+		
+	}
+
+
+	@Override
+	public void CustomerLoginDate(CustomerDTO DTO) throws Exception {
+		sqlSession.update(namespace+".CustomerLoginDate",DTO);
+		
+	}
+
 }
