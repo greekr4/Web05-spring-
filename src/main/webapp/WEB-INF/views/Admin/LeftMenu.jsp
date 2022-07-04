@@ -30,6 +30,7 @@ response.setCharacterEncoding("utf-8");
                                 <ul>
                                     <li class="gnb_sub_menu"><a href="${path }/Admin/Category">카테고리관리</a></li>
                                     <li class="gnb_sub_menu"><a href="${path }/Admin/ProductList">제품관리</a></li>
+                                    <li class="gnb_sub_menu"><a href="${path }/Admin/ProductList">제품노출설정</a></li>
                                 </ul>
                             </li>
                             <li class="gnb_menu">

@@ -10,9 +10,9 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 	<select id="CustomerList" resultType="com.myshop.dto.CustomerDTO">
 		select a.*,b.name as 'state_val',c.name as 'grade_val' from customer a
 		inner join codemaster b 
-		on(a.state = b.value and b.code = 'cg')
+		on(a.state = b.value and b.code = 'cs')
 		inner join codemaster c 
-		on(a.grade = c.value and c.code = 'cs')
+		on(a.grade = c.value and c.code = 'cg')
 		order by a.seq desc
 	</select>
 	
@@ -23,9 +23,9 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 	<select id="CustomerInfo" resultType="com.myshop.dto.CustomerDTO">
 		select a.*,b.name as 'state_val',c.name as 'grade_val' from customer a
 		inner join codemaster b
-		on (a.state = b.value and b.code = 'cg')
+		on (a.state = b.value and b.code = 'cs')
 		inner join codemaster c 
-		on (a.grade = c.value and c.code = 'cs')
+		on (a.grade = c.value and c.code = 'cg')
 		where email = #{email}
 	</select>
 	
@@ -43,10 +43,11 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 
 	<!-- 가입  -->
 	<insert id="CustomerJoin">
-		insert into customer(email,pw,name,phonenum,addr1,addr2,zipcode,regdate)
-		values(#{email},#{pw},#{name},#{phonenum},#{addr1},#{addr2},#{zipcode},now());
+		insert into customer(email,pw,name,phonenum,addr1,addr2,zipcode,regdate,grade)
+		values(#{email},#{pw},#{name},#{phonenum},#{addr1},#{addr2},#{zipcode},now(),#{grade});
 	</insert>
 	
+
 
 	
 		<!-- 

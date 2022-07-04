@@ -57,7 +57,7 @@ public class CustomerController {
 	
 	//회원가입 폼
 	@RequestMapping("/JoinForm")
-	public String JoinForm(@ModelAttribute("CustomerDTO") CustomerDTO DTO, Model model,BindingResult result) throws Exception {
+	public String JoinForm(@ModelAttribute("CustomerDTO") CustomerDTO DTO,Model model,BindingResult result) throws Exception {
 		return "/Customer/JoinForm";
 	}
 	
@@ -74,7 +74,7 @@ public class CustomerController {
 		return "/Customer/Mypage";
 	}
 	
-	//마이페이지
+	//가입완료
 	@RequestMapping("/JoinOK")
 	public String JoinOK(){
 		return "/Customer/JoinOK";
@@ -115,7 +115,10 @@ public class CustomerController {
 	//회원가입
 	@RequestMapping("Join")
 	public String Join(@ModelAttribute("CustomerDTO") CustomerDTO DTO, Model model,BindingResult result) throws Exception{
-		System.out.println(DTO);
+		if(DTO.getGrade() == 0) {
+		DTO.setGrade(1);	
+		}
+	
 		if(DTO.getEmail() != null) {
 			
 			DTO.setPw(pwdEncoder.encode(DTO.getPw()));

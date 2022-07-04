@@ -180,6 +180,11 @@ response.setCharacterEncoding("utf-8");
             text-align: center;
         }
         /* /메뉴관리 - 카테고리 */
+  /* 카테고리 등록 폼 */
+   #incode_form{
+      margin-bottom: 2%;
+   }
+   /* /카테고리 등록 폼 */
     </style>
 </head>
 <body>
@@ -200,38 +205,6 @@ response.setCharacterEncoding("utf-8");
                       <!-- 메뉴관리 - 카테고리 관리 -->
                     <article class="page">
                         <div class="page_content">
-                            <form action="" method="post" name="outcode_form" id="code_form">
-                                <table class="table" style="width: 50%;">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 20%;">순서</th>
-                                            <th style="width: 20%;">코드</th>
-                                            <th style="width: 45%;">코드명</th>
-                                            <th style="width: 15%;">삭제</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><input type="text" class="outcode" name="orderby" id="orderby" value="0"></td>
-                                            <td><input type="text" class="outcode" name="code" id="code" value="a00"></td>
-                                            <td><input type="text" class="outcode" name="desc" id="desc" value="정육 · 계란"></td>
-                                            <td><input type="button" value="삭제" class="btn_white" onclick="delContent(code)"></td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="text" class="outcode" name="orderby" id="orderby" value="1"></td>
-                                            <td><input type="text" class="outcode" name="code" id="code" value="a11"></td>
-                                            <td><input type="text" class="outcode" name="desc" id="desc" value="소고기"></td>
-                                            <td><input type="button" value="삭제" class="btn_white" onclick="delContent(code)"></td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="text" class="outcode" name="orderby" id="orderby" value="2"></td>
-                                            <td><input type="text" class="outcode" name="code" id="code" value="a12"></td>
-                                            <td><input type="text" class="outcode" name="desc" id="desc" value="돼지고기"></td>
-                                            <td><input type="button" value="삭제" class="btn_white" onclick="delContent(code)"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </form>
                             <form action="" method="post" name="incode_form" id="incode_form">
                                 <table class="input_table" style="width: 50%;">
                                     <tbody>
@@ -245,6 +218,33 @@ response.setCharacterEncoding("utf-8");
                                     </tbody>
                                 </table>
                             </form>
+                        
+                            
+                                <table class="table" style="width: 50%;">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 20%;">순서</th>
+                                            <th style="width: 20%;">코드</th>
+                                            <th style="width: 45%;">코드명</th>
+                                            <th style="width: 15%;">버튼</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    	<c:forEach items="${List }" var="DTO">
+                                        <tr>
+                                            <td><input type="text" class="outcode" name="orderby" id="orderby" value="${DTO.orderby }"></td>
+                                            <td><input type="text" class="outcode" name="code" id="code" value="${DTO.code }"></td>
+                                            <td><input type="text" class="outcode" name="desc" id="desc" value="${DTO.name }"></td>
+                                            <td>
+                                            <input type="button" value="수정" class="btn_white" onclick="delContent(${DTO.seq})">
+                                            <input type="button" value="삭제" class="btn_white" onclick="delContent(${DTO.seq})">
+                                            </td>
+                                        </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                           
+
                         </div>
                     </article>
                     <!-- /메뉴관리 - 카테고리관리 -->

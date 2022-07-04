@@ -14,7 +14,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.myshop.dto.CategoryDTO;
 import com.myshop.dto.CustomerDTO;
+import com.myshop.service.CategoryService;
 import com.myshop.service.CustomerService;
 
 /**
@@ -31,6 +33,9 @@ public class AdminController {
 	
 	@Inject
 	private CustomerService CustomerService;
+	
+	@Inject
+	private CategoryService CategoryService;
 	
 	@Inject
 	private HttpSession session;
@@ -66,6 +71,8 @@ public class AdminController {
 	//카테고리관리
 	@RequestMapping(value = "Category", method = RequestMethod.GET)
 	public String Category(Locale locale,Model model) throws Exception{
+		List<CategoryDTO> List = CategoryService.CategoryList();
+		model.addAttribute("List",List);
 		return "/Admin/Category";
 	}
 	

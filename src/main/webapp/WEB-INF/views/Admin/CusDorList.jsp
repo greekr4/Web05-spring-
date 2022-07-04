@@ -127,6 +127,7 @@ response.setCharacterEncoding("utf-8");
             text-align: center;
         }
         /* /페이지 공통 - 리스트 테이블 */
+
     </style>
 </head>
 <body>

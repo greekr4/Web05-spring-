@@ -25,7 +25,7 @@ public class CommonInterceptor extends HandlerInterceptorAdapter{
 			//로그인 안됐음
 			response.sendRedirect("/myapp/Customer/LoginForm"); 
 			return false;
-		} else if (sdto.getGrade() != 9) {
+		} else if (sdto.getGrade() != 15) {
 				//관리자없음
 				return false;
 			} 

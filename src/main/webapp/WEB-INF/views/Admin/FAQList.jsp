@@ -214,7 +214,7 @@ response.setCharacterEncoding("utf-8");
 
 
 <script type="text/javascript">
-$('.gnb_sub_menu').eq(7).find('a').css('font-weight','bold');
+$('.gnb_sub_menu').eq(8).find('a').css('font-weight','bold');
 </script>
  </body>
 </html>
