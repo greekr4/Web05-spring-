@@ -8,9 +8,20 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 
 	<!-- 카테고리 리스트 -->
 	<select id="CategoryList" resultType="com.myshop.dto.CategoryDTO">
-		select * from category
+		select * from category order by code
 	</select>
-	
+	<!-- 추가 -->
+	<insert id="CategoryAdd">
+		insert into category(orderby, code, name) values(#{orderby},#{code},#{name});
+	</insert>
+	<!-- 수정 -->
+	<update id="CategoryEdit">
+		update category set orderby = #{orderby}, code= #{code}, name= #{name} where seq = #{seq}
+	</update>
+	<!-- 삭제 -->
+	<delete id="CategoryDel">
+		delete from category where seq = #{seq}
+	</delete>
 	
 	
 	

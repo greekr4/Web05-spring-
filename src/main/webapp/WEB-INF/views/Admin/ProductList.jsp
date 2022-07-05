@@ -188,44 +188,24 @@ response.setCharacterEncoding("utf-8");
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>p0003</td>
-                                        <td><a href="/myapp/board/more2.html">동협상추</a></td>
-                                        <td>노출</td>
-                                        <td>1000원</td>
-                                        <td>200</td>
-                                        <td>10</td>
-                                        <td>0</td>
-                                        <td>2022-06-30</td>
+                                <c:forEach items="${List }" var="DTO" varStatus="status">
+                                	<tr>
+                                        <td>${DTO.seq }</td>
+                                        <td>${DTO.pcode }</td>
+                                        <td><a href="/myapp/board/more2.html">${DTO.pname }</a></td>
+                                        <td>${DTO.state_val }</td>
+                                        <td><fmt:formatNumber value="${DTO.price }" pattern="#,###"/>원</td>
+                                        <td>${DTO.invt }</td>
+                                        <td>${DTO.allocate_invt }</td>
+                                        <td>${DTO.discount }%</td>
+                                        <td><fmt:formatDate value="${DTO.regdate }" pattern="YYYY-MM-dd"/></td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>p0002</td>
-                                        <td><a href="/myapp/board/more2.html">재영이 브론즈 뱃지</a></td>
-                                        <td>노출안함</td>
-                                        <td>400원</td>
-                                        <td>200</td>
-                                        <td>1</td>
-                                        <td>80%</td>
-                                        <td>2022-06-30</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>p0001</td>
-                                        <td><a href="/myapp/board/more2.html">성피리 양파</a></td>
-                                        <td>노출</td>
-                                        <td>5,900원</td>
-                                        <td>200</td>
-                                        <td>55</td>
-                                        <td>0</td>
-                                        <td>2022-06-30</td>
-                                    </tr>                                    
+                                </c:forEach>                        
                                 </tbody>
                             </table>
                             <!-- /제품 목록 -->
                             <div class="btn_group">
-                                <input type="button" class="btn_black" value="제품등록">
+                                <input type="button" class="btn_black" onclick="location.href ='${path}/Admin/ProductAddForm'" value="제품등록">
                             </div>
                         </div>
                     </article>

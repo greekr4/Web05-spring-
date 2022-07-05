@@ -42,4 +42,5 @@ public class ScriptUtils {
 	        out.println("<script>alert('" + alertText + "');opener.location.reload();window.close();</script> ");
 	        out.flush();
 	    }
+	    
 }

@@ -474,9 +474,6 @@ function del(seq,index) {
     } else {
     	window.open('${path}/Customer/Del?seq='+seq,'hiddenf');
     }
-    
-    
-
 }
 
 function addsubmit() {

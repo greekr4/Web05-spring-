@@ -23,4 +23,25 @@ public class CategoryDAOImpl implements CategoryDAO {
 		return sqlSession.selectList(namespace+".CategoryList");
 	}
 
+
+	@Override
+	public void CategoryAdd(CategoryDTO DTO) throws Exception {
+		sqlSession.insert(namespace+".CategoryAdd",DTO);
+		
+	}
+
+
+	@Override
+	public void CategoryEdit(CategoryDTO DTO) throws Exception {
+		sqlSession.update(namespace+".CategoryEdit",DTO);
+		
+	}
+
+
+	@Override
+	public void CategoryDel(int seq) throws Exception {
+		sqlSession.delete(namespace+".CategoryDel",seq);
+		
+	}
+
 }

@@ -15,7 +15,7 @@
 	<!-- /resources(이미지,동영상,아이콘,문서,...의 directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources mapping="/include/**" location="/WEB-INF/views/include" />
-	
+	<resources mapping="/ckeditor/**" location="/ckeditor/" />
 	
 	<!-- /WEB-INF/views(jsp파일들)이 있는 directory 설정 -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

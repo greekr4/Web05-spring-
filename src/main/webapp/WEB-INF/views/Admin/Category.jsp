@@ -198,6 +198,7 @@ response.setCharacterEncoding("utf-8");
 
 
         <div id="container">
+        <iframe name="hiddenf" style="display: none;"></iframe>
             <div id="container_wrap">
 	       <section class="main_wrap">
 					<jsp:include page="./LeftMenu.jsp"/>
@@ -205,13 +206,13 @@ response.setCharacterEncoding("utf-8");
                       <!-- 메뉴관리 - 카테고리 관리 -->
                     <article class="page">
                         <div class="page_content">
-                            <form action="" method="post" name="incode_form" id="incode_form">
+                            <form action="${path }/Category/Add" method="post" name="incode_form" id="incode_form" onsubmit="return addsubmit();">
                                 <table class="input_table" style="width: 50%;">
                                     <tbody>
                                         <tr>
-                                            <td><input type="text" class="incode" placeholder="순서입력"></td>
-                                            <td><input type="text" class="incode" placeholder="코드"></td>
-                                            <td><input type="text" class="incode" placeholder="메뉴명"></td>
+                                            <td><input type="text" class="incode" name="orderby" id="orderby" placeholder="순서입력"></td>
+                                            <td><input type="text" class="incode" name="code" id="code" placeholder="코드"></td>
+                                            <td><input type="text" class="incode" name="name" id="name" placeholder="메뉴명"></td>
                                             <td><input type="submit" class="btn_black" value="입력"></td>
                                             <td><input type="reset" class="btn_clear" value="재입력"></td>
                                         </tr>
@@ -230,14 +231,14 @@ response.setCharacterEncoding("utf-8");
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    	<c:forEach items="${List }" var="DTO">
+                                    	<c:forEach items="${List }" var="DTO" varStatus="status">
                                         <tr>
-                                            <td><input type="text" class="outcode" name="orderby" id="orderby" value="${DTO.orderby }"></td>
-                                            <td><input type="text" class="outcode" name="code" id="code" value="${DTO.code }"></td>
-                                            <td><input type="text" class="outcode" name="desc" id="desc" value="${DTO.name }"></td>
+                                            <td><input type="text" class="outcode out_orderby" value="${DTO.orderby }"></td>
+                                            <td><input type="text" class="outcode out_code" value="${DTO.code }"></td>
+                                            <td><input type="text" class="outcode out_name" value="${DTO.name }"></td>
                                             <td>
-                                            <input type="button" value="수정" class="btn_white" onclick="delContent(${DTO.seq})">
-                                            <input type="button" value="삭제" class="btn_white" onclick="delContent(${DTO.seq})">
+                                            <input type="button" value="수정" class="btn_white" onclick="edit(${DTO.seq},${status.index})">
+                                            <input type="button" value="삭제" class="btn_white" onclick="del(${DTO.seq},${status.index})">
                                             </td>
                                         </tr>
                                         </c:forEach>
@@ -264,6 +265,71 @@ response.setCharacterEncoding("utf-8");
 
 <script type="text/javascript">
 $('.gnb_sub_menu').eq(4).find('a').css('font-weight','bold');
+
+
+
+
+function edit(seq,index) {
+	var orderby_val = $('.out_orderby').eq(index).val();
+	var code_val = $('.out_code').eq(index).val();
+	var name_val = $('.out_name').eq(index).val();
+/* 
+	alert(orderby_val);
+	alert(code_val);
+	alert(name_val);
+*/
+
+	window.open('${path}/Category/Edit?orderby='+orderby_val+'&code='+code_val+'&name='+name_val+'&seq='+seq,'hiddenf');
+
+}
+
+
+function del(seq,index) {
+	
+    if (!confirm("정말 삭제하시겠습니까?")) {
+		return;
+    } else {
+    	window.open('${path}/Category/Del?seq='+seq,'hiddenf');
+    }
+}
+
+function addsubmit() {
+	var orderby_val = $('#orderby').val();
+	var code_val = $('#code').val();
+	var name_val = $('#name').val();
+	
+	
+    if(orderby_val == ''){
+        alert("순서를 입력해주세요.");
+        $('#orderby').focus();
+        return false;
+    }
+	
+    if(code_val == ''){
+        alert("코드를 입력해주세요.");
+        $('#code').focus();
+        return false;
+    }
+    
+	
+    if(name_val == ''){
+        alert("메뉴명을 입력해주세요.");
+        $('#name').focus();
+        return false;
+    }
+	
+    
+  	//새창으로 서브밋 보내기
+    var w = window.open('','hiddenf','scrollbars=yes, width=740, height=800');
+	var Form = document.getElementById('incode_form');
+	Form.target = 'hiddenf';
+	Form.submit();
+	
+	
+	
+}
+
+
 </script>
  </body>
 </html>

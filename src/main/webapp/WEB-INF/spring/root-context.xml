@@ -65,6 +65,9 @@
 	
 	<context:component-scan base-package="com.myshop.dao"></context:component-scan>
 	<context:component-scan base-package="com.myshop.service"></context:component-scan>
+	
+	
+	
 
 	  
 </beans>
