@@ -37,6 +37,7 @@ import com.myshop.dto.ProductDTO;
 import com.myshop.service.CategoryService;
 import com.myshop.service.CustomerService;
 import com.myshop.service.ProductService;
+import com.myshop.util.ScriptUtils;
 
 /**
  * Handles requests for the application home page.
@@ -180,6 +181,7 @@ public class AdminController {
 	    		
 	    		//이미지 경로 생성
 	    		String path = "D:\\Taek\\springpj\\web05\\src\\main\\webapp\\resources\\upload\\";	// 이미지 경로 설정(폴더 자동 생성)
+	    		
 	    		String ckUploadPath = path + uid + "_" + fileName;
 	    		File folder = new File(path);
 	    		System.out.println("path:"+path);	// 이미지 저장경로 console에 확인
@@ -222,8 +224,11 @@ public class AdminController {
 	    		, @RequestParam(value="fileName") String fileName
 	    		, HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException{
+
+	        String rootPath = System.getProperty("user.dir");;
+	        System.out.println("현재 프로젝트의 경로 : "+rootPath );
 	    	
-	    	//서버에 저장된 이미지 경로
+	    	
 	    	String path = "D:\\Taek\\springpj\\web05\\src\\main\\webapp\\resources\\upload\\";	// 저장된 이미지 경로
 	    	System.out.println("path:"+path);
 	    	String sDirPath = path + uid + "_" + fileName;
@@ -266,12 +271,25 @@ public class AdminController {
 	    }
 	    
 	    @PostMapping("/ajaxUpload")
-	    public void ajaxUpload(MultipartFile[] uploadfile) {
-	    	String uploadFolder = "D:\\Taek\\springpj\\web05\\src\\main\\webapp\\resources\\upload\\aljax";
+	    public void ajaxUpload(MultipartFile[] uploadfile,@RequestParam String code_path,HttpServletResponse response) {
+	    	String uploadFolder = "D:\\Taek\\springpj\\web05\\src\\main\\webapp\\resources\\upload\\aljax\\"+code_path;
+	    	
+	    	//폴더 생성
+	    	File folder = new File(uploadFolder);
+    		if(!folder.exists()){
+    			try{
+    				folder.mkdirs(); // 폴더 생성
+    		}catch(Exception e){
+    			e.getStackTrace();
+    		}
+    		}
+    		
+    		
 	    	for(MultipartFile multipartFile : uploadfile) {
 	    		File savefile = new File(uploadFolder, multipartFile.getOriginalFilename());
 	    		try {
 	    			multipartFile.transferTo(savefile);
+	    			ScriptUtils.alert(response, "업로드 성공!");
 	    		} catch (Exception e) {
 					System.out.println("파일 업로드 에러");
 				}

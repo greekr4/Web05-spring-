@@ -207,7 +207,7 @@ String filePath = defaultPath + "ckEimg" + File.separator;
                                         <tr>
                                             <th>품목코드</th>
                                             <td>
-                                                <input type="text" name="pcode" value="">
+                                                <input type="text" name="pcode" id="pcode" value="">
                                             </td>
                                         </tr>
                                         <tr>
@@ -287,19 +287,15 @@ String filePath = defaultPath + "ckEimg" + File.separator;
                                         <tr>
                                             <th>목록이미지</th>
                                             <td>
-                                                <!-- <label for="img_s" class="btn_clear">파일찾기</label> -->
-                                                <!-- <input class="img_s_name" placeholder="선택된 파일 없음"> -->
-                                                <input type="file" name="uploadfile" id="uploadfile" multiple>
-                                                <button type="button" class="btn_white upload_btn" onclick="img_upload();">업로드</button>
+                                                <input type="file" name="uploadfile" id="uploadfile" class="uploadfile">
+                                                <input type="hidden" name="s_img" id="s_img"/>
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>상세이미지</th>
                                             <td>
-                                                <!-- <label for="img_ds" class="btn_clear">파일찾기</label> -->
-                                                <!-- <input class="img_ds_name" placeholder="선택된 파일 없음"> -->
-                                                <input type="file" name="file" id="img_ds">
-                                                <button type="button" class="btn_white upload_btn">업로드</button>
+                                                <input type="file" name="uploadfile" id="uploadfile" class="uploadfile">
+                                                <input type="hidden" name="ds_img" id="ds_img"/>
                                             </td>
                                         </tr>
                                         <tr>
@@ -307,8 +303,9 @@ String filePath = defaultPath + "ckEimg" + File.separator;
                                             <td>
                                                 <!-- <label for="img_dm" class="btn_clear">파일찾기</label> -->
                                                 <!-- <input class="img_dm_name" placeholder="선택된 파일 없음"> -->
-                                                <input type="file" name="file" id="img_dm">
-                                                <button type="button" class="btn_white upload_btn">업로드</button>
+                                                <input type="file" name="uploadfile" id="uploadfile" class="uploadfile">
+                                                <input type="hidden" name="dm_img" id="dm_img"/>
+                                                <button type="button" class="btn_white upload_btn" onclick="img_upload();">업로드</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -339,37 +336,57 @@ String filePath = defaultPath + "ckEimg" + File.separator;
 $('.gnb_sub_menu').eq(5).find('a').css('font-weight','bold');
 
 function img_upload() {
-	if ($('.uploadfile').val() == null){
-		alert('파일을 업로드해주세요!');
+
+	
+	
+	var code_path = $('#pcode').val();
+	
+	for(var i=0;i<3;i++){
+	if ($('.uploadfile').eq(i).val() == ''){
+		alert((i+1)+'번째 파일을 선택해주세요!');
 		return;
 	}
+	}
+	//값 넣어주기
+	var s_img = $('.uploadfile').eq(0).val().split('fakepath\\',2);
+	var ds_img = $('.uploadfile').eq(1).val().split('fakepath\\',2);
+	var dm_img = $('.uploadfile').eq(2).val().split('fakepath\\',2);
+	
+	$('#s_img').val(s_img[1]);
+	$('#ds_img').val(ds_img[1]);
+	$('#dm_img').val(dm_img[1]);
+
 	
 	var inputFile = $("input[name='uploadfile']");
 	
 	var formData = new FormData();
 	
 	var files = inputFile[0].files;
-
+	var files2 = inputFile[1].files;
+	var files3 = inputFile[2].files;
+	
 	for(var i=0;i<files.length;i++){
 		formData.append("uploadfile",files[i]);	
 	}
-	
-	
-	
+	for(var i=0;i<files2.length;i++){
+		formData.append("uploadfile",files2[i]);	
+	}
+	for(var i=0;i<files3.length;i++){
+		formData.append("uploadfile",files3[i]);	
+	}
 	   $.ajax({
-           url : '${path}/Admin/ajaxUpload',
+           url : '${path}/Admin/ajaxUpload?code_path='+code_path,
            processData : false,
            contentType : false,
            data : formData,
            type : 'POST',
            success : function(result) {
-        	   alert("dd");
+        	   alert("업로드 성공!");
 			
 		}
            
 
        });//end ajax
-       alert('업로드되었습니다.');
 }
 
 
