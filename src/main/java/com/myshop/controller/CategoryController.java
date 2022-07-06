@@ -41,12 +41,12 @@ public class CategoryController {
 	@ResponseBody
 	@RequestMapping("list_json")
 	public JSONObject list_json(HttpServletResponse response) throws Exception{
-		List<CategoryDTO> List = service.CategoryList();
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("CateList", List);
-		JSONObject json = new JSONObject();
-		json.putAll(map);
-		return json;
+		List<CategoryDTO> List = service.CategoryList(); //xml에서 카테고리 리스트 검색
+		HashMap<String, Object> map = new HashMap<String, Object>(); //맵 선언
+		map.put("CateList", List);	//xml에서 받아온 카테고리 리스트를 map에 푸쉬
+		JSONObject json = new JSONObject(); //제이슨 선언
+		json.putAll(map);	//제이슨에 맵 푸쉬
+		return json; //리턴
 	}
 	
 	@RequestMapping("Add")

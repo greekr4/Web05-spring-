@@ -192,8 +192,8 @@ response.setCharacterEncoding("utf-8");
                                 	<tr>
                                         <td>${DTO.seq }</td>
                                         <td>${DTO.pcode }</td>
-                                        <td><a href="/myapp/board/more2.html">${DTO.pname }</a></td>
-                                        <td>${DTO.state_val }</td>
+                                        <td><a href="/myapp/Admin/ProductEditForm?seq=${DTO.seq }">${DTO.pname }</a></td>
+                                        <td>${DTO.state_name }</td>
                                         <td><fmt:formatNumber value="${DTO.price }" pattern="#,###"/>원</td>
                                         <td>${DTO.invt }</td>
                                         <td>${DTO.allocate_invt }</td>

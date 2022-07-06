@@ -6,20 +6,71 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 
 <mapper namespace="com.myshop.CustomerMapper">
 
-	<!-- 상품리스트 -->
+	<!-- 상품리스트(전체검색) -->
 	<select id="ProductList" resultType="com.myshop.dto.ProductDTO">
-		select a.*,b.name as 'state_val' from product a
-		inner join codemaster b
-		on(a.state = b.value and b.code='ps') order by seq desc
+		select * from v_product order by seq desc
+	</select>
+	
+	<!-- 상품리스트(카테고리 코드검색) -->
+	<select id="ProductList_ccode" resultType="com.myshop.dto.ProductDTO">
+		select * from v_product where ccode = #{ccode} order by seq desc
+	</select>
+	
+	<!-- 상품 갯수 (카테고리별) -->
+	<select id="ProductCount" resultType="int">
+		select count(*) from v_product where ccode = #{ccode}
 	</select>
 	
 	<!-- 상품상세 -->
 	<select id="ProductMore" resultType="com.myshop.dto.ProductDTO">
-		select a.*,b.name as 'state_val' from product a
-		inner join codemaster b
-		on(a.state = b.value and b.code='ps') where a.seq=#{seq}
+		select * from v_product order by seq desc
 	</select>
+	
+	<!-- 제품등록 -->
+	<insert id="ProductAdd">
+		insert into product(pcode,state,pname,psubname,price,invt,unit,pdetail,origin,weight,guidelines,regdate)
+		values(#{pcode},#{state},#{pname},#{psubname},#{price},#{invt},#{unit},#{pdetail},#{origin},#{weight},#{guidelines},now())
+	</insert>
+	
+	<!-- 제품등록++이미지경로 -->
+	<insert id="ProductAdd_add">
+		insert into product_add(pcode, s_img_desc, ds_img_desc, dm_img_desc)
+		values(#{pcode}, #{s_img_desc},#{ds_img_desc},#{dm_img_desc})
+	</insert>
+	
+	<!-- 제품등록++카테고리 -->
+	<insert id="ProductAdd_cate">
+		insert into category_add (ccode,pcode)
+		values (#{ccode},#{pcode})
+	</insert>
+	
+	<!-- 제품수정 -->
+	<update id="ProductEdit">
+		update product
+		set state=#{state}, pname=#{pname},psubname = #{psubname},
+		price=#{price},invt=#{invt},unit=#{unit},pdetail =#{pdetail},origin=#{origin},
+		weight = #{weight},guidelines =#{guidelines}
+		where seq = #{seq}
+	</update>
+	
+		<!-- 제품수정++이미지경로 -->
+	<update id="ProductEdit_add">
+		update product_add 
+		set s_img_desc = #{s_img_desc} , ds_img_desc =#{ds_img_desc},dm_img_desc =#{dm_img_desc}
+		where pcode = #{pcode}
 
+	</update>
+	
+	
+		<!-- 제품수정++카테고리  -->
+	<update id="ProductEdit_cate">
+		update category_add 
+		set ccode = #{ccode}
+		where pcode = #{pcode}
+	</update>
+	
+	
+	
 
 	
 

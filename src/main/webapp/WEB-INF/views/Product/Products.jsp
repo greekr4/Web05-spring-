@@ -60,7 +60,7 @@ response.setCharacterEncoding("utf-8");
         .tit_box {
             padding-top: 150px;
             font-weight: 300;
-            color: beige;
+            color: #222;
             text-align: center;
             margin: 0 auto;
             font-size: 20px;
@@ -115,7 +115,6 @@ response.setCharacterEncoding("utf-8");
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
-            justify-content: space-between;
             border-bottom: solid 1px lightgrey;
             margin-bottom: 100px;
         }
@@ -132,13 +131,16 @@ response.setCharacterEncoding("utf-8");
         }
 
         .goods>a>img {
+        	display:block;
             width: 313px;
             height: 400px;
         }
 
         .item {
-            margin: 50px 0 50px 0;
+            margin: 50px 15px 50px 15px;
             float: left;
+            width: 320px;
+    		height: 540px;
         }
 
         .info {
@@ -308,6 +310,11 @@ response.setCharacterEncoding("utf-8");
             text-decoration: none;
             background: #222222;
         }
+        .visual{
+        background:url(${path}/resources/img/product/menu_subtop.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        }
     </style>
 </head>
 <body>
@@ -323,9 +330,9 @@ response.setCharacterEncoding("utf-8");
         <div id="container">
             <div id="container_wrap">
   	        <section class="page1">
-                    <div class="visual" style="background:url(${path}/resources/img/product/subtop_kitchenacc.jpg);">
+                    <div class="visual">
                         <div class="tit_box">
-                            <h3>POTTERY HOUSE</h3>
+                            <h3>Bn2U</h3>
                             <p>EVERYDAY BESTBUY</p>
                         </div>
                     </div>
@@ -372,7 +379,7 @@ response.setCharacterEncoding("utf-8");
                             <ul class="pick_list">
                                 <li class="sub_navi">
                                     <span class="pick_list_num" style="color: gray;">Total. <strong
-                                            style="color: black;">8</strong></span>
+                                            style="color: black;">${pcnt }</strong></span>
                                     <select name="" id="" class="select_num">
                                         <option value="" selected>20개씩보기</option>
                                         <option value="">10개씩보기</option>
@@ -402,112 +409,21 @@ response.setCharacterEncoding("utf-8");
                             </ul>
                         </div>
                         <div class="goods_list">
+                        	<c:forEach items="${List }" var="DTO">
                             <div class="item">
                                 <div class="goods">
                                     <a href="product.html">
-                                        <img src="${path}/resources/img/product/dhfl1.jpeg" alt="Product_img">
+                                        <img src="${path}/resources/upload/${DTO.pcode }/${DTO.s_img_desc}" alt="Product_img">
                                     </a>
                                 </div>
                                 <div class="info">
-                                    <a href=""><span class="name"> [우리땅오리] 무항생제 오리 로스 400g 냉동 </span></a>
-                                    <a href=""><span class="price">7,500원</span></a>
-                                    <a href=""><span class="desc">100g 당 판매가 : 1,875원</span></a>
+                                    <a href=""><span class="name">${DTO.pname }</span></a>
+                                    <a href=""><span class="price"><fmt:formatNumber value="${DTO.price }" pattern="#,###"/>원</span></a>
+                                    <a href=""><span class="desc">${DTO.psubname }</span></a>
                                     <a href=""><span class="tag"></span></a>
                                 </div>
                             </div>
-                            <div class="item">
-                                <div class="goods">
-                                    <a href="">
-                                        <img src="${path}/resources/img/product/1633588725320l0.jpg" alt="Product_img">
-                                    </a>
-                                </div>
-                                <div class="info">
-                                    <a href=""><span class="name"> [하림] 냉장 닭가슴살 4종 </span></a>
-                                    <a href=""><span class="price">1,700원</span></a>
-                                    <a href=""><span class="desc">간편하게 꺼내먹는 냉장 닭가슴살!</span></a>
-                                    <a href=""><span class="tag"></span></a>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="goods">
-                                    <a href="">
-                                        <img src="${path}/resources/img/product/1637147626889l0.jpg" alt="Product_img">
-                                    </a>
-                                </div>
-                                <div class="info">
-                                    <a href=""><span class="name"> [KF365] 1+등급 무항생제 특란20구 </span></a>
-                                    <a href=""><span class="price">7,150원</span></a>
-                                    <a href=""><span class="desc">1구 당 판매가 : 357.5원</span></a>
-                                    <a href=""><span class="tag"></span></a>
-                                </div>
-                            </div>
-
-                            <div class="item">
-                                <div class="goods">
-                                    <a href="">
-                                        <img src="${path}/resources/img/product/1646377916155l0.jpg" alt="Product_img">
-                                    </a>
-                                </div>
-                                <div class="info">
-                                    <a href=""><span class="name"> [KF365] 1+등급 무항생제 대란20구 </span></a>
-                                    <a href=""><span class="price">6,900원</span></a>
-                                    <a href=""><span class="desc">1구 당 판매가 : 345원</span></a>
-                                    <a href=""><span class="tag"></span></a>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="goods">
-                                    <a href="">
-                                        <img src="${path}/resources/img/product/1648206863338l0.jpeg" alt="Product_img">
-                                    </a>
-                                </div>
-                                <div class="info">
-                                    <a href=""><span class="name"> [다향오리] 혼제오리 150g </span></a>
-                                    <a href=""><span class="price">2,980원</span></a>
-                                    <a href=""><span class="desc">안심하고 즐기는 쫄깃한 식감 </span></a>
-                                    <a href=""><span class="tag"></span></a>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="goods">
-                                    <a href="">
-                                        <img src="${path}/resources/img/product/1656427630593l0.jpg" alt="Product_img">
-                                    </a>
-                                </div>
-                                <div class="info">
-                                    <a href=""><span class="name"> [하이포크] 한돈 꽃등심 300g (냉장) </span></a>
-                                    <a href=""><span class="price">5,600원</span></a>
-                                    <a href=""><span class="desc">100g 당 판매가 : 1,967원</span></a>
-                                    <a href=""><span class="tag"></span></a>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="goods">
-                                    <a href="">
-                                        <img src="${path}/resources/img/product/1656427724679l0.jpg" alt="Product_img">
-                                    </a>
-                                </div>
-                                <div class="info">
-                                    <a href=""><span class="name"> [하이포크] 한돈 꽃살 구이 300g (냉장) </span></a>
-                                    <a href=""><span class="price">6,100원</span></a>
-                                    <a href=""><span class="desc">100g 당 판매가 : 2,033원</span></a>
-                                    <a href=""><span class="tag"></span></a>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="goods">
-                                    <a href="">
-                                        <img src="${path}/resources/img/product/1656427898500l0.jpg" alt="Product_img">
-                                    </a>
-                                </div>
-                                <div class="info">
-                                    <a href=""><span class="name"> [하이포크] 한돈 꽃목심 300g (냉장) </span></a>
-                                    <a href=""><span class="price">10,900원</span></a>
-                                    <a href=""><span class="desc">100g 당 판매가 : 3,633원</span></a>
-                                    <a href=""><span class="tag"></span></a>
-                                </div>
-                            </div>
-                        </div>
+                            </c:forEach>
                     </div>
                 </section>
             </div>

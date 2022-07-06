@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.codehaus.plexus.util.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -133,11 +134,40 @@ public class AdminController {
 		return "/Admin/ProductList";
 	}
 	
-	//제품등록
+	//제품등록폼
 	@RequestMapping("ProductAddForm")
 	public String ProductAddForm(Locale locale,Model model) throws Exception{
 		return "/Admin/ProductAddForm";
 	}
+	
+	//제품수정
+	@RequestMapping("ProductEditForm")
+	public String ProductEditForm(Model model,@RequestParam int seq) throws Exception{
+		ProductDTO DTO = ProductService.ProductMore(seq);
+		model.addAttribute("DTO",DTO);
+		return "/Admin/ProductEditForm";
+	}
+	
+	//제품등록
+	@RequestMapping("ProductAdd")
+	public void ProductAdd(ProductDTO DTO,HttpServletResponse response,@RequestParam String code2) throws Exception{
+		DTO.setCcode(code2);
+		ProductService.ProductAdd(DTO);
+		ProductService.ProductAdd_add(DTO);
+		ProductService.ProductAdd_cate(DTO);
+		ScriptUtils.alertAndMovePage(response, "등록완료", "./ProductList");
+	}
+	
+	//제품수정
+	@RequestMapping("ProductEdit")
+	public void ProductEdit(ProductDTO DTO,HttpServletResponse response,@RequestParam String code2) throws Exception{
+		DTO.setCcode(code2);
+		ProductService.ProductEdit(DTO);
+		ProductService.ProductEdit_add(DTO);
+		ProductService.ProductEdit_cate(DTO);
+		ScriptUtils.alertAndMovePage(response, "수정완료", "./ProductList");
+	}
+	
 	
 	//공지사항
 	@RequestMapping(value = "NoticeList", method = RequestMethod.GET)
@@ -151,13 +181,13 @@ public class AdminController {
 		return "/Admin/FAQList";
 	}
 	
-	//제품관리
+	//QNAList
 	@RequestMapping(value = "QNAList", method = RequestMethod.GET)
 	public String QNAList(Locale locale,Model model) throws Exception{
 		return "/Admin/QNAList";
 	}
 	
-	//제품관리
+	//후기관리
 	@RequestMapping(value = "ReviewList", method = RequestMethod.GET)
 	public String ReviewList(Locale locale,Model model) throws Exception{
 		return "/Admin/ReviewList";
@@ -272,17 +302,19 @@ public class AdminController {
 	    
 	    @PostMapping("/ajaxUpload")
 	    public void ajaxUpload(MultipartFile[] uploadfile,@RequestParam String code_path,HttpServletResponse response) {
-	    	String uploadFolder = "D:\\Taek\\springpj\\web05\\src\\main\\webapp\\resources\\upload\\aljax\\"+code_path;
+	    	String uploadFolder = "D:\\Taek\\springpj\\web05\\src\\main\\webapp\\resources\\upload\\"+code_path;
 	    	
-	    	//폴더 생성
+	    	
 	    	File folder = new File(uploadFolder);
+
     		if(!folder.exists()){
     			try{
-    				folder.mkdirs(); // 폴더 생성
+    				folder.mkdirs();	//생성
     		}catch(Exception e){
     			e.getStackTrace();
     		}
     		}
+
     		
     		
 	    	for(MultipartFile multipartFile : uploadfile) {
@@ -296,5 +328,25 @@ public class AdminController {
 	    	}
 	    }
 	
+	    
+	    @PostMapping("/ajaxDel")
+	    public void ajaxDel(MultipartFile[] uploadfile,@RequestParam String code_path,HttpServletResponse response) {
+	    	String uploadFolder = "D:\\Taek\\springpj\\web05\\src\\main\\webapp\\resources\\upload\\"+code_path;
+	    	
+	    	
+	    	//업로드할 시 폴더 삭제 후 재생성
+	    	File folder = new File(uploadFolder);
+	    	
+    		if(folder.exists()){
+    			try{
+    				System.out.println("폴더가 있습니다. path : " + folder);
+    				FileUtils.deleteDirectory(folder);
+    				System.out.println("삭제성공");
+    			}catch(Exception e){
+    			e.getStackTrace();
+    			}
+    		}
+	    	
+	    }
 
 }

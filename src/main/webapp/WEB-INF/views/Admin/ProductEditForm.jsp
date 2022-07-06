@@ -201,22 +201,33 @@ String filePath = defaultPath + "ckEimg" + File.separator;
                    <!-- 제품등록 폼 -->
                     <div class="content">
                         <div class="content_wrap">
-                            <form action="ProductAdd" method="post" name="addForm" id="addForm">
+                            <form action="ProductEdit" method="post" name="addForm" id="addForm">
                                 <table class="proTable">
                                     <tbody>
                                         <tr>
                                             <th>품목코드</th>
                                             <td>
-                                                <input type="text" name="pcode" id="pcode" value="">
+                                            	<input type="hidden" name="seq" value="${DTO.seq }">
+                                                <input type="text" name="pcode" id="pcode" value="${DTO.pcode }">
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>노출여부</th>
                                             <td>
-                                                <select name="state" id="state"  required>
-                                                    <option value="1" selected>노출</option>
-                                                    <option value="3">노출안함</option>
-                                                </select>
+                                            	<c:choose>
+                                            	<c:when test="${DTO.state == 1 }">
+		                                                <select name="state" id="state"  required>
+		                                                    <option value="1" selected>노출</option>
+		                                                    <option value="3">노출안함</option>
+		                                                </select>
+                                                </c:when>
+                                                <c:when test="${DTO.state == 3 }">
+		                                                <select name="state" id="state"  required>
+		                                                    <option value="1">노출</option>
+		                                                    <option value="3" selected>노출안함</option>
+		                                                </select>
+                                                </c:when>
+                                                </c:choose>
                                             </td>
                                         </tr>
                                         <tr>
@@ -233,69 +244,70 @@ String filePath = defaultPath + "ckEimg" + File.separator;
                                         <tr>
                                             <th>제품명</th>
                                             <td>
-                                                <input type="text" name="pname" id="pname" required>
+                                                <input type="text" name="pname" id="pname" value="${DTO.pname }" required>
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>서브제목</th>
                                             <td>
-                                                <input type="text" name="psubname" id="subname" required>
+                                                <input type="text" name="psubname" id="subname" value="${DTO.psubname }" required>
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>단가</th>
                                             <td>
-                                                <input type="text" name="price" id="price" pattern="^[0-9]+$" required>
+                                                <input type="text" name="price" id="price" pattern="^[0-9]+$" value="${DTO.price }" required>
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>재고</th>
                                             <td>
-                                                <input type="text" name="invt" id="invt" pattern="^[0-9]+$" required>
+                                                <input type="text" name="invt" id="invt" pattern="^[0-9]+$" value="${DTO.invt }" required>
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>판매단위</th>
                                             <td>
-                                                <input type="text" name="unit" id="unit">
+                                                <input type="text" name="unit" id="unit" value="${DTO.unit }">
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>원산지</th>
                                             <td>
-                                                <input type="text" name="origin" id="origin">
+                                                <input type="text" name="origin" id="origin" value="${DTO.origin }">
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>용량/중량</th>
                                             <td>
-                                                <input type="text" name="weight" id="weight">
+                                                <input type="text" name="weight" id="weight" value="${DTO.weight }">
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>안내사항</th>
                                             <td>
-                                                <input type="text" name="guidelines" id="guidelines">
+                                                <input type="text" name="guidelines" id="guidelines" value="${DTO.guidelines }">
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>상품설명</th>
                                             <td>
-                                                <textarea name="pdetail" id="editor" cols="100" rows="10"></textarea>
+                                                <textarea name="pdetail" id="editor" cols="100" rows="10">${DTO.pdetail }</textarea>
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>목록이미지</th>
                                             <td>
-                                                <input type="file" name="uploadfile" id="uploadfile" class="uploadfile">
-                                                <input type="hidden" name="s_img_desc" id="s_img"/>
+                                                <input type="file" name="uploadfile" id="uploadfile" class="uploadfile" >
+                                                <input type="hidden" name="s_img_desc" id="s_img" value="${DTO.s_img_desc }"/>
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>상세이미지</th>
                                             <td>
                                                 <input type="file" name="uploadfile" id="uploadfile" class="uploadfile">
-                                                <input type="hidden" name="ds_img_desc" id="ds_img"/>
+                                                <input type="hidden" name="ds_img_desc" id="ds_img" value="${DTO.ds_img_desc }"/>
+                                                <button type="button" class="btn_white upload_btn" onclick="img_del();">파일RESET</button>
                                             </td>
                                         </tr>
                                         <tr>
@@ -304,7 +316,7 @@ String filePath = defaultPath + "ckEimg" + File.separator;
                                                 <!-- <label for="img_dm" class="btn_clear">파일찾기</label> -->
                                                 <!-- <input class="img_dm_name" placeholder="선택된 파일 없음"> -->
                                                 <input type="file" name="uploadfile" id="uploadfile" class="uploadfile">
-                                                <input type="hidden" name="dm_img_desc" id="dm_img"/>
+                                                <input type="hidden" name="dm_img_desc" id="dm_img" value="${DTO.dm_img_desc }"/>
                                                 <button type="button" class="btn_white upload_btn" onclick="img_upload();">업로드</button>
                                             </td>
                                         </tr>
@@ -334,6 +346,27 @@ String filePath = defaultPath + "ckEimg" + File.separator;
 
 <script type="text/javascript">
 $('.gnb_sub_menu').eq(5).find('a').css('font-weight','bold');
+
+function img_del() {
+
+	
+    if (!confirm("정말 삭제하시나요?")) {
+        return;
+    } else {
+    	var code_path = $('#pcode').val();
+    	$.ajax({
+            url : '${path}/Admin/ajaxDel?code_path='+code_path,
+            processData : false,
+            contentType : false,
+            type : 'POST',
+            success : function(result) {
+         	   alert("삭제 성공!");
+    		}
+    	});//end ajax
+    }
+	
+
+}
 
 function img_upload() {
 
@@ -394,7 +427,8 @@ window.onload = function(){
     ck = CKEDITOR.replace('editor',{filebrowserUploadUrl:'${path}/Admin/imageUpload'});
  };
 
-
+var ccode = '${DTO.ccode}';
+var ccode_f = ccode.substr(0,1);
 var A_code_list = [];
 var A_name_list = [];
 var B_code_list = [];
@@ -416,7 +450,7 @@ $.ajax({
 				//$(".main").empty();
 				$.each(data.CateList, function(index, CateList) { // 이치를 써서 모든 데이터들을 배열에 넣음												
 					var items = [];		
-					
+						
 					if ((CateList.code).substr(1,2) == '00'){
 						$('#code').append("<option value='"+CateList.code+"'>"+ CateList.name +"</option>")
 					}
@@ -437,7 +471,45 @@ $.ajax({
 						E_code_list.push(CateList.code);
 						E_name_list.push(CateList.name);
 					}
-
+					
+					if (ccode_f == 'A') {
+						$("#code").val(ccode_f+'00').prop("selected", true);
+						$('#code2').empty();
+						for(i=0;i<A_code_list.length;i++){
+						$('#code2').append("<option value='"+A_code_list[i]+"'>"+A_name_list[i]+"</option>");
+						}
+						$("#code2").val(ccode).prop("selected", true);
+					}else if (ccode_f == 'B') {
+						$("#code").val(ccode_f+'00').prop("selected", true);
+						$('#code2').empty();
+						for(i=0;i<B_code_list.length;i++){
+						$('#code2').append("<option value='"+B_code_list[i]+"'>"+B_name_list[i]+"</option>");
+						}
+						$("#code2").val(ccode).prop("selected", true);
+					}else if (ccode_f == 'C') {
+						$("#code").val(ccode_f+'00').prop("selected", true);
+						$('#code2').empty();
+						for(i=0;i<C_code_list.length;i++){
+						$('#code2').append("<option value='"+C_code_list[i]+"'>"+C_name_list[i]+"</option>");
+						}
+						$("#code2").val(ccode).prop("selected", true);
+					}else if (ccode_f == 'D') {
+						$("#code").val(ccode_f+'00').prop("selected", true);
+						$('#code2').empty();
+						for(i=0;i<D_code_list.length;i++){
+						$('#code2').append("<option value='"+D_code_list[i]+"'>"+D_name_list[i]+"</option>");
+						}
+						$("#code2").val(ccode).prop("selected", true);
+					}else if (ccode_f == 'E') {
+						$("#code").val(ccode_f+'00').prop("selected", true);
+						$('#code2').empty();
+						for(i=0;i<E_code_list.length;i++){
+						$('#code2').append("<option value='"+E_code_list[i]+"'>"+E_name_list[i]+"</option>");
+						}
+						$("#code2").val(ccode).prop("selected", true);
+					}
+					
+					
 					/*
 					if(CateList.code == 'A00'){
 					
@@ -501,6 +573,7 @@ function cateChange() {
 	}
 	
 }
+
 
 
 

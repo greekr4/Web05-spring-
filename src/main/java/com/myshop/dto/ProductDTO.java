@@ -9,7 +9,7 @@ public class ProductDTO {
 	private int seq;
 	private String pcode;
 	private int state;
-	private String state_val;
+	private String state_name;
 	private String pname;
 	private String psubname;
 	private int price;
@@ -22,4 +22,10 @@ public class ProductDTO {
 	private String weight;
 	private String guidelines;
 	private Date regdate;
+	
+	private String s_img_desc;
+	private String ds_img_desc;
+	private String dm_img_desc;
+	
+	private String ccode;
 }

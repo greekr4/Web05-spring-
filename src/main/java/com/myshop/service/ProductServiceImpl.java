@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.myshop.dao.ProductDAO;
@@ -23,6 +24,54 @@ public class ProductServiceImpl implements ProductService {
 	public ProductDTO ProductMore(int seq) throws Exception {
 		return dao.ProductMore(seq);
 	}
+
+	@Override
+	public void ProductAdd(ProductDTO DTO) throws Exception {
+		dao.ProductAdd(DTO);
+		
+	}
+
+	@Override
+	public void ProductAdd_add(ProductDTO DTO) throws Exception {
+		dao.ProductAdd_add(DTO);
+		
+	}
+
+	@Override
+	public void ProductAdd_cate(ProductDTO DTO) throws Exception {
+		dao.ProductAdd_cate(DTO);
+		
+	}
+
+	@Override
+	public void ProductEdit(ProductDTO DTO) throws Exception {
+		dao.ProductEdit(DTO);
+		
+	}
+
+	@Override
+	public void ProductEdit_add(ProductDTO DTO) throws Exception {
+		dao.ProductEdit_add(DTO);
+		
+	}
+
+	@Override
+	public void ProductEdit_cate(ProductDTO DTO) throws Exception {
+		dao.ProductEdit_cate(DTO);
+		
+	}
+
+	@Override
+	public List<ProductDTO> ProductList_ccode(String ccode) throws Exception {
+		return dao.ProductList_ccode(ccode);
+	}
+
+	@Override
+	public int ProductCount(String ccode) throws Exception {
+		return dao.ProductCount(ccode);
+	}
+
+
 	
 	
 
