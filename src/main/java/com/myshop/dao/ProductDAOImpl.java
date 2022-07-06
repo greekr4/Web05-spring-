@@ -12,7 +12,7 @@ import com.myshop.dto.ProductDTO;
 
 @Repository
 public class ProductDAOImpl implements ProductDAO {
-	private static final String namespace = "com.myshop.CustomerMapper";
+	private static final String namespace = "com.myshop.ProductMapper";
 	
 	@Inject
 	private SqlSession sqlSession;

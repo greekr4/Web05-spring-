@@ -468,7 +468,7 @@ $.ajax({
 				});//each끝		
 				
 			}			
-	});	
+	});	//end ajax
 
 
 function cateChange() {

@@ -1,6 +1,7 @@
 package com.myshop.controller;
 
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
@@ -20,9 +21,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.myshop.dto.CustomerDTO;
+import com.myshop.dto.RecentlyDTO;
 import com.myshop.service.CustomerService;
-
-import au.com.dius.pact.core.model.HttpResponse;
+import com.myshop.service.RecentlyService;
 
 /**
  * Handles requests for the application home page.
@@ -38,6 +39,9 @@ public class CustomerController {
 	
 	@Inject
 	private CustomerService service;
+	
+	@Inject
+	private RecentlyService service2;
 	
 	@Inject
 	private HttpSession session;
@@ -67,11 +71,14 @@ public class CustomerController {
 	@RequestMapping(value = "/Mypage",method = RequestMethod.GET)
 	public String Mypage(Model model) throws Exception{
 		String sid = (String)session.getAttribute("sid");
+		CustomerDTO sdto = (CustomerDTO) session.getAttribute("sdto");
 		CustomerDTO DTO = new CustomerDTO();
+		System.out.println("결과 : " + sdto.getSeq());
+		List<RecentlyDTO> RecenList = service2.RecentlyList(sdto.getSeq());
 		DTO.setEmail(sid);
 		DTO = service.CustomerInfo(DTO);
 		model.addAttribute("DTO",DTO);
-		
+		model.addAttribute("RecenList",RecenList);
 		
 		return "/Customer/Mypage";
 	}

@@ -130,7 +130,7 @@ response.setCharacterEncoding("utf-8");
             color: gray;
         }
 
-        .goods>a>img {
+        .goods>img {
         	display:block;
             width: 313px;
             height: 400px;
@@ -341,38 +341,30 @@ response.setCharacterEncoding("utf-8");
                             <em><a href="#" class="local_home"><img src="${path}/resources/img/product/home_icon.png" alt="홈"></a></em>
                             <span><img src="${path}/resources/img/product/arrow_icon.png" alt=""></span>
                             <div class="location_select">
-                                <div class="location_tit"><span>정육·계란</span></div>
-                                <ul style="display: none;">
-                                    <li><a href=""><span>국·반찬·메인요리</span></a></li>
-                                    <li><a href=""><span>샐러드·간편식</span></a></li>
-                                    <li><a href=""><span>면·양념·오일</span></a></li>
-                                    <li><a href=""><span>베이커리·치즈·델리</span></a></li>
-                                    <li><a href=""><span>커뮤니티</span></a></li>
+                                <div class="location_tit"><span id="code1_span">카테고리</span></div>
+                                <ul style="display: none;" id="code1_ul">
+
                                 </ul>
                             </div>
-                            <!-- 홈 > 돼지와 달걀들 > 소고기
+                            
                             <span><img src="${path}/resources/img/product/arrow_icon.png" alt=""></span>
+                            
                             <div class="location_select">
-                                <div class="location_tit"><a href="#"><span>소고기</span></a></div>
-                                <ul style="display: none;">
-                                    <li><a href="?cateCd=001"><span>돼지고기</span></a></li>
-                                    <li><a href="?cateCd=002"><span>계란류</span></a></li>
-                                    <li><a href="?cateCd=005"><span>양념육·돈까스</span></a></li>
+                                <div class="location_tit"><span id="code2_span">카테고리2</span></div>
+                                <ul style="display: none;" id="code2_ul">
+
                                 </ul>
                             </div>
-                            -->
+                            
                         </div>
                     </div>
                     <div class="content_warp">
                         <div class="page_tit">
-                            <h2>정육 · 계란</h2>
+                            <h2 id="code">카테고리</h2>
                         </div>
                         <div class="sub_tit">
-                            <ul>
-                                <li><a href="">소고기</a></li>
-                                <li><a href="">돼지고기</a></li>
-                                <li><a href="">계란류</a></li>
-                                <li><a href="">양념육 · 돈까스</a></li>
+                            <ul id=code2>
+
                             </ul>
                         </div>
                         <div class="list_line">
@@ -410,26 +402,29 @@ response.setCharacterEncoding("utf-8");
                         </div>
                         <div class="goods_list">
                         	<c:forEach items="${List }" var="DTO">
-                            <div class="item">
+                        	
+                            <div class="item" onclick="location.href = '${path}/Product/ProductMore?seq=${DTO.seq }'" style="cursor: pointer;">
                                 <div class="goods">
-                                    <a href="product.html">
                                         <img src="${path}/resources/upload/${DTO.pcode }/${DTO.s_img_desc}" alt="Product_img">
-                                    </a>
                                 </div>
                                 <div class="info">
-                                    <a href=""><span class="name">${DTO.pname }</span></a>
-                                    <a href=""><span class="price"><fmt:formatNumber value="${DTO.price }" pattern="#,###"/>원</span></a>
-                                    <a href=""><span class="desc">${DTO.psubname }</span></a>
-                                    <a href=""><span class="tag"></span></a>
+                                    <span class="name">${DTO.pname }</span>
+                                    <span class="price"><fmt:formatNumber value="${DTO.price }" pattern="#,###"/>원</span>
+                                    <span class="desc">${DTO.psubname }</span>
+                                    <span class="tag"></span>
                                 </div>
                             </div>
+                           
                             </c:forEach>
+                    </div>
                     </div>
                 </section>
             </div>
         </div>
 <script type="text/javascript">
-$('.location_select').click(function () {
+
+//네이게이션바
+$('.location_select').eq(0).click(function () {
     if ($(this).find('ul').css('display') == 'none') {
         $(this).find('.location_tit').addClass('active');
         $(this).find('ul').slideDown('fast');
@@ -438,6 +433,155 @@ $('.location_select').click(function () {
         $(this).find('.location_tit').removeClass('active');
     }
 });
+
+$('.location_select').eq(1).click(function () {
+    if ($(this).find('ul').css('display') == 'none') {
+        $(this).find('.location_tit').addClass('active');
+        $(this).find('ul').slideDown('fast');
+    } else {
+        $(this).find('ul').slideUp('fast');
+        $(this).find('.location_tit').removeClass('active');
+    }
+});
+
+var ccode = '${ccode}';
+var ccode_f = ccode.substr(0,1);
+
+
+var code00_code_list = [];
+var code00_name_list = [];
+var A_code_list = [];
+var A_name_list = [];
+var B_code_list = [];
+var B_name_list = [];
+var C_code_list = [];
+var C_name_list = [];
+var D_code_list = [];
+var D_name_list = [];
+var E_code_list = [];
+var E_name_list = [];
+$.ajax({				
+	url : "${path }/Category/list_json", // MemberJSONCtrl의 JSONObject 값을 가져옴
+	dataType : "json", // 데이터 타입을 json
+	contentType: 'application/x-www-form-urlencoded; charset=euc-kr', // UTF-8처리
+	cache : false, // true : 새로 고침 동작을 하지 않고, 저장된 캐시에서 불러오게됨, false:새로 불러옴 
+	success : function(data) {
+				
+				var key = Object.keys(data["CateList"][0]); // 키값(항목명)을 가져옴		
+				//$(".main").empty();
+				$.each(data.CateList, function(index, CateList) { // 이치를 써서 모든 데이터들을 배열에 넣음												
+					var items = [];		
+					
+					if(ccode == CateList.code){
+					$("#code2_span").text(CateList.name);
+					}
+				
+					if ((CateList.code).substr(1,2) == '00'){
+						//$('#code').append("<option value='"+CateList.code+"'>"+ CateList.name +"</option>")
+						code00_code_list.push(CateList.code);
+						code00_name_list.push(CateList.name);
+					}
+					if((CateList.code).substr(0,2) == 'A1'){
+						//$('#code2').append("<option value='"+CateList.code+"'>"+ CateList.name +"</option>")
+						A_code_list.push(CateList.code);
+						A_name_list.push(CateList.name);
+					}else if((CateList.code).substr(0,2) == 'B1'){
+						B_code_list.push(CateList.code);
+						B_name_list.push(CateList.name);
+					}else if((CateList.code).substr(0,2) == 'C1'){
+						C_code_list.push(CateList.code);
+						C_name_list.push(CateList.name);
+					}else if((CateList.code).substr(0,2) == 'D1'){
+						D_code_list.push(CateList.code);
+						D_name_list.push(CateList.name);
+					}else if((CateList.code).substr(0,2) == 'E1'){
+						E_code_list.push(CateList.code);
+						E_name_list.push(CateList.name);
+					}
+					
+					
+
+					/*
+					if(CateList.code == 'A00'){
+					
+ 					}else if(CateList.code == 'B00'){
+					$('.main_label').eq(1).text(CateList.name);
+					}else if(CateList.code == 'C00'){
+					$('.main_label').eq(2).text(CateList.name);
+					}else if(CateList.code == 'D00'){
+					$('.main_label').eq(3).text(CateList.name);
+					}else if(CateList.code == 'E00'){
+					$('.main_label').eq(4).text(CateList.name);
+					}else if(CateList.code == 'F00'){
+					$('.main_label').eq(5).text(CateList.name);
+					}
+				
+					if((CateList.code).substr(0,2) == 'A1'){
+					$('.menuA').append("<li class='sub'><a href='${path }/Product/Menu?code="+CateList.code+"'>"+CateList.name+"</a></li>")
+					}else if((CateList.code).substr(0,2) == 'B1'){
+					$('.menuB').append("<li class='sub'><a href='${path }/Product/Menu?code="+CateList.code+"'>"+CateList.name+"</a></li>")
+					}else if((CateList.code).substr(0,2) == 'C1'){
+					$('.menuC').append("<li class='sub'><a href='${path }/Product/Menu?code="+CateList.code+"'>"+CateList.name+"</a></li>")
+					}else if((CateList.code).substr(0,2) == 'D1'){
+					$('.menuD').append("<li class='sub'><a href='${path }/Product/Menu?code="+CateList.code+"'>"+CateList.name+"</a></li>")
+					}else if((CateList.code).substr(0,2) == 'E1'){
+					$('.menuE').append("<li class='sub'><a href='${path }/Product/Menu?code="+CateList.code+"'>"+CateList.name+"</a></li>")
+					} */
+					//alert(CateList.name);
+				});//each끝		
+				
+			}			
+	});	//end ajax
+
+	window.onload = function(){
+	if (ccode_f == 'A') {
+		$("#code").text(code00_name_list[0]);
+		$("#code1_span").text(code00_name_list[0]);
+		for(i=0;i<A_code_list.length;i++){
+		$('#code2').append("<li class='"+A_code_list[i]+"'><a href='${path}/Product/Products?ccode="+A_code_list[i]+"'>"+A_name_list[i]+"</a></li>");
+		$('#code2_ul').append("<li><a href='${path}/Product/Products?ccode="+A_code_list[i]+"'><span>"+A_name_list[i] +"</span></a></li>");
+		}
+	}else if (ccode_f == 'B') {
+		$("#code").text(code00_name_list[1]);
+		$("#code1_span").text(code00_name_list[1]);
+		for(i=0;i<B_code_list.length;i++){
+		$('#code2').append("<li class='"+B_code_list[i]+"'><a href='${path}/Product/Products?ccode="+B_code_list[i]+"'>"+B_name_list[i]+"</a></li>");
+		$('#code2_ul').append("<li><a href='${path}/Product/Products?ccode="+B_code_list[i]+"'><span>"+B_name_list[i] +"</span></a></li>");
+		}
+	}else if (ccode_f == 'C') {
+		$("#code").text(code00_name_list[2]);
+		$("#code1_span").text(code00_name_list[2]);
+		for(i=0;i<C_code_list.length;i++){
+		$('#code2').append("<li class='"+C_code_list[i]+"'><a href='${path}/Product/Products?ccode="+C_code_list[i]+"'>"+C_name_list[i]+"</a></li>");
+		$('#code2_ul').append("<li><a href='${path}/Product/Products?ccode="+C_code_list[i]+"'><span>"+C_name_list[i] +"</span></a></li>");
+		}
+	}else if (ccode_f == 'D') {
+		$("#code").text(code00_name_list[3]);
+		$("#code1_span").text(code00_name_list[3]);
+		for(i=0;i<D_code_list.length;i++){
+		$('#code2').append("<li class='"+D_code_list[i]+"'><a href='${path}/Product/Products?ccode="+D_code_list[i]+"'>"+D_name_list[i]+"</a></li>");
+		$('#code2_ul').append("<li><a href='${path}/Product/Products?ccode="+D_code_list[i]+"'><span>"+D_name_list[i] +"</span></a></li>");
+		}
+	}else if (ccode_f == 'E') {
+		$("#code").text(code00_name_list[4]);
+		$("#code1_span").text(code00_name_list[4]);
+		for(i=0;i<E_code_list.length;i++){
+		$('#code2').append("<li class='"+E_code_list[i]+"'><a href='${path}/Product/Products?ccode="+E_code_list[i]+"'>"+E_name_list[i]+"</a></li>");
+		$('#code2_ul').append("<li><a href='${path}/Product/Products?ccode="+E_code_list[i]+"'><span>"+E_name_list[i] +"</span></a></li>");
+		}
+	}
+	for (var i = 0; i < code00_name_list.length; i++) {
+		$('#code1_ul').append("<li><a href='${path}/Product/Products?ccode="+code00_code_list[i].substr(0,1)+ '11' +"'><span>"+code00_name_list[i] +"</span></a></li>");
+	}
+	$('#code2').find('.${ccode}').css('font-weight','bold');
+	
+	
+	
+
+}
+	//$('#code').text();
+
+
 </script>
         <footer id="ft">
             <div class="ft_wrap">

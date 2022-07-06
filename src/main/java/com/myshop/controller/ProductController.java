@@ -33,15 +33,24 @@ public class ProductController {
 	
 	// JSP 연결
 	
-	//메뉴
+	//상품 리스트
 	@RequestMapping("/Products")
-	public String LoginForm(Model model,@RequestParam String ccode) throws Exception{
+	public String Products(Model model,@RequestParam String ccode) throws Exception{
 		List<ProductDTO> List = service.ProductList_ccode(ccode);
 		int pcnt = service.ProductCount(ccode);
-		System.out.println("결과 : "+pcnt);
+		model.addAttribute("ccode",ccode);
 		model.addAttribute("List",List);
 		model.addAttribute("pcnt",pcnt);
 		return "/Product/Products";
+	}
+	
+	//상품 상세 ProductMore
+	//상품 리스트
+	@RequestMapping("/ProductMore")
+	public String ProductMore(Model model,@RequestParam int seq) throws Exception{
+		ProductDTO DTO = service.ProductMore(seq);
+		model.addAttribute("DTO",DTO);
+		return "/Product/ProductMore";
 	}
 	
 		

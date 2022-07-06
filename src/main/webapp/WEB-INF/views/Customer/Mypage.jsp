@@ -79,8 +79,20 @@ response.setCharacterEncoding("utf-8");
         .table tr td:first-child{padding-left: 20px;}
         .table tr:nth-child(1) td{border: none;}
         .table tr:nth-child(1) td:last-child{text-align: right;}
-        .table tr:nth-child(2) td:last-child{text-align: center;}
+        .table tr:nth-child(2) td:last-child{text-align: right;}
         .table tr:nth-child(3) td:last-child{text-align: right;}
+        .table tr:nth-child(1) td:last-child::after{
+            content: ">";
+            padding-left: 10px;
+            color: #4285f4;
+            font-weight: 600;
+        }
+        .table tr:nth-child(2) td:last-child::after{
+            content: ">";
+            padding-left: 10px;
+            color: #4285f4;
+            font-weight: 600;
+        }
         .table tr:nth-child(3) td:last-child::after{
             content: ">";
             padding-left: 10px;
@@ -95,24 +107,16 @@ response.setCharacterEncoding("utf-8");
             font-weight: 600;
         }
         .table tr:nth-child(5) td{border-right:  1px solid #aaaaaa;}
-        .table tr:nth-child(5) td:first-child::after{
-            content: ">";
-            padding-left: 70%;
-            color: #4285f4;
-            font-weight: 600;
-        }
+
         .table tr:nth-child(5) td:last-child{
             border-right: none;
             padding-left: 20px;
         }
-        .table tr:nth-child(5) td:last-child::after{
-            content: ">";
-            padding-left: 67%;
-            color: #4285f4;
-            font-weight: 600;
-        }
+
         .table .btn_black{
-            padding: 6px 20px 6px 20px;
+        	margin: 0 8%;
+            width: 150px;
+            height: 35px;
         }
         /* /마이페이지 */
         /* 최근 본 상품 */
@@ -155,6 +159,7 @@ response.setCharacterEncoding("utf-8");
                                 <a href="">마이페이지</a>
                                 <ul>
                                     <li class="gnb_sub_menu"><a href="my_info.html">나의정보</a></li>
+                                    <li class="gnb_sub_menu"><a href="order_info.html">장바구니</a></li>
                                     <li class="gnb_sub_menu"><a href="order_info.html">주문정보</a></li>
                                 </ul>
                             </li>
@@ -167,12 +172,15 @@ response.setCharacterEncoding("utf-8");
                         <article class="art1">
                             <div class="mypage_wrap">
                             <h4 class="my_title">마이페이지</h4>
+                           	
+                           	
                             <table class="table">
                                 <tbody>
                                     <tr>
                                         <td>이메일</td>
-                                        <td colspan="2">${DTO.email }</td>
-                                        <td><input type="button" value="정보수정" class="btn_black"></td>
+                                        <td colspan="3">
+                                        ${DTO.email }
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>휴대전화</td>
@@ -184,18 +192,27 @@ response.setCharacterEncoding("utf-8");
                                     </tr>
                                     <tr>
                                         <td>적립금</td>
-                                        <td colspan="3">1000</td>
+                                        <td colspan="3">1,000</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2"><a href="">Q&A</a></td>
-                                        <td colspan="2"><a href="">1:1문의</a></td>
+                                        <td colspan="4">
+                                        <input type="button" value="1:1문의" class="btn_black">
+                                        <input type="button" value="정보수정" class="btn_black">
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
+                            </div>
                         </article>
                         <!-- /마이페이지 -->
                         <article class="lately_look">
-                            <h4 class="lately_tit">최근 본 상품</h4>
+                            <h4 class="lately_tit">최근 본 상품
+                            <c:forEach items="${RecenList }" var="DTO">
+                            ${DTO.value }
+                            
+                            </c:forEach>
+                            
+                            </h4>
                             <div class="lately_detail">
                                 <div class="lately_detail">
                                     <button>
@@ -260,9 +277,7 @@ response.setCharacterEncoding("utf-8");
                             </ul>
                         </article>
 
-                        <article>
-                            <h4>장바구니</h4>
-                        </article>
+
 
                     </div>                      
                         

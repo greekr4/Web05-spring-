@@ -162,15 +162,15 @@
                     					}
                 					
                 						if((CateList.code).substr(0,2) == 'A1'){
-                						$('.menuA').append("<li class='sub'><a href='${path }/Product/Menu?ccode="+CateList.code+"'>"+CateList.name+"</a></li>")
+                						$('.menuA').append("<li class='sub'><a href='${path }/Product/Products?ccode="+CateList.code+"'>"+CateList.name+"</a></li>")
                 						}else if((CateList.code).substr(0,2) == 'B1'){
-                						$('.menuB').append("<li class='sub'><a href='${path }/Product/Menu?ccode="+CateList.code+"'>"+CateList.name+"</a></li>")
+                						$('.menuB').append("<li class='sub'><a href='${path }/Product/Products?ccode="+CateList.code+"'>"+CateList.name+"</a></li>")
                 						}else if((CateList.code).substr(0,2) == 'C1'){
-                						$('.menuC').append("<li class='sub'><a href='${path }/Product/Menu?ccode="+CateList.code+"'>"+CateList.name+"</a></li>")
+                						$('.menuC').append("<li class='sub'><a href='${path }/Product/Products?ccode="+CateList.code+"'>"+CateList.name+"</a></li>")
                 						}else if((CateList.code).substr(0,2) == 'D1'){
-                						$('.menuD').append("<li class='sub'><a href='${path }/Product/Menu?ccode="+CateList.code+"'>"+CateList.name+"</a></li>")
+                						$('.menuD').append("<li class='sub'><a href='${path }/Product/Products?ccode="+CateList.code+"'>"+CateList.name+"</a></li>")
                 						}else if((CateList.code).substr(0,2) == 'E1'){
-                						$('.menuE').append("<li class='sub'><a href='${path }/Product/Menu?ccode="+CateList.code+"'>"+CateList.name+"</a></li>")
+                						$('.menuE').append("<li class='sub'><a href='${path }/Product/Products?ccode="+CateList.code+"'>"+CateList.name+"</a></li>")
                 						}
                 						//alert(CateList.name);
                 					});//each끝				
