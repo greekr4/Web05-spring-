@@ -8,14 +8,15 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 
  
 	<!-- 장바구니 조회 -->
-	<select id="BasketMapper" resultType="com.myshop.dto.BasketDTO" >
-		select a.s_img_desc ,a.seq as 'p_seq',b.* from v_product a
-		inner join logmaster b 
-		on(a.pcode=b.value)
-		where b.cus_seq = #{cus_seq}
-		group by b.value
-		order by b.seq desc
+	<select id="BasketList" resultType="com.myshop.dto.BasketDTO" >
+		select a.*,b.pname ,b.psubname ,b.price ,b.s_img_desc  from basket a 
+		inner join v_product b
+		on (a.pcode = b.pcode)
+		where cus_seq = #{cus_seq}
+		
 	</select>
+	
+	
 	
 
 

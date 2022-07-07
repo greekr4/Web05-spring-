@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.myshop.dto.BasketDTO;
 import com.myshop.dto.CustomerDTO;
 import com.myshop.dto.RecentlyDTO;
+import com.myshop.service.BasketService;
 import com.myshop.service.CustomerService;
 import com.myshop.service.RecentlyService;
 import com.myshop.util.ScriptUtils;
@@ -39,10 +41,13 @@ public class CustomerController {
 	private BCryptPasswordEncoder pwdEncoder;
 	
 	@Inject
-	private CustomerService service;
+	private CustomerService CustomerService;
 	
 	@Inject
-	private RecentlyService service2;
+	private RecentlyService RecentlyService;
+	
+	@Inject
+	private BasketService BasketService;
 	
 	@Inject
 	private HttpSession session;
@@ -79,9 +84,9 @@ public class CustomerController {
 		CustomerDTO sdto = (CustomerDTO) session.getAttribute("sdto");
 		CustomerDTO DTO = new CustomerDTO();
 		System.out.println("결과 : " + sdto.getSeq());
-		List<RecentlyDTO> RecenList = service2.RecentlyList(sdto.getSeq());
+		List<RecentlyDTO> RecenList = RecentlyService.RecentlyList(sdto.getSeq());
 		DTO.setEmail(sid);
-		DTO = service.CustomerInfo(DTO);
+		DTO = CustomerService.CustomerInfo(DTO);
 		model.addAttribute("DTO",DTO);
 		model.addAttribute("RecenList",RecenList);
 		
@@ -90,7 +95,16 @@ public class CustomerController {
 	
 	//회원가입 폼
 	@RequestMapping("/Mybasket")
-	public String Mybasket(CustomerDTO DTO,Model model) throws Exception {
+	public String Mybasket(Model model,HttpServletResponse response) throws Exception {
+		if (session.getAttribute("sdto") == null) {
+			ScriptUtils.alertAndMovePage(response, "로그인 해주세요!", "../Customer/LoginForm");
+		}
+		CustomerDTO sdto = (CustomerDTO) session.getAttribute("sdto");
+		int cus_seq = sdto.getSeq();
+		
+		List<BasketDTO> List = BasketService.BasketList(cus_seq);
+		
+		model.addAttribute("List",List);
 		return "/Customer/Mybasket";
 	}
 	
@@ -103,14 +117,14 @@ public class CustomerController {
 	//로그인
 	@RequestMapping(value = "/Login", method = RequestMethod.POST)
 	public String LoginForm(Locale locale, Model model,CustomerDTO DTO) throws Exception {
-		CustomerDTO loginDTO = service.CustomerInfo(DTO);
+		CustomerDTO loginDTO = CustomerService.CustomerInfo(DTO);
 		
 		if(loginDTO != null) {
 			if(pwdEncoder.matches(DTO.getPw(), loginDTO.getPw()) == true) {
 				session.setAttribute("sdto", loginDTO);
 				session.setAttribute("sid", loginDTO.getEmail());
-				service.CustomerLoginCnt(loginDTO);
-				service.CustomerLoginDate(loginDTO);
+				CustomerService.CustomerLoginCnt(loginDTO);
+				CustomerService.CustomerLoginDate(loginDTO);
 				return "redirect:../";
 			}else {
 				//비번틀림
@@ -142,7 +156,7 @@ public class CustomerController {
 		if(DTO.getEmail() != null) {
 			
 			DTO.setPw(pwdEncoder.encode(DTO.getPw()));
-			if(service.CustomerJoin(DTO) > 0) {
+			if(CustomerService.CustomerJoin(DTO) > 0) {
 				//가입성공
 				return "redirect:../Customer/JoinOK";
 			}else {
@@ -163,7 +177,7 @@ public class CustomerController {
 		PrintWriter out = response.getWriter();
 		
 		DTO.setEmail(email);
-		if(service.CustomerInfo(DTO) == null) {
+		if(CustomerService.CustomerInfo(DTO) == null) {
 			out.println("<script>"
 					+ "opener.document.getElementById('idno').style.display = 'none';"
 					+ "opener.document.getElementById('idok').style.display = 'block';"
@@ -188,7 +202,7 @@ public class CustomerController {
 		DTO.setPw(pw);		DTO.setName(name);		DTO.setPhonenum(phonenum);
 		DTO.setAddr1(addr1);		DTO.setAddr2(addr2);		DTO.setZipcode(zipcode);
 		DTO.setGrade(grade);		DTO.setSeq(seq);
-		service.CustomerEdit(DTO);
+		CustomerService.CustomerEdit(DTO);
 		PrintWriter out = response.getWriter();
 		out.println("<script>"
 				+ "alert('수정되었습니다.');"
@@ -202,7 +216,7 @@ public class CustomerController {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;utf-8");
 		PrintWriter out = response.getWriter();
-		service.CustomerDel(seq);
+		CustomerService.CustomerDel(seq);
 		out.println("<script>"
 				+ "alert('삭제되었습니다.');"
 				+ "opener.location.reload();"

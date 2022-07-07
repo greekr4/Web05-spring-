@@ -124,6 +124,7 @@ response.setCharacterEncoding("utf-8");
 		}
 		.table_wrap table p.pname{
 		font-weight: bold;
+		line-height: 2.5em;
 		
 		}
 		.table_wrap table td{
@@ -184,48 +185,32 @@ response.setCharacterEncoding("utf-8");
 							    <th>합계</th>
 							    <th>선택</th>
 							  </tr>
-							  <tr>
-							    <td><img alt="상품이미지" src="${path }/resources/upload/p1112/info1.jpg"></td>
-							    <td class="detail">
-							    	<p class="pname">동협이</p>
-							    	<p class="psubname">100g당 만원</p>
-							    </td>
-							    <td>12,900원
-							    <input type="hidden" id="origin_sum" class="origin_sum" value="12900"></td>
-							    <td>
-							    <button class="down_btn" onclick="down_btn(0);">-</button>
-							    <input type="text" id="qty" class="qty" value="1">
-							    <button class="up_btn" onclick="up_btn(0);">+</button>
-							    </td>
-							    <td>-</td>
-							    <td class="gray_tit">기본배송</td>
-							    <td>3,000원
-							    <input type="hidden" class="delivery_sum" value="3000"> </td>
-							    <td><span class="sum">15,900</span>원</td>
-							    <td><button class="btn_black">주문하기</button></td>
-							</tr>
-							
+						
+							<c:forEach items="${List }" var="DTO" varStatus="status">
 							
 							<tr>
-							    <td><img alt="상품이미지" src="${path }/resources/upload/p1112/info1.jpg"></td>
-							    <td class="detail">
-							    	<p class="pname">동협이</p>
-							    	<p class="psubname">100g당 만원</p>
+								<td><img alt="상품이미지" src="${path }/resources/upload/${DTO.pcode }/${DTO.s_img_desc }"></td>
+								<td class="detail">
+							   	<p class="pname">${DTO.pname }</p>
+							    <p class="psubname">${DTO.psubname }</p>
 							    </td>
-							    <td>1,000원
-							    <input type="hidden" id="origin_sum" class="origin_sum" value="1000"></td>
+							    <td><fmt:formatNumber value="${DTO.price }" pattern="#,###" />원
+							    <input type="hidden" id="origin_sum" class="origin_sum" value="${DTO.price }"></td>
 							    <td>
-							    <button class="down_btn" onclick="down_btn(1);">-</button>
+							    <button class="down_btn" onclick="down_btn(${status.index});">-</button>
 							    <input type="text" id="qty" class="qty" value="1">
-							    <button class="up_btn" onclick="up_btn(1);">+</button>
+							    <button class="up_btn" onclick="up_btn(${status.index});">+</button>
 							    </td>
 							    <td>-</td>
 							    <td class="gray_tit">기본배송</td>
 							    <td>3,000원
 							    <input type="hidden" class="delivery_sum" value="3000"> </td>
-							    <td><span class="sum">15,900</span>원</td>
+							    <td><span class="sum"><fmt:formatNumber value="${DTO.price + 3000 }" pattern="#,###"/></span>원</td>
 							    <td><button class="btn_black">주문하기</button></td>
 							</tr>
+							
+							</c:forEach>
+							
 							
 							</table>
 
