@@ -19,6 +19,12 @@ public class RecentlyServiceImpl implements RecentlyService {
 		return dao.RecentlyList(cus_seq);
 	}
 
+	@Override
+	public void RecentlyAdd(int cus_seq, String pcode) throws Exception {
+		dao.RecentlyAdd(cus_seq, pcode);
+		
+	}
+
 	
 
 }

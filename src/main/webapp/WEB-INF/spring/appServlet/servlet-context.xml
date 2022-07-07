@@ -31,7 +31,7 @@
 	<!-- 업로드된 파일의 저장 위치 지정 -->
 	<beans:bean id="uploadPath" class="java.lang.String">
 		
-		<beans:constructor-arg value="D:\Taek\springpj\web05\src\main\webapp\resources\upload"></beans:constructor-arg>
+		<!-- <beans:constructor-arg value="D:\Taek\springpj\web05\src\main\webapp\resources\upload"></beans:constructor-arg> -->
 		
 		<!--
 		<beans:constructor-arg value="C:\Users\user\Desktop\JAVA\springpj\web04\src\main\webapp\resources\upload"></beans:constructor-arg>

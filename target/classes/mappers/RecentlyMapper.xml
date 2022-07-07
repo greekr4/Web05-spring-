@@ -9,8 +9,20 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
  
 	<!-- 최근 본 상품 조회 (6개) -->
 	<select id="RecentlyList" resultType="com.myshop.dto.RecentlyDTO" >
-	select * from logmaster where cus_seq = #{cus_seq} order by seq desc limit 6;
+		select a.s_img_desc ,a.seq as 'p_seq',b.* from v_product a
+		inner join logmaster b 
+		on(a.pcode=b.value)
+		where b.cus_seq = #{cus_seq}
+		group by b.value
+		order by b.seq desc
 	</select>
+	
+	<insert id="RecentlyAdd">
+		insert into logmaster(cus_seq,code,value)
+		values(#{cus_seq},'vp',#{pcode})			
+
+	
+	</insert>
 
 	
 

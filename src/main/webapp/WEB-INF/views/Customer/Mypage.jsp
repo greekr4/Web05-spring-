@@ -124,8 +124,6 @@ response.setCharacterEncoding("utf-8");
         .lately_tit {display: block; width: 180px; font-size: 18px; margin-bottom: 5%;}
         .lately_detail div { line-height: 0; float: left;}
         .lately_detail div:nth-child(4){clear: both; float: left;}
-        .lately_detail div button { width: 130px; height: 140px; border: 0; }
-        .lately_detail button img { width: 100%; height: 100%; }
         /* /최근 본 상품 */
         /* 입금/결제 */
         .order_info{float: left; margin-left: 18%; margin-top: 5%; width: 82%;}
@@ -134,7 +132,23 @@ response.setCharacterEncoding("utf-8");
         .order_info ul li:last-child{margin-right: 0;}
         .order_info ul li img{width: 100%; height: auto;}
         /* /입금/결제 */
-
+	
+	.lately_detail{
+	display: flex;
+	flex-wrap: wrap;
+    align-content: flex-start;
+	width: 390px;
+	height: 390px; 
+	}
+	.lately_detail_item{
+	width: 130px;
+	height: 130px;
+	}
+	.lately_detail_item img{
+	display: block;
+	width: 100%;
+	height: 100%;
+	}
 </style>
 </head>
 <body>
@@ -207,43 +221,18 @@ response.setCharacterEncoding("utf-8");
                         <!-- /마이페이지 -->
                         <article class="lately_look">
                             <h4 class="lately_tit">최근 본 상품
-                            <c:forEach items="${RecenList }" var="DTO">
-                            ${DTO.value }
-                            
-                            </c:forEach>
+
                             
                             </h4>
                             <div class="lately_detail">
-                                <div class="lately_detail">
-                                    <button>
-                                        <img src="${path }/resources/img/mypage/sample1.jpg" alt="sample1">
-                                    </button>
-                                </div>
-                                <div class="lately_detail">
-                                    <button>
-                                        <img src="${path }/resources/img/mypage/sample2.jpg" alt="sample2">
-                                    </button>
-                                </div>
-                                <div class="lately_detail">
-                                    <button>
-                                        <img src="${path }/resources/img/mypage/sample3.jpg" alt="sample3">
-                                    </button>
-                                </div>
-                                <div class="lately_detail">
-                                    <button>
-                                        <img src="${path }/resources/img/mypage/sample4.jpg" alt="sample4">
-                                    </button>
-                                </div>
-                                <div class="lately_detail">
-                                    <button>
-                                        <img src="${path }/resources/img/mypage/sample5.jpg" alt="sample5">
-                                    </button>
-                                </div>
-                                <div class="lately_detail">
-                                    <button>
-                                        <img src="${path }/resources/img/mypage/sample6.jpg" alt="sample6">
-                                    </button>
-                                </div>
+ 		                            <c:forEach items="${RecenList }" var="DTO">
+		                             <div class="lately_detail_item">
+			                            <a href="${path }/Product/ProductMore?seq=${DTO.p_seq }">
+			                            	<img src="${path }/resources/upload/${DTO.value }/${DTO.s_img_desc }" alt="최근본 상품">
+			                            </a>
+			                         </div>
+		                            </c:forEach> 
+                                
                             </div>
                         </article>
 
