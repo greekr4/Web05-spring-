@@ -29,5 +29,20 @@ public interface ProductDAO {
 	public void ProductEdit_add(ProductDTO DTO) throws Exception;
 	//제품수정++카테고리
 	public void ProductEdit_cate(ProductDTO DTO) throws Exception;
-	
+	//--------------------------------------------------------
+	//품목중복체크
+	public ProductDTO ProductCodeCK(String pcode) throws Exception;
+	//--------------------------------------------------------
+	//제품삭제
+	public void ProductDel(String pcode) throws Exception;
+	//제품삭제
+	public void ProductDel_add(String pcode) throws Exception;
+	//제품삭제
+	public void ProductDel_cate(String pcode) throws Exception;
+	//제품삭제
+	public void ProductDel_basket(String pcode) throws Exception;
+	//제품삭제
+	public void ProductDel_order(String pcode) throws Exception;
+		
+		
 }

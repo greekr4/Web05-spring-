@@ -1,0 +1,892 @@
+{
+  "id": "437efe2c-72d7-458d-acae-6f2a457387ee",
+  "version": "2.0",
+  "name": "web04",
+  "url": "https://greekr4.github.io",
+  "tests": [{
+    "id": "778ec050-8269-47e0-a58f-79f9ef2fa461",
+    "name": "web04길정훈",
+    "commands": [{
+      "id": "72667a13-3407-45cd-825a-aa313adadf6c",
+      "comment": "",
+      "command": "open",
+      "target": "/web4/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "cc5de488-3ce9-4857-8dab-9ca6cd4c23b9",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1936x1056",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d7437d04-77f5-4cbc-8e23-81d627000c94",
+      "comment": "",
+      "command": "click",
+      "target": "css=.main_img:nth-child(3)",
+      "targets": [
+        ["css=.main_img:nth-child(3)", "css:finder"],
+        ["xpath=//img[@alt='이미지1']", "xpath:img"],
+        ["xpath=//div[@id='ct']/div/div[2]/div/img", "xpath:idRelative"],
+        ["xpath=//div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "24fb7fad-4d5b-452a-a7ea-9f85c9830878",
+      "comment": "",
+      "command": "click",
+      "target": "css=ul:nth-child(2) a:nth-child(1) > li",
+      "targets": [
+        ["css=ul:nth-child(2) a:nth-child(1) > li", "css:finder"],
+        ["xpath=//header[@id='header']/div/div[3]/ul/div/div/a/li", "xpath:idRelative"],
+        ["xpath=//a/li", "xpath:position"],
+        ["xpath=//li[contains(.,'병원 소개')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f9d060ac-d58c-4af9-a964-9ade27da149c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.page_tit",
+      "targets": [
+        ["css=.page_tit", "css:finder"],
+        ["xpath=//div[@id='ct']/div/p", "xpath:idRelative"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'Hospital introduction')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ca2eb91a-0acd-4f1f-a0a9-9a8c3be91ebb",
+      "comment": "",
+      "command": "click",
+      "target": "css=.page_tit",
+      "targets": [
+        ["css=.page_tit", "css:finder"],
+        ["xpath=//div[@id='ct']/div/p", "xpath:idRelative"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'Hospital introduction')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0cc7f3ff-7920-417b-bef4-d91e48d70fd2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.txt_box > h2",
+      "targets": [
+        ["css=.txt_box > h2", "css:finder"],
+        ["xpath=//div[@id='ct']/div/div/div/div/div/h2", "xpath:idRelative"],
+        ["xpath=//h2", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3ef85ffa-908a-41ed-a047-023fc192d2ad",
+      "comment": "",
+      "command": "click",
+      "target": "css=.txt_box:nth-child(1) > p:nth-child(2)",
+      "targets": [
+        ["css=.txt_box:nth-child(1) > p:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='ct']/div/div/div/div/div/p", "xpath:idRelative"],
+        ["xpath=//div/div/div/p", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "78f06de7-0715-4d68-a5ab-b8b5f7d65e9c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.txt_box > h2",
+      "targets": [
+        ["css=.txt_box > h2", "css:finder"],
+        ["xpath=//div[@id='ct']/div/div/div/div/div/h2", "xpath:idRelative"],
+        ["xpath=//h2", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9458c4d7-366e-4a78-b3b7-78c1cbdcadc3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.txt_box > h2",
+      "targets": [
+        ["css=.txt_box > h2", "css:finder"],
+        ["xpath=//div[@id='ct']/div/div/div/div/div/h2", "xpath:idRelative"],
+        ["xpath=//h2", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ad2cb164-e023-4fa6-9946-4a15ddfd2960",
+      "comment": "",
+      "command": "click",
+      "target": "css=.txt_box:nth-child(1) > p:nth-child(2)",
+      "targets": [
+        ["css=.txt_box:nth-child(1) > p:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='ct']/div/div/div/div/div/p", "xpath:idRelative"],
+        ["xpath=//div/div/div/p", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "885d259e-def8-437c-9ae2-7cb634c37a4b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.txt_box:nth-child(1) > p:nth-child(2)",
+      "targets": [
+        ["css=.txt_box:nth-child(1) > p:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='ct']/div/div/div/div/div/p", "xpath:idRelative"],
+        ["xpath=//div/div/div/p", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a0f3b933-142b-43f9-ad95-8482bf6f8eee",
+      "comment": "",
+      "command": "click",
+      "target": "css=#page1 > #header ul:nth-child(2) a:nth-child(2) > li",
+      "targets": [
+        ["css=#page1 > #header ul:nth-child(2) a:nth-child(2) > li", "css:finder"],
+        ["xpath=//header[@id='header']/div/div[3]/ul/div/div/a[2]/li", "xpath:idRelative"],
+        ["xpath=//a[2]/li", "xpath:position"],
+        ["xpath=//li[contains(.,'의료진 소개')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b26ed1b4-1019-4c17-bdd2-207db8f54bd3",
+      "comment": "",
+      "command": "click",
+      "target": "css=#page2 > #header ul:nth-child(2) a:nth-child(3) > li",
+      "targets": [
+        ["css=#page2 > #header ul:nth-child(2) a:nth-child(3) > li", "css:finder"],
+        ["xpath=(//header[@id='header']/div/div[3]/ul/div/div/a[3]/li)[6]", "xpath:idRelative"],
+        ["xpath=//section[2]/header/div/div[3]/ul/div/div/a[3]/li", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1991993f-e14f-45e7-93e1-19a481639639",
+      "comment": "",
+      "command": "click",
+      "target": "css=#page3 > #header ul:nth-child(4)",
+      "targets": [
+        ["css=#page3 > #header ul:nth-child(4)", "css:finder"],
+        ["xpath=(//header[@id='header']/div/div[3]/ul[3])[3]", "xpath:idRelative"],
+        ["xpath=//section[3]/header/div/div[3]/ul[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e2f515f4-8735-4a94-9b59-8f9e836ca3ab",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=척추센터",
+      "targets": [
+        ["linkText=척추센터", "linkText"],
+        ["css=#page3 > #header ul:nth-child(4) > a", "css:finder"],
+        ["xpath=(//a[contains(text(),'척추센터')])[3]", "xpath:link"],
+        ["xpath=(//header[@id='header']/div/div[3]/ul[3]/a)[3]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '/myapp/sub3.html#page1')])[5]", "xpath:href"],
+        ["xpath=//section[3]/header/div/div[3]/ul[3]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9715457f-be57-48b2-b5e3-751ca104af2e",
+      "comment": "",
+      "command": "click",
+      "target": "css=#page1 > #header ul:nth-child(4)",
+      "targets": [
+        ["css=#page1 > #header ul:nth-child(4)", "css:finder"],
+        ["xpath=//header[@id='header']/div/div[3]/ul[3]", "xpath:idRelative"],
+        ["xpath=//ul[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ba943b07-f43a-4444-b123-d4016ebc303b",
+      "comment": "",
+      "command": "click",
+      "target": "css=#page1 > #header ul:nth-child(4)",
+      "targets": [
+        ["css=#page1 > #header ul:nth-child(4)", "css:finder"],
+        ["xpath=//header[@id='header']/div/div[3]/ul[3]", "xpath:idRelative"],
+        ["xpath=//ul[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "215194c2-f5c6-43dd-98d3-31414c6ceaa0",
+      "comment": "",
+      "command": "click",
+      "target": "css=.heal_menu_btn:nth-child(2)",
+      "targets": [
+        ["css=.heal_menu_btn:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='ct']/div/div[3]/div[2]/ul/li[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/ul/li[2]", "xpath:position"],
+        ["xpath=//li[contains(.,'신경성형술')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5b3ffc3c-88cf-41d3-8abf-4c2af67bb32c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.heal_menu_btn:nth-child(3)",
+      "targets": [
+        ["css=.heal_menu_btn:nth-child(3)", "css:finder"],
+        ["xpath=//div[@id='ct']/div/div[3]/div[2]/ul/li[3]", "xpath:idRelative"],
+        ["xpath=//li[3]", "xpath:position"],
+        ["xpath=//li[contains(.,'풍선확장술')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2181f821-5631-400d-af50-d6be0921a324",
+      "comment": "",
+      "command": "click",
+      "target": "css=.heal_menu_btn:nth-child(4)",
+      "targets": [
+        ["css=.heal_menu_btn:nth-child(4)", "css:finder"],
+        ["xpath=//div[@id='ct']/div/div[3]/div[2]/ul/li[4]", "xpath:idRelative"],
+        ["xpath=//li[4]", "xpath:position"],
+        ["xpath=//li[contains(.,'고주파수액감압술')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7561b926-a3fa-4ea9-9a96-5d4b07080d9a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.heal_menu_btn:nth-child(5)",
+      "targets": [
+        ["css=.heal_menu_btn:nth-child(5)", "css:finder"],
+        ["xpath=//div[@id='ct']/div/div[3]/div[2]/ul/li[5]", "xpath:idRelative"],
+        ["xpath=//li[5]", "xpath:position"],
+        ["xpath=//li[contains(.,'인공디스크치환술')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c53f51eb-1b6a-402c-a5f0-dd6cdc6f2e9f",
+      "comment": "",
+      "command": "click",
+      "target": "css=#page1 > #header ul:nth-child(3) a:nth-child(2) > li",
+      "targets": [
+        ["css=#page1 > #header ul:nth-child(3) a:nth-child(2) > li", "css:finder"],
+        ["xpath=//header[@id='header']/div/div[3]/ul[2]/div/div/a[2]/li", "xpath:idRelative"],
+        ["xpath=//ul[2]/div/div/a[2]/li", "xpath:position"],
+        ["xpath=//li[contains(.,'어깨질환')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d050749e-f8eb-42df-87e6-d92ae245330b",
+      "comment": "",
+      "command": "click",
+      "target": "css=#page2 > #header ul:nth-child(3) a:nth-child(1) > li",
+      "targets": [
+        ["css=#page2 > #header ul:nth-child(3) a:nth-child(1) > li", "css:finder"],
+        ["xpath=(//header[@id='header']/div/div[3]/ul[2]/div/div/a/li)[4]", "xpath:idRelative"],
+        ["xpath=//section[2]/header/div/div[3]/ul[2]/div/div/a/li", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ebac01c6-4a1d-409c-8c45-d776878d0195",
+      "comment": "",
+      "command": "click",
+      "target": "css=.heal_menu_btn:nth-child(2)",
+      "targets": [
+        ["css=.heal_menu_btn:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='ct']/div/div[3]/div[2]/ul/li[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/ul/li[2]", "xpath:position"],
+        ["xpath=//li[contains(.,'운동치료')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8741857e-f53c-4581-a9bb-a85bf9cc1326",
+      "comment": "",
+      "command": "click",
+      "target": "css=.heal_menu_btn:nth-child(3)",
+      "targets": [
+        ["css=.heal_menu_btn:nth-child(3)", "css:finder"],
+        ["xpath=//div[@id='ct']/div/div[3]/div[2]/ul/li[3]", "xpath:idRelative"],
+        ["xpath=//li[3]", "xpath:position"],
+        ["xpath=//li[contains(.,'체외충격파')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "98877e5d-67a4-403f-9388-2be3ce0ede2e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.heal_menu_btn:nth-child(4)",
+      "targets": [
+        ["css=.heal_menu_btn:nth-child(4)", "css:finder"],
+        ["xpath=//div[@id='ct']/div/div[3]/div[2]/ul/li[4]", "xpath:idRelative"],
+        ["xpath=//li[4]", "xpath:position"],
+        ["xpath=//li[contains(.,'프롤로치료')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e98981ee-3d6d-4549-b1f4-41e0b2149faf",
+      "comment": "",
+      "command": "click",
+      "target": "css=.heal_menu_btn:nth-child(5)",
+      "targets": [
+        ["css=.heal_menu_btn:nth-child(5)", "css:finder"],
+        ["xpath=//div[@id='ct']/div/div[3]/div[2]/ul/li[5]", "xpath:idRelative"],
+        ["xpath=//li[5]", "xpath:position"],
+        ["xpath=//li[contains(.,'관절내시경')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "117ca0b4-3873-4fc3-a2df-a44fd72525c4",
+      "comment": "",
+      "command": "click",
+      "target": "css=#page1 > #header ul:nth-child(3) a:nth-child(3) > li",
+      "targets": [
+        ["css=#page1 > #header ul:nth-child(3) a:nth-child(3) > li", "css:finder"],
+        ["xpath=//header[@id='header']/div/div[3]/ul[2]/div/div/a[3]/li", "xpath:idRelative"],
+        ["xpath=//ul[2]/div/div/a[3]/li", "xpath:position"],
+        ["xpath=//li[contains(.,'무릎질환')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "53babae3-e842-4441-916d-eb7f9f09d238",
+      "comment": "",
+      "command": "click",
+      "target": "css=#page3 > #header ul:nth-child(5)",
+      "targets": [
+        ["css=#page3 > #header ul:nth-child(5)", "css:finder"],
+        ["xpath=(//header[@id='header']/div/div[3]/ul[4])[3]", "xpath:idRelative"],
+        ["xpath=//section[3]/header/div/div[3]/ul[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0816fc44-6b4d-4448-8a7a-ef35ab181dcd",
+      "comment": "",
+      "command": "click",
+      "target": "css=#page3 > #header ul:nth-child(5) li",
+      "targets": [
+        ["css=#page3 > #header ul:nth-child(5) li", "css:finder"],
+        ["xpath=(//header[@id='header']/div/div[3]/ul[4]/div/div/a/li)[3]", "xpath:idRelative"],
+        ["xpath=//section[3]/header/div/div[3]/ul[4]/div/div/a/li", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3d74cf6c-0d1d-40bb-9494-1c6f4e6aa208",
+      "comment": "",
+      "command": "click",
+      "target": "css=#page1 > #ct .tit_box",
+      "targets": [
+        ["css=#page1 > #ct .tit_box", "css:finder"],
+        ["xpath=//div[@id='ct']/div/div/div", "xpath:idRelative"],
+        ["xpath=//div/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c4a9075e-cb00-4e5b-8ba2-063a6cc828b9",
+      "comment": "",
+      "command": "click",
+      "target": "css=#page1 > #ct .tit_box",
+      "targets": [
+        ["css=#page1 > #ct .tit_box", "css:finder"],
+        ["xpath=//div[@id='ct']/div/div/div", "xpath:idRelative"],
+        ["xpath=//div/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cb6739ca-44a1-44e6-ac7c-c225f8f914d5",
+      "comment": "",
+      "command": "click",
+      "target": "css=#page1 > #ct .ct_wrap2",
+      "targets": [
+        ["css=#page1 > #ct .ct_wrap2", "css:finder"],
+        ["xpath=//div[@id='ct']/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "162e32e6-3414-45c2-a79f-057f335588c9",
+      "comment": "",
+      "command": "click",
+      "target": "css=#page1 > #header ul:nth-child(6) a:nth-child(2) > li",
+      "targets": [
+        ["css=#page1 > #header ul:nth-child(6) a:nth-child(2) > li", "css:finder"],
+        ["xpath=//header[@id='header']/div/div[3]/ul[5]/div/div/a[2]/li", "xpath:idRelative"],
+        ["xpath=//ul[5]/div/div/a[2]/li", "xpath:position"],
+        ["xpath=//li[contains(.,'하지골절')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3060753c-9106-40f1-954e-b0106467f554",
+      "comment": "",
+      "command": "click",
+      "target": "css=#page2 > #header ul:nth-child(7)",
+      "targets": [
+        ["css=#page2 > #header ul:nth-child(7)", "css:finder"],
+        ["xpath=(//header[@id='header']/div/div[3]/ul[6])[2]", "xpath:idRelative"],
+        ["xpath=//section[2]/header/div/div[3]/ul[6]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "61d52bc8-033a-403e-951d-92e96ac88a19",
+      "comment": "",
+      "command": "click",
+      "target": "css=#page2 > #header ul:nth-child(7) a:nth-child(1) > li",
+      "targets": [
+        ["css=#page2 > #header ul:nth-child(7) a:nth-child(1) > li", "css:finder"],
+        ["xpath=(//header[@id='header']/div/div[3]/ul[6]/div/div/a/li)[6]", "xpath:idRelative"],
+        ["xpath=//section[2]/header/div/div[3]/ul[6]/div/div/a/li", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e8dabd6c-5f1d-43e7-97f8-d5c395f840d4",
+      "comment": "",
+      "command": "click",
+      "target": "css=.bo_tit > a",
+      "targets": [
+        ["css=.bo_tit > a", "css:finder"],
+        ["xpath=//div[@id='ct']/div/div[2]/div[2]/table/tbody/tr/td[2]/div/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/myapp/board/more1.html')]", "xpath:href"],
+        ["xpath=//td[2]/div/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "722b941b-3546-4e02-bf72-9d76286da2af",
+      "comment": "",
+      "command": "click",
+      "target": "css=.c_comment > td:nth-child(1) > button",
+      "targets": [
+        ["css=.c_comment > td:nth-child(1) > button", "css:finder"],
+        ["xpath=//button[@onclick=\"window.open('/myapp/board/ccdel?ccno=24','hiddenframe1')\"]", "xpath:attributes"],
+        ["xpath=//div[@id='ct']/div/table[2]/tbody/tr[4]/td/button", "xpath:idRelative"],
+        ["xpath=//tr[4]/td/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "acdb0f8f-6a07-4e09-b2cf-04ba637027c8",
+      "comment": "",
+      "command": "click",
+      "target": "css=ul:nth-child(7) a:nth-child(1) > li",
+      "targets": [
+        ["css=ul:nth-child(7) a:nth-child(1) > li", "css:finder"],
+        ["xpath=//header[@id='header']/div/div[3]/ul[6]/div/div/a/li", "xpath:idRelative"],
+        ["xpath=//ul[6]/div/div/a/li", "xpath:position"],
+        ["xpath=//li[contains(.,'공지사항')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b818affc-3241-460f-842e-dad503fcd041",
+      "comment": "",
+      "command": "click",
+      "target": "css=ul:nth-child(7) a:nth-child(3) > li",
+      "targets": [
+        ["css=ul:nth-child(7) a:nth-child(3) > li", "css:finder"],
+        ["xpath=//header[@id='header']/div/div[3]/ul[6]/div/div/a[3]/li", "xpath:idRelative"],
+        ["xpath=//ul[6]/div/div/a[3]/li", "xpath:position"],
+        ["xpath=//li[contains(.,'자유게시판')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8359d512-c386-4e55-8f3e-0641f0edb343",
+      "comment": "",
+      "command": "click",
+      "target": "css=ul:nth-child(7) a:nth-child(2) > li",
+      "targets": [
+        ["css=ul:nth-child(7) a:nth-child(2) > li", "css:finder"],
+        ["xpath=//header[@id='header']/div/div[3]/ul[6]/div/div/a[2]/li", "xpath:idRelative"],
+        ["xpath=//ul[6]/div/div/a[2]/li", "xpath:position"],
+        ["xpath=//li[contains(.,'뉴스')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "84e51c3b-aae0-4c46-ad0e-8ee5e28316d3",
+      "comment": "",
+      "command": "click",
+      "target": "css=a:nth-child(4) > li",
+      "targets": [
+        ["css=a:nth-child(4) > li", "css:finder"],
+        ["xpath=//header[@id='header']/div/div[3]/ul[6]/div/div/a[4]/li", "xpath:idRelative"],
+        ["xpath=//a[4]/li", "xpath:position"],
+        ["xpath=//li[contains(.,'문의')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "625ad381-3560-4a3f-96e9-ba602a3de88c",
+      "comment": "",
+      "command": "click",
+      "target": "css=a:nth-child(5) > li",
+      "targets": [
+        ["css=a:nth-child(5) > li", "css:finder"],
+        ["xpath=//header[@id='header']/div/div[3]/ul[6]/div/div/a[5]/li", "xpath:idRelative"],
+        ["xpath=//a[5]/li", "xpath:position"],
+        ["xpath=//li[contains(.,'파일게시판')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "40675673-70ec-4972-aa25-16ee787959c0",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=로그인",
+      "targets": [
+        ["linkText=로그인", "linkText"],
+        ["css=li:nth-child(2) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'로그인')]", "xpath:link"],
+        ["xpath=//header[@id='header']/div/div[2]/div/ul/li[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/myapp/member/loginForm.html')]", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'로그인')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e5dfc917-152c-4f77-8727-f08ab5edf1b7",
+      "comment": "",
+      "command": "click",
+      "target": "css=.message",
+      "targets": [
+        ["css=.message", "css:finder"],
+        ["xpath=//div[@id='ct']/div/div/div/form/p", "xpath:idRelative"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'아이디가 없으십니까? 회원가입')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "acb3ae31-2fcd-4f10-bb0f-e7249e0ce907",
+      "comment": "",
+      "command": "click",
+      "target": "css=.message > a",
+      "targets": [
+        ["css=.message > a", "css:finder"],
+        ["xpath=(//a[contains(text(),'회원가입')])[2]", "xpath:link"],
+        ["xpath=//div[@id='ct']/div/div/div/form/p/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, './agreement.html')]", "xpath:href"],
+        ["xpath=//p/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "468eec12-b0fe-48fb-9843-86978e93925d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.fpmgBt2",
+      "targets": [
+        ["css=.fpmgBt2", "css:finder"],
+        ["xpath=//button[@onclick='fnc1()']", "xpath:attributes"],
+        ["xpath=//div[@id='joinForm']/ul[2]/li[2]/button", "xpath:idRelative"],
+        ["xpath=//li[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'회원가입')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "446fce5d-b33c-4fd2-b0d1-fb5c2aeccd57",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "약관에 동의하지 않으셨습니다.",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "05832df5-ef31-4b31-95c6-f3e25192fc5b",
+      "comment": "",
+      "command": "click",
+      "target": "id=ck3",
+      "targets": [
+        ["id=ck3", "id"],
+        ["css=#ck3", "css:finder"],
+        ["xpath=//input[@id='ck3']", "xpath:attributes"],
+        ["xpath=//div[@id='joinForm']/ul/li/ul/li[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1db98660-8172-458c-a733-bfdc5bd1965a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.fpmgBt2",
+      "targets": [
+        ["css=.fpmgBt2", "css:finder"],
+        ["xpath=//button[@onclick='fnc1()']", "xpath:attributes"],
+        ["xpath=//div[@id='joinForm']/ul[2]/li[2]/button", "xpath:idRelative"],
+        ["xpath=//li[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'회원가입')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2ea0c521-8977-4a76-bc94-c9c09791f004",
+      "comment": "",
+      "command": "click",
+      "target": "css=a > img",
+      "targets": [
+        ["css=a > img", "css:finder"],
+        ["xpath=//img[@alt='로고']", "xpath:img"],
+        ["xpath=//header[@id='header']/div/div[3]/div/a/img", "xpath:idRelative"],
+        ["xpath=//img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "58b2d8f2-9e22-4b6a-b6fa-529ea28454e0",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=로그인",
+      "targets": [
+        ["linkText=로그인", "linkText"],
+        ["css=li:nth-child(2) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'로그인')]", "xpath:link"],
+        ["xpath=//header[@id='header']/div/div[2]/div/ul/li[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/myapp/member/loginForm.html')]", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'로그인')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4151443d-c578-4f09-b4f0-23eae86d0bdc",
+      "comment": "",
+      "command": "click",
+      "target": "css=.header_bottom",
+      "targets": [
+        ["css=.header_bottom", "css:finder"],
+        ["xpath=//header[@id='header']/div/div[3]", "xpath:idRelative"],
+        ["xpath=//div[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0023c7cc-2bf3-4fc0-b6e7-dff4d16f73bb",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=외상센터",
+      "targets": [
+        ["linkText=외상센터", "linkText"],
+        ["css=ul:nth-child(6) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'외상센터')]", "xpath:link"],
+        ["xpath=//header[@id='header']/div/div[3]/ul[5]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/myapp/sub5.html#page1')]", "xpath:href"],
+        ["xpath=//ul[5]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'외상센터')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c986b9cc-c891-485f-a089-994e08208fdf",
+      "comment": "",
+      "command": "click",
+      "target": "css=#page1 > #header li:nth-child(2)",
+      "targets": [
+        ["css=#page1 > #header li:nth-child(2)", "css:finder"],
+        ["xpath=//header[@id='header']/div/div[2]/div/ul/li[2]", "xpath:idRelative"],
+        ["xpath=//li[2]", "xpath:position"],
+        ["xpath=//li[contains(.,'로그인')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1caeb223-699e-42d6-9222-bea81f0d89c0",
+      "comment": "",
+      "command": "click",
+      "target": "css=#page1 > #header li:nth-child(2)",
+      "targets": [
+        ["css=#page1 > #header li:nth-child(2)", "css:finder"],
+        ["xpath=//header[@id='header']/div/div[2]/div/ul/li[2]", "xpath:idRelative"],
+        ["xpath=//li[2]", "xpath:position"],
+        ["xpath=//li[contains(.,'로그인')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "908faf74-0e34-4a00-9d4b-90c496b657a2",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=로그인",
+      "targets": [
+        ["linkText=로그인", "linkText"],
+        ["css=#page1 > #header li:nth-child(2) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'로그인')]", "xpath:link"],
+        ["xpath=//header[@id='header']/div/div[2]/div/ul/li[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/myapp/member/loginForm.html')]", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'로그인')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "aae0899e-014b-4856-a098-266b051bac19",
+      "comment": "",
+      "command": "click",
+      "target": "css=a > img",
+      "targets": [
+        ["css=a > img", "css:finder"],
+        ["xpath=//img[@alt='로고']", "xpath:img"],
+        ["xpath=//header[@id='header']/div/div[3]/div/a/img", "xpath:idRelative"],
+        ["xpath=//img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e41bf348-dbc5-4ffb-9400-3c081bf220f6",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=회원가입",
+      "targets": [
+        ["linkText=회원가입", "linkText"],
+        ["css=li:nth-child(1) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'회원가입')]", "xpath:link"],
+        ["xpath=//header[@id='header']/div/div[2]/div/ul/li/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/myapp/member/agreement.html')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"],
+        ["xpath=//a[contains(.,'회원가입')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c31fe574-560b-439d-8431-c4f260107e8c",
+      "comment": "",
+      "command": "click",
+      "target": "css=a > img",
+      "targets": [
+        ["css=a > img", "css:finder"],
+        ["xpath=//img[@alt='로고']", "xpath:img"],
+        ["xpath=//header[@id='header']/div/div[3]/div/a/img", "xpath:idRelative"],
+        ["xpath=//img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b4607bee-cce5-4af9-9f77-d40ca120db6b",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=회원가입",
+      "targets": [
+        ["linkText=회원가입", "linkText"],
+        ["css=li:nth-child(1) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'회원가입')]", "xpath:link"],
+        ["xpath=//header[@id='header']/div/div[2]/div/ul/li/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/myapp/member/agreement.html')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"],
+        ["xpath=//a[contains(.,'회원가입')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "471520b7-65cc-4045-8c98-2a8ee9963955",
+      "comment": "",
+      "command": "click",
+      "target": "css=a > img",
+      "targets": [
+        ["css=a > img", "css:finder"],
+        ["xpath=//img[@alt='로고']", "xpath:img"],
+        ["xpath=//header[@id='header']/div/div[3]/div/a/img", "xpath:idRelative"],
+        ["xpath=//img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "97e5fe96-0f5c-4465-96df-b3d34579f373",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=관절센터",
+      "targets": [
+        ["linkText=관절센터", "linkText"],
+        ["css=ul:nth-child(3) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'관절센터')]", "xpath:link"],
+        ["xpath=//header[@id='header']/div/div[3]/ul[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/myapp/sub2.html#page1')]", "xpath:href"],
+        ["xpath=//ul[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'관절센터')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1e28e43e-eba6-495e-9a97-41d403e236a9",
+      "comment": "",
+      "command": "click",
+      "target": "css=#page1 > #header ul:nth-child(4)",
+      "targets": [
+        ["css=#page1 > #header ul:nth-child(4)", "css:finder"],
+        ["xpath=//header[@id='header']/div/div[3]/ul[3]", "xpath:idRelative"],
+        ["xpath=//ul[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e9728fb4-260a-496b-8aba-0efb4608a0a1",
+      "comment": "",
+      "command": "click",
+      "target": "css=#page1 > #header ul:nth-child(4)",
+      "targets": [
+        ["css=#page1 > #header ul:nth-child(4)", "css:finder"],
+        ["xpath=//header[@id='header']/div/div[3]/ul[3]", "xpath:idRelative"],
+        ["xpath=//ul[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ac78a7af-dec3-4723-8be1-c30104c67936",
+      "comment": "",
+      "command": "click",
+      "target": "css=#page1 > #header ul:nth-child(4)",
+      "targets": [
+        ["css=#page1 > #header ul:nth-child(4)", "css:finder"],
+        ["xpath=//header[@id='header']/div/div[3]/ul[3]", "xpath:idRelative"],
+        ["xpath=//ul[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6bd34fe0-9c14-4a25-a751-d1420f0bdb47",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=척추센터",
+      "targets": [
+        ["linkText=척추센터", "linkText"],
+        ["css=#page1 > #header ul:nth-child(4) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'척추센터')]", "xpath:link"],
+        ["xpath=//header[@id='header']/div/div[3]/ul[3]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/myapp/sub3.html#page1')]", "xpath:href"],
+        ["xpath=//ul[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'척추센터')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "14cc6ad7-2f90-4553-9fc7-9db147c4ee27",
+      "comment": "",
+      "command": "click",
+      "target": "css=#page1 > #header h1",
+      "targets": [
+        ["css=#page1 > #header h1", "css:finder"],
+        ["xpath=//header[@id='header']/div/div/h1", "xpath:idRelative"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'무척조은병원은 환자중심의 진료환경을 지향합니다.')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d14c7e06-a24b-4a97-b472-620656631624",
+      "comment": "",
+      "command": "click",
+      "target": "css=#page1 > #header h1",
+      "targets": [
+        ["css=#page1 > #header h1", "css:finder"],
+        ["xpath=//header[@id='header']/div/div/h1", "xpath:idRelative"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'무척조은병원은 환자중심의 진료환경을 지향합니다.')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8c84ca9c-21fa-4e6e-951f-59b6ae1c2b12",
+      "comment": "",
+      "command": "click",
+      "target": "css=#page1 > #footer #top_btn > img",
+      "targets": [
+        ["css=#page1 > #footer #top_btn > img", "css:finder"],
+        ["xpath=//img[@alt='버튼']", "xpath:img"],
+        ["xpath=//button[@id='top_btn']/img", "xpath:idRelative"],
+        ["xpath=//button/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "52d03e43-5ac1-4487-9d8a-fcdb05e58c24",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=외상센터",
+      "targets": [
+        ["linkText=외상센터", "linkText"],
+        ["css=#page1 > #header ul:nth-child(6) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'외상센터')]", "xpath:link"],
+        ["xpath=//header[@id='header']/div/div[3]/ul[5]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/myapp/sub5.html#page1')]", "xpath:href"],
+        ["xpath=//ul[5]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'외상센터')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5ae70cbd-407d-4c2e-b76e-d4577f752258",
+      "comment": "",
+      "command": "click",
+      "target": "css=#page1 > #ct .visual",
+      "targets": [
+        ["css=#page1 > #ct .visual", "css:finder"],
+        ["xpath=//div[@id='ct']/div/div", "xpath:idRelative"],
+        ["xpath=//section/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "01fcc9d9-b1bb-4455-a9ac-87daa3fc8121",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["778ec050-8269-47e0-a58f-79f9ef2fa461"]
+  }],
+  "urls": ["https://greekr4.github.io/"],
+  "plugins": []
+}

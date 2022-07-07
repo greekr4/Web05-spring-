@@ -17,11 +17,10 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 		order by b.seq desc
 	</select>
 	
+	<!-- 추가 -->
 	<insert id="RecentlyAdd">
 		insert into logmaster(cus_seq,code,value)
 		values(#{cus_seq},'vp',#{pcode})			
-
-	
 	</insert>
 
 	

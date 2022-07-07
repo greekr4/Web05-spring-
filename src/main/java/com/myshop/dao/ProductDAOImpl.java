@@ -69,6 +69,36 @@ public class ProductDAOImpl implements ProductDAO {
 	public int ProductCount(String ccode) throws Exception {
 		return sqlSession.selectOne(namespace+".ProductCount",ccode);
 	}
+
+	@Override
+	public void ProductDel(String pcode) throws Exception {
+		sqlSession.delete(namespace+".ProductDel",pcode);
+	}
+
+	@Override
+	public void ProductDel_add(String pcode) throws Exception {
+		sqlSession.delete(namespace+".ProductDel_add",pcode);
+	}
+
+	@Override
+	public void ProductDel_cate(String pcode) throws Exception {
+		sqlSession.delete(namespace+".ProductDel_cate",pcode);
+	}
+
+	@Override
+	public void ProductDel_basket(String pcode) throws Exception {
+		sqlSession.delete(namespace+".ProductDel_basket",pcode);
+	}
+
+	@Override
+	public void ProductDel_order(String pcode) throws Exception {
+		sqlSession.delete(namespace+".ProductDel_order",pcode);
+	}
+
+	@Override
+	public ProductDTO ProductCodeCK(String pcode) throws Exception {
+		return sqlSession.selectOne(namespace+".ProductCodeCK",pcode);
+	}
 	
 	
 	

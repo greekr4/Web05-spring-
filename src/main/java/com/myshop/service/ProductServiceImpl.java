@@ -71,6 +71,36 @@ public class ProductServiceImpl implements ProductService {
 		return dao.ProductCount(ccode);
 	}
 
+	@Override
+	public void ProductDel(String pcode) throws Exception {
+		dao.ProductDel(pcode);
+	}
+
+	@Override
+	public void ProductDel_add(String pcode) throws Exception {
+		dao.ProductDel_add(pcode);
+	}
+
+	@Override
+	public void ProductDel_cate(String pcode) throws Exception {
+		dao.ProductDel_cate(pcode);
+	}
+
+	@Override
+	public void ProductDel_basket(String pcode) throws Exception {
+		dao.ProductDel_basket(pcode);
+	}
+
+	@Override
+	public void ProductDel_order(String pcode) throws Exception {
+		dao.ProductDel_order(pcode);
+	}
+
+	@Override
+	public ProductDTO ProductCodeCK(String pcode) throws Exception {
+		return dao.ProductCodeCK(pcode);
+	}
+
 
 	
 	

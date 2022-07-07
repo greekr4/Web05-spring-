@@ -181,6 +181,26 @@ String filePath = defaultPath + "ckEimg" + File.separator;
         }
 
         /* /제품등록 폼 */
+        
+        
+        .msgbox_wrap{
+        position: relative;
+        }
+        .msgbox{
+	    position: absolute;
+	    left: 320px;
+	    top: 15px;
+        }
+        
+        .msgbox_wrap2{
+        position: relative;
+        }
+        .msgbox2{
+	    position: absolute;
+	    left: 460px;
+	    top: -30px;
+        }
+
     </style>
 </head>
 <body>
@@ -200,14 +220,21 @@ String filePath = defaultPath + "ckEimg" + File.separator;
                     <!-- 주문관리 - 주문관리 -->
                    <!-- 제품등록 폼 -->
                     <div class="content">
+                             <iframe name="hiddenf" style="display: none;"></iframe>
                         <div class="content_wrap">
-                            <form action="ProductAdd" method="post" name="addForm" id="addForm">
+                             	<div class="msgbox_wrap">
+	 								<div class="msgbox">
+	                                <label id="idok" style="font-size: 14px; color: blue; display: none;">사용 가능</label>
+	                                <label id="idno" style="font-size: 14px; color: red; display: none;">사용 불가능</label>
+	                                </div>
+                                </div>
+                            <form action="ProductAdd" method="post" name="addForm" id="addForm" onsubmit="return paddCheck()">
                                 <table class="proTable">
                                     <tbody>
                                         <tr>
                                             <th>품목코드</th>
                                             <td>
-                                                <input type="text" name="pcode" id="pcode" value="">
+                                                <input type="text" name="pcode" id="pcode" value="" required onchange="pcodeCheck();">
                                             </td>
                                         </tr>
                                         <tr>
@@ -257,31 +284,31 @@ String filePath = defaultPath + "ckEimg" + File.separator;
                                         <tr>
                                             <th>판매단위</th>
                                             <td>
-                                                <input type="text" name="unit" id="unit">
+                                                <input type="text" name="unit" id="unit" required>
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>원산지</th>
                                             <td>
-                                                <input type="text" name="origin" id="origin">
+                                                <input type="text" name="origin" id="origin" required>
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>용량/중량</th>
                                             <td>
-                                                <input type="text" name="weight" id="weight">
+                                                <input type="text" name="weight" id="weight" required>
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>안내사항</th>
                                             <td>
-                                                <input type="text" name="guidelines" id="guidelines">
+                                                <input type="text" name="guidelines" id="guidelines" required>
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>상품설명</th>
                                             <td>
-                                                <textarea name="pdetail" id="editor" cols="100" rows="10"></textarea>
+                                                <textarea name="pdetail" id="editor" cols="100" rows="10" required></textarea>
                                             </td>
                                         </tr>
                                         <tr>
@@ -310,6 +337,11 @@ String filePath = defaultPath + "ckEimg" + File.separator;
                                         </tr>
                                     </tbody>
                                 </table>
+								<div class="msgbox_wrap2">
+	 								<div class="msgbox2">
+	                                <label id="uploadOK" style="font-size: 14px; color: red; display: block;">업로드 해주세요!</label>
+	                                </div>
+                                </div>
                                 <div class="btn_wrap">
                                 <input type="submit" class="btn_black btn" value="입력">
                                 <input type="reset" class="btn_white btn" value="취소">
@@ -335,11 +367,40 @@ String filePath = defaultPath + "ckEimg" + File.separator;
 <script type="text/javascript">
 $('.gnb_sub_menu').eq(5).find('a').css('font-weight','bold');
 
+
+
+function paddCheck() {
+	
+	var upload_ok = $('#uploadOK').css('color');
+	
+	if (upload_ok == 'rgb(255, 0, 0)'){
+		alert('사진을 업로드해주세요!');
+		return false;
+	}
+}
+
+
+function pcodeCheck() {
+    var pcode_val = $('#pcode').val();
+    if(pcode_val==""){
+        alert("품목코드를 입력해주세요.");
+        return false;
+    } else {
+    	window.open('${path}/Admin/PCODECK?pcode='+pcode_val,'hiddenf');
+    }
+}
+
+
 function img_upload() {
 
 	
 	
 	var code_path = $('#pcode').val();
+	
+	if(code_path == ''){
+		alert('품목코드를 먼저 입력해주세요!')
+		return;
+	}
 	
 	for(var i=0;i<3;i++){
 	if ($('.uploadfile').eq(i).val() == ''){
@@ -382,7 +443,8 @@ function img_upload() {
            type : 'POST',
            success : function(result) {
         	   alert("업로드 성공!");
-			
+			   $('#uploadOK').text('업로드 성공!');
+			   $('#uploadOK').css('color','blue');
 		}
            
 

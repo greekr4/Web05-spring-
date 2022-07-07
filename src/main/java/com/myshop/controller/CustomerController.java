@@ -24,6 +24,7 @@ import com.myshop.dto.CustomerDTO;
 import com.myshop.dto.RecentlyDTO;
 import com.myshop.service.CustomerService;
 import com.myshop.service.RecentlyService;
+import com.myshop.util.ScriptUtils;
 
 /**
  * Handles requests for the application home page.
@@ -46,6 +47,7 @@ public class CustomerController {
 	@Inject
 	private HttpSession session;
 	
+	ScriptUtils ScriptUtils = new ScriptUtils();
 	
 	// JSP 연결
 	
@@ -69,7 +71,10 @@ public class CustomerController {
 	
 	//마이페이지
 	@RequestMapping(value = "/Mypage",method = RequestMethod.GET)
-	public String Mypage(Model model) throws Exception{
+	public String Mypage(Model model,HttpServletResponse response) throws Exception{
+		if (session.getAttribute("sdto") == null) {
+			ScriptUtils.alertAndMovePage(response, "로그인 해주세요!", "../Customer/LoginForm");
+		}
 		String sid = (String)session.getAttribute("sid");
 		CustomerDTO sdto = (CustomerDTO) session.getAttribute("sdto");
 		CustomerDTO DTO = new CustomerDTO();
@@ -81,6 +86,12 @@ public class CustomerController {
 		model.addAttribute("RecenList",RecenList);
 		
 		return "/Customer/Mypage";
+	}
+	
+	//회원가입 폼
+	@RequestMapping("/Mybasket")
+	public String Mybasket(CustomerDTO DTO,Model model) throws Exception {
+		return "/Customer/Mybasket";
 	}
 	
 	//가입완료

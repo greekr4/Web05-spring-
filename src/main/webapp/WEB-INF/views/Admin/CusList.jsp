@@ -430,7 +430,7 @@ $('.gnb_sub_menu').eq(2).find('a').css('font-weight','bold');
 
 function emailCheck() {
     var email_val = $('#email').val();
-    if(email==""){
+    if(email_val==""){
         alert("이메일 주소를 입력하여 주시기 바랍니다.");
         return false;
     } else {

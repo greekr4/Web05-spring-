@@ -152,6 +152,7 @@ response.setCharacterEncoding("utf-8");
 
 
         <div id="container">
+         <iframe name="hiddenf" style="display: none;"></iframe>
             <div id="container_wrap">
 	       <section class="main_wrap">
 					<jsp:include page="./LeftMenu.jsp"/>
@@ -185,6 +186,7 @@ response.setCharacterEncoding("utf-8");
                                         <th>할당재고</th>
                                         <th>할인율</th>
                                         <th>등록일</th>
+                                        <th>삭제</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -199,6 +201,8 @@ response.setCharacterEncoding("utf-8");
                                         <td>${DTO.allocate_invt }</td>
                                         <td>${DTO.discount }%</td>
                                         <td><fmt:formatDate value="${DTO.regdate }" pattern="YYYY-MM-dd"/></td>
+                                        <td><button class="btn_white" style="padding: 4px 6px 4px 6px" onclick="ProductDel('${DTO.pcode}');">삭제</button></td>
+                                        <!-- product_add / cate_add / basket / order_line -->
                                     </tr>
                                 </c:forEach>                        
                                 </tbody>
@@ -226,6 +230,14 @@ response.setCharacterEncoding("utf-8");
 
 <script type="text/javascript">
 $('.gnb_sub_menu').eq(5).find('a').css('font-weight','bold');
+function ProductDel(pcode) {
+    if (!confirm("정말 삭제하시겠습니까?")) {
+		return;
+    } else {
+    	window.open('${path}/Admin/ProductDel?pcode='+pcode,'hiddenf');
+    }
+	
+}
 </script>
  </body>
 </html>

@@ -168,6 +168,38 @@ public class AdminController {
 		ScriptUtils.alertAndMovePage(response, "수정완료", "./ProductList");
 	}
 	
+	//제품삭제
+	@RequestMapping("ProductDel")
+	public void ProductEdit(HttpServletResponse response,@RequestParam String pcode) throws Exception{
+		ProductService.ProductDel(pcode);
+		ProductService.ProductDel_add(pcode);
+		ProductService.ProductDel_cate(pcode);
+		ProductService.ProductDel_basket(pcode);
+		ProductService.ProductDel_order(pcode);
+		ScriptUtils.alertAndClose(response, "삭제완료");
+	}
+	
+	//PCODE체크
+	@RequestMapping(value = "PCODECK", method = RequestMethod.GET)
+	public void PCODECK(@RequestParam String pcode, HttpServletResponse response) throws Exception{
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; utf-8");
+		PrintWriter out = response.getWriter();
+		if(ProductService.ProductCodeCK(pcode) == null) {
+			out.println("<script>"
+					+ "opener.document.getElementById('idno').style.display = 'none';"
+					+ "opener.document.getElementById('idok').style.display = 'block';"
+					+ "</script>");	
+		}else {
+			out.println("<script>"
+					+ "opener.document.getElementById('idok').style.display = 'none';"
+					+ "opener.document.getElementById('idno').style.display = 'block';"
+					+ "</script>");	
+		}
+		
+		
+	}
+	
 	
 	//공지사항
 	@RequestMapping(value = "NoticeList", method = RequestMethod.GET)
@@ -315,8 +347,6 @@ public class AdminController {
     		}
     		}
 
-    		
-    		
 	    	for(MultipartFile multipartFile : uploadfile) {
 	    		File savefile = new File(uploadFolder, multipartFile.getOriginalFilename());
 	    		try {

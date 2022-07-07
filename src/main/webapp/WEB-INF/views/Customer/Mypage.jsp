@@ -166,20 +166,7 @@ response.setCharacterEncoding("utf-8");
               
                 <section class="main_wrap">
 
-                    <!-- 왼쪽 메뉴 -->
-                    <div id="left_gnb">
-                        <ul>
-                            <li class="gnb_menu">
-                                <a href="">마이페이지</a>
-                                <ul>
-                                    <li class="gnb_sub_menu"><a href="my_info.html">나의정보</a></li>
-                                    <li class="gnb_sub_menu"><a href="order_info.html">장바구니</a></li>
-                                    <li class="gnb_sub_menu"><a href="order_info.html">주문정보</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- /왼쪽 메뉴 -->
+                   
                     
                     <div class="page" id="page1">
                         <!-- 마이페이지 -->
@@ -206,7 +193,7 @@ response.setCharacterEncoding("utf-8");
                                     </tr>
                                     <tr>
                                         <td>적립금</td>
-                                        <td colspan="3">1,000</td>
+                                        <td colspan="3">${DTO.point }</td>
                                     </tr>
                                     <tr>
                                         <td colspan="4">

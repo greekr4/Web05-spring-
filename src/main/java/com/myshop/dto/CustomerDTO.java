@@ -24,6 +24,7 @@ public class CustomerDTO {
 	private Date regdate;		//가입일자
 	private Date login_date;	//최종로그인
 	private Date moddate;		//수정일자
+	private int point;			//포인트
 	}
 
 

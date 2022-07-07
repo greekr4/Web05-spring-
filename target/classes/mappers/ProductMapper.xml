@@ -44,6 +44,11 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 		values (#{ccode},#{pcode})
 	</insert>
 	
+	<!-- 제품등록_중복체크 -->
+	<select id="ProductCodeCK" resultType="com.myshop.dto.ProductDTO">
+		select * from v_product where pcode = #{pcode}
+	</select>
+	
 	<!-- 제품수정 -->
 	<update id="ProductEdit">
 		update product
@@ -53,7 +58,7 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 		where seq = #{seq}
 	</update>
 	
-		<!-- 제품수정++이미지경로 -->
+	<!-- 제품수정++이미지경로 -->
 	<update id="ProductEdit_add">
 		update product_add 
 		set s_img_desc = #{s_img_desc} , ds_img_desc =#{ds_img_desc},dm_img_desc =#{dm_img_desc}
@@ -62,15 +67,40 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 	</update>
 	
 	
-		<!-- 제품수정++카테고리  -->
+	<!-- 제품수정++카테고리  -->
 	<update id="ProductEdit_cate">
 		update category_add 
 		set ccode = #{ccode}
 		where pcode = #{pcode}
 	</update>
 	
-
-		<!-- 최근 본 상품 조회 (6개) -->
+	<!-- 제품삭제 -->
+	<delete id="ProductDel">
+	delete from product where pcode = #{pcode}
+	</delete>
+	
+	<!-- 제품삭제_이미지경로 -->
+	<delete id="ProductDel_add">
+	delete from product where pcode = #{pcode}
+	</delete>
+	
+	<!-- 제품삭제_카테 -->
+	<delete id="ProductDel_cate">
+	delete from product where pcode = #{pcode}
+	</delete>
+	
+	<!-- 제품삭제_장바구니 -->
+	<delete id="ProductDel_basket">
+	delete from basket where pcode = #{pcode}
+	</delete>
+	
+	<!-- 제품삭제_주문목록 -->
+	<delete id="ProductDel_order">
+	delete from order_line where pcode = #{pcode}
+	</delete>
+	
+	
+	<!-- 최근 본 상품 조회 (6개) -->
 	<insert id="ProductRecentlyList">
 	select * from logmaster where cus_seq = ${seq} order by seq desc limit 6;
 	</insert>
