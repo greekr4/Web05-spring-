@@ -346,7 +346,6 @@ public class AdminController {
     			e.getStackTrace();
     		}
     		}
-
 	    	for(MultipartFile multipartFile : uploadfile) {
 	    		File savefile = new File(uploadFolder, multipartFile.getOriginalFilename());
 	    		try {

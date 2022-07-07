@@ -166,7 +166,7 @@ response.setCharacterEncoding("utf-8");
               
                 <section class="main_wrap">
 
-                   
+				<jsp:include page="./LeftMenu.jsp"/>
                     
                     <div class="page" id="page1">
                         <!-- 마이페이지 -->

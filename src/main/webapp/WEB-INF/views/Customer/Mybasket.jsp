@@ -17,138 +17,137 @@ response.setCharacterEncoding("utf-8");
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insert title here</title>
     <script src="https://code.jquery.com/jquery-latest.js"></script>
+
     <link rel="stylesheet" href="${path }/resources/css/common.css">
     <link rel="stylesheet" href="${path }/resources/css/main.css">
     <link rel="stylesheet" href="${path }/resources/css/style.css">
-<style>
-     /* 초기화 */
+    <style>
+        /* 초기화 */
         * { margin: 0; padding: 0;}
         ul { list-style: none; } 
         a { text-decoration: none; color: #222; }
         html, body { height: 100%;}
         #container{clear: both; width: 100%;}
-        .container_wrap{clear: both; width: 100%;}
-        .main_wrap{clear: both; margin-top: 4%;}
+        .container_wrap{clear: both; width: 100%; }
+        .main_wrap{
+            clear: both;
+            width: 1400px;
+            margin: 0 auto;
+            margin-top: 2%;
+        }
         /* /초기화 */
-        /* 페이지 제목 */
-        .main_title{
-            text-align: center;
+        /* 왼쪽 메뉴 */
+        #left_gnb{
+            float: left;
+            width: 13%;
+            /* min-width: 180px; */
         }
-        .main_title h2{
-            margin-bottom: 2%;
+        #left_gnb>ul>.gnb_menu>a{
+            display: block;
+            font-size: 16px;
+            padding: 15px 10px 15px 16px;
+            background-color: #222;
+            color: #e2e2e2;
         }
-        .main_title p{
-            font-size: 1.1em;
+        #left_gnb>ul>.gnb_menu>a:first-child{
+            border-top: 1px solid #515151;
         }
-        .main_title p:nth-child(3){
+        #left_gnb>ul>.gnb_menu>ul>.gnb_sub_menu>a{
+            display: block;
+            border-bottom: 1px solid #515151;
+            border-left: 1px solid #515151;
+            border-right: 1px solid #515151;
             font-size: 14px;
-            margin-top: 3%;
-            margin-bottom: 0;
-            margin-left: 24%;
+            padding: 15px 10px 15px 16px;
+            background-color: #ffffff;
+            color: #222;
         }
-        .main_title p:nth-child(3)::before{
-            content: "*";
-            color: red;
-            margin-right: 4px;
+        #left_gnb>ul>.gnb_menu>ul>.gnb_sub_menu:hover a{
+            background-color: #dbdbdb;
+            color: #222;
         }
-        /* /페이지 제목 */
-        /* 회원가입 폼 */
-        .joinForm {
-            width: 750px;
-            margin-top: 1vh;
-            margin-right: auto;
-            margin-bottom: 5vh;
-            margin-left: auto;
-            text-align: center;
-        }
-        .table {
-            display:table;
-            border-collapse: collapse;
-            width: 100%;
-            text-align: left;
-            font-size: 1em;
-        }
-        .table tr{
-            display: table-row;
-        }
-        .table tr th, .table tr td{
-            display: table-cell;
-            border-bottom: 1px solid #dcdcdc;
-            padding: 12px 0 12px 25px;
-        }
-        .table tr th{
-            background-color: #fbfbfb;
-        }
-        .table tr th:before{
-            content: "*";
-            color: red;
-            margin-right: 4px;
-        }
-        .table tr td input:focus{
-            outline: none;
-        }
-        .table tr:first-child{
-            border-top: 1px solid #999999;
-        }
-        .table tr:nth-child(6) td{
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-        .table tr:nth-child(7) td{
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-        .table tr:nth-child(1) td input{
-            height: 32px;
-            width: 50%;
-            border: 1px solid #c1c1c1;
-        }        
-        .table tr:nth-child(2) td input{
-            height: 32px;
-            width: 50%;
-            border: 1px solid #c1c1c1;
-        }
-        .table tr:nth-child(3) td input{
-            height: 32px;
-            width: 50%;
-            border: 1px solid #c1c1c1;
-        }
-        .table tr:nth-child(4) td input{
-            height: 32px;
-            width: 80%;
-            border: 1px solid #c1c1c1;
-        }
-        .table tr:nth-child(5) td input{
-            height: 32px;
-            width: 80%;
-            border: 1px solid #c1c1c1;
-        }
-        .table tr:nth-child(6) td input[type=text]{
-            height: 32px;
-            width: 50%;
-            border: 1px solid #c1c1c1;
-        }
-        .table tr:nth-child(7) td input{
-            height: 32px;
-            width: 80%;
-            border: 1px solid #c1c1c1;
-        }
-        .table tr:nth-child(8) td input{
-            height: 32px;
-            width: 80%;
-            border: 1px solid #c1c1c1;
-        }
-        .table tr td input[type=button]{
-            width: 24%;
-            padding: 5px 0 9px 0;
-        }
-        .btn {
-            margin-top: 4%;
-            width: 20%;
-            padding: 5px 0 9px 0;
-        }
-        /* /회원가입 폼 */
-        
+        /* /왼쪽 메뉴 */
+      	.basket_wrap{
+      	width: 100%;
+      	}
+		.basket_tit_box{
+		width: 1000px;
+		margin: 0 auto;
+		}
+		.basket_wrap h1{
+		text-align: center;
+		}
+		.table_wrap{
+		width:1200px;
+		margin-left: 200px;
+		}
+		.table_wrap table{
+		width:100%;
+		margin: 0 auto;
+		margin-top: 50px;
+		border-collapse: collapse;
+		}
+		.table_wrap table th{
+		border-bottom: 1px solid #222;
+		height: 2.5em;
+		line-height: 2.5em;
+		}
+		.table_wrap table td{
+		text-align: center;
+		border-bottom: 1px solid #dbdbdb;
+		}
+		.table_wrap table td.detail{
+		text-align: left;
+		}
+		.table_wrap table th{
+		width: 8%;
+		}
+		.table_wrap table th:nth-child(1){
+		width: 20%;
+		}
+		.table_wrap table th:nth-child(2){
+		width: 20%;
+		}
+		.table_wrap table button{
+		width: 100px;
+    	height: 40px;
+		}
+		.table_wrap table button.up_btn, .table_wrap table button.down_btn{
+		width: 20px;
+		height: 20px;
+		}
+		.table_wrap table img{
+		display: block;
+	    width: 100px;
+	    height: 100px;
+	    margin: 10px auto;
+		}
+		.table_wrap table p.pname{
+		font-weight: bold;
+		
+		}
+		.table_wrap table td{
+		font-weight: bold;
+		}
+		.table_wrap table td.gray_tit{
+		font-weight: 0;
+		color: gray;
+		}
+		.table_wrap table p.psubname{
+		font-size:0.8em;
+		color: gray;
+		}
+		.table_wrap table input{
+		border: 0;
+		width: 35px;
+    	text-align: center;
+		}
+		
+		
+
+		
+		
+		
 </style>
 </head>
 <body>
@@ -163,64 +162,80 @@ response.setCharacterEncoding("utf-8");
 
         <div id="container">
             <div id="container_wrap">
-               
-    <section class="main_wrap">
-                    <div class="main_title">
-                        <h2>회원가입</h2>
-                        <p>01 약관동의 > <strong>02 정보입력</strong> > 03 가입완료</p>
-                        <p>표시는 반드시 입력하셔야 하는 항목입니다.</p>
+              
+                <section class="main_wrap">
+
+				<jsp:include page="./LeftMenu.jsp"/>
+                    <div class="basket_wrap">
+	                    <div class="basket_tit_box">
+	                    	<h1>Admin님의 장바구니</h1>   
+	                    </div>
+	                    
+	                    <div class="table_wrap">
+	                    <table>
+							  <tr>
+							    <th>상품이미지</th>
+							    <th>상품정보</th>
+							    <th>판매가</th>
+							    <th>수량</th>
+							    <th>적립금</th>
+							    <th>배송구분</th>
+							    <th>배송비</th>
+							    <th>합계</th>
+							    <th>선택</th>
+							  </tr>
+							  <tr>
+							    <td><img alt="상품이미지" src="${path }/resources/upload/p1112/info1.jpg"></td>
+							    <td class="detail">
+							    	<p class="pname">동협이</p>
+							    	<p class="psubname">100g당 만원</p>
+							    </td>
+							    <td>12,900원
+							    <input type="hidden" id="origin_sum" class="origin_sum" value="12900"></td>
+							    <td>
+							    <button class="down_btn" onclick="down_btn(0);">-</button>
+							    <input type="text" id="qty" class="qty" value="1">
+							    <button class="up_btn" onclick="up_btn(0);">+</button>
+							    </td>
+							    <td>-</td>
+							    <td class="gray_tit">기본배송</td>
+							    <td>3,000원
+							    <input type="hidden" class="delivery_sum" value="3000"> </td>
+							    <td><span class="sum">15,900</span>원</td>
+							    <td><button class="btn_black">주문하기</button></td>
+							</tr>
+							
+							
+							<tr>
+							    <td><img alt="상품이미지" src="${path }/resources/upload/p1112/info1.jpg"></td>
+							    <td class="detail">
+							    	<p class="pname">동협이</p>
+							    	<p class="psubname">100g당 만원</p>
+							    </td>
+							    <td>1,000원
+							    <input type="hidden" id="origin_sum" class="origin_sum" value="1000"></td>
+							    <td>
+							    <button class="down_btn" onclick="down_btn(1);">-</button>
+							    <input type="text" id="qty" class="qty" value="1">
+							    <button class="up_btn" onclick="up_btn(1);">+</button>
+							    </td>
+							    <td>-</td>
+							    <td class="gray_tit">기본배송</td>
+							    <td>3,000원
+							    <input type="hidden" class="delivery_sum" value="3000"> </td>
+							    <td><span class="sum">15,900</span>원</td>
+							    <td><button class="btn_black">주문하기</button></td>
+							</tr>
+							
+							</table>
+
+	                    
+	                    </div>
+                    
+                                  
                     </div>
-                    <!-- 회원가입 -->
-                    <div class="joinForm">
-                         <form:form modelAttribute="CustomerDTO" action="Join" method="post" name="join_form" onsubmit="return joinCheck()">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <th><form:label path="email">이메일</form:label></th>
-                                        <td>
-                                        <form:input path="email" name="email" id="email" onchange="emailCheck()" />
-                                        <label id="idok" style="font-size: 14px; color: blue; display: none;">사용 가능하신 아이디입니다.</label>
-                                        <label id="idno" style="font-size: 14px; color: red; display: none;">사용 불가능하신 아이디입니다.</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th><form:label path="pw">비밀번호</form:label></th>
-                                        <td><form:input type="password" path="pw" name="pw" id="pw1"/></td>
-                                    </tr>
-                                    <tr>
-                                        <th><label for="pw2">비밀번호 확인</label></th>
-                                        <td><input type="password" id="pw2"></td>
-                                    </tr >
-                                    <tr>
-                                        <th><form:label path="name">이름</form:label></th>
-                                        <td><form:input path="name" name="name" id="name"/></td>
-                                    </tr>
-                                    <tr>
-                                        <th><form:label path="phonenum">핸드폰 번호</form:label></th>
-                                        <td><form:input path="phonenum"/></td>
-                                    </tr>
-                                    <tr>
-                                        <th rowspan="3"><form:label path="zipcode">주소</form:label></th>
-                                        <td>
-                                            <form:input path="zipcode" name="zipcode" id="zipcode"/>
-                                            <input type="button" id="btn1" class="btn_white" onclick="findAddr()" value="우편번호 검색">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><form:input path="addr1" name="addr1" id="addr1"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><form:input path="addr2" name="addr2" id="addr2"/></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <input type="submit" class="btn_black btn" value="가입하기">
-                            <input type="button" class="btn_white btn" value="취소" onclick="location.href='${path }'">
-                        </form:form>
-                    </div>
-                    <iframe name="hiddenf" style="display: none;"></iframe>
-                    <!-- 회원가입 -->
                 </section>
+
             
            
             </div>
@@ -233,125 +248,65 @@ response.setCharacterEncoding("utf-8");
     </footer>
     </div>
 
+<script type="text/javascript">
 
- <script>
-	    function findAddr() {
-	           new daum.Postcode({
-	                  oncomplete: function(data) {
-	                      var addr = ''; // 주소 변수
-	                      var extraAddr = ''; // 참고항목 변수
-	                      if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-	                          addr = data.roadAddress;
-	                      } else { // 사용자가 지번 주소를 선택했을 경우(J)
-	                          addr = data.jibunAddress;
-	                      }
-	                      if(data.userSelectedType === 'R'){
-	                          if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-	                              extraAddr += data.bname;
-	                          }
-	                          if(data.buildingName !== '' && data.apartment === 'Y'){
-	                              extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-	                          }
-	                          // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-	                          if(extraAddr !== ''){
-	                              extraAddr = ' (' + extraAddr + ')';
-	                          }
-	                          // 조합된 참고항목을 해당 필드에 넣는다.
-	                      } else {
-	                         
-	                      }
-	                      document.getElementById("zipcode").value = data.zonecode;   //우편번호
-	                      document.getElementById("addr1").value = addr;            //주소1
-	                      document.getElementById("addr2").focus();               //주소2(상세주소)
-	                  }
-	              }).open();
+function AmountCommas(val) {
+    return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+var origin_sum_val = [];
+var delivery_sum = [];
+
+for (var i = 0; i < $('.origin_sum').length; i++) {
+	origin_sum_val.push(parseInt($('.origin_sum').eq(i).val()));
+	delivery_sum.push(parseInt($('.delivery_sum').eq(i).val()));
+}
+
+
+
+
+/* $('.up_btn').click(function () {
+    var qty_val = $('.qty').val();
+    qty_val++;
+    $('.qty').val(qty_val);
+    var sum_val = origin_sum_val * qty_val + delivery_sum;
+    $('.sum').text(AmountCommas(sum_val));
+});
+ */
+
+function up_btn(index) {
+    var qty_val = $('.qty').eq(index).val();
+    qty_val++;
+    $('.qty').eq(index).val(qty_val);
+    var sum_val = origin_sum_val[index] * qty_val + delivery_sum[index];
+    $('.sum').eq(index).text(AmountCommas(sum_val));
+}
+
+ function down_btn(index) {
+	    var qty_val = $('.qty').eq(index).val();
+	    if (qty_val > 1) {
+	        qty_val--;
+	        $('.qty').eq(index).val(qty_val);
+	        var sum_val = origin_sum_val[index] * qty_val + delivery_sum[index];
+	        $('.sum').eq(index).text(AmountCommas(sum_val));
+	    } else {
+	        alert("최소 수량은 1개 이상입니다.")
 	    }
-    </script>
-    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script>
-        function emailCheck() {
-            var email_val = document.join_form.email.value;
-            if(email==""){
-                alert("이메일 주소를 입력하여 주시기 바랍니다.");
-                return false;
-            } else {
-            	window.open('${path}/Customer/IDCK?email='+email_val,'hiddenf');
-            }
-        }
-    </script>
-    <script>
-        function joinCheck() {
-        	var email_val = $('#email').val();
-        	var pw_val = $('#pw1').val();
-        	var pw2_val = $('#pw2').val();
-        	var name_val = $('#name').val();
-        	var phonenum_val = $('#phonenum').val();
-        	var addr1_val = $('#addr1').val();
-        	var addr2_val = $('#addr2').val();
-        	var zipcode_val = $('#zipcode').val();
-        	var idok_val = $('#idok').css('display');
-        	
-        	
-            if(email_val == ''){
-                alert("아이디를 입력해주세요.");
-                $('#email').focus();
-                return false;
-            }
-            
-        	
-            if(pw_val == ''){
-                alert("비밀번호를 입력해주세요.");
-                $('#pw1').focus();
-                return false;
-            }
-            
-            if(name_val == ''){
-                alert("이름을 입력해주세요.");
-                $('#name').focus();
-                return false;
-            }
-            
-            if(phonenum_val == ''){
-                alert("핸드폰 번호를 입력해주세요.");
-                $('#phonenum').focus();
-                return false;
-            }
-            
-            if(addr1_val == ''){
-                alert("주소를 입력해주세요.");
-                $('#addr1').focus();
-                return false;
-            }
-            
-            if(addr2_val == ''){
-                alert("상세 주소를 입력해주세요.");
-                $('#addr2').focus();
-                return false;
-            }
-            
-            if(zipcode_val == ''){
-                alert("우편번호를 입력해주세요.");
-                $('#zipcode').focus();
-                return false;
-            }
-            
-            if(pw_val != pw2_val){
-                alert("비밀번호가 일치하지 않습니다.");
-                $('#pw2').focus();
-                return false;
-            }
-        	
-        	
-            if(idok_val == 'none'){
-                alert("아이디 중복 확인이 필요합니다.");
-                $('#email').focus();
-                return false;
-            }
+}
+/* $('.down_btn').click(function () {
+    var qty_val = $('.qty').val();
+    if (qty_val > 1) {
+        qty_val--;
+        $('.qty').val(qty_val);
+        var sum_val = origin_sum_val * qty_val + delivery_sum;
+        $('.sum').text(AmountCommas(sum_val));
+    } else {
+        alert("최소 수량은 1개 이상입니다.")
+    }
+}); */
 
 
-        }		
-    </script>
-
+</script>
 
  </body>
 </html>
