@@ -24,6 +24,12 @@ public class BasketDAOImpl implements BasketDAO {
 		return sqlSession.selectList(namespace+".BasketList",cus_seq);
 	}
 
+	@Override
+	public void BasketAdd(Map<String, Object> map) throws Exception {
+		sqlSession.insert(namespace+".BasketAdd",map);
+		
+	}
+
 
 	
 	

@@ -32,6 +32,15 @@ public class RecentlyDAOImpl implements RecentlyDAO {
 		
 	}
 
+	@Override
+	public void RecentlyDel(int cus_seq, String pcode) throws Exception {
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("cus_seq", cus_seq);
+		map.put("pcode",pcode);
+		sqlSession.delete(namespace+".RecentlyDel",map);
+		
+	}
+
 	
 	
 

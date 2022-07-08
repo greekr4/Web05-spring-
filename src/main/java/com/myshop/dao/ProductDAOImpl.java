@@ -99,6 +99,11 @@ public class ProductDAOImpl implements ProductDAO {
 	public ProductDTO ProductCodeCK(String pcode) throws Exception {
 		return sqlSession.selectOne(namespace+".ProductCodeCK",pcode);
 	}
+
+	@Override
+	public int ProductPcodeOrder() throws Exception {
+		return sqlSession.selectOne(namespace+".ProductPcodeOrder");
+	}
 	
 	
 	

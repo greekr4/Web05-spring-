@@ -198,7 +198,7 @@ String filePath = defaultPath + "ckEimg" + File.separator;
         .msgbox2{
 	    position: absolute;
 	    left: 460px;
-	    top: -30px;
+	    top: -34px;
         }
 
     </style>
@@ -234,7 +234,7 @@ String filePath = defaultPath + "ckEimg" + File.separator;
                                         <tr>
                                             <th>품목코드</th>
                                             <td>
-                                                <input type="text" name="pcode" id="pcode" value="" required onchange="pcodeCheck();">
+                                                <input type="text" name="pcode" id="pcode" value="${AutoPcode }" required onchange="pcodeCheck();">
                                             </td>
                                         </tr>
                                         <tr>
@@ -454,6 +454,7 @@ function img_upload() {
 
 window.onload = function(){
     ck = CKEDITOR.replace('editor',{filebrowserUploadUrl:'${path}/Admin/imageUpload'});
+    pcodeCheck();
  };
 
 

@@ -122,6 +122,7 @@ public class CustomerController {
 		if(loginDTO != null) {
 			if(pwdEncoder.matches(DTO.getPw(), loginDTO.getPw()) == true) {
 				session.setAttribute("sdto", loginDTO);
+				session.setAttribute("scus_seq", loginDTO.getSeq());
 				session.setAttribute("sid", loginDTO.getEmail());
 				CustomerService.CustomerLoginCnt(loginDTO);
 				CustomerService.CustomerLoginDate(loginDTO);

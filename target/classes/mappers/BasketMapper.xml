@@ -13,8 +13,14 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 		inner join v_product b
 		on (a.pcode = b.pcode)
 		where cus_seq = #{cus_seq}
-		
 	</select>
+	
+	<!-- 장바구니 추가 -->
+	<insert id="BasketAdd">
+		insert into basket(cus_seq, pcode, qty, regdate)
+		values(#{cus_seq}, #{pcode}, #{qty}, now())				
+
+	</insert>
 	
 	
 	

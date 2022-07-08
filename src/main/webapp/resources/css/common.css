@@ -114,10 +114,10 @@ width: 100%;
 #hd .sub_box2{
     position: relative;
     z-index: 998;
-    left:0;
+    left:-3px;
     top: 0;
     width: 90px;
-    height: 85px;
+    height: 105px;
     background-color: #fff;
     border: 1px solid #000;
     border-top: 0;

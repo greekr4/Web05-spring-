@@ -9,6 +9,7 @@ public interface RecentlyDAO {
 	public List<RecentlyDTO> RecentlyList(int cus_seq) throws Exception;
 	//최근 본 상품 추가
 	public void RecentlyAdd(int cus_seq,String pcode) throws Exception;
-
+	//최근 본 상품 삭제(중복 방지)
+	public void RecentlyDel(int cus_seq,String pcode) throws Exception;
 	
 }

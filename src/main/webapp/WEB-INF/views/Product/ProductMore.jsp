@@ -412,6 +412,7 @@ response.setCharacterEncoding("utf-8");
 
 
         <div id="container">
+         <iframe name="hiddenf" style="display: none;"></iframe>
             <div id="container_wrap">
   	        <section class="page1" id="1">
                     <div class="product_warp">
@@ -475,7 +476,7 @@ response.setCharacterEncoding("utf-8");
                                         <td colspan="2" style="text-align: center; display: flex;">
                                             <button class="like_btn"></button>
                                             <button class="alarm_btn"></button>
-                                            <button class="pickup_btn">장바구니담기</button>
+                                            <button class="pickup_btn" onclick="BasketAdd();">장바구니담기</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -716,6 +717,16 @@ response.setCharacterEncoding("utf-8");
             </div>
         </div>
 <script type="text/javascript">
+function BasketAdd() {
+	var cus_seq = ${scus_seq}; 
+	var pcode = '${DTO.pcode}';
+	var qty = $('.qty').val();
+	var href = "${path}/Product/BasketAdd?cus_seq="+cus_seq+"&pcode="+pcode+"&qty="+qty;
+	window.open(href,'hiddenf');
+	
+	
+}
+
 $('.location_select').click(function () {
     if ($(this).find('ul').css('display') == 'none') {
         $(this).find('.location_tit').addClass('active');

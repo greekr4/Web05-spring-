@@ -100,51 +100,59 @@ response.setCharacterEncoding("utf-8");
                         </div>
                         <div class="best_slider_box">
                             <!-- 아이템은 무조건 *3배수가 있어야함 -->
-                            <div class="best_item">
-                                <img src="${path}/resources/img/main/main_best01.jpg" alt="1">
-                                <h2>돼지와 달걀1</h2>
-                                <h3>39,000원</h3>
+                            <%-- ${fn:length(List) } --%>
+                            <fmt:parseNumber var="List_length" integerOnly="true" value="${fn:length(List)/3 }"/>
+                            
+                           <c:choose>
+                           	<c:when test="${List_length > 2}">
+                            <c:forEach items="${List }" var="DTO" begin="1" end="${List_length *3}">
+                             <div class="best_item">
+                                <a href="${path }/Product/ProductMore?seq=${DTO.seq}"><img src="${path}/resources/upload/${DTO.pcode }/${DTO.s_img_desc}" alt="${DTO.pcode }"></a>
+                                <h2>${DTO.pname }</h2>
+                                <h3><fmt:formatNumber value="${DTO.price }" pattern="#,###" />원</h3>
                             </div>
-                            <div class="best_item">
-                                <img src="${path}/resources/img/main/main_best02.jpg" alt="2">
-                                <h2>돼지와 달걀2</h2>
-                                <h3>39,000원</h3>
-                            </div>
-                            <div class="best_item">
-                                <img src="${path}/resources/img/main/main_best03.jpg" alt="3">
-                                <h2>돼지와 달걀3</h2>
-                                <h3>39,000원</h3>
-                            </div>
-                            <div class="best_item">
-                                <img src="${path}/resources/img/main/main_best02.jpg" alt="4">
-                                <h2>돼지와 달걀4</h2>
-                                <h3>39,000원</h3>
-                            </div>
-                            <div class="best_item">
-                                <img src="${path}/resources/img/main/main_best01.jpg" alt="5">
-                                <h2>돼지와 달걀5</h2>
-                                <h3>39,000원</h3>
-                            </div>
-                            <div class="best_item">
-                                <img src="${path}/resources/img/main/main_best03.jpg" alt="6">
-                                <h2>돼지와 달걀6</h2>
-                                <h3>39,000원</h3>
-                            </div>
-                            <div class="best_item">
-                                <img src="${path}/resources/img/main/main_best03.jpg" alt="7">
-                                <h2>돼지와 달걀7</h2>
-                                <h3>39,000원</h3>
-                            </div>
-                            <div class="best_item">
-                                <img src="${path}/resources/img/main/main_best02.jpg" alt="8">
-                                <h2>돼지와 달걀8</h2>
-                                <h3>39,000원</h3>
-                            </div>
-                            <div class="best_item">
-                                <img src="${path}/resources/img/main/main_best01.jpg" alt="9">
-                                <h2>돼지와 달걀9</h2>
-                                <h3>39,000원</h3>
-                            </div>
+                            </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+	                            <div class="best_item">
+	                                <a href="#"><img src="${path }/resources/img/main/no_prod.png" alt="상품을 추가해주세요"></a>
+	                                <h2>상품 이름1</h2>
+	                                <h3>1,000원</h3>
+	                            </div>
+
+	                            <div class="best_item">
+	                                <a href="#"><img src="${path }/resources/img/main/no_prod.png" alt="상품을 추가해주세요"></a>
+	                                <h2>상품 이름2</h2>
+	                                <h3>10,000원</h3>
+	                            </div>
+	                            
+	                            <div class="best_item">
+	                                <a href="#"><img src="${path }/resources/img/main/no_prod.png" alt="상품을 추가해주세요"></a>
+	                                <h2>상품 이름3</h2>
+	                                <h3>100,000원</h3>
+	                            </div>            
+	                            
+	                            <div class="best_item">
+	                                <a href="#"><img src="${path }/resources/img/main/no_prod.png" alt="상품을 추가해주세요"></a>
+	                                <h2>상품 이름4</h2>
+	                                <h3>1,000,000원</h3>
+	                            </div>        
+
+	                            <div class="best_item">
+	                                <a href="#"><img src="${path }/resources/img/main/no_prod.png" alt="상품을 추가해주세요"></a>
+	                                <h2>상품 이름5</h2>
+	                                <h3>10,000,000원</h3>
+	                            </div>  
+	                            
+	                            <div class="best_item">
+	                                <a href="#"><img src="${path }/resources/img/main/no_prod.png" alt="상품을 추가해주세요"></a>
+	                                <h2>상품 이름6</h2>
+	                                <h3>100,000,000원</h3>
+	                            </div>  	                            	                             	                            
+                            
+                            
+                            </c:otherwise>
+                          </c:choose>
 
                         </div>
                         <div class="best_btn_wrap">

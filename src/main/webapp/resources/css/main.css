@@ -27,6 +27,7 @@
 .slider_left_btn_box, .slider_right_btn_box{
     display: block;
     position: relative;
+    cursor: pointer;
 }
 
 .slider_left_btn{
@@ -234,7 +235,7 @@ width: 100%;
 .best_left_btn_box, .best_right_btn_box{
     display: block;
     position: relative;
-
+	cursor: pointer;
 
 }
 

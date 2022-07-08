@@ -101,6 +101,11 @@ public class ProductServiceImpl implements ProductService {
 		return dao.ProductCodeCK(pcode);
 	}
 
+	@Override
+	public int ProductPcodeOrder() throws Exception {
+		return dao.ProductPcodeOrder();
+	}
+
 
 	
 	

@@ -137,6 +137,30 @@ public class AdminController {
 	//제품등록폼
 	@RequestMapping("ProductAddForm")
 	public String ProductAddForm(Locale locale,Model model) throws Exception{
+		String AutoPcode = null;
+		int algo1 = ProductService.ProductPcodeOrder();
+			if(algo1 < 9) {
+			//p0001~p0009
+			algo1++;
+			AutoPcode = "p000" + algo1;
+			}else if(algo1 < 99) {
+			//p0010~p0099
+			algo1++;
+			AutoPcode = "p00" + algo1;
+			}else if(algo1 < 999) {
+			//p0100~p0999
+			algo1++;
+			AutoPcode = "p0" + algo1;
+			}else if(algo1 < 9999) {
+			//p1000~p9999
+			algo1++;
+			AutoPcode = "p" + algo1;
+			}else {
+				System.out.println("더이상 등록 할 수 없음");
+			}
+		
+		
+		model.addAttribute("AutoPcode",AutoPcode);
 		return "/Admin/ProductAddForm";
 	}
 	

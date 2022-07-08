@@ -12,8 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.myshop.dto.CategoryDTO;
+import com.myshop.dto.ProductDTO;
 import com.myshop.service.CategoryService;
+import com.myshop.service.ProductService;
 
 /**
  * Handles requests for the application home page.
@@ -27,11 +28,14 @@ public class HomeController {
 	@Inject
 	private CategoryService Categoryservice;
 	
+	@Inject
+	private ProductService ProductService;
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) throws Exception {
 		
-		List<CategoryDTO> CateList = Categoryservice.CategoryList();
-		model.addAttribute("CateList",CateList);
+		List<ProductDTO> List = ProductService.ProductList();
+		model.addAttribute("List",List);
 		return "home";
 	}
 	

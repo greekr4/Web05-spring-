@@ -49,6 +49,11 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 		select * from v_product where pcode = #{pcode}
 	</select>
 	
+	<!-- 제품등록_품목순번  -->
+	<select id="ProductPcodeOrder" resultType="int">
+		select count(*) from v_product
+	</select>
+	
 	<!-- 제품수정 -->
 	<update id="ProductEdit">
 		update product
@@ -81,12 +86,12 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 	
 	<!-- 제품삭제_이미지경로 -->
 	<delete id="ProductDel_add">
-	delete from product where pcode = #{pcode}
+	delete from product_add where pcode = #{pcode}
 	</delete>
 	
 	<!-- 제품삭제_카테 -->
 	<delete id="ProductDel_cate">
-	delete from product where pcode = #{pcode}
+	delete from category_add where pcode = #{pcode}
 	</delete>
 	
 	<!-- 제품삭제_장바구니 -->

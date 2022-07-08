@@ -14,9 +14,9 @@ response.setCharacterEncoding("utf-8");
                             <li class="gnb_menu">
                                 <a href="">마이페이지</a>
                                 <ul>
-                                    <li class="gnb_sub_menu"><a href="my_info.html">나의정보</a></li>
+                                    <li class="gnb_sub_menu"><a href="${path }/Customer/Mypage">나의정보</a></li>
                                     <li class="gnb_sub_menu"><a href="${path }/Customer/Mybasket">장바구니</a></li>
-                                    <li class="gnb_sub_menu"><a href="order_info.html">주문정보</a></li>
+                                    <li class="gnb_sub_menu"><a href="${path }/Customer/Myorder">주문정보</a></li>
                                 </ul>
                             </li>
                         </ul>

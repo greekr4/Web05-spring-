@@ -32,6 +32,8 @@ public interface ProductDAO {
 	//--------------------------------------------------------
 	//품목중복체크
 	public ProductDTO ProductCodeCK(String pcode) throws Exception;
+	//품목순번
+	public int ProductPcodeOrder() throws Exception;
 	//--------------------------------------------------------
 	//제품삭제
 	public void ProductDel(String pcode) throws Exception;

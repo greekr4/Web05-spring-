@@ -1,10 +1,10 @@
 package com.myshop.controller;
 
-import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -13,11 +13,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.myshop.dto.CustomerDTO;
 import com.myshop.dto.ProductDTO;
+import com.myshop.service.BasketService;
 import com.myshop.service.ProductService;
 import com.myshop.service.RecentlyService;
 import com.myshop.util.ScriptUtils;
@@ -36,6 +36,9 @@ public class ProductController {
 	
 	@Inject
 	private RecentlyService service2;
+	
+	@Inject
+	private BasketService BasketService;
 	
 	@Inject
 	private HttpSession session;
@@ -69,6 +72,18 @@ public class ProductController {
 		service2.RecentlyAdd(cus_seq, pcode);
 		model.addAttribute("DTO",DTO);
 		return "/Product/ProductMore";
+	}
+	
+	
+	//장바구니 추가
+	@RequestMapping("/BasketAdd")
+	public void BasketAdd(Model model,@RequestParam int cus_seq,@RequestParam String pcode,@RequestParam int qty,HttpServletResponse response) throws Exception{
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("cus_seq", cus_seq);
+		map.put("pcode",pcode);
+		map.put("qty",qty);
+		BasketService.BasketAdd(map);
+		ScriptUtils.alertAndClose(response, "장바구니에 추가되었습니다.");
 	}
 	
 	

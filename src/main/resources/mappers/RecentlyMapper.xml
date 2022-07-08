@@ -22,6 +22,11 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 		insert into logmaster(cus_seq,code,value)
 		values(#{cus_seq},'vp',#{pcode})			
 	</insert>
+	
+	<!-- 삭제(중복방지) -->
+	<delete id="RecentlyDel">
+		delete from logmaster where cus_seq = #{cus_seq} and value = #{pcode}
+	</delete>
 
 	
 
