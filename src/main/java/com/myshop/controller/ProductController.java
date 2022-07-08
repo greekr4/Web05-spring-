@@ -82,8 +82,24 @@ public class ProductController {
 		map.put("cus_seq", cus_seq);
 		map.put("pcode",pcode);
 		map.put("qty",qty);
-		BasketService.BasketAdd(map);
+		int CK = BasketService.BasketCK(map);
+		if (CK == 0) {
+			BasketService.BasketAdd(map);	
+		}else {
+			BasketService.BasketEdit(map);
+		}
+		
 		ScriptUtils.alertAndClose(response, "장바구니에 추가되었습니다.");
+	}
+	
+	//장바구니 삭제
+	@RequestMapping("/BasketDel")
+	public void BasketDel(Model model,@RequestParam int cus_seq,@RequestParam String pcode,HttpServletResponse response) throws Exception{
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("cus_seq", cus_seq);
+		map.put("pcode",pcode);
+		BasketService.BasketDel(map);
+		ScriptUtils.alertAndClose(response, "장바구니에서 삭제되었습니다.");
 	}
 	
 	

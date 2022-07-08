@@ -160,12 +160,11 @@ response.setCharacterEncoding("utf-8");
     	text-align: center;
 		}
 		.total_ptxt{
-		margin-right: 100px;
+		font-size: 11px;
+		margin-top: 7px;
+		line-height: 1.5em;
 		}
-		.total_price{
 
-		
-		}
 		.basket_total{
 		margin: 40px;
 		}
@@ -173,16 +172,44 @@ response.setCharacterEncoding("utf-8");
 		margin-top: 15px;
 		}
 		
-		.f_txt{
+		.t_txt{
 		margin-right: 4em;
 	 	width: 200px;
    		display: inline-block;
+   		text-align: right;
 		}
+		.t_txt2{
+		display:inline-block;
+		text-align: right;
+		width: 100px;
+		}
+		
 		.total_price_box{
 		float: right;
 		margin-top: 15px;
+		}
+		.t_txt_sdp{
+		font-size:14px;
+		font-weight:bold;
+		color: orange;
 		
 		}
+		
+		.total_btn_wrap{
+		clear:both;
+		width: 100%;
+		
+		}
+	    .total_btn_box{
+	    display: inline-block;
+	    float: right;
+	    margin-top: 10px;
+	    }
+	    .total_btn_box button{
+	         width: 100px;
+    		height: 40px;
+	    
+	    }
 		
 		
 </style>
@@ -198,6 +225,7 @@ response.setCharacterEncoding("utf-8");
 
 
         <div id="container">
+          <iframe name="hiddenf" style="display: none;"></iframe>
             <div id="container_wrap">
               
                 <section class="main_wrap">
@@ -205,7 +233,7 @@ response.setCharacterEncoding("utf-8");
 				<jsp:include page="./LeftMenu.jsp"/>
                     <div class="basket_wrap">
 	                    <div class="basket_tit_box">
-	                    	<h1>Admin님의 장바구니</h1>   
+	                    	<h1>${sid }님의 장바구니</h1>   
 	                    </div>
 	                    
 	                    <div class="basket_indi_wrap">
@@ -234,15 +262,18 @@ response.setCharacterEncoding("utf-8");
 							    <input type="hidden" id="origin_sum" class="origin_sum" value="${DTO.price }"></td>
 							    <td>
 							    <button class="down_btn" onclick="down_btn(${status.index});">-</button>
-							    <input type="text" id="qty" class="qty" value="1">
+							    <input type="text" id="qty" class="qty" value="${DTO.qty }">
 							    <button class="up_btn" onclick="up_btn(${status.index});">+</button>
 							    </td>
 							    <td>-</td>
 							    <td class="gray_tit">기본배송</td>
 							    <td>3,000원
 							    <input type="hidden" class="delivery_sum" value="3000"> </td>
-							    <td><span class="sum"><fmt:formatNumber value="${DTO.price + 3000 }" pattern="#,###"/></span>원</td>
-							    <td><button class="btn_black">주문하기</button></td>
+							    <td><span class="sum"><fmt:formatNumber value="${DTO.price*DTO.qty + 3000 }" pattern="#,###"/></span>원</td>
+							    <td>
+							    <button class="btn_black">주문하기</button>
+							    <button class="btn_white" style="margin-top: 10px;" onclick="window.open('${path}/Product/BasketDel?cus_seq=${scus_seq }&pcode=${DTO.pcode }','hiddenf')">삭제하기</button>
+							    </td>
 							</tr>
 							
 							</c:forEach>
@@ -264,26 +295,29 @@ response.setCharacterEncoding("utf-8");
 	  						<div class="total_price_box" style="float: right;">
 	  						<ul class="total_ptxt">
 	  							<li>
-	  							<span class="f_txt">상품 합계금액</span>
-	  							<span>1,200원</span>
+	  							<span class="t_txt">상품 합계금액</span>
+	  							<span class="t_txt_sump t_txt2"><span class="tot_sum1">1,200</span>원</span>
 	  							</li>
 		  						<li>
-		  						<span class="f_txt">배송비</span>
-		  						<span>3,000원</span>
+		  						<span class="t_txt">배송비</span>
+		  						<span class="t_txt_delp t_txt2"><span class="tot_sum2">3,000</span>원</span>
 		  						</li>
 		  						<li>
-		  						<span class="f_txt">총 주문합계 금액</span>
-								<span>4,200원</span>
+		  						<span class="t_txt">총 주문합계 금액</span>
+								<span class="t_txt_sdp t_txt2"><span class="tot_sum3">4,200</span>원</span>
 		  						</li>
 	  						</ul>
-
 	  						</div>
-
-	  						
-	  						
-	  						
-						
 	                    	</div>
+	                    </div>
+	                    <div class="total_btn_wrap">
+	                    	<div class="total_btn_box">
+	                    	<button class="btn_black">주문하기</button>
+	                    	<button class="btn_white">삭제하기</button>
+	                    	</div>
+	                    
+	                    
+	                    
 	                    </div>
 	                    
 	                    
@@ -318,8 +352,24 @@ for (var i = 0; i < $('.origin_sum').length; i++) {
 	delivery_sum.push(parseInt($('.delivery_sum').eq(i).val()));
 }
 
-
-
+tot_sum();
+function tot_sum() {
+	var algo = [];
+	var algo2 = 0;
+	var algo3 = 0;
+	var algo4 = 3000*origin_sum_val.length
+	for (var i = 0; i < origin_sum_val.length; i++) {
+		algo[i] = origin_sum_val[i] * $('.qty').eq(i).val();
+		algo2 += algo[i];
+	}
+	algo3 = algo2;
+	algo2 += origin_sum_val.length * 3000;
+	$('.tot_sum1').text(AmountCommas(algo3));
+	$('.tot_sum2').text(AmountCommas(algo4));
+	$('.tot_sum3').text(AmountCommas(algo2));
+	
+	
+}
 
 /* $('.up_btn').click(function () {
     var qty_val = $('.qty').val();
@@ -336,6 +386,7 @@ function up_btn(index) {
     $('.qty').eq(index).val(qty_val);
     var sum_val = origin_sum_val[index] * qty_val + delivery_sum[index];
     $('.sum').eq(index).text(AmountCommas(sum_val));
+    tot_sum();
 }
 
  function down_btn(index) {
@@ -345,6 +396,7 @@ function up_btn(index) {
 	        $('.qty').eq(index).val(qty_val);
 	        var sum_val = origin_sum_val[index] * qty_val + delivery_sum[index];
 	        $('.sum').eq(index).text(AmountCommas(sum_val));
+	        tot_sum();
 	    } else {
 	        alert("최소 수량은 1개 이상입니다.")
 	    }

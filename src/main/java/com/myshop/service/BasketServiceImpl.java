@@ -26,6 +26,23 @@ public class BasketServiceImpl implements BasketService {
 		
 	}
 
+	@Override
+	public void BasketEdit(Map<String, Object> map) throws Exception {
+		dao.BasketEdit(map);
+		
+	}
+
+	@Override
+	public int BasketCK(Map<String, Object> map) throws Exception {
+		return dao.BasketCK(map);
+	}
+
+	@Override
+	public void BasketDel(Map<String, Object> map) throws Exception {
+		dao.BasketDel(map);
+		
+	}
+
 
 
 	

@@ -30,6 +30,23 @@ public class BasketDAOImpl implements BasketDAO {
 		
 	}
 
+	@Override
+	public void BasketEdit(Map<String, Object> map) throws Exception {
+		sqlSession.update(namespace+".BasketEdit",map);
+		
+	}
+
+	@Override
+	public int BasketCK(Map<String, Object> map) throws Exception {
+		return sqlSession.selectOne(namespace+".BasketCK",map);
+	}
+
+	@Override
+	public void BasketDel(Map<String, Object> map) throws Exception {
+		sqlSession.delete(namespace+".BasketDel",map);
+		
+	}
+
 
 	
 	

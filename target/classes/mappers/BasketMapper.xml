@@ -15,13 +15,30 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 		where cus_seq = #{cus_seq}
 	</select>
 	
-	<!-- 장바구니 추가 -->
+	<!-- 장바구니 추가(신규) -->
 	<insert id="BasketAdd">
 		insert into basket(cus_seq, pcode, qty, regdate)
 		values(#{cus_seq}, #{pcode}, #{qty}, now())				
-
 	</insert>
 	
+	<!-- 장바구니 추가(업데이트) -->
+	<update id="BasketEdit">
+		update basket set
+		qty = qty+1, regdate = now()
+		where cus_seq = #{cus_seq} and pcode = #{pcode}				
+	</update>
+	
+	<!-- 장바구니체크 -->
+	<select id="BasketCK" resultType="int">
+		select count(*) from basket
+		where cus_seq = #{cus_seq} and pcode = #{pcode}
+	</select>
+	
+	<!-- 장바구니 삭제 -->
+	<delete id="BasketDel">
+		delete from basket
+		where cus_seq = #{cus_seq} and pcode = #{pcode}
+	</delete>
 	
 	
 
