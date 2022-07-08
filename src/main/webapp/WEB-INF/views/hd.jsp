@@ -123,7 +123,7 @@
                         <li class="main2">Mypage
                             <ul>
                                 <li class="sub"><a href="${path }/Customer/Mypage">나의정보</a></li>
-								<li class="sub"><a href="${path }/Customer/Mybasket">나의정보</a></li>
+								<li class="sub"><a href="${path }/Customer/Mybasket">장바구니</a></li>
                                 <li class="sub"><a href="${path }/Customer/Myorder">주문정보</a></li>
                             </ul>
                         </li>

@@ -77,76 +77,112 @@ response.setCharacterEncoding("utf-8");
 		.basket_wrap h1{
 		text-align: center;
 		}
-		.table_wrap{
+		.basket_indi_wrap{
 		width:1200px;
 		margin-left: 200px;
 		}
-		.table_wrap table{
+		.basket_total_wrap{
+		clear:both;
+		margin-top:50px;
+		width:1200px;
+		height:90px;
+		margin-left: 200px;
+		background-color: #666;
+		color: #fff;
+		
+		}
+		.basket_indi_wrap table{
 		width:100%;
 		margin: 0 auto;
 		margin-top: 50px;
 		border-collapse: collapse;
 		}
-		.table_wrap table th{
+		.basket_total_wrap table{
+		width:100%;
+		margin: 0 auto;
+		margin-top: 50px;
+		border-collapse: collapse;
+		}
+		.basket_indi_wrap table th{
 		border-bottom: 1px solid #222;
 		height: 2.5em;
 		line-height: 2.5em;
 		}
-		.table_wrap table td{
+		.basket_indi_wrap table td{
 		text-align: center;
 		border-bottom: 1px solid #dbdbdb;
 		}
-		.table_wrap table td.detail{
+		.basket_indi_wrap table td.detail{
 		text-align: left;
 		}
-		.table_wrap table th{
+		.basket_indi_wrap table th{
 		width: 8%;
 		}
-		.table_wrap table th:nth-child(1){
+		.basket_indi_wrap table th:nth-child(1){
 		width: 20%;
 		}
-		.table_wrap table th:nth-child(2){
+		.basket_indi_wrap table th:nth-child(2){
 		width: 20%;
 		}
-		.table_wrap table button{
+		.basket_indi_wrap table button{
 		width: 100px;
     	height: 40px;
 		}
-		.table_wrap table button.up_btn, .table_wrap table button.down_btn{
+		.basket_indi_wrap table button.up_btn, .basket_indi_wrap table button.down_btn{
 		width: 20px;
 		height: 20px;
 		}
-		.table_wrap table img{
+		.basket_indi_wrap table img{
 		display: block;
 	    width: 100px;
 	    height: 100px;
 	    margin: 10px auto;
 		}
-		.table_wrap table p.pname{
+		.basket_indi_wrap table p.pname{
 		font-weight: bold;
 		line-height: 2.5em;
 		
 		}
-		.table_wrap table td{
+		.basket_indi_wrap table td{
 		font-weight: bold;
 		}
-		.table_wrap table td.gray_tit{
+		.basket_indi_wrap table td.gray_tit{
 		font-weight: 0;
 		color: gray;
 		}
-		.table_wrap table p.psubname{
+		.basket_indi_wrap table p.psubname{
 		font-size:0.8em;
 		color: gray;
 		}
-		.table_wrap table input{
+		.basket_indi_wrap table input{
 		border: 0;
 		width: 35px;
     	text-align: center;
 		}
-		
-		
+		.total_ptxt{
+		margin-right: 100px;
+		}
+		.total_price{
 
 		
+		}
+		.basket_total{
+		margin: 40px;
+		}
+		.basket_total h2{
+		margin-top: 15px;
+		}
+		
+		.f_txt{
+		margin-right: 4em;
+	 	width: 200px;
+   		display: inline-block;
+		}
+		.total_price_box{
+		float: right;
+		margin-top: 15px;
+		
+		}
 		
 		
 </style>
@@ -172,7 +208,7 @@ response.setCharacterEncoding("utf-8");
 	                    	<h1>Admin님의 장바구니</h1>   
 	                    </div>
 	                    
-	                    <div class="table_wrap">
+	                    <div class="basket_indi_wrap">
 	                    <table>
 							  <tr>
 							    <th>상품이미지</th>
@@ -210,12 +246,47 @@ response.setCharacterEncoding("utf-8");
 							</tr>
 							
 							</c:forEach>
-							
-							
+
 							</table>
 
 	                    
 	                    </div>
+	                    <div class="basket_total_wrap">
+	                     <div class="basket_total">
+	                    	<div style="float: left;">
+	  						<h2>합계</h2>
+	  						<p style="clear: both;">고객님의 총 주문 합계 금액 입니다.</p>
+	  						</div>
+	  						
+	  						
+	  						
+
+	  						<div class="total_price_box" style="float: right;">
+	  						<ul class="total_ptxt">
+	  							<li>
+	  							<span class="f_txt">상품 합계금액</span>
+	  							<span>1,200원</span>
+	  							</li>
+		  						<li>
+		  						<span class="f_txt">배송비</span>
+		  						<span>3,000원</span>
+		  						</li>
+		  						<li>
+		  						<span class="f_txt">총 주문합계 금액</span>
+								<span>4,200원</span>
+		  						</li>
+	  						</ul>
+
+	  						</div>
+
+	  						
+	  						
+	  						
+						
+	                    	</div>
+	                    </div>
+	                    
+	                    
                     
                                   
                     </div>
