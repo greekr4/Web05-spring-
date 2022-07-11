@@ -155,6 +155,23 @@ public class CustomerController {
 		ScriptUtils.alert(response, "");
 	}
 	
+	//Myorder
+	@RequestMapping("/Myorder")
+	public String myorder(Model model) throws Exception{
+		int cus_seq = (int) session.getAttribute("scus_seq");
+		List<OrderDTO> List = OrderService.OrderList_cus(cus_seq);
+		model.addAttribute("List",List);
+		return "/Customer/Myorder";
+	}
+	
+	//PaySystem
+	@RequestMapping("/PaySystem")
+	public String PaySystem(Model model) throws Exception{
+		return "/Customer/PaySystem";
+	}
+	
+	
+	
 	//가입완료
 	@RequestMapping("/JoinOK")
 	public String JoinOK(){

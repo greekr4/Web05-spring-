@@ -19,7 +19,13 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 	
 	<!-- 오더리스트_회원 -->
 	<select id="OrderList_cus" resultType="com.myshop.dto.OrderDTO">
-		select * from order_master where cus_seq = #{cus_seq} order by desc
+		select a.*,b.name as 'payment_val',c.name as 'order_val' from order_master a
+		inner join codemaster b
+		on (a.payment_status = b.value and b.code='omps')
+		inner join codemaster c 
+		on (a.order_step = c.value and c.code='omos')
+		where cus_seq = #{cus_seq}
+		order by seq desc
 	</select>
 
 	<!-- 오더추가 -->
@@ -38,6 +44,14 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 		insert into order_line(order_no,pcode,qty)
 		values(#{order_no},#{pcode},#{qty})
 	</insert>
+	
+	<!-- 오더라인조회 -->
+	<select id="OrderLineList" resultType="com.myshop.dto.OrderLineDTO">
+		select a.*,b.pname,b.price  from order_line a
+		inner join product b 
+		on(a.pcode = b.pcode)
+		where order_no=#{order_no}
+	</select>
 
 	
 

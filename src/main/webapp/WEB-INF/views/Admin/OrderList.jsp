@@ -174,7 +174,7 @@ response.setCharacterEncoding("utf-8");
                                 <tbody>
                                 <c:forEach items="${List }" var="DTO" varStatus="status">
                                     <tr>
-                                        <td><a onclick="LineView(${status.index});">${DTO.seq }</a></td>
+                                        <td><a style="color: blue; cursor: pointer;" onclick="LineView(${status.index},${DTO.seq });">${DTO.seq }</a></td>
                                         <td>${DTO.order_val }</td>
                                         <td>${DTO.payment_val }</td>
                                         <td><fmt:formatNumber value="${DTO.price }" pattern="#,###" /></td>
@@ -207,9 +207,30 @@ response.setCharacterEncoding("utf-8");
 $('.gnb_sub_menu').eq(0).find('a').css('font-weight','bold');
 
 
-function LineView(index) {
+function AmountCommas(val) {
+    return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+
+function LineView(eqindex,order_no) {
 	$('.line').remove();
-	$('.table > tbody > tr').eq(index).after("<tr class='line'><td colspan='3' style='color:blue;'>pcode</td><td colspan='3' style='color:blue;'>qty</td></tr>");
+	$.ajax({
+		url : '${path}/Admin/OrderLine_json?order_no='+ order_no,
+		dataType : 'json',
+		success : function(data) {
+			$.each(data.OLList, function(index,OLList){
+			$('.table > tbody > tr').eq(eqindex).after("<tr class='line'><td colspan='2' style='color:#777;'>"+OLList.pname+" ("+OLList.pcode+")</td><td colspan='2' style='color:#777;'>"+AmountCommas(OLList.price)+"원</td><td colspan='2' style='color:#777;'>"+OLList.qty+"개</td></tr>");
+				
+				
+			})//end each
+		}
+		
+		
+		
+	})//end ajax
+	
+	
+	
 	
 }
 

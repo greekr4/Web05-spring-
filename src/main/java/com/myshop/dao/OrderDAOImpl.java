@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.myshop.dto.OrderDTO;
+import com.myshop.dto.OrderLineDTO;
 import com.myshop.dto.RecentlyDTO;
 
 @Repository
@@ -43,6 +44,11 @@ public class OrderDAOImpl implements OrderDAO {
 	public void OrderLineAdd(OrderDTO DTO) throws Exception {
 		sqlSession.insert(namespace+".OrderLineAdd",DTO);
 		
+	}
+
+	@Override
+	public List<OrderLineDTO> OrderLineList(int order_no) throws Exception {
+		return sqlSession.selectList(namespace+".OrderLineList",order_no);
 	}
 
 

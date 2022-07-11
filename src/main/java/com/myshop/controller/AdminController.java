@@ -28,7 +28,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,6 +38,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.myshop.dto.CategoryDTO;
 import com.myshop.dto.CustomerDTO;
 import com.myshop.dto.OrderDTO;
+import com.myshop.dto.OrderLineDTO;
 import com.myshop.dto.ProductDTO;
 import com.myshop.service.CategoryService;
 import com.myshop.service.CustomerService;
@@ -87,12 +87,12 @@ public class AdminController {
 	//오더라인 조회
 	@ResponseBody
 	@RequestMapping("OrderLine_json")
-	public JSONObject OrderLine_json(Model model) throws Exception{
-		List<CategoryDTO> List = service.CategoryList(); //xml에서 카테고리 리스트 검색
-		HashMap<String, Object> map = new HashMap<String, Object>(); //맵 선언
-		map.put("CateList", List);	//xml에서 받아온 카테고리 리스트를 map에 푸쉬
-		JSONObject json = new JSONObject(); //제이슨 선언
-		json.putAll(map);	//제이슨에 맵 푸쉬
+	public JSONObject OrderLine_json(Model model,@RequestParam int order_no) throws Exception{
+		List<OrderLineDTO> List = OrderService.OrderLineList(order_no);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("OLList", List);
+		JSONObject json = new JSONObject();
+		json.putAll(map);
 		return json; //리턴
 	}
 	

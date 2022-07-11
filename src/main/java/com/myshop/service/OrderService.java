@@ -3,6 +3,7 @@ package com.myshop.service;
 import java.util.List;
 
 import com.myshop.dto.OrderDTO;
+import com.myshop.dto.OrderLineDTO;
 
 public interface OrderService {
 	//오더리스트
@@ -15,4 +16,6 @@ public interface OrderService {
 	public int LastOrderNo() throws Exception;
 	//오더라인 추가
 	public void OrderLineAdd(OrderDTO DTO) throws Exception;
+	//오더라인 리스트
+	public List<OrderLineDTO> OrderLineList(int order_no) throws Exception;
 }

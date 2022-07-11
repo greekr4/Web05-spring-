@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.myshop.dao.OrderDAO;
 import com.myshop.dto.OrderDTO;
+import com.myshop.dto.OrderLineDTO;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -38,6 +39,11 @@ public class OrderServiceImpl implements OrderService {
 	public void OrderLineAdd(OrderDTO DTO) throws Exception {
 		dao.OrderLineAdd(DTO);
 		
+	}
+
+	@Override
+	public List<OrderLineDTO> OrderLineList(int order_no) throws Exception {
+		return dao.OrderLineList(order_no);
 	}
 
 
