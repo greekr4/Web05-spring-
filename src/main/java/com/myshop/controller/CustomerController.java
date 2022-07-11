@@ -1,8 +1,10 @@
 package com.myshop.controller;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -22,9 +24,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.myshop.dto.BasketDTO;
 import com.myshop.dto.CustomerDTO;
+import com.myshop.dto.ProductDTO;
 import com.myshop.dto.RecentlyDTO;
 import com.myshop.service.BasketService;
 import com.myshop.service.CustomerService;
+import com.myshop.service.ProductService;
 import com.myshop.service.RecentlyService;
 import com.myshop.util.ScriptUtils;
 
@@ -48,6 +52,9 @@ public class CustomerController {
 	
 	@Inject
 	private BasketService BasketService;
+	
+	@Inject
+	private ProductService ProductService;
 	
 	@Inject
 	private HttpSession session;
@@ -74,6 +81,7 @@ public class CustomerController {
 		return "/Customer/JoinForm";
 	}
 	
+
 	//마이페이지
 	@RequestMapping(value = "/Mypage",method = RequestMethod.GET)
 	public String Mypage(Model model,HttpServletResponse response) throws Exception{
@@ -93,7 +101,7 @@ public class CustomerController {
 		return "/Customer/Mypage";
 	}
 	
-	//회원가입 폼
+	//장바구니로
 	@RequestMapping("/Mybasket")
 	public String Mybasket(Model model,HttpServletResponse response) throws Exception {
 		if (session.getAttribute("sdto") == null) {
@@ -106,6 +114,22 @@ public class CustomerController {
 		
 		model.addAttribute("List",List);
 		return "/Customer/Mybasket";
+	}
+	
+	
+	//주문 Form으로
+	@RequestMapping("/OrderForm")
+	public String OrderForm(Model model,@RequestParam int[] obj) throws Exception{
+		List<ProductDTO> List = new ArrayList<>();
+		
+		for(int i=0;i<obj.length;i=i+2) {
+			ProductDTO DTO = ProductService.ProductMore(obj[i]);
+			DTO.setQty(obj[i+1]);
+			List.add(DTO);
+		}
+			model.addAttribute("List",List);
+		
+			return "/Customer/OrderForm";
 	}
 	
 	//가입완료

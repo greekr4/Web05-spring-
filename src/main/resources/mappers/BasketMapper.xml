@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
  
 	<!-- 장바구니 조회 -->
 	<select id="BasketList" resultType="com.myshop.dto.BasketDTO" >
-		select a.*,b.pname ,b.psubname ,b.price ,b.s_img_desc  from basket a 
+		select a.*,b.pname ,b.psubname ,b.price ,b.s_img_desc,b.seq as 'pseq'  from basket a 
 		inner join v_product b
 		on (a.pcode = b.pcode)
 		where cus_seq = #{cus_seq}

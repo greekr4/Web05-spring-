@@ -28,4 +28,6 @@ public class ProductDTO {
 	private String dm_img_desc;
 	
 	private String ccode;
+	
+	private int qty;
 }

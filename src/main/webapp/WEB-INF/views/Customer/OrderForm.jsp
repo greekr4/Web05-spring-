@@ -212,6 +212,94 @@ response.setCharacterEncoding("utf-8");
 	    }
 		
 		
+		        /* 오더 폼 */
+        .OrderForm {
+            width: 1200px;
+            margin-top: 100px;
+            margin-left: 200px;
+            text-align: center;
+        }
+        .table {
+            display:table;
+            border-collapse: collapse;
+            width: 100%;
+            text-align: left;
+            font-size: 1em;
+        }
+        .table tr{
+            display: table-row;
+        }
+        .table tr th, .table tr td{
+            display: table-cell;
+            border-bottom: 1px solid #dcdcdc;
+            padding: 12px 0 12px 25px;
+        }
+        .table tr th{
+            background-color: #fbfbfb;
+        }
+        .table tr th:before{
+            content: "*";
+            color: red;
+            margin-right: 4px;
+        }
+        .table tr td input:focus{
+            outline: none;
+        }
+        .table tr:first-child{
+            border-top: 1px solid #999999;
+        }
+        .table tr:nth-child(1) td input{
+            height: 32px;
+            width: 50%;
+            border: 1px solid #c1c1c1;
+        }        
+        .table tr:nth-child(2) td input{
+            height: 32px;
+            width: 50%;
+            border: 1px solid #c1c1c1;
+        }
+        .table tr:nth-child(3) td input{
+            height: 32px;
+            width: 25.5%;
+            border: 1px solid #c1c1c1;
+        }
+        .table tr:nth-child(4) td input{
+            height: 32px;
+            width: 80%;
+            border: 1px solid #c1c1c1;
+        }
+        .table tr:nth-child(5) td input{
+            height: 32px;
+            width: 80%;
+            border: 1px solid #c1c1c1;
+        }
+        .table tr:nth-child(6) td input[type=text]{
+            height: 32px;
+            width: 80%;
+            border: 1px solid #c1c1c1;
+        }
+        .table tr:nth-child(7) td input{
+            height: 32px;
+            width: 80%;
+            border: 1px solid #c1c1c1;
+        }
+        .table tr:nth-child(8) td input{
+            height: 32px;
+            width: 80%;
+            border: 1px solid #c1c1c1;
+        }
+        .table tr td input[type=button]{
+            width: 24%;
+            padding: 5px 0 9px 0;
+        }
+        .btn {
+            margin-top: 4%;
+            width: 20%;
+            padding: 5px 0 9px 0;
+        }
+        /* /오더 폼 */
+		
+		
 </style>
 </head>
 <body>
@@ -233,7 +321,7 @@ response.setCharacterEncoding("utf-8");
 				<jsp:include page="./LeftMenu.jsp"/>
                     <div class="basket_wrap">
 	                    <div class="basket_tit_box">
-	                    	<h1>${sid }님의 장바구니</h1>   
+	                    	<h1>주문확인</h1>   
 	                    </div>
 	                    
 	                    <div class="basket_indi_wrap">
@@ -247,52 +335,26 @@ response.setCharacterEncoding("utf-8");
 							    <th>배송구분</th>
 							    <th>배송비</th>
 							    <th>합계</th>
-							    <th>선택</th>
 							  </tr>
-						<c:choose>
-						<c:when test="${List != null }">
 							<c:forEach items="${List }" var="DTO" varStatus="status">
 							<tr>
 								<td><img alt="상품이미지" src="${path }/resources/upload/${DTO.pcode }/${DTO.s_img_desc }"></td>
 								<td class="detail">
 							   	<p class="pname">${DTO.pname }</p>
 							    <p class="psubname">${DTO.psubname }</p>
-							    <input type="hidden" class="pseq" value="${DTO.pseq }">
 							    </td>
 							    <td><fmt:formatNumber value="${DTO.price }" pattern="#,###" />원
 							    <input type="hidden" id="origin_sum" class="origin_sum" value="${DTO.price }"></td>
 							    <td>
-							    <button class="down_btn" onclick="down_btn(${status.index});">-</button>
-							    <input type="text" id="qty" class="qty" value="${DTO.qty }">
-							    <button class="up_btn" onclick="up_btn(${status.index});">+</button>
+							    <input type="text" id="qty" class="qty" value="${DTO.qty }" readonly="readonly">
 							    </td>
 							    <td>-</td>
 							    <td class="gray_tit">기본배송</td>
 							    <td>3,000원
 							    <input type="hidden" class="delivery_sum" value="3000"> </td>
 							    <td><span class="sum"><fmt:formatNumber value="${DTO.price*DTO.qty + 3000 }" pattern="#,###"/></span>원</td>
-							    <td>
-							    <button class="btn_black" onclick="GOF(${DTO.pseq},${status.index });">주문하기</button>
-							    <button class="btn_white" style="margin-top: 10px;" onclick="window.open('${path}/Product/BasketDel?cus_seq=${scus_seq }&pcode=${DTO.pcode }','hiddenf')">삭제하기</button>
-							    </td>
 							</tr>
 							</c:forEach>
-							</c:when>
-							<c:otherwise>
-								<tr>
-								<td>-</td>
-								<td class="detail">-</td>
-							    <td>-</td>
-							    <td>-</td>
-							    <td>-</td>
-							    <td class="gray_tit">-</td>
-							    <td>-</td>
-							    <td>-</td>
-							    <td>-</td>
-							</tr>
-							
-							</c:otherwise>
-						</c:choose>
 							</table>
 
 	                    
@@ -325,15 +387,79 @@ response.setCharacterEncoding("utf-8");
 	  						</div>
 	                    	</div>
 	                    </div>
-	                    <div class="total_btn_wrap">
-	                    	<div class="total_btn_box">
-	                    	<button class="btn_black" onclick="AGOF();">주문하기</button>
-	                    	<button class="btn_white">삭제하기</button>
-	                    	</div>
 	                    
-	                    
-	                    
-	                    </div>
+	                    <!-- 오더 -->
+                    <div class="OrderForm">
+                         <form action="Join" method="post" name="OrderForm" onsubmit="return joinCheck()">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th><label for="name">받는 사람</label></th>
+                                        <td><input class="name" name="name" id="name" value="${sdto.name }"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th><label for="phonenum">핸드폰 번호</label></th>
+                                        <td><input class="phonenum" value="${sdto.phonenum }"></td>
+                                    </tr>
+                                    <tr>
+                                        <th rowspan="3"><label for="zipcode">주소</label></th>
+                                        <td>
+                                            <input type="text" class="zipcode" name="zipcode" id="zipcode" value="${sdto.zipcode }"/>
+                                            <input type="button" id="btn1" class="btn_white" onclick="findAddr()" value="우편번호 검색">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input class="addr1" name="addr1" id="addr1" value="${sdto.addr1 }"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input class="addr2" name="addr2" id="addr2" value="${sdto.addr2 }"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th><label for="name">남기실 말씀</label></th>
+                                        <td><input type="text" class="delivery_memo" id="delivery_memo" name="delivery_memo"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <input type="submit" class="btn_black btn" value="주문하기">
+                            <input type="button" class="btn_white btn" value="취소" onclick="location.href='${path }'">
+                        </form>
+                    </div>
+                    <!-- 오더 -->
+	                    <script>
+	    function findAddr() {
+	           new daum.Postcode({
+	                  oncomplete: function(data) {
+	                      var addr = ''; // 주소 변수
+	                      var extraAddr = ''; // 참고항목 변수
+	                      if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                          addr = data.roadAddress;
+	                      } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                          addr = data.jibunAddress;
+	                      }
+	                      if(data.userSelectedType === 'R'){
+	                          if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                              extraAddr += data.bname;
+	                          }
+	                          if(data.buildingName !== '' && data.apartment === 'Y'){
+	                              extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                          }
+	                          // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+	                          if(extraAddr !== ''){
+	                              extraAddr = ' (' + extraAddr + ')';
+	                          }
+	                          // 조합된 참고항목을 해당 필드에 넣는다.
+	                      } else {
+	                         
+	                      }
+	                      document.getElementById("zipcode").value = data.zonecode;   //우편번호
+	                      document.getElementById("addr1").value = addr;            //주소1
+	                      document.getElementById("addr2").focus();               //주소2(상세주소)
+	                  }
+	              }).open();
+	    }
+    </script>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	                  
 	                    
 	                    
                     
@@ -354,27 +480,6 @@ response.setCharacterEncoding("utf-8");
     </div>
 
 <script type="text/javascript">
-
-function AGOF() {
-	var seq = [];
-	var qty = [];
-	var obj = [];
-	for (var i = 0; i < $('.qty').length; i++) {
-		obj.push($('.pseq').eq(i).val());
-		obj.push($('.qty').eq(i).val());
-	}
-	location.href='${path}/Customer/OrderForm?obj='+obj;
-	
-}
-
-function GOF(seq,index) {
-	var qty = $('.qty').eq(index).val();
-	location.href='${path}/Customer/OrderForm?obj='+seq+","+qty;
-	
-}
-
-
-
 
 function AmountCommas(val) {
     return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

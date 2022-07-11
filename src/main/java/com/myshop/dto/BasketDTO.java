@@ -10,6 +10,7 @@ public class BasketDTO {
 	private int seq;
 	private int cus_seq;
 	private String pcode;
+	private int pseq;
 	private int qty;
 	private Date regdate;
 	private String pname;
