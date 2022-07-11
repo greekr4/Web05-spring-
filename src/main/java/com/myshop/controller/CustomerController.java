@@ -2,6 +2,7 @@ package com.myshop.controller;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -24,10 +25,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.myshop.dto.BasketDTO;
 import com.myshop.dto.CustomerDTO;
+import com.myshop.dto.OrderDTO;
 import com.myshop.dto.ProductDTO;
 import com.myshop.dto.RecentlyDTO;
 import com.myshop.service.BasketService;
 import com.myshop.service.CustomerService;
+import com.myshop.service.OrderService;
 import com.myshop.service.ProductService;
 import com.myshop.service.RecentlyService;
 import com.myshop.util.ScriptUtils;
@@ -55,6 +58,9 @@ public class CustomerController {
 	
 	@Inject
 	private ProductService ProductService;
+	
+	@Inject
+	private OrderService OrderService;
 	
 	@Inject
 	private HttpSession session;
@@ -128,8 +134,25 @@ public class CustomerController {
 			List.add(DTO);
 		}
 			model.addAttribute("List",List);
-		
 			return "/Customer/OrderForm";
+	}
+	
+	//주문 Add
+	@RequestMapping("/OrderAdd")
+	public void OrderAdd(OrderDTO DTO,HttpServletResponse response,@RequestParam String[] pcode,@RequestParam int[] qty2) throws Exception{
+		Map<String,Object> map = new HashMap<String,Object>();
+		int order_no = OrderService.LastOrderNo()+1;
+		DTO.setOrder_no(order_no);
+		map.put("cus_seq", DTO.getCus_seq());
+		for(int i=0;i<pcode.length;i++) {
+		DTO.setPcode(pcode[i]);
+		DTO.setQty(qty2[i]);
+		map.put("pcode",pcode[i]);
+		OrderService.OrderLineAdd(DTO);
+		BasketService.BasketDel(map);
+		}
+		OrderService.OrderAdd(DTO);
+		ScriptUtils.alert(response, "");
 	}
 	
 	//가입완료

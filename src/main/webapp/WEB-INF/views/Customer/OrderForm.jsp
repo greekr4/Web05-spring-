@@ -338,7 +338,9 @@ response.setCharacterEncoding("utf-8");
 							  </tr>
 							<c:forEach items="${List }" var="DTO" varStatus="status">
 							<tr>
-								<td><img alt="상품이미지" src="${path }/resources/upload/${DTO.pcode }/${DTO.s_img_desc }"></td>
+								<td><img alt="상품이미지" src="${path }/resources/upload/${DTO.pcode }/${DTO.s_img_desc }">
+								<input type="hidden" class="pcode" value="${DTO.pcode }">
+								</td>
 								<td class="detail">
 							   	<p class="pname">${DTO.pname }</p>
 							    <p class="psubname">${DTO.psubname }</p>
@@ -373,15 +375,15 @@ response.setCharacterEncoding("utf-8");
 	  						<ul class="total_ptxt">
 	  							<li>
 	  							<span class="t_txt">상품 합계금액</span>
-	  							<span class="t_txt_sump t_txt2"><span class="tot_sum1">1,200</span>원</span>
+	  							<span class="t_txt_sump t_txt2"><span class="tot_sum1">0</span>원</span>
 	  							</li>
 		  						<li>
 		  						<span class="t_txt">배송비</span>
-		  						<span class="t_txt_delp t_txt2"><span class="tot_sum2">3,000</span>원</span>
+		  						<span class="t_txt_delp t_txt2"><span class="tot_sum2">0</span>원</span>
 		  						</li>
 		  						<li>
 		  						<span class="t_txt">총 주문합계 금액</span>
-								<span class="t_txt_sdp t_txt2"><span class="tot_sum3">4,200</span>원</span>
+								<span class="t_txt_sdp t_txt2"><span class="tot_sum3">0</span>원</span>
 		  						</li>
 	  						</ul>
 	  						</div>
@@ -395,7 +397,7 @@ response.setCharacterEncoding("utf-8");
                                 <tbody>
                                     <tr>
                                         <th><label for="name">받는 사람</label></th>
-                                        <td><input class="name" name="name" id="name" value="${sdto.name }"/></td>
+                                        <td><input class="delivery_cus" name="delivery_cus" id="delivery_cus" value="${sdto.name }"/></td>
                                     </tr>
                                     <tr>
                                         <th><label for="phonenum">핸드폰 번호</label></th>
@@ -404,15 +406,15 @@ response.setCharacterEncoding("utf-8");
                                     <tr>
                                         <th rowspan="3"><label for="zipcode">주소</label></th>
                                         <td>
-                                            <input type="text" class="zipcode" name="zipcode" id="zipcode" value="${sdto.zipcode }"/>
+                                            <input type="text" class="delivery_zipcode" name="delivery_zipcode" id="delivery_zipcode" value="${sdto.zipcode }"/>
                                             <input type="button" id="btn1" class="btn_white" onclick="findAddr()" value="우편번호 검색">
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><input class="addr1" name="addr1" id="addr1" value="${sdto.addr1 }"/></td>
+                                        <td><input class="delivery_addr1" name="delivery_addr1" id="delivery_addr1" value="${sdto.addr1 }"/></td>
                                     </tr>
                                     <tr>
-                                        <td><input class="addr2" name="addr2" id="addr2" value="${sdto.addr2 }"/></td>
+                                        <td><input class="delivery_addr2" name="delivery_addr2" id="delivery_addr2" value="${sdto.addr2 }"/></td>
                                     </tr>
                                     <tr>
                                         <th><label for="name">남기실 말씀</label></th>
@@ -420,8 +422,8 @@ response.setCharacterEncoding("utf-8");
                                     </tr>
                                 </tbody>
                             </table>
-                            <input type="submit" class="btn_black btn" value="주문하기">
-                            <input type="button" class="btn_white btn" value="취소" onclick="location.href='${path }'">
+                            <input type="button" class="btn_black btn" onclick="Order();" value="주문하기">
+                            <input type="reset" class="btn_white btn" value="취소">
                         </form>
                     </div>
                     <!-- 오더 -->
@@ -459,10 +461,7 @@ response.setCharacterEncoding("utf-8");
 	    }
     </script>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	                  
-	                    
-	                    
-                    
+
                                   
                     </div>
                 </section>
@@ -480,6 +479,51 @@ response.setCharacterEncoding("utf-8");
     </div>
 
 <script type="text/javascript">
+
+function Order(){
+var price = tot_sum();
+var cus_seq = ${scus_seq};
+/* var delivery_cus = $('#delivery_cus').val();
+var delivery_addr1 = $('#delivery_addr1').val();
+var delivery_addr2 = $('#delivery_addr2').val();
+var delivery_zipcode = $('#delivery_zipcode').val();
+var delivery_memo = $('#delivery_memo').val(); */
+
+var data = $('Form[name=OrderForm').serialize();
+data += "&price="+price+"&cus_seq="+cus_seq+"&pcode=";
+for (var i = 0; i < $('.pcode').length; i++) {
+	if (i != $('.pcode').length - 1 ){
+	data += $('.pcode').eq(i).val()+",";	
+	}else{
+	data += $('.pcode').eq(i).val();
+	}
+		
+}
+	data += "&qty2=";
+for (var i = 0; i < $('.qty').length; i++) {
+	if (i != $('.qty').length -1 ){
+	data += $('.qty').eq(i).val()+",";	
+	}else{
+	data += $('.qty').eq(i).val();
+	}
+}
+$.ajax({
+    url : '${path}/Customer/OrderAdd',
+    data : data,
+    type : 'POST',
+    success : function(result) {
+ 	   alert("주문성공!");
+ 	   location.href='${path}/Customer/Mybasket';
+	}
+    
+
+});//end ajax
+
+}
+
+
+
+
 
 function AmountCommas(val) {
     return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -508,7 +552,7 @@ function tot_sum() {
 	$('.tot_sum1').text(AmountCommas(algo3));
 	$('.tot_sum2').text(AmountCommas(algo4));
 	$('.tot_sum3').text(AmountCommas(algo2));
-	
+	return algo2;
 	
 }
 

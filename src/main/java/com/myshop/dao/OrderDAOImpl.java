@@ -34,6 +34,17 @@ public class OrderDAOImpl implements OrderDAO {
 		sqlSession.insert(namespace+".OrderAdd",DTO);
 	}
 
+	@Override
+	public int LastOrderNo() throws Exception {
+		return sqlSession.selectOne(namespace+".LastOrderNo");
+	}
+
+	@Override
+	public void OrderLineAdd(OrderDTO DTO) throws Exception {
+		sqlSession.insert(namespace+".OrderLineAdd",DTO);
+		
+	}
+
 
 	
 	

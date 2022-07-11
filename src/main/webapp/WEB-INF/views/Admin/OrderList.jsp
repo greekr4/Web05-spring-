@@ -172,55 +172,18 @@ response.setCharacterEncoding("utf-8");
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <c:forEach items="${List }" var="DTO" varStatus="status">
                                     <tr>
-                                        <td><a href="./orderDetail.html">197</a></td>
-                                        <td>접수중</td>
-                                        <td>입금완료</td>
-                                        <td>100, 000원</td>
-                                        <td>조재영</td>
-                                        <td>22-06-27</td>
+                                        <td><a onclick="LineView(${status.index});">${DTO.seq }</a></td>
+                                        <td>${DTO.order_val }</td>
+                                        <td>${DTO.payment_val }</td>
+                                        <td><fmt:formatNumber value="${DTO.price }" pattern="#,###" /></td>
+                                        <td>${DTO.delivery_cus }</td>
+                                        <td><fmt:formatDate value="${DTO.regdate }" pattern="YY-MM-dd"/></td>
                                     </tr>
-                                    <tr>
-                                        <td><a href="./orderDetail.html">197</a></td>
-                                        <td>접수중</td>
-                                        <td>입금완료</td>
-                                        <td>100, 000원</td>
-                                        <td>조재영</td>
-                                        <td>22-06-27</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="./orderDetail.html">197</a></td>
-                                        <td>접수중</td>
-                                        <td>입금완료</td>
-                                        <td>100, 000원</td>
-                                        <td>조재영</td>
-                                        <td>22-06-27</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="./orderDetail.html">197</a></td>
-                                        <td>접수중</td>
-                                        <td>입금완료</td>
-                                        <td>100, 000원</td>
-                                        <td>조재영</td>
-                                        <td>22-06-27</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="./orderDetail.html">197</a></td>
-                                        <td>접수중</td>
-                                        <td>입금완료</td>
-                                        <td>100, 000원</td>
-                                        <td>조재영</td>
-                                        <td>22-06-27</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="./orderDetail.html">197</a></td>
-                                        <td>접수중</td>
-                                        <td>입금완료</td>
-                                        <td>100, 000원</td>
-                                        <td>조재영</td>
-                                        <td>22-06-27</td>
-                                    </tr>
+                                   </c:forEach>
                                 </tbody>
+                                
                             </table>
                             <!-- 주문서 테이블 -->
                         </div>
@@ -242,6 +205,14 @@ response.setCharacterEncoding("utf-8");
 
 <script type="text/javascript">
 $('.gnb_sub_menu').eq(0).find('a').css('font-weight','bold');
+
+
+function LineView(index) {
+	$('.line').remove();
+	$('.table > tbody > tr').eq(index).after("<tr class='line'><td colspan='3' style='color:blue;'>pcode</td><td colspan='3' style='color:blue;'>qty</td></tr>");
+	
+}
+
 </script>
  </body>
 </html>

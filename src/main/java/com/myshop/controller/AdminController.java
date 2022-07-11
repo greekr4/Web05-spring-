@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -20,23 +21,28 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.codehaus.plexus.util.FileUtils;
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.myshop.dto.CategoryDTO;
 import com.myshop.dto.CustomerDTO;
+import com.myshop.dto.OrderDTO;
 import com.myshop.dto.ProductDTO;
 import com.myshop.service.CategoryService;
 import com.myshop.service.CustomerService;
+import com.myshop.service.OrderService;
 import com.myshop.service.ProductService;
 import com.myshop.util.ScriptUtils;
 
@@ -62,6 +68,9 @@ public class AdminController {
 	private ProductService ProductService;
 	
 	@Inject
+	private OrderService OrderService;  
+	
+	@Inject
 	private HttpSession session;
 	
 	
@@ -69,8 +78,22 @@ public class AdminController {
 	
 	//오더리스트
 	@RequestMapping("OrderList")
-	public String OrderList(){
+	public String OrderList(Model model) throws Exception{
+		List<OrderDTO> List = OrderService.OrderList();
+		model.addAttribute("List",List);
 		return "/Admin/OrderList";
+	}
+	
+	//오더라인 조회
+	@ResponseBody
+	@RequestMapping("OrderLine_json")
+	public JSONObject OrderLine_json(Model model) throws Exception{
+		List<CategoryDTO> List = service.CategoryList(); //xml에서 카테고리 리스트 검색
+		HashMap<String, Object> map = new HashMap<String, Object>(); //맵 선언
+		map.put("CateList", List);	//xml에서 받아온 카테고리 리스트를 map에 푸쉬
+		JSONObject json = new JSONObject(); //제이슨 선언
+		json.putAll(map);	//제이슨에 맵 푸쉬
+		return json; //리턴
 	}
 	
 	//회원리스트

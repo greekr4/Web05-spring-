@@ -9,7 +9,12 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
  
 	<!-- 오더리스트 -->
 	<select id="OrderList" resultType="com.myshop.dto.OrderDTO">
-		select * from order_master order by desc
+		select a.*,b.name as 'payment_val',c.name as 'order_val' from order_master a
+		inner join codemaster b
+		on (a.payment_status = b.value and b.code='omps')
+		inner join codemaster c 
+		on (a.order_step = c.value and c.code='omos')
+		order by a.seq desc 
 	</select>
 	
 	<!-- 오더리스트_회원 -->
@@ -19,8 +24,19 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 
 	<!-- 오더추가 -->
 	<insert id="OrderAdd">
-	"insert into order_master(order_no,payment_status,price,use_point,save_point,total_price,cus_seq,delivery_cus,delivery_addr1,delivery_addr2,delivery_zipcode,delivery_memo,regdate)
-	values(0,1,#{price},0,0,#{price},#{cus_seq},#{delivery_cus},#{delivery_addr1},#{delivery_addr2},#{delivery_zipcode},#{delivery_memo},now());"																									
+		insert into order_master(order_no,payment_status,price,use_point,save_point,total_price,cus_seq,delivery_cus,delivery_addr1,delivery_addr2,delivery_zipcode,delivery_memo,regdate)
+		values(0,1,#{price},0,0,#{price},#{cus_seq},#{delivery_cus},#{delivery_addr1},#{delivery_addr2},#{delivery_zipcode},#{delivery_memo},now())																							
+	</insert>
+	
+	<!-- 오더마지막 번호 불러오기 -->
+	<select id="LastOrderNo" resultType="int">
+		select seq from order_master order by seq desc limit 1
+	</select>
+	
+	<!-- 오더라인 추가 -->
+	<insert id="OrderLineAdd">
+		insert into order_line(order_no,pcode,qty)
+		values(#{order_no},#{pcode},#{qty})
 	</insert>
 
 	

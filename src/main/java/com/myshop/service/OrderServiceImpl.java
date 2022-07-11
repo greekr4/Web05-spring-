@@ -29,6 +29,17 @@ public class OrderServiceImpl implements OrderService {
 		dao.OrderAdd(DTO);
 	}
 
+	@Override
+	public int LastOrderNo() throws Exception {
+		return dao.LastOrderNo();
+	}
+
+	@Override
+	public void OrderLineAdd(OrderDTO DTO) throws Exception {
+		dao.OrderLineAdd(DTO);
+		
+	}
+
 
 	
 
