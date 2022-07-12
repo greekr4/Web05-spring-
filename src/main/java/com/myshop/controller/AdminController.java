@@ -86,6 +86,24 @@ public class AdminController {
 	@RequestMapping("OrderList")
 	public String OrderList(Model model) throws Exception{
 		List<OrderDTO> List = OrderService.OrderList();
+		List<OrderDTO> List2 = OrderService.OrderList_PayOk();
+		int OrderCnt = List.size();
+		int PayOkCnt = List2.size();
+		model.addAttribute("OrderCnt",OrderCnt);
+		model.addAttribute("PayOkCnt",PayOkCnt);
+		model.addAttribute("List",List);
+		return "/Admin/OrderList";
+	}
+	
+	//오더리스트
+	@RequestMapping("OrderList_PayOK")
+	public String OrderList_PayOK(Model model) throws Exception{
+		List<OrderDTO> List = OrderService.OrderList_PayOk();
+		List<OrderDTO> List2 = OrderService.OrderList();
+		int PayOkCnt = List.size();
+		int OrderCnt = List2.size();
+		model.addAttribute("OrderCnt",OrderCnt);
+		model.addAttribute("PayOkCnt",PayOkCnt);
 		model.addAttribute("List",List);
 		return "/Admin/OrderList";
 	}

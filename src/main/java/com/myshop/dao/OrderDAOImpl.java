@@ -68,6 +68,11 @@ public class OrderDAOImpl implements OrderDAO {
 		
 	}
 
+	@Override
+	public List<OrderDTO> OrderList_PayOk() throws Exception {
+		return sqlSession.selectList(namespace+".OrderList_PayOk");
+	}
+
 
 	
 	

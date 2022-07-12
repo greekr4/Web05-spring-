@@ -164,6 +164,9 @@ response.setCharacterEncoding("utf-8");
                                     <input type="hidden" id="type" name="type" value="2">
                                     <input type="text" id="search" name="search">
                                     <button type="submit" class="btn_clear">검색</button>
+                                    <button type="button" class="btn_clear" style="float: right; width: 100px; margin-right: 3%;" onclick="location.href='${path}/Admin/OrderList_PayOK';">처리완료 (${PayOkCnt })</button>
+                                    <button type="button" class="btn_clear" style="float: right; width: 100px; margin-right: 1%;" onclick="location.href='${path}/Admin/OrderList_PayOK';">입금확인 (${PayOkCnt })</button>
+                                    <button type="button" class="btn_clear" style="float: right; width: 100px; margin-right: 1%;" onclick="location.href='${path}/Admin/OrderList';">전체보기 (${OrderCnt })</button>
                                 </form>
                             </div>
                             <!-- /검색 -->

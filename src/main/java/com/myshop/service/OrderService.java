@@ -25,6 +25,7 @@ public interface OrderService {
 	public void UpdatePayment(int seq) throws Exception;
 	//오더스텝 수정
 	public void UpdateOrder(Map<String,Object> map) throws Exception;
-	
+	//오더리스트 PayOk
+	public List<OrderDTO> OrderList_PayOk() throws Exception;
 	
 }

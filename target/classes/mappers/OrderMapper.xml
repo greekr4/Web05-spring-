@@ -27,6 +27,11 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 		where cus_seq = #{cus_seq}
 		order by seq desc
 	</select>
+	
+	<!-- 오더리스트 입금확인 -->
+	<select id="OrderList_PayOk" resultType="com.myshop.dto.OrderDTO">
+		select * from order_master where payment_status = 3 and order_step != 5 order by seq desc
+	</select>
 
 	<!-- 오더추가 -->
 	<insert id="OrderAdd">
