@@ -12,8 +12,10 @@ public interface ProductDAO {
 	//제품수_카테고리
 	public int ProductCount(String ccode) throws Exception;
 	
-	//제품상세
+	//제품상세_고유번호
 	public ProductDTO ProductMore(int seq) throws Exception;
+	//제품상세_code로
+	public ProductDTO ProductMore_code(String pcode) throws Exception;
 	
 	//--------------------------------------------------------
 	//제품등록
@@ -45,6 +47,6 @@ public interface ProductDAO {
 	public void ProductDel_basket(String pcode) throws Exception;
 	//제품삭제
 	public void ProductDel_order(String pcode) throws Exception;
-		
+
 		
 }

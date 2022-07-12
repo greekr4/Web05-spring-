@@ -106,6 +106,11 @@ public class ProductServiceImpl implements ProductService {
 		return dao.ProductPcodeOrder();
 	}
 
+	@Override
+	public ProductDTO ProductMore_code(String pcode) throws Exception {
+		return dao.ProductMore_code(pcode);
+	}
+
 
 	
 	

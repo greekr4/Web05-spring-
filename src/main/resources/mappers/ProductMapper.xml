@@ -21,9 +21,14 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 		select count(*) from v_product where ccode = #{ccode}
 	</select>
 	
-	<!-- 상품상세 -->
+	<!-- 상품상세(고유번호로) -->
 	<select id="ProductMore" resultType="com.myshop.dto.ProductDTO">
 		select * from v_product where seq = #{seq}
+	</select>
+	
+	<!-- 상품상세(코드로) -->
+	<select id="ProductMore_code" resultType="com.myshop.dto.ProductDTO">
+		select * from v_product where pcode = #{pcode}
 	</select>
 	
 	<!-- 제품등록 -->

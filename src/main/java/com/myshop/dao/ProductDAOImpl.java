@@ -104,6 +104,11 @@ public class ProductDAOImpl implements ProductDAO {
 	public int ProductPcodeOrder() throws Exception {
 		return sqlSession.selectOne(namespace+".ProductPcodeOrder");
 	}
+
+	@Override
+	public ProductDTO ProductMore_code(String pcode) throws Exception {
+		return sqlSession.selectOne(namespace+".ProductMore_code",pcode);
+	}
 	
 	
 	

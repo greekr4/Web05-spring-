@@ -1,6 +1,7 @@
 package com.myshop.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.myshop.dto.OrderDTO;
 import com.myshop.dto.OrderLineDTO;
@@ -18,4 +19,12 @@ public interface OrderService {
 	public void OrderLineAdd(OrderDTO DTO) throws Exception;
 	//오더라인 리스트
 	public List<OrderLineDTO> OrderLineList(int order_no) throws Exception;
+	//재고->할당재고
+	public void InvtToAllocate(Map<String,Object> map) throws Exception;
+	//결제 완료 (payment -> 3)
+	public void UpdatePayment(int seq) throws Exception;
+	//오더스텝 수정
+	public void UpdateOrder(Map<String,Object> map) throws Exception;
+	
+	
 }

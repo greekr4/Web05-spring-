@@ -127,6 +127,13 @@ response.setCharacterEncoding("utf-8");
             text-align: center;
         }
         /* /페이지 공통 - 리스트 테이블 */
+        .table img{
+        width: 155px;
+        height: 155px;
+        }
+        .more>th, .more>td{
+        color: #999;
+        }
     </style>
 </head>
 <body>
@@ -140,6 +147,7 @@ response.setCharacterEncoding("utf-8");
 
 
         <div id="container">
+	<iframe name="hiddenf" style="display: none;"></iframe>
             <div id="container_wrap">
 	       <section class="main_wrap">
 					<jsp:include page="./LeftMenu.jsp"/>
@@ -175,8 +183,57 @@ response.setCharacterEncoding("utf-8");
                                 <c:forEach items="${List }" var="DTO" varStatus="status">
                                     <tr>
                                         <td><a style="color: blue; cursor: pointer;" onclick="LineView(${status.index},${DTO.seq });">${DTO.seq }</a></td>
-                                        <td>${DTO.order_val }</td>
-                                        <td>${DTO.payment_val }</td>
+                                        <td>
+                                        
+                                        <c:choose>
+                                        <c:when test="${DTO.order_step eq 1 }">
+                                        <select class="order_step">
+                                        <option value="1" selected>접수중</option>
+                                        <option value="3">배송중</option>
+                                        <option value="5">배송완료</option>
+                                        </select>
+                                        </c:when>
+                                        <c:when test="${DTO.order_step eq 3 }">
+                                        <select class="order_step">
+                                        <option value="1">접수중</option>
+                                        <option value="3" selected>배송중</option>
+                                        <option value="5">배송완료</option>
+                                        </select>
+                                        </c:when>
+                                        <c:when test="${DTO.order_step eq 5 }">
+                                        <select class="order_step">
+                                        <option value="1">접수중</option>
+                                        <option value="3">배송중</option>
+                                        <option value="5" selected>배송완료</option>
+                                        </select>
+                                        </c:when>
+                                        </c:choose>
+                                        
+                                        
+                                        &nbsp;<button class="btn_white" onclick="EditOS(${DTO.seq },${status.index});">처리</button>
+                                        </td>
+                                        <td>
+                                        <c:choose>
+                                        <c:when test="${DTO.payment_status eq 1 }">
+                                        <select class="payment_status">
+                                        <option value="1" selected>입금대기</option>
+                                        <option value="3">입금확인</option>
+                                        </select>
+                                        </c:when>
+                                        
+                                        <c:when test="${DTO.payment_status eq 3 }">
+                                        <div style="position: relative;">
+                                        <div style="position: absolute; color: red; left: 55px;">*</div>
+                                        <select class="payment_status">
+                                        <option value="1">입금대기</option>
+                                        <option value="3" selected>입금확인</option>
+                                        </select>
+                                        </div>
+                                        </c:when>
+                                        
+                                        
+                                        </c:choose>
+                                        </td>
                                         <td><fmt:formatNumber value="${DTO.price }" pattern="#,###" /></td>
                                         <td>${DTO.delivery_cus }</td>
                                         <td><fmt:formatDate value="${DTO.regdate }" pattern="YY-MM-dd"/></td>
@@ -207,31 +264,52 @@ response.setCharacterEncoding("utf-8");
 $('.gnb_sub_menu').eq(0).find('a').css('font-weight','bold');
 
 
+function EditOS(seq,index) {
+	var order_step = $('.order_step').eq(index).val();
+	var href = "${path}/Admin/OrderStepEdit?seq="+seq+"&order_step="+order_step;
+	window.open(href,'hiddenf');
+	
+}
+
 function AmountCommas(val) {
     return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 
 function LineView(eqindex,order_no) {
-	$('.line').remove();
-	$.ajax({
-		url : '${path}/Admin/OrderLine_json?order_no='+ order_no,
-		dataType : 'json',
-		success : function(data) {
-			$.each(data.OLList, function(index,OLList){
-			$('.table > tbody > tr').eq(eqindex).after("<tr class='line'><td colspan='2' style='color:#777;'>"+OLList.pname+" ("+OLList.pcode+")</td><td colspan='2' style='color:#777;'>"+AmountCommas(OLList.price)+"원</td><td colspan='2' style='color:#777;'>"+OLList.qty+"개</td></tr>");
-				
-				
-			})//end each
-		}
+	if($('.line').text() == ''){
 		
+	
 		
-		
+		$('.line').remove();
+		$.ajax({
+			url : '${path}/Admin/OrderLine_json?order_no='+ order_no,
+			dataType : 'json',
+			success : function(data) {
+				$.each(data.OLList, function(index,OLList){
+				$('.table > tbody > tr').eq(eqindex).after("<tr class='more line'>"
+				+"<td colspan='2'><img alt='썸네일' src='${path }/resources/upload/"+OLList.pcode+"/"+OLList.s_img_desc+"'></td>"
+				+"<td>"+OLList.pname+"</td>"
+				+"<td>"+AmountCommas(OLList.price)+"원</td>"
+				+"<td>"+OLList.qty+"개</td>"
+				+"<td></td>"
+				+"</tr>"
+				);	
+				})//end each
+				$('.table > tbody > tr').eq(eqindex).after("<tr class='more line'>"
+						+"<td colspan='2'>상품이미지</td>"
+						+"<td>상품명</td>"
+						+"<td>상품가격</td>"
+					    +"<td>주문수량</td>"
+					    +"<td></td>"
+						+"</tr>");
+			}
+	
 	})//end ajax
-	
-	
-	
-	
+	}else{
+		$('.line').remove();
+	}
+
 }
 
 </script>

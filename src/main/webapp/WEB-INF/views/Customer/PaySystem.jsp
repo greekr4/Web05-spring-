@@ -79,14 +79,20 @@ response.setCharacterEncoding("utf-8");
 		}
 		.paybox_wrap{
 		width: 500px;
+		height:500px;
 		margin-top: 100px;
 		margin-left:550px;
+		border: 1px solid #777;
+		}
+		.paybox_wrap button{
+		width: 300px;
+		height: 50px;
+		margin: 0 auto;
 		}
 		.pay_top{
 		padding-left:2em;
 		padding-top:2em;
 		padding-bottom:2em;
-		margin-bottom: 50px;
 		background-color: rgb(253,216,53);
 		}
 		.pay_top .txt1{
@@ -103,7 +109,7 @@ response.setCharacterEncoding("utf-8");
 		width: 80%;
 		}
 		.paybox_wrap input {
-		width: 80%;
+		width: 100%;
 		height: 30px;
 		margin-bottom: 30px;
 		border: 0;
@@ -141,11 +147,14 @@ response.setCharacterEncoding("utf-8");
 		                	</p>
 		                	</div>
 						<table>
+							<tr>
+							<th style="text-align: center; line-height: 5em;">결제금액 : <fmt:formatNumber value="${price }" pattern="#,###"/>원</th>
+							</tr>
 						  <tr>
 						    <th>휴대폰 번호</th>
 						  </tr>
 						  <tr>
-						    <td><input type="text" placeholder="01041911611"></td>
+						    <td><input type="text" placeholder="01012345678"></td>
 						  </tr>
 						  <tr>
 						  <th>생년월일</th>
@@ -154,10 +163,10 @@ response.setCharacterEncoding("utf-8");
 						    <td><input type="text" placeholder="예) 960811"></td>
 						  </tr>
 						  <tr>
-						  <td>
-						  <button>ㅇㅇ</button>
+						  <td style="text-align: center;">
+						  <button class="btn_white" onclick="location.href='${path}/Customer/PaySystemUpdate?seq=${seq }'">결제요청</button>
 						  </td> 
-						  
+						  	
 						  </tr>
 						</table>
 

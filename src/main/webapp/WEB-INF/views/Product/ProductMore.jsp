@@ -141,6 +141,7 @@ response.setCharacterEncoding("utf-8");
             cursor: pointer;
             width: 125px;
             line-height: 10px;
+            margin-right: 1em;
         }
         .pickup_btn:hover{
             background: #222;
@@ -399,6 +400,10 @@ response.setCharacterEncoding("utf-8");
         margin-bottom: 100px;
         width: 300px;
         }
+        .btn_box{
+        display:flex;
+        margin-left: 100px;
+        }
     </style>
 </head>
 <body>
@@ -472,15 +477,13 @@ response.setCharacterEncoding("utf-8");
                                             <input type="hidden" value="${DTO.price }" class="origin_sum">
                                             </td>
                                     </tr>
-                                    <tr>
-                                        <td colspan="2" style="text-align: center; display: flex;">
-                                            <button class="like_btn"></button>
-                                            <button class="alarm_btn"></button>
-                                            <button class="pickup_btn" onclick="BasketAdd();">장바구니담기</button>
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
+                            <div class="btn_box">
+                            				<button class="pickup_btn" onclick="OrderAdd();">바로구매하기</button>
+                                            <button class="pickup_btn" onclick="BasketAdd();">장바구니담기</button>
+                                            <button class="like_btn"></button>
+                            </div>
                         </div>
                     </div>
                     <div class="product_view_warp">
@@ -717,6 +720,13 @@ response.setCharacterEncoding("utf-8");
             </div>
         </div>
 <script type="text/javascript">
+function OrderAdd() {
+	var seq = '${DTO.seq}';
+	var qty = $('.qty').val();
+	var href = "${path}/Customer/OrderForm?obj="+seq+","+qty;
+	location.href = href;
+}
+
 function BasketAdd() {
 	var cus_seq = ${scus_seq}; 
 	var pcode = '${DTO.pcode}';

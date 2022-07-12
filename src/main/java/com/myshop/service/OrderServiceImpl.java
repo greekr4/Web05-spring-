@@ -1,6 +1,7 @@
 package com.myshop.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -44,6 +45,24 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public List<OrderLineDTO> OrderLineList(int order_no) throws Exception {
 		return dao.OrderLineList(order_no);
+	}
+
+	@Override
+	public void InvtToAllocate(Map<String, Object> map) throws Exception {
+		dao.InvtToAllocate(map);
+		
+	}
+
+	@Override
+	public void UpdatePayment(int seq) throws Exception {
+		dao.UpdatePayment(seq);
+		
+	}
+
+	@Override
+	public void UpdateOrder(Map<String, Object> map) throws Exception {
+		dao.UpdateOrder(map);
+		
 	}
 
 

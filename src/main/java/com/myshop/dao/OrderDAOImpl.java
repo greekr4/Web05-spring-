@@ -51,6 +51,23 @@ public class OrderDAOImpl implements OrderDAO {
 		return sqlSession.selectList(namespace+".OrderLineList",order_no);
 	}
 
+	@Override
+	public void InvtToAllocate(Map<String, Object> map) throws Exception {
+		sqlSession.update(namespace+".InvtToAllocate",map);
+	}
+
+	@Override
+	public void UpdatePayment(int seq) throws Exception {
+		sqlSession.update(namespace+".UpdatePayment",seq);
+		
+	}
+
+	@Override
+	public void UpdateOrder(Map<String, Object> map) throws Exception {
+		sqlSession.update(namespace+".UpdateOrder",map);
+		
+	}
+
 
 	
 	

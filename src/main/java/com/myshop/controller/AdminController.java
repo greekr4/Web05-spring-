@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.inject.Inject;
@@ -34,6 +35,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.myshop.dto.CategoryDTO;
 import com.myshop.dto.CustomerDTO;
@@ -44,6 +46,7 @@ import com.myshop.service.CategoryService;
 import com.myshop.service.CustomerService;
 import com.myshop.service.OrderService;
 import com.myshop.service.ProductService;
+import com.myshop.util.MailService;
 import com.myshop.util.ScriptUtils;
 
 /**
@@ -71,6 +74,9 @@ public class AdminController {
 	private OrderService OrderService;  
 	
 	@Inject
+	private MailService mailservice;
+	
+	@Inject
 	private HttpSession session;
 	
 	
@@ -94,6 +100,16 @@ public class AdminController {
 		JSONObject json = new JSONObject();
 		json.putAll(map);
 		return json; //리턴
+	}
+	
+	//오더스텝 수정
+	@RequestMapping("OrderStepEdit")
+	public void OrderStepEdit(HttpServletResponse response, @RequestParam int seq, @RequestParam int order_step) throws Exception{
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("seq", seq);
+		map.put("order_step",order_step);
+		OrderService.UpdateOrder(map);
+		ScriptUtils.alertAndClose(response, "수정되었습니다.");
 	}
 	
 	//회원리스트
@@ -425,4 +441,21 @@ public class AdminController {
 	    	
 	    }
 
+	    
+	    //메일보내기
+	    @RequestMapping("/noticeMail")
+		public ModelAndView sendEmail(String id, String email) throws Exception {
+			ModelAndView mv = new ModelAndView();
+			
+			String addr = "greekr419116112@gmail.com";
+			String subject = "제목";
+			String body = "내용";
+			
+			mailservice.sendEmail(email, addr, subject, body);
+			mv.setViewName("/");
+			return mv;
+		}
+	    
+
+	
 }

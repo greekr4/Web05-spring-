@@ -512,8 +512,8 @@ $.ajax({
     data : data,
     type : 'POST',
     success : function(result) {
- 	   alert("주문성공!");
- 	   location.href='${path}/Customer/Mybasket';
+ 	   alert(result);
+ 	   location.href='${path}/Customer/Myorder';
 	}
     
 

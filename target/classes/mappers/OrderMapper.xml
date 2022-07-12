@@ -45,13 +45,31 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 		values(#{order_no},#{pcode},#{qty})
 	</insert>
 	
+	<!-- 제품 재고 할당하기 -->
+	<update id="InvtToAllocate">
+	update product set
+	invt = invt - #{qty} ,
+	allocate_invt = allocate_invt + #{qty}
+	where pcode = #{pcode}
+	</update>
+	
 	<!-- 오더라인조회 -->
 	<select id="OrderLineList" resultType="com.myshop.dto.OrderLineDTO">
-		select a.*,b.pname,b.price  from order_line a
-		inner join product b 
+		select a.*,b.pname,b.price,b.s_img_desc  from order_line a
+		inner join v_product b 
 		on(a.pcode = b.pcode)
 		where order_no=#{order_no}
 	</select>
+	
+	<!-- 결제완료 -->
+	<update id="UpdatePayment">
+		update order_master set payment_status = 3 where seq = #{seq}
+	</update>
+	
+	<!-- 배송상태수정 -->
+	<update id="UpdateOrder">
+		update order_master set order_step = #{order_step} where seq = #{seq}	
+	</update>
 
 	
 

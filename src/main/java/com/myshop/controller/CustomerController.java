@@ -140,19 +140,34 @@ public class CustomerController {
 	//주문 Add
 	@RequestMapping("/OrderAdd")
 	public void OrderAdd(OrderDTO DTO,HttpServletResponse response,@RequestParam String[] pcode,@RequestParam int[] qty2) throws Exception{
-		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> map = new HashMap<String,Object>();	//장바구니 삭제 map
+		Map<String,Object> map2 = new HashMap<String,Object>();	//할당재고 map
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; utf-8");
+		PrintWriter out = response.getWriter();
 		int order_no = OrderService.LastOrderNo()+1;
 		DTO.setOrder_no(order_no);
 		map.put("cus_seq", DTO.getCus_seq());
+		
 		for(int i=0;i<pcode.length;i++) {
+		ProductDTO ckdto = ProductService.ProductMore_code(pcode[i]);
+		if(ckdto.getInvt() < qty2[i]) {
+		out.println("재고가 없습니다!");
+		return;
+		}else {
 		DTO.setPcode(pcode[i]);
 		DTO.setQty(qty2[i]);
 		map.put("pcode",pcode[i]);
+		map2.put("qty", qty2[i]);
+		map2.put("pcode", pcode[i]);
 		OrderService.OrderLineAdd(DTO);
+		OrderService.InvtToAllocate(map2);
 		BasketService.BasketDel(map);
 		}
+		}
 		OrderService.OrderAdd(DTO);
-		ScriptUtils.alert(response, "");
+		out.println("주문요청 되었습니다.");
+		return;
 	}
 	
 	//Myorder
@@ -166,10 +181,19 @@ public class CustomerController {
 	
 	//PaySystem
 	@RequestMapping("/PaySystem")
-	public String PaySystem(Model model) throws Exception{
+	public String PaySystem(Model model, @RequestParam int price,@RequestParam int seq) throws Exception{
+		model.addAttribute("price",price);
+		model.addAttribute("seq",seq);
 		return "/Customer/PaySystem";
 	}
 	
+	
+	//결제완료
+	@RequestMapping("/PaySystemUpdate")
+	public String PaySystemUpdate(Model model, @RequestParam int seq) throws Exception{
+		OrderService.UpdatePayment(seq);
+		return "redirect:./Myorder";
+	}
 	
 	
 	//가입완료
@@ -275,7 +299,7 @@ public class CustomerController {
 				+ "</script>");
 	}
 	
-	//삭제
+	//회원탈퇴
 	@RequestMapping("Del")
 	public void Del(@RequestParam int seq,HttpServletResponse response) throws Exception {
 		response.setCharacterEncoding("utf-8");
@@ -288,6 +312,9 @@ public class CustomerController {
 				+ "</script>");
 		
 	}
+	
+	
+
 	
 
 }

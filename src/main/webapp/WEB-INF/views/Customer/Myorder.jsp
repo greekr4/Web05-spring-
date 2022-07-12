@@ -67,17 +67,17 @@ response.setCharacterEncoding("utf-8");
             color: #222;
         }
         /* /왼쪽 메뉴 */
-      	.basket_wrap{
+      	.order_wrap{
       	width: 100%;
       	}
-		.basket_tit_box{
+		.order_tit_box{
 		width: 1200px;
 		margin-left: 200px;
 		}
-		.basket_wrap h1{
+		.order_wrap h1{
 		text-align: center;
 		}
-		.basket_indi_wrap{
+		.order_indi_wrap{
 		width:1200px;
 		margin-left: 200px;
 		}
@@ -91,7 +91,7 @@ response.setCharacterEncoding("utf-8");
 		color: #fff;
 		
 		}
-		.basket_indi_wrap table{
+		.order_indi_wrap table{
 		width:100%;
 		margin: 0 auto;
 		margin-top: 50px;
@@ -103,58 +103,47 @@ response.setCharacterEncoding("utf-8");
 		margin-top: 50px;
 		border-collapse: collapse;
 		}
-		.basket_indi_wrap table th{
+		.order_indi_wrap table th{
 		border-bottom: 1px solid #222;
 		height: 2.5em;
 		line-height: 2.5em;
 		}
-		.basket_indi_wrap table td{
+		.order_indi_wrap table td{
 		text-align: center;
 		border-bottom: 1px solid #dbdbdb;
 		}
-		.basket_indi_wrap table td.detail{
-		text-align: left;
-		}
-		.basket_indi_wrap table th{
-		width: 8%;
-		}
-		.basket_indi_wrap table th:nth-child(1){
-		width: 20%;
-		}
-		.basket_indi_wrap table th:nth-child(2){
-		width: 20%;
-		}
-		.basket_indi_wrap table button{
+		.order_indi_wrap table button{
 		width: 100px;
     	height: 40px;
+    	margin: 4px 0;
 		}
-		.basket_indi_wrap table button.up_btn, .basket_indi_wrap table button.down_btn{
+		.order_indi_wrap table button.up_btn, .order_indi_wrap table button.down_btn{
 		width: 20px;
 		height: 20px;
 		}
-		.basket_indi_wrap table img{
+		.order_indi_wrap table img{
 		display: block;
-	    width: 100px;
-	    height: 100px;
+	    width: 200px;
+	    height: 200px;
 	    margin: 10px auto;
 		}
-		.basket_indi_wrap table p.pname{
+		.order_indi_wrap table p.pname{
 		font-weight: bold;
 		line-height: 2.5em;
 		
 		}
-		.basket_indi_wrap table td{
+		.order_indi_wrap table td{
 		font-weight: bold;
 		}
-		.basket_indi_wrap table td.gray_tit{
+		.order_indi_wrap table td.gray_tit{
 		font-weight: 0;
 		color: gray;
 		}
-		.basket_indi_wrap table p.psubname{
+		.order_indi_wrap table p.psubname{
 		font-size:0.8em;
 		color: gray;
 		}
-		.basket_indi_wrap table input{
+		.order_indi_wrap table input{
 		border: 0;
 		width: 35px;
     	text-align: center;
@@ -210,7 +199,9 @@ response.setCharacterEncoding("utf-8");
     		height: 40px;
 	    
 	    }
-		
+		.more{
+		color: #999;
+		}
 		
 </style>
 </head>
@@ -231,22 +222,70 @@ response.setCharacterEncoding("utf-8");
                 <section class="main_wrap">
 
 				<jsp:include page="./LeftMenu.jsp"/>
-                    <div class="basket_wrap">
-	                    <div class="basket_tit_box">
+                    <div class="order_wrap">
+	                    <div class="order_tit_box">
 	                    	<h1>${sid }님의 주문목록</h1>   
 	                    </div>
 	                    
-	                    <div class="basket_indi_wrap">
-	                    <table>
-							  <tr>
-							    <th>주문번호</th>
-							    <th>주문상태</th>
-							    <th>입금상태</th>
-							    <th>총 금액</th>
-							    <th>이름</th>
-							    <th>주문일자</th>
-							  </tr>
-						    	<c:forEach items="${List }" var="DTO" varStatus="status">
+	                    <div class="order_indi_wrap">
+	                    <table class="table">
+							<tr>
+							    <th style="width: 15%;">날짜</th>
+							    <th>상품정보</th>
+							    <th style="width: 15%;">주문금액</th>
+							    <th style="width: 15%;">상태</th>
+							    <th style="width: 15%;">버튼</th>
+							</tr>
+							
+							<c:forEach items="${List }" var="DTO" varStatus="status">
+							<tr>
+								<td><fmt:formatDate value="${DTO.regdate }" pattern="YY-MM-dd"/></td>
+								<td>
+								<p style="color: #aaa; font-size: 0.8em">주문번호 : ${DTO.seq }</p>
+								<a style="cursor: pointer; color: blue;" onclick="LineView(${status.index},${DTO.seq });">자세히보기</a>
+								</td>
+								<td><fmt:formatNumber value="${DTO.price }" pattern="#,###" />원</td>
+								<td>
+								${DTO.payment_val }<br><br>
+								${DTO.order_val }
+								</td>
+								<td>
+								
+								<c:choose>
+								<c:when test="${DTO.payment_status eq 1 }">
+								<button class="btn_white" onclick="location.href='${path}/Customer/PaySystem?price=${DTO.price }&seq=${DTO.seq }'">결제하기</button>
+								<button class="btn_white">주문취소</button>
+								</c:when>
+								<c:otherwise>
+								<button class="btn_white">반품요청</button>
+								<button class="btn_white">반품요청</button>
+								</c:otherwise>
+								</c:choose>
+								</td>
+							</tr>
+							</c:forEach>
+							<tr class="more">
+								<td colspan="2">상품이미지</td>
+							    <td>상품명</td>
+							    <td>상품가격</td>
+							    <td>주문수량</td>
+							</tr>
+							<tr class="more">
+								<td colspan="2"><img alt="dd" src="${path }/resources/upload/p0001/1656427630593l0.jpg"></td>
+							    <td>샘플 소고기</td>
+							    <td>20,000원</td>
+							    <td>1개</td>
+							</tr>
+							<tr class="more">
+								<td colspan="2"><img alt="dd" src="${path }/resources/upload/p0001/1656427630593l0.jpg"></td>
+							    <td>샘플 소고기</td>
+							    <td>20,000원</td>
+							    <td>1개</td>
+							</tr>
+							
+					
+							</table>
+<%-- 						    	<c:forEach items="${List }" var="DTO" varStatus="status">
                                     <tr>
                                         <td><a style="color: blue; cursor: pointer;" onclick="LineView(${status.index},${DTO.seq });">${DTO.seq }</a></td>
                                         <td>${DTO.order_val }</td>
@@ -255,53 +294,9 @@ response.setCharacterEncoding("utf-8");
                                         <td>${DTO.delivery_cus }</td>
                                         <td><fmt:formatDate value="${DTO.regdate }" pattern="YY-MM-dd"/></td>
                                     </tr>
-                                   </c:forEach>
-					
-							</table>
-
+                                   </c:forEach> --%>
 	                    
-	                    </div>
-	                    <div class="basket_total_wrap">
-	                     <div class="basket_total">
-	                    	<div style="float: left;">
-	  						<h2>합계</h2>
-	  						<p style="clear: both;">고객님의 총 주문 합계 금액 입니다.</p>
-	  						</div>
-	  						
-	  						
-	  						
-
-	  						<div class="total_price_box" style="float: right;">
-	  						<ul class="total_ptxt">
-	  							<li>
-	  							<span class="t_txt">상품 합계금액</span>
-	  							<span class="t_txt_sump t_txt2"><span class="tot_sum1">1,200</span>원</span>
-	  							</li>
-		  						<li>
-		  						<span class="t_txt">배송비</span>
-		  						<span class="t_txt_delp t_txt2"><span class="tot_sum2">3,000</span>원</span>
-		  						</li>
-		  						<li>
-		  						<span class="t_txt">총 주문합계 금액</span>
-								<span class="t_txt_sdp t_txt2"><span class="tot_sum3">4,200</span>원</span>
-		  						</li>
-	  						</ul>
-	  						</div>
-	                    	</div>
-	                    </div>
-	                    <div class="total_btn_wrap">
-	                    	<div class="total_btn_box">
-	                    	<button class="btn_black" onclick="AGOF();">주문하기</button>
-	                    	<button class="btn_white">삭제하기</button>
-	                    	</div>
-	                    
-	                    
-	                    
-	                    </div>
-	                    
-	                    
-                    
-                                  
+	                    </div>           
                     </div>
                 </section>
 
@@ -318,101 +313,45 @@ response.setCharacterEncoding("utf-8");
     </div>
 
 <script type="text/javascript">
-
-function AGOF() {
-	var seq = [];
-	var qty = [];
-	var obj = [];
-	for (var i = 0; i < $('.qty').length; i++) {
-		obj.push($('.pseq').eq(i).val());
-		obj.push($('.qty').eq(i).val());
-	}
-	location.href='${path}/Customer/OrderForm?obj='+obj;
-	
-}
-
-function GOF(seq,index) {
-	var qty = $('.qty').eq(index).val();
-	location.href='${path}/Customer/OrderForm?obj='+seq+","+qty;
-	
-}
-
-
-
-
 function AmountCommas(val) {
     return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-var origin_sum_val = [];
-var delivery_sum = [];
-
-for (var i = 0; i < $('.origin_sum').length; i++) {
-	origin_sum_val.push(parseInt($('.origin_sum').eq(i).val()));
-	delivery_sum.push(parseInt($('.delivery_sum').eq(i).val()));
-}
-
-tot_sum();
-function tot_sum() {
-	var algo = [];
-	var algo2 = 0;
-	var algo3 = 0;
-	var algo4 = 3000*origin_sum_val.length
-	for (var i = 0; i < origin_sum_val.length; i++) {
-		algo[i] = origin_sum_val[i] * $('.qty').eq(i).val();
-		algo2 += algo[i];
+function LineView(eqindex,order_no) {
+	if($('.line').text() == ''){
+		
+	
+		
+		$('.line').remove();
+		$.ajax({
+			url : '${path}/Admin/OrderLine_json?order_no='+ order_no,
+			dataType : 'json',
+			success : function(data) {
+				$.each(data.OLList, function(index,OLList){
+				$('.table > tbody > tr').eq(eqindex+1).after("<tr class='more line'>"
+				+"<td><img alt='썸네일' src='${path }/resources/upload/"+OLList.pcode+"/"+OLList.s_img_desc+"'></td>"
+				+"<td>"+OLList.pname+"</td>"
+				+"<td>"+AmountCommas(OLList.price)+"원</td>"
+				+"<td>"+OLList.qty+"개</td>"
+				+"<td></td>"
+				+"</tr>"
+				);	
+				})//end each
+				$('.table > tbody > tr').eq(eqindex+1).after("<tr class='line more'>"
+						+"<td>상품이미지</td>"
+						+"<td>상품명</td>"
+						+"<td>상품가격</td>"
+					    +"<td>주문수량</td>"
+					    +"<td></td>"
+						+"</tr>");
+			}
+	
+	})//end ajax
+	}else{
+		$('.line').remove();
 	}
-	algo3 = algo2;
-	algo2 += origin_sum_val.length * 3000;
-	$('.tot_sum1').text(AmountCommas(algo3));
-	$('.tot_sum2').text(AmountCommas(algo4));
-	$('.tot_sum3').text(AmountCommas(algo2));
-	
-	
+
 }
-
-/* $('.up_btn').click(function () {
-    var qty_val = $('.qty').val();
-    qty_val++;
-    $('.qty').val(qty_val);
-    var sum_val = origin_sum_val * qty_val + delivery_sum;
-    $('.sum').text(AmountCommas(sum_val));
-});
- */
-
-function up_btn(index) {
-    var qty_val = $('.qty').eq(index).val();
-    qty_val++;
-    $('.qty').eq(index).val(qty_val);
-    var sum_val = origin_sum_val[index] * qty_val + delivery_sum[index];
-    $('.sum').eq(index).text(AmountCommas(sum_val));
-    tot_sum();
-}
-
- function down_btn(index) {
-	    var qty_val = $('.qty').eq(index).val();
-	    if (qty_val > 1) {
-	        qty_val--;
-	        $('.qty').eq(index).val(qty_val);
-	        var sum_val = origin_sum_val[index] * qty_val + delivery_sum[index];
-	        $('.sum').eq(index).text(AmountCommas(sum_val));
-	        tot_sum();
-	    } else {
-	        alert("최소 수량은 1개 이상입니다.")
-	    }
-}
-/* $('.down_btn').click(function () {
-    var qty_val = $('.qty').val();
-    if (qty_val > 1) {
-        qty_val--;
-        $('.qty').val(qty_val);
-        var sum_val = origin_sum_val * qty_val + delivery_sum;
-        $('.sum').text(AmountCommas(sum_val));
-    } else {
-        alert("최소 수량은 1개 이상입니다.")
-    }
-}); */
-
 
 </script>
 
