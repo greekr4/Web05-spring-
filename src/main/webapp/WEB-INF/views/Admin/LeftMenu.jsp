@@ -14,7 +14,7 @@ response.setCharacterEncoding("utf-8");
                             <li class="gnb_menu">
                                 <a href="">주문관리</a>
                                 <ul>
-                                    <li class="gnb_sub_menu"><a href="${path }/Admin/OrderList">주문관리</a></li>
+                                    <li class="gnb_sub_menu"><a href="${path }/Admin/OrderList?type=1">주문관리</a></li>
                                     <li class="gnb_sub_menu"><a href="${path }/Admin/CusList">실시간 상담</a></li>
                                 </ul>
                             </li>

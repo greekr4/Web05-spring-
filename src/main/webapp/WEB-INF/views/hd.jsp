@@ -112,7 +112,7 @@
                         <c:if test="${!empty sid }">
 
 						<c:if test="${fn:contains(sid,'admin') }">
-						<li class="main"><a href="${path }/Admin/OrderList">Admin</a></li>
+						<li class="main"><a href="${path }/Admin/OrderList?type=1">Admin</a></li>
 						</c:if>
                         
                         <li class="main2">

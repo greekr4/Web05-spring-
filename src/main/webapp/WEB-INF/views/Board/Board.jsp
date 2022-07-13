@@ -112,208 +112,297 @@ response.setCharacterEncoding("utf-8");
         .sub_tit li:hover:after {
             transform: scaleX(1);
         }
+        img {
+            display: block;
+        }
 
-        .goods_list {
-            width: 1400px;
+        .page {
+            clear: both;
+            min-height: 100vh;
+            display: none;
+            width: 100%;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .page:target {
+            display: block;
+        }
+
+        .grid_wrap {
+            width: 1440px;
+            margin: 0 auto;
+        }
+
+        .grid_box {
+            display: grid;
+            grid-template-columns: 50% 50%;
+        }
+
+        .img_box {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .grid_box .txt_box {
+            display: inline-block;
+            width: 100%;
+            vertical-align: top;
+            font-size: 20px;
+            font-weight: 300;
+            line-height: 1.5em;
+        }
+
+        .color_blue {
+            color: blue;
+        }
+
+        .list {
+            width: 1600px;
+            margin: 0 auto;
             display: flex;
-            flex-direction: row;
             flex-wrap: wrap;
-            border-bottom: solid 1px lightgrey;
+
+
+        }
+
+        .list>div {
+            display: inline-block;
+            width: 46%;
+            margin: 0 2% 0.5rem;
+            vertical-align: top;
+        }
+
+        .list>div figure img {
+            display: block;
+            width: 100%;
+        }
+
+        .list>div .txt_box {
+            margin-top: 0.35rem;
+            text-align: center;
+        }
+
+        .list>div .txt_box .tit {
+            color: #000;
+            font-size: 30px;
+            font-weight: 400;
+            margin-top: 30px;
+        }
+
+        .list>div .txt_box .txt {
+            margin-top: 0.2rem;
+            color: #363636;
+        }
+
+        .html#page2 .ct_wrap>h3 {
+            text-align: center;
+            font-size: 60px;
+            font-weight: 250;
+            padding-top: 25px;
+        }
+
+        .list1 {
+            width: 1600px;
+            margin: 0 auto;
+
+        }
+
+        .hgroup {
+            text-align: center;
+            font-size: 30px;
+            font-weight: 300;
+        }
+
+        .hgroup h3 {
+            margin: 20px auto;
+        }
+
+        em {
+            margin-left: 760px;
+            display: flex;
+            width: 35px;
+            text-align: center;
+            background-color: blue;
+            color: #fff;
+            font-family: none;
+        }
+
+        .list_wrap {
+            margin-top: 100px;
+        }
+
+        .ct_wrap {
+            margin-top: 100px;
             margin-bottom: 100px;
         }
 
-        span.price {
-            display: block;
-            line-height: 45px;
-            font-size: 17px;
+        .color_tit {
+            color: #777;
         }
 
-        span.desc {
-            font-size: 13px;
-            color: gray;
-        }
-
-        .goods>img {
-        	display:block;
-            width: 313px;
-            height: 400px;
-        }
-
-        .item {
-            margin: 50px 15px 50px 15px;
-            float: left;
-            width: 320px;
-    		height: 540px;
-        }
-
-        .info {
-            font-size: 15px;
-            line-height: 45px;
-            font-weight: 600;
-        }
-
-        .list_line {
+        .heal_wrap {
             clear: both;
-            height: 55px;
-            border-top: solid 2px #000;
-            border-bottom: solid 1px lightgray;
+            background-color: #1c2638;
+            margin: 50px 0;
+            min-height: 1000px;
         }
 
-        .pick_list>li {
-            float: right;
-            display: flex;
-            margin-top: 15px;
-            margin-right: 5px;
+        .heal_tit_box {
+            width: 1400px;
+            margin: 0 auto;
+            font-size: 48px;
+            padding-top: 20px;
+            color: #fff;
         }
 
-        .pick_list>li>a {
-            font-weight: 400;
-            font-size: 15px;
-            margin-right: 10px;
-            letter-spacing: -2px;
-            color: gray;
+        .heal_menu_box {
+            width: 1400px;
+            margin: 0 auto;
         }
 
-        .list_line .pick_list .sub_navi {
+        .heal_menu_btn,
+        .heal_menu_btn2 {
+            color: #fff;
             float: left;
+            margin: 0 1px;
+            /*  background-color: #347eb5; */
+            border: 1px solid #347eb5;
+            padding: 20px;
+            font-size: 24px;
+            width: 430px;
+            text-align: center;
+            transition: 0.5s;
+            cursor: pointer;
         }
 
-        .pick_list_num {}
-
-        .pick_list_num::after {
-            margin-left: 15px;
-            content: "｜";
+        .heal_menu_btn:hover,
+        .heal_menu_btn2:hover {
+            background-color: #347eb5;
         }
 
-        .select_num {
-            margin-left: 15px;
-            color: gray;
-            border: none;
-            border-bottom: solid 1px lightgray;
+        .heal_img_box,
+        .heal_img_box2 {
+            clear: both;
+            width: 1400px;
+            margin: 120px auto;
+            transition: 0.5s;
         }
 
-        .select_num:focus {
-            outline: none;
+        .heal_img_box {
+            display: none;
+        }
+
+        .heal_item1 {
+            display: block;
         }
 
 
-
-        /* ------------- 페이지 위치 ------------- */
-        .location_wrap {
-            position: relative;
+        .ct_wrap2 {
+            clear: both;
             width: 100%;
-            /*background:#f9f9f9;*/
+            overflow: hidden;
         }
 
-        .location_wrap .location_cont {
-            width: 1200px;
-            margin: 18px auto 0;
+
+
+        .board {
+
+            text-align: left;
+            width: 1440px;
+            margin: 100px auto;
         }
 
-        .location_wrap .location_cont:after {
-            display: block;
-            clear: both;
-            content: "";
-        }
-
-        .location_cont em {
-            font-size: 0;
-        }
-
-        .location_cont em img {
-            position: relative;
-            margin: 0;
-            top: -4px;
-        }
-
-        .location_cont img {
-            display: inline-block;
-            vertical-align: middle;
-            margin: 0 8px 2px;
-        }
-
-        .location_cont a img {
-            margin-left: 0;
-        }
-
-        .location_cont .local_home {
-            color: #777777;
-        }
-
-        .location_cont .local_home:hover {
+        .board .page_tit {
+            margin-top: 50px;
+            font-weight: 300;
+            font-size: 1.5em;
             text-decoration: underline;
         }
 
-        /* 페이지 셀렉트 레이어 */
-        .sub_content .location_wrap {
-            margin: 0;
-            border-bottom: none 0;
-        }
-
-        .location_cont em+.location_select {
-            margin-left: 5px;
-        }
-
-        .location_select {
-            display: inline-block;
-            position: relative;
-            min-width: 130px;
-            border: none;
-            border-bottom: 1px solid #ddd;
-            background: #ffffff;
-            z-index: 50;
-            padding: 0;
-        }
-
-        .location_select .location_tit {
-            background: url("${path}/resources/img/product/select_arrow.png") no-repeat right 3px center;
-        }
-
-        .location_select .location_tit.actvie {
-            background: url("${path}/resources/img/product/select_arrow.png") no-repeat right 3px center;
-        }
-
-
-        .location_select .location_tit span {
-        	display: inline-block;
-        	cursor:pointer;
-            padding: 6px 32px 6px 2px;
-            font-size: 13px;
-            color: #888;
-        }
-
-        .location_select ul {
-            display: block;
-            position: absolute;
-            top: 30px;
-            left: 0px;
+        .board table {
+            margin: 0 auto;
             width: 100%;
-            padding: 6px 0 6px 0;
-            font-size: 0;
-            background: #ffffff;
-            border: 1px solid #ddd;
+            border-spacing: 0;
         }
 
-        .location_select ul li {}
+        .board .txt_box {
+            margin-top: 50px;
+            margin-bottom: 50px;
+            font-size: 1.2em;
+        }
 
-        .location_select ul li a {
+        .table_top th {
+            border-top: 2px solid #000;
+            border-bottom: 1px solid #777;
+            background-color: #ededed;
+            line-height: 3em;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        td {
+            line-height: 3em;
+            border-bottom: 1px solid #777;
+        }
+
+        td {
+            text-align: center;
+
+        }
+
+        .td_subject {
+            text-align: left;
+        }
+
+        tr:nth-child(2n) {
+            background-color: #ededed;
+        }
+
+        tr:hover td:first-child {
+            border-left: 2px solid #253dbe;
+        }
+
+        tr td:first-child {
+            border-left: 2px solid #fff;
+        }
+
+        tr:hover a {
+            text-decoration: underline;
+        }
+
+
+
+
+
+
+
+   /* 검색 */
+        .search_box{
+            clear: both;
             display: block;
-            font-size: 13px;
-            color: #888;
-            font-family: 'Poppins', "Noto Sans KR", sans-serif;
-            padding: 4px 8px;
+            margin-bottom: 1%;
         }
-
-        .location_select ul li a span {
-            display: inline-block;
+        .search_box>form>select{
+            padding: 8px 0 8px 0;
+            text-align: center;
+            width: 100px;
+            border-color: #222;
+            font-size: 14px;
         }
-
-        .location_select ul li a:hover {
-            color: #ffffff;
-            text-decoration: none;
-            background: #222222;
+        .search_box>form>input{
+            padding: 9px 0 8px 0;
+            border: 1px solid #222;
+            font-size: 14px;
         }
-
+        .search_box>form>button{
+            padding: 7px 0 8px 0;
+            width: 70px;
+            font-size: 14px;
+        }
+        /* /검색 */
     </style>
 </head>
 <body>
@@ -335,88 +424,60 @@ response.setCharacterEncoding("utf-8");
                             <p>EVERYDAY BESTBUY</p>
                         </div>
                     </div>
-                    <div class="location_wrap">
-                        <div class="location_cont">
-                            <em><a href="#" class="local_home"><img src="${path}/resources/img/product/home_icon.png" alt="홈"></a></em>
-                            <span><img src="${path}/resources/img/product/arrow_icon.png" alt=""></span>
-                            <div class="location_select">
-                                <div class="location_tit"><span id="code1_span">카테고리</span></div>
-                                <ul style="display: none;" id="code1_ul">
-
-                                </ul>
-                            </div>
-                            
-                            <span><img src="${path}/resources/img/product/arrow_icon.png" alt=""></span>
-                            
-                            <div class="location_select">
-                                <div class="location_tit"><span id="code2_span">카테고리2</span></div>
-                                <ul style="display: none;" id="code2_ul">
-
-                                </ul>
-                            </div>
-                            
-                        </div>
-                    </div>
-                    <div class="content_warp">
-                        <div class="page_tit">
-                            <h2 id="code">카테고리</h2>
-                        </div>
-                        <div class="sub_tit">
-                            <ul id=code2>
-
-                            </ul>
-                        </div>
-                        <div class="list_line">
-                            <ul class="pick_list">
-                                <li class="sub_navi">
-                                    <span class="pick_list_num" style="color: gray;">Total. <strong
-                                            style="color: black;">${pcnt }</strong></span>
-                                    <select name="" id="" class="select_num">
-                                        <option value="" selected>20개씩보기</option>
-                                        <option value="">10개씩보기</option>
-                                        <option value="">30개씩보기</option>
-                                        <option value="">40개씩보기</option>
-                                        <option value="">50개씩보기</option>
+                    <div class="board">
+                <p class="page_tit">공지사항</p>
+                <div class="table_warp">
+                            <!-- 검색 -->
+                            <div class="search_box">
+                                <form action="/myapp/board/news_search" method="POST">
+                                    <select name="search_type">
+                                        <option value="1">제목</option>
+                                        <option value="2">내용</option>
                                     </select>
-                                </li>
-                                <li>
-                                    <a href="">등록일순</a>
-                                </li>
-                                <li>
-                                    <a href="">상품평순</a>
-                                </li>
-                                <li>
-                                    <a href="">높은가격순</a>
-                                </li>
-                                <li>
-                                    <a href="">낮은가격순</a>
-                                </li>
-                                <li>
-                                    <a href="">판매인기순</a>
-                                </li>
-                                <li>
-                                    <a href="" style="color: #000;">추천순</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="goods_list">
-                        	<c:forEach items="${List }" var="DTO">
-                        	
-                            <div class="item" onclick="location.href = '${path}/Product/ProductMore?seq=${DTO.seq }'" style="cursor: pointer;">
-                                <div class="goods">
-                                        <img src="${path}/resources/upload/${DTO.pcode }/${DTO.s_img_desc}" alt="Product_img">
-                                </div>
-                                <div class="info">
-                                    <span class="name">${DTO.pname }</span>
-                                    <span class="price"><fmt:formatNumber value="${DTO.price }" pattern="#,###"/>원</span>
-                                    <span class="desc">${DTO.psubname }</span>
-                                    <span class="tag"></span>
-                                </div>
+                                    <input type="hidden" id="type" name="type" value="2">
+                                    <input type="text" id="search" name="search">
+                                    <button type="submit" class="btn_clear">검색</button>
+                                </form>
                             </div>
-                           
-                            </c:forEach>
-                    </div>
-                    </div>
+                            <!-- /검색 -->
+                    <table>
+                        <colgroup>
+                            <col style="width:10%;">
+                            <col>
+                            <col style="width:10%;">
+                            <col style="width:10%;">
+                            <col style="width:10%;">
+                        </colgroup>
+                        <thead>
+                            <tr class="table_top">
+                                <th>번호</th>
+                                <th>제목</th>
+                                <th>글쓴이</th>
+                                <th>조회</th>
+                                <th>날짜</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="even">
+                                <td class="td_num2">196 ${List }</td>
+                                <td class="td_subject" style="padding-left:0px">
+                                    <div class="bo_tit">
+                                        <a href="/myapp/board/more1.html">공지사항입니다.
+
+                                            (<span style="color: red;">1</span>)
+
+                                        </a>
+                                    </div>
+                                </td>
+                                <td class="td_name sv_use"><span class="sv_member">admin2</span></td>
+                                <td class="td_num">8</td>
+                                <td class="td_datetime">22-06-27</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                </div>
                 </section>
             </div>
         </div>
