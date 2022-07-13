@@ -84,13 +84,31 @@ public class AdminController {
 	
 	//오더리스트
 	@RequestMapping("OrderList")
-	public String OrderList(Model model) throws Exception{
-		List<OrderDTO> List = OrderService.OrderList();
-		List<OrderDTO> List2 = OrderService.OrderList_PayOk();
-		List<OrderDTO> List3 = OrderService.OrderList_OK();
-		int OrderCnt = List.size();
-		int PayOkCnt = List2.size();
-		int OkCnt = List3.size();		
+	public String OrderList(Model model,@RequestParam int type) throws Exception{
+		List<OrderDTO> List = null;
+		List<OrderDTO> all = OrderService.OrderList();
+		List<OrderDTO> pok = OrderService.OrderList_PayOk();
+		List<OrderDTO> ok = OrderService.OrderList_Ok();
+		int OrderCnt = all.size();
+		int PayOkCnt = pok.size();
+		int OkCnt = ok.size();
+		switch (type) {
+		case 1:
+			//일반
+			List = all;
+			break;
+			
+		case 2:
+			//입금확인
+			List = pok;
+			break;
+			
+		case 3:
+			//처리완료
+			List = ok;
+			break;
+		}
+		
 		model.addAttribute("OkCnt",OkCnt);
 		model.addAttribute("OrderCnt",OrderCnt);
 		model.addAttribute("PayOkCnt",PayOkCnt);
@@ -98,37 +116,7 @@ public class AdminController {
 		return "/Admin/OrderList";
 	}
 	
-	//오더리스트 결제완료
-	@RequestMapping("OrderList_PayOK")
-	public String OrderList_PayOK(Model model) throws Exception{
-		List<OrderDTO> List = OrderService.OrderList_PayOk();
-		List<OrderDTO> List2 = OrderService.OrderList();
-		List<OrderDTO> List3 = OrderService.OrderList_OK();
-		int PayOkCnt = List.size();
-		int OrderCnt = List2.size();
-		int OkCnt = List3.size();
-		model.addAttribute("OkCnt",OkCnt);
-		model.addAttribute("OrderCnt",OrderCnt);
-		model.addAttribute("PayOkCnt",PayOkCnt);
-		model.addAttribute("List",List);
-		return "/Admin/OrderList";
-	}
 	
-	//오더리스트 처리완료
-	@RequestMapping("OrderList_OK")
-	public String OrderList_OK(Model model) throws Exception{
-		List<OrderDTO> List = OrderService.OrderList_OK();
-		List<OrderDTO> List2 = OrderService.OrderList_PayOk();
-		List<OrderDTO> List3 = OrderService.OrderList();
-		int OkCnt = List.size();
-		int PayOkCnt = List2.size();
-		int OrderCnt = List3.size();
-		model.addAttribute("OkCnt",OkCnt);
-		model.addAttribute("OrderCnt",OrderCnt);
-		model.addAttribute("PayOkCnt",PayOkCnt);
-		model.addAttribute("List",List);
-		return "/Admin/OrderList";
-	}
 	
 	//오더라인 조회
 	@ResponseBody

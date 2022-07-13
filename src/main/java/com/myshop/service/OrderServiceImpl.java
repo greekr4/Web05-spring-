@@ -71,8 +71,8 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<OrderDTO> OrderList_OK() throws Exception {
-		return dao.OrderList_OK();
+	public List<OrderDTO> OrderList_Ok() throws Exception {
+		return dao.OrderList_Ok();
 	}
 
 
