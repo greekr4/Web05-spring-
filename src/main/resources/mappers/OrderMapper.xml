@@ -32,6 +32,11 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 	<select id="OrderList_PayOk" resultType="com.myshop.dto.OrderDTO">
 		select * from order_master where payment_status = 3 and order_step != 5 order by seq desc
 	</select>
+	
+	<!-- 오더리스트 처리완료 -->
+	<select id="OrderList_Ok" resultType="com.myshop.dto.OrderDTO">
+		select * from order_master where payment_status = 3 and order_step = 5 order by seq desc
+	</select>
 
 	<!-- 오더추가 -->
 	<insert id="OrderAdd">

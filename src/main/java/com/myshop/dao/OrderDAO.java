@@ -27,5 +27,6 @@ public interface OrderDAO {
 	public void UpdateOrder(Map<String,Object> map) throws Exception;
 	//오더리스트 PayOk
 	public List<OrderDTO> OrderList_PayOk() throws Exception;
-	
+	//오더리스트 완료
+	public List<OrderDTO> OrderList_OK() throws Exception;
 }
