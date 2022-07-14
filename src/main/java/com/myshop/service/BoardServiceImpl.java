@@ -43,6 +43,18 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 
+	@Override
+	public void BoardAdd_QNA(BoardDTO DTO) throws Exception {
+		dao.BoardAdd_QNA(DTO);
+		
+	}
+
+	@Override
+	public void QNA_CTN_UP(int seq) throws Exception {
+		dao.QNA_CTN_UP(seq);
+		
+	}
+
 
 
 	

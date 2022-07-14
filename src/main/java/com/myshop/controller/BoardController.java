@@ -36,31 +36,62 @@ public class BoardController {
 	
 	// JSP 연결
 	
-	@RequestMapping("")
+	@RequestMapping("List")
 	public String Board(Model model,@RequestParam int type) throws Exception {
 		List<BoardDTO> List = BoardService.BoardList(type);
 		model.addAttribute("List",List);
 		model.addAttribute("type",type);
-		return "Board/BoardList";
+		return "Board/List";
 	}
 	
 	@RequestMapping("/More")
 	public String BoardMore(Model model,@RequestParam int seq) throws Exception{
 		BoardDTO DTO = BoardService.BoardMore(seq);
 		model.addAttribute("DTO",DTO);
-		return "Board/BoardMore";
+		return "Board/More";
 	}
 	
 	@RequestMapping("/AddForm")
-	public String AddForm() throws Exception {
-		return "Board/BoardAddForm";
+	public String AddForm(@RequestParam int type,Model model) throws Exception {
+		model.addAttribute("type",type);
+		return "Board/AddForm";
+	}
+	@RequestMapping("/AddForm_QNA")
+	public String AddForm_QNA(@RequestParam int qna_seq,Model model) throws Exception {
+		model.addAttribute("qna_seq",qna_seq);
+		return "Board/AddForm_QNA";
+	}
+	
+	@RequestMapping("/EditForm")
+	public String EditForm(@RequestParam int seq,Model model) throws Exception {
+		BoardDTO DTO = BoardService.BoardMore(seq);
+		model.addAttribute("DTO",DTO);
+		return "Board/EditForm";
 	}
 	
 	@RequestMapping("/Add")
 	public void Add(BoardDTO DTO,HttpServletResponse response) throws Exception{
 		BoardService.BoardAdd(DTO);
 		String alertText = "작성되었습니다.";
-		String nextPage = "./?type="+DTO.getType();
+		String nextPage = "./List?type="+DTO.getType();
+		ScriptUtils.alertAndMovePage(response, alertText, nextPage);
+	}
+	
+	@RequestMapping("/AddQNA")
+	public void AddQNA(BoardDTO DTO,HttpServletResponse response) throws Exception{
+		//int seq = DTO.getSeq();
+		BoardService.BoardAdd_QNA(DTO);
+		//BoardService.QNA_CTN_UP(seq);
+		String alertText = "작성되었습니다.";
+		String nextPage = "./List?type="+DTO.getType();
+		ScriptUtils.alertAndMovePage(response, alertText, nextPage);
+	}
+	
+	@RequestMapping("/Edit")
+	public void Edit(BoardDTO DTO,HttpServletResponse response) throws Exception{
+		BoardService.BoardEdit(DTO);
+		String alertText = "수정되었습니다.";
+		String nextPage = "./List?type="+DTO.getType();
 		ScriptUtils.alertAndMovePage(response, alertText, nextPage);
 	}
 

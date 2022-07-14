@@ -75,7 +75,17 @@ response.setCharacterEncoding("utf-8");
         <div id="container">
             <div id="container_wrap">
   	        <section class="page1">
-				<form action="${path }/Board/Add" method="post" >
+  	        	
+				<form 
+				<c:choose>
+				<c:when test="${type eq 5}">
+				action="${path }/Board/AddQNA"
+				</c:when>
+				<c:otherwise>
+				action="${path }/Board/Add"
+				</c:otherwise>
+				</c:choose>
+				method="post" >
                     <div class="table_form_wrap">
                         <table class="table_form">
                             <tbody>
@@ -83,11 +93,21 @@ response.setCharacterEncoding("utf-8");
                             		<th><label for="type">카테고리</label>
                             		<td>
                             		<select name="type" id="type">
+                            			<c:choose>
+                            			<c:when test="${type eq 5 }">
+                            			<option value="5">QNA</option>
+                            			</c:when>
+                            			<c:otherwise>
                             			<option value="1">공지사항</option>
                             			<option value="3">FAQ</option>
-                            			<option value="5">QNA</option>
+                            			</c:otherwise>
+                            			</c:choose>
+
                             		</select>
                             		<input type="hidden" name="cus_seq" value="${scus_seq }">
+                            		<c:if test="${type eq 5 }">
+                            		<input type="hidden" name="qna_code" value="1" />
+                            		</c:if>
                             		</td>
                             	</tr>
                             
@@ -101,7 +121,8 @@ response.setCharacterEncoding("utf-8");
                                 <tr>
                                     <th><label for="dtitle">제목</label></th>
                                     <td><input type="text" name="title" id="title" size="100" class="single100"
-                                            placeholder="글제목 입력" required></td>
+                                            placeholder="글 제목 입력" required></td>
+                                    
                                 </tr>
                                 <tr>
                                     <th><label for="editor">내용</label></th>
@@ -125,6 +146,14 @@ response.setCharacterEncoding("utf-8");
 <script type="text/javascript">
 
 ck = CKEDITOR.replace('editor',{filebrowserUploadUrl:'${path}/Admin/imageUpload'});
+
+var type = ${type};
+switch (type) {
+case 3:
+	$('#type').val(3).prop("selected",true);
+	break;
+}
+
 
 //네이게이션바
 $('.location_select').eq(0).click(function () {

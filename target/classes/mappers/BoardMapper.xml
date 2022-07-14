@@ -41,6 +41,19 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 	delete from board where seq = #{seq}
 </delete>
 
+<!-- 답변 -->
+<insert id="BoardAdd_QNA">
+	 insert into board (cus_seq,type,title,content,qna_code,qna_seq)
+	value (#{cus_seq},5,#{title},#{content},#{qna_code},#{qna_seq})
+</insert>
+
+<!-- 답변수 +1 -->
+<update id="QNA_CTN_UP">
+	update board set
+	qna_cnt = qna_cnt + 1
+	where seq = #{seq}
+</update>
+
 	
 
 </mapper>

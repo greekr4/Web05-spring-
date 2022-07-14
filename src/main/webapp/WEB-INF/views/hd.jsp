@@ -94,7 +94,7 @@
                     <li class="main">
                         <label class="main_label">커뮤니티</label>
                         <ul>
-                            <li class="sub"><a href="${path }/Board/?type=1">공지사항</a></li>
+                            <li class="sub"><a href="${path }/Board/List?type=1">공지사항</a></li>
                             <li class="sub"><a href="">문의게시판</a></li>
                             <li class="sub"><a href="">동협게시판</a></li>
                             <li class="sub"><a href="">재영게시판</a></li>

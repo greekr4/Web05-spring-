@@ -15,7 +15,7 @@ public class BoardDTO {
 	private String content;
 	private int cnt;
 	private int rec;
-	private int qan_code;
+	private int qna_code;
 	private int qna_seq;
 	private Date regdate;
 	private String name;

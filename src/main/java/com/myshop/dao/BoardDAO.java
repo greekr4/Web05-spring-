@@ -15,5 +15,8 @@ public interface BoardDAO {
 	public void BoardEdit(BoardDTO DTO) throws Exception;
 	//글 삭제
 	public void BoardDel(int seq) throws Exception;
-
+	//QNA 글작성
+	public void BoardAdd_QNA(BoardDTO DTO) throws Exception;
+	//QNA_CNT_UP
+	public void QNA_CTN_UP(int seq) throws Exception;
 }

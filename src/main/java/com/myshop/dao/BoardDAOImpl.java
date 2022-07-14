@@ -44,6 +44,18 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSession.delete(namespace+".BoardDel",seq);
 	}
 
+	@Override
+	public void BoardAdd_QNA(BoardDTO DTO) throws Exception {
+		sqlSession.insert(namespace+".BoardAdd_QNA",DTO);
+		
+	}
+
+	@Override
+	public void QNA_CTN_UP(int seq) throws Exception {
+		sqlSession.update(namespace+".QNA_CTN_UP",seq);
+		
+	}
+
 
 	
 	

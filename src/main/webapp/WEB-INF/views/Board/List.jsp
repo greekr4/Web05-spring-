@@ -450,7 +450,7 @@ response.setCharacterEncoding("utf-8");
                                     <input type="hidden" id="type" name="type" value="2">
                                     <input type="text" id="search" name="search">
                                     <button type="submit" class="btn_clear">검색</button>
-                                    <button type="button" style="float: right;" onclick="location.href='${path}/Board/AddForm'" class="btn_clear">글쓰기</button>
+                                    <button type="button" style="float: right;" onclick="location.href='${path}/Board/AddForm?type=${type }'" class="btn_clear">글쓰기</button>
                                 </form>
                             </div>
                             <!-- /검색 -->
@@ -472,6 +472,55 @@ response.setCharacterEncoding("utf-8");
                             </tr>
                         </thead>
                         <tbody>
+                        
+                        <c:choose>
+                        <c:when test="${type eq 5 }"> 	<!-- QNA일때 -->
+                        	<c:forEach items="${List }" var="DTO">
+                        	<c:if test="${DTO.qna_code eq 1 }">
+                        	<tr class="even">
+                                <td class="td_num2">${DTO.seq }</td>
+                                <td class="td_subject" style="padding-left:0px">
+                                    <div class="bo_tit"><span style="font-weight: bold;">Q.</span>
+                                        <a href="${path }/Board/More?seq=${DTO.seq}">${DTO.title }
+
+                                            (<span style="color: red;">1</span>)
+
+                                        </a>
+                                    </div>
+                                </td>
+                                <td class="td_name sv_use"><span class="sv_member">${DTO.email }</span></td>
+                                <td class="td_num">${DTO.cnt }</td>
+                                <td class="td_datetime"><fmt:formatDate value="${DTO.regdate }" pattern="YY-MM-dd"/></td>
+                        		</tr>
+                        		
+                        		   <c:forEach items="${List }" var="DTO2">
+                        		   		<c:if test="${DTO2.qna_seq eq DTO.seq }">
+                        		   		<!-- 답글이있을때 -->
+			                        		<tr class="even">
+			                                <td class="td_num2">${DTO2.seq }</td>
+			                                <td class="td_subject" style="padding-left:0px">
+			                                    <div class="bo_tit"><span style="padding-left: 2em; font-weight: bold;">A.</span>
+			                                        <a href="${path }/Board/More?seq=${DTO2.seq}">${DTO2.title }
+			
+			                                            (<span style="color: red;">1</span>)
+			
+			                                        </a>
+			                                    </div>
+			                                </td>
+			                                <td class="td_name sv_use"><span class="sv_member">${DTO2.email }</span></td>
+			                                <td class="td_num">${DTO2.cnt }</td>
+			                                <td class="td_datetime"><fmt:formatDate value="${DTO2.regdate }" pattern="YY-MM-dd"/></td>
+			                        		</tr>
+                        		   		
+                        		   		</c:if>
+                        		   
+                        		   </c:forEach>
+                        		</c:if>
+                        	</c:forEach>
+                        </c:when>
+                        
+                        
+                        <c:otherwise>					<!-- 그외 -->
                         <c:forEach items="${List }" var="DTO">
                         <tr class="even">
                                 <td class="td_num2">${DTO.seq }</td>
@@ -489,6 +538,10 @@ response.setCharacterEncoding("utf-8");
                                 <td class="td_datetime"><fmt:formatDate value="${DTO.regdate }" pattern="YY-MM-dd"/></td>
                         </tr>
                         </c:forEach>
+                        </c:otherwise>
+                        </c:choose>
+                        
+                       
                             
 
                         </tbody>

@@ -17,6 +17,7 @@ response.setCharacterEncoding("utf-8");
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insert title here</title>
     <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script src="${path }/ckeditor/ckeditor.js"></script>
     <link rel="stylesheet" href="${path }/resources/css/common.css">
     <link rel="stylesheet" href="${path }/resources/css/main.css">
     <link rel="stylesheet" href="${path }/resources/css/style.css">
@@ -37,81 +38,28 @@ response.setCharacterEncoding("utf-8");
         }
 	
 	
-		        input, textarea{
-        border: 1px solid #777;
-        font-size: 0.9em;
-        line-height: 2em;
-        padding-left: 1em;
-        padding-top: 5px;
+		 input,textarea {
+            font-size: 12px;
+            line-height: 2em;
+            padding-left: 1em;
+            margin-bottom: 5px;
+            width: 850px;
+            
         }
-        
-        .table_wrap{
-        width: 1400px;
-        margin: 150px auto;
+        #container_wrap {
+            clear: both;
+            width: 1000px;
+            margin: 100px auto;
         }
-        .table_wrap table {
-        width: 100%;
-        margin: 0 auto;	
-        table-layout: fixed;
-        border-spacing: 0;
+        button {
+            width: 150px;
+            height: 30px;
+            margin: 5px 0;
+        }        
+        select {
+        	margin-bottom: 5px;
+            
         }
-        .table_wrap .top_info th{
-        border-bottom: 1px solid #777;
-        }
-        .table_wrap .main_tit{
-        border-bottom: 1px solid #777;
-		line-height: 3em;
-        }
-        .table_wrap .main_con{
-        text-align: left;
-        vertical-align:top;
-        min-width: 100%;
-        height: 500px;
-        line-height: 1.5em;
-        padding-left: 2em;
-        padding-top: 2em;
-        }
-        .table_wrap .main_btn{
-        border-bottom: 1px solid #777;
-        }
-        .table_wrap button{
-        height: 30px;
-        width: 50px;
-        margin-bottom: 10px;
-        }
-        .table_wrap .foot_btn td{
-        text-align:right;
-        padding-top: 10px;
-        }
-        .table_wrap .top_info{
-        color: #999;
-        }
-        table.comment {
-        margin-top: 100px;
-         }
-        .comment .comment_thumb{
-        text-align: right;
-        }
-        .comment .comment_top td{
-        border-bottom: 1px solid #777;
-        padding-bottom: 10px;
-        }
-        .comment .comment_main_info{
-        color: #777;
-        }
-        .comment .comment_main_info td{
-        padding-top: 12px;
-        }
-        .comment .comment_main_con td{
-        padding-top: 12px;
-        height: 100px;
-        vertical-align: top;
-        }
-        table.comment_form{
-        margin-top: 50px;
-        }
-        .c_comment td {padding-left: 30px;}
- 
     </style>
 </head>
 <body>
@@ -127,171 +75,65 @@ response.setCharacterEncoding("utf-8");
         <div id="container">
             <div id="container_wrap">
   	        <section class="page1">
-				<div class="table_wrap">
-    <iframe width=0 height=0 name="hiddenframe1" style="display:none;"></iframe>
-    <table>
-    <thead>
-    <tr class="top_type">
-    <th colspan="3">
-    
-    <h3>공지사항</h3>
-    
-    
-    
-    </th>
-    </tr>
-    <tr class="top_info">
-    <th>${DTO.email }</th>
-    <th><fmt:formatDate value="${DTO.regdate }" pattern="YY-MM-dd"/></th>
-    <th>조회: ${DTO.cnt } 추천: ${DTO.rec }</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-    <th colspan="3" class="main_tit">
-    <h1>${DTO.title }</h1>
-    </th>
-    </tr>
-    <tr>
-    <th colspan="3" class="main_con">
-    ${DTO.content }
-    </th>
-    </tr>
-    <tr>
-    <th colspan="3" class="main_btn"><button class="btn_white" onclick="window.open('/myapp/board/thumbup?no=196','hiddenframe1')">추천</button></th>
-    </tr>
-    </tbody>
-    <tfoot>
-    <tr class="foot_btn">
-    <td colspan="3">
-    
-    <button class="btn_white" class="btn_white" onclick="location.href = '/myapp/board/notice.html'">목록</button>
-    
-    
-    
-    
-    
-    <button class="btn_white" onclick="location.href = '/myapp/board/EditForm?no=196'">수정</button>
-    <button class="btn_white" onclick="location.href = '/myapp/board/del?no=196&type=1'">삭제</button>
-    
-    </td>
-    </tr>
-    </tfoot>
-    </table>
-    <table class="comment">
-    <thead>
-    <tr class="comment_top">
-    <td colspan="3" style="text-align: left;">댓글<span style="color: red;">(1)</span></td>
-    </tr>
-    </thead>
-    <tbody>
-    
-    
-    
-    <tr class="comment_main_info">
-    <td colspan="2" class="comment_winfo">
-    admin2 | 2022-06-27
-    
-    <button class="btn_white" onclick="$('.cc_form').eq(0).css('display','block')">답글</button>
-    
-        
-        <!-- 아이디가 같으면 -->
-        <button class="btn_white" onclick="$('.c_con').eq(0).css('display','none');$('.cedit_form').eq(0).css('display','block')">수정</button>
-        <button class="btn_white" onclick="window.open('/myapp/board/cdel?cno=27&no=196','hiddenframe1')">삭제</button>
-        
-        
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    </td>
-    <td class="comment_thumb">
-    추천:2
-    <button class="btn_white" onclick="window.open('/myapp/board/cthumbup?cno=27','hiddenframe1')">추천</button>
-    </td>
-    </tr>
-    <tr class="comment_main_con">
-    <td colspan="3">
-    <span class="c_con">댓글입니다.</span>
-    <form action="/myapp/board/cUpdate" class="cedit_form" method="POST" style="display: none;">
-    <input type="hidden" name="cno" id="cno" value="27">
-    <input type="text" name="con" id="con" class="input_con" value="댓글입니다.">
-    <button class="btn_white" type="submit">수정</button>
-    </form>
-    </td>
-    </tr>
-    
-    <tr class="cc_form" style="display:none;">
-    <td>
-    <form action="/myapp/board/ccWrite" method="POST">
-    <input type="hidden" name="cno" value="27">
-    <input type="hidden" name="writer" value="admin2">
-    <input type="text" name="con">
-    <button class="btn_white">작성</button>
-    </form>
-    </td>
-    
-    </tr>
-    
-    
-    
-     
-         
-         <tr class="c_comment">
-         <td colspan="2"> ㄴ>&nbsp;&nbsp;&nbsp;admin2 | 2022-06-27
-         
-        
-        <!-- 아이디가 같으면 -->
-        <button class="btn_white" onclick="window.open('/myapp/board/ccdel?ccno=24','hiddenframe1')">삭제</button>
-        
-        
-        
-    
-    
-         
-         
-         </td>
-         <td style="text-align: right;">추천:1
-         <button class="btn_white" onclick="window.open('/myapp/board/ccthumbup?ccno=24','hiddenframe1')">추천</button>
-         </td>
-         </tr>
-         <tr class="c_comment">
-         <td style="height: 50px; vertical-align: top;">대댓글입니다.</td>
-         </tr>
-         
-     
-    
-    
-    
-    
-    
-    </tbody>
-    </table>
-    
-    <form action="/myapp/board/cWrite" id="comment_form" method="post">
-    <input type="hidden" name="bno" value="196">
-    <input type="hidden" name="writer" value="admin2">
-    <table class="comment_form">
-    <tbody>
-    <tr>
-    <td colspan="2" style="width:95%;"><input style="width: 100%;" type="text" name="con" id="con" class="con" placeholder="댓글을 작성해보세요" required></td>
-    <td style="padding-top: 10px; text-align: right;"><button class="btn_white" type="submit">작성</button></td>
-    </tr>
-    </tbody>
-    </table>
-    </form>
-    
-     </div>
+				<form action="${path }/Board/AddQNA" method="post" >
+                    <div class="table_form_wrap">
+                        <table class="table_form">
+                            <tbody>
+                            	<tr>
+                            		<th><label for="type">카테고리</label>
+                            		<td>
+                            		<select name="type" id="type">
+                            			<option value="5" selected>QNA-답변</option>
+                            		</select>
+                            		<input type="hidden" name="cus_seq" value="${scus_seq }">
+                            		<input type="hidden" name="qna_seq" value="${qna_seq }">
+                            		<input type="hidden" name="qna_code" value="3" />
+                            		</td>
+                            	</tr>
+                            
+								<!--
+                                 <tr>
+                                    <th><label for="writer">작성자</label></th>
+                                    <td><input type="text" name="writer" id="writer" size="100" class="single100"
+                                            placeholder="작성자 입력" value=""> </td>
+                                </tr> 
+                                -->
+                                <tr>
+                                    <th><label for="dtitle">제목</label></th>
+                                    <td><input type="text" name="title" id="title" size="100" class="single100"
+                                            placeholder="글 제목 입력" required></td>
+                                    
+                                </tr>
+                                <tr>
+                                    <th><label for="editor">내용</label></th>
+                                    <td><textarea name="content" id="editor" cols="100" rows="8"
+                                            class="multi100" placeholder="글 내용 입력" required></textarea></td>
+                                </tr>                                
+                                <tr>
+                                    <th></th>
+                                    <td>
+                                        <button class="btn_white" type="submit">등록</button>
+                                        <button class="btn_white" type="reset">취소</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
             </section>
             </div>
         </div>
 <script type="text/javascript">
+
+ck = CKEDITOR.replace('editor',{filebrowserUploadUrl:'${path}/Admin/imageUpload'});
+
+var type = ${type};
+switch (type) {
+case 3:
+	$('#type').val(3).prop("selected",true);
+	break;
+}
+
 
 //네이게이션바
 $('.location_select').eq(0).click(function () {
