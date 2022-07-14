@@ -3,6 +3,7 @@ package com.myshop.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -35,13 +36,33 @@ public class BoardController {
 	
 	// JSP 연결
 	
-	@RequestMapping("/")
+	@RequestMapping("")
 	public String Board(Model model,@RequestParam int type) throws Exception {
 		List<BoardDTO> List = BoardService.BoardList(type);
 		model.addAttribute("List",List);
-		return "Board/Board";
+		model.addAttribute("type",type);
+		return "Board/BoardList";
 	}
 	
+	@RequestMapping("/More")
+	public String BoardMore(Model model,@RequestParam int seq) throws Exception{
+		BoardDTO DTO = BoardService.BoardMore(seq);
+		model.addAttribute("DTO",DTO);
+		return "Board/BoardMore";
+	}
+	
+	@RequestMapping("/AddForm")
+	public String AddForm() throws Exception {
+		return "Board/BoardAddForm";
+	}
+	
+	@RequestMapping("/Add")
+	public void Add(BoardDTO DTO,HttpServletResponse response) throws Exception{
+		BoardService.BoardAdd(DTO);
+		String alertText = "작성되었습니다.";
+		String nextPage = "./?type="+DTO.getType();
+		ScriptUtils.alertAndMovePage(response, alertText, nextPage);
+	}
 
 	
 	

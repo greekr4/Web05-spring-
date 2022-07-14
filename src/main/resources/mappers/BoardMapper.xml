@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
  <!-- 추가 -->
  <insert id="BoardAdd">
  	insert into board (cus_seq,type,title,content)
-	value (#{cus_seq},#{type},{title},{content})
+	value (#{cus_seq},#{type},#{title},#{content})
  </insert>
  
  <!-- 수정 -->

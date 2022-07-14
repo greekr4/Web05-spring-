@@ -19,6 +19,30 @@ public class BoardServiceImpl implements BoardService {
 		return dao.BoardList(type);
 	}
 
+	@Override
+	public BoardDTO BoardMore(int seq) throws Exception {
+
+		return dao.BoardMore(seq);
+	}
+
+	@Override
+	public void BoardAdd(BoardDTO DTO) throws Exception {
+		dao.BoardAdd(DTO);
+		
+	}
+
+	@Override
+	public void BoardEdit(BoardDTO DTO) throws Exception {
+		dao.BoardEdit(DTO);
+		
+	}
+
+	@Override
+	public void BoardDel(int seq) throws Exception {
+		dao.BoardDel(seq);
+		
+	}
+
 
 
 	

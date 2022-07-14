@@ -24,6 +24,26 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectList(namespace+".BoardList",type);
 	}
 
+	@Override
+	public BoardDTO BoardMore(int seq) throws Exception {
+		return sqlSession.selectOne(namespace+".BoardMore",seq);
+	}
+
+	@Override
+	public void BoardAdd(BoardDTO DTO) throws Exception {
+		sqlSession.insert(namespace+".BoardAdd",DTO);
+	}
+
+	@Override
+	public void BoardEdit(BoardDTO DTO) throws Exception {
+		sqlSession.update(namespace+".BoardEdit",DTO);
+	}
+
+	@Override
+	public void BoardDel(int seq) throws Exception {
+		sqlSession.delete(namespace+".BoardDel",seq);
+	}
+
 
 	
 	

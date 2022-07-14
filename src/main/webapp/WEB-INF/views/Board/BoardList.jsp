@@ -421,11 +421,24 @@ response.setCharacterEncoding("utf-8");
                     <div class="visual">
                         <div class="tit_box">
                             <h3>Bn2U</h3>
-                            <p>EVERYDAY BESTBUY</p>
+                            <c:choose>
+                            <c:when test="${type eq 1 }">
+                            <p>NOTICE BOARD</p>
+                            </c:when>
+                            <c:when test="${type eq 3 }">
+                            <p>FAQ BOARD</p>
+                            </c:when>
+                            <c:when test="${type eq 5 }">
+                            <p>QNA BOARD</p>
+                            </c:when>
+                            <c:otherwise>
+                            <p>잘못된 접근</p>
+                            </c:otherwise>                                                        
+                            </c:choose>
+                            
                         </div>
                     </div>
                     <div class="board">
-                <p class="page_tit">공지사항</p>
                 <div class="table_warp">
                             <!-- 검색 -->
                             <div class="search_box">
@@ -437,6 +450,7 @@ response.setCharacterEncoding("utf-8");
                                     <input type="hidden" id="type" name="type" value="2">
                                     <input type="text" id="search" name="search">
                                     <button type="submit" class="btn_clear">검색</button>
+                                    <button type="button" style="float: right;" onclick="location.href='${path}/Board/AddForm'" class="btn_clear">글쓰기</button>
                                 </form>
                             </div>
                             <!-- /검색 -->
@@ -458,21 +472,24 @@ response.setCharacterEncoding("utf-8");
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="even">
-                                <td class="td_num2">196 ${List }</td>
+                        <c:forEach items="${List }" var="DTO">
+                        <tr class="even">
+                                <td class="td_num2">${DTO.seq }</td>
                                 <td class="td_subject" style="padding-left:0px">
                                     <div class="bo_tit">
-                                        <a href="/myapp/board/more1.html">공지사항입니다.
+                                        <a href="${path }/Board/More?seq=${DTO.seq}">${DTO.title }
 
                                             (<span style="color: red;">1</span>)
 
                                         </a>
                                     </div>
                                 </td>
-                                <td class="td_name sv_use"><span class="sv_member">admin2</span></td>
-                                <td class="td_num">8</td>
-                                <td class="td_datetime">22-06-27</td>
-                            </tr>
+                                <td class="td_name sv_use"><span class="sv_member">${DTO.email }</span></td>
+                                <td class="td_num">${DTO.cnt }</td>
+                                <td class="td_datetime"><fmt:formatDate value="${DTO.regdate }" pattern="YY-MM-dd"/></td>
+                        </tr>
+                        </c:forEach>
+                            
 
                         </tbody>
                     </table>
