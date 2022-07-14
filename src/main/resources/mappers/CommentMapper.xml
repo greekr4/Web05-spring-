@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.myshop.CommentMapper">
+
+<!-- 댓글 -->
+	
+	
+	<!-- 댓글 리스트 -->
+	<select id="CommentList" resultType="com.myshop.dto.CommentDTO">
+	select a.*,b.name,b.email from comment a
+    inner join customer b
+    on (a.cus_seq = b.seq)
+	where a.board_seq = #{board_seq}
+    order by a.seq desc
+	</select>
+	
+	<insert id="CommentAdd">
+	insert into comment (cus_seq,board_seq,content)
+ 	value (#{cus_seq},#{board_seq},#{content})					
+	</insert>
+	
+	<update id="CommentEdit">
+	update comment
+	set content = #{content}
+	where seq = #{seq}
+	</update>
+	
+	<delete id="CommentDel">
+	delete from comment
+	where seq = #{seq}
+	</delete>
+
+	<update id="Comment_REC_UP">
+	update comment
+	set rec = rec + 1
+	where seq = #{seq}
+	</update>
+
+	<!-- 본글 삭제시 -->
+	<delete id="CommentDel_All">
+	delete from comment
+	where board_seq = #{board_seq}
+	</delete>
+
+
+
+<!-- 대댓글 -->
+	
+
+</mapper>

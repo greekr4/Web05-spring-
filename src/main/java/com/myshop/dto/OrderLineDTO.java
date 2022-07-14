@@ -3,8 +3,11 @@ package com.myshop.dto;
 
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class OrderLineDTO {
 	private int seq;
 	private int order_no;

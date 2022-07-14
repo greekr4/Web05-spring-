@@ -19,4 +19,7 @@ public interface BoardDAO {
 	public void BoardAdd_QNA(BoardDTO DTO) throws Exception;
 	//QNA_CNT_UP
 	public void QNA_CTN_UP(int seq) throws Exception;
+	//QNA 원글 삭제시
+	public void QNA_DEL_ALL(int qna_seq) throws Exception;
+	
 }

@@ -483,7 +483,9 @@ response.setCharacterEncoding("utf-8");
                                     <div class="bo_tit"><span style="font-weight: bold;">Q.</span>
                                         <a href="${path }/Board/More?seq=${DTO.seq}">${DTO.title }
 
-                                            (<span style="color: red;">1</span>)
+											<c:if test="${DTO.reply_cnt > 0 }">
+                                    	        (<span style="color: red;">${DTO.reply_cnt }</span>)
+                                            </c:if>
 
                                         </a>
                                     </div>
@@ -502,7 +504,9 @@ response.setCharacterEncoding("utf-8");
 			                                    <div class="bo_tit"><span style="padding-left: 2em; font-weight: bold;">A.</span>
 			                                        <a href="${path }/Board/More?seq=${DTO2.seq}">${DTO2.title }
 			
-			                                            (<span style="color: red;">1</span>)
+													<c:if test="${DTO.reply_cnt > 0 }">
+		                                            	(<span style="color: red;">${DTO.reply_cnt }</span>)
+		                                            </c:if>
 			
 			                                        </a>
 			                                    </div>
@@ -527,8 +531,9 @@ response.setCharacterEncoding("utf-8");
                                 <td class="td_subject" style="padding-left:0px">
                                     <div class="bo_tit">
                                         <a href="${path }/Board/More?seq=${DTO.seq}">${DTO.title }
-
-                                            (<span style="color: red;">1</span>)
+											<c:if test="${DTO.reply_cnt > 0 }">
+                                            (<span style="color: red;">${DTO.reply_cnt }</span>)
+                                            </c:if>
 
                                         </a>
                                     </div>

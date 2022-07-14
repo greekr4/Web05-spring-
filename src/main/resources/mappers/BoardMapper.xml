@@ -47,12 +47,22 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 	value (#{cus_seq},5,#{title},#{content},#{qna_code},#{qna_seq})
 </insert>
 
+<!-- 답변 원글 삭제시 -->
+<delete id="QNA_DEL_ALL">
+	delete from board where qna_seq = #{qna_seq}
+
+</delete>
+
+
 <!-- 답변수 +1 -->
 <update id="QNA_CTN_UP">
 	update board set
 	qna_cnt = qna_cnt + 1
 	where seq = #{seq}
 </update>
+
+<!-- 댓글 수 업데이트 -->
+
 
 	
 

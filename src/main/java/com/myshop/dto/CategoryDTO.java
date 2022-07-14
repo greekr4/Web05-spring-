@@ -2,9 +2,12 @@ package com.myshop.dto;
 
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 
-@Data
+@Getter
+@Setter
 public class CategoryDTO {
 	private int seq;
 	private int orderby;

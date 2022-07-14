@@ -4,9 +4,11 @@ import java.util.Date;
 
 import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 
 
-@Data
+@Getter
+@Setter
 public class CustomerDTO {
 	private int seq;			//식별번호
 	private int state;			//회원상태

@@ -56,6 +56,12 @@ public class BoardDAOImpl implements BoardDAO {
 		
 	}
 
+	@Override
+	public void QNA_DEL_ALL(int qna_seq) throws Exception {
+		sqlSession.delete(namespace+".QNA_DEL_ALL",qna_seq);
+		
+	}
+
 
 	
 	

@@ -7,21 +7,13 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class BoardDTO {
+public class CommentDTO {
 	private int seq;
 	private int cus_seq;
-	private int type;
-	private String title;
+	private int board_seq;
 	private String content;
-	private int cnt;
 	private int rec;
-	private int qna_code;
-	private int qna_seq;
 	private Date regdate;
 	private String name;
 	private String email;
-	private int reply_cnt;
-							
-							
-
 }

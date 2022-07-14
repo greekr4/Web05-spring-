@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.myshop.dto.BoardDTO;
+import com.myshop.dto.CommentDTO;
 import com.myshop.service.BoardService;
+import com.myshop.service.CommentService;
 import com.myshop.util.ScriptUtils;
 
 /**
@@ -30,7 +32,11 @@ public class BoardController {
 	private BoardService BoardService;
 	
 	@Inject
+	private CommentService CommentService; 
+	
+	@Inject
 	private HttpSession session;
+	
 	
 	ScriptUtils ScriptUtils = new ScriptUtils();
 	
@@ -47,7 +53,9 @@ public class BoardController {
 	@RequestMapping("/More")
 	public String BoardMore(Model model,@RequestParam int seq) throws Exception{
 		BoardDTO DTO = BoardService.BoardMore(seq);
+		List<CommentDTO> CList = CommentService.CommentList(seq);
 		model.addAttribute("DTO",DTO);
+		model.addAttribute("CList",CList);
 		return "Board/More";
 	}
 	
@@ -93,6 +101,41 @@ public class BoardController {
 		String alertText = "수정되었습니다.";
 		String nextPage = "./List?type="+DTO.getType();
 		ScriptUtils.alertAndMovePage(response, alertText, nextPage);
+	}
+	
+	@RequestMapping("/Del")
+	public void Del(@RequestParam int seq,@RequestParam int type,HttpServletResponse response) throws Exception{
+		BoardService.BoardDel(seq);
+		CommentService.CommentDel_All(seq);
+		String alertText = "삭제되었습니다.";
+		String nextPage = "./List?type="+type;
+		ScriptUtils.alertAndMovePage(response, alertText, nextPage);
+	}
+	
+	///////////////////////////댓글
+	
+	@RequestMapping("/CommentAdd")
+	public void CommentAdd(CommentDTO DTO,HttpServletResponse response) throws Exception{
+		CommentService.CommentAdd(DTO);
+		ScriptUtils.alertAndBackPage(response, "댓글이 작성되었습니다.");
+	}
+	
+	@RequestMapping("/CommentEdit")
+	public void CommentEdit(CommentDTO DTO,HttpServletResponse response) throws Exception{
+		CommentService.CommentEdit(DTO);
+		ScriptUtils.alertAndBackPage(response, "댓글이 수정되었습니다.");
+	}
+	
+	@RequestMapping("/CommentDel")
+	public void CommentDel(@RequestParam int seq,HttpServletResponse response) throws Exception{
+		CommentService.CommentDel(seq);
+		ScriptUtils.alertAndClose(response, "댓글이 삭제되었습니다.");
+	}
+	
+	@RequestMapping("/CommentREC_UP")
+	public void CommentREC_UP(@RequestParam int seq,HttpServletResponse response) throws Exception{
+		CommentService.Comment_REC_UP(seq);
+		ScriptUtils.alertAndClose(response, "댓글을 추천하셨습니다.");
 	}
 
 	

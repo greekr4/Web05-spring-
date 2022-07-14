@@ -222,9 +222,10 @@ response.setCharacterEncoding("utf-8");
         .table {
             display:table;
             border-collapse: collapse;
-            width: 100%;
+            width: 60%;
             text-align: left;
             font-size: 1em;
+            margin: 0 auto;
         }
         .table tr{
             display: table-row;
@@ -250,17 +251,17 @@ response.setCharacterEncoding("utf-8");
         }
         .table tr:nth-child(1) td input{
             height: 32px;
-            width: 50%;
+            width: 80%;
             border: 1px solid #c1c1c1;
         }        
         .table tr:nth-child(2) td input{
             height: 32px;
-            width: 50%;
+            width: 80%;
             border: 1px solid #c1c1c1;
         }
         .table tr:nth-child(3) td input{
             height: 32px;
-            width: 25.5%;
+            width: 54.5%;
             border: 1px solid #c1c1c1;
         }
         .table tr:nth-child(4) td input{

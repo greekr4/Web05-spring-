@@ -127,12 +127,7 @@ response.setCharacterEncoding("utf-8");
 
 ck = CKEDITOR.replace('editor',{filebrowserUploadUrl:'${path}/Admin/imageUpload'});
 
-var type = ${type};
-switch (type) {
-case 3:
-	$('#type').val(3).prop("selected",true);
-	break;
-}
+
 
 
 //네이게이션바

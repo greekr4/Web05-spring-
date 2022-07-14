@@ -39,6 +39,8 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void BoardDel(int seq) throws Exception {
+		
+		dao.QNA_DEL_ALL(seq);	
 		dao.BoardDel(seq);
 		
 	}

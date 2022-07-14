@@ -171,7 +171,7 @@ response.setCharacterEncoding("utf-8");
     <tr>
     <th colspan="3" class="main_btn">
     <button class="btn_white" onclick="window.open('/myapp/board/thumbup?no=196','hiddenframe1')">추천</button>
-    <c:if test="${DTO.type eq 5 }">
+    <c:if test="${DTO.type eq 5 && DTO.qna_code eq 1 }">
     <button class="btn_white" onclick="location.href='${path}/Board/AddForm_QNA?qna_seq=${DTO.seq }'">답글</button>
     </c:if>
     </th>
@@ -188,7 +188,7 @@ response.setCharacterEncoding("utf-8");
     
     
     <button class="btn_white" onclick="location.href = '${path}/Board/EditForm?seq=${DTO.seq }'">수정</button>
-    <button class="btn_white" onclick="location.href = '/myapp/board/del?no=196&type=1'">삭제</button>
+    <button class="btn_white" onclick="location.href = '${path}/Board/Del?seq=${DTO.seq }&type=${DTO.type }'">삭제</button>
     
     </td>
     </tr>
@@ -197,106 +197,111 @@ response.setCharacterEncoding("utf-8");
     <table class="comment">
     <thead>
     <tr class="comment_top">
-    <td colspan="3" style="text-align: left;">댓글<span style="color: red;">(1)</span></td>
+    <td colspan="3" style="text-align: left;">댓글<span style="color: red;">(${fn:length(CList) })</span></td>
     </tr>
     </thead>
     <tbody>
     
     
-    
-    <tr class="comment_main_info">
-    <td colspan="2" class="comment_winfo">
-    admin2 | 2022-06-27
-    
-    <button class="btn_white" onclick="$('.cc_form').eq(0).css('display','block')">답글</button>
-    
-        
-        <!-- 아이디가 같으면 -->
-        <button class="btn_white" onclick="$('.c_con').eq(0).css('display','none');$('.cedit_form').eq(0).css('display','block')">수정</button>
-        <button class="btn_white" onclick="window.open('/myapp/board/cdel?cno=27&no=196','hiddenframe1')">삭제</button>
-        
-        
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    </td>
-    <td class="comment_thumb">
-    추천:2
-    <button class="btn_white" onclick="window.open('/myapp/board/cthumbup?cno=27','hiddenframe1')">추천</button>
-    </td>
-    </tr>
-    <tr class="comment_main_con">
-    <td colspan="3">
-    <span class="c_con">댓글입니다.</span>
-    <form action="/myapp/board/cUpdate" class="cedit_form" method="POST" style="display: none;">
-    <input type="hidden" name="cno" id="cno" value="27">
-    <input type="text" name="con" id="con" class="input_con" value="댓글입니다.">
-    <button class="btn_white" type="submit">수정</button>
-    </form>
-    </td>
-    </tr>
-    
-    <tr class="cc_form" style="display:none;">
-    <td>
-    <form action="/myapp/board/ccWrite" method="POST">
-    <input type="hidden" name="cno" value="27">
-    <input type="hidden" name="writer" value="admin2">
-    <input type="text" name="con">
-    <button class="btn_white">작성</button>
-    </form>
-    </td>
-    
-    </tr>
-    
-    
-    
-     
-         
-         <tr class="c_comment">
-         <td colspan="2"> ㄴ>&nbsp;&nbsp;&nbsp;admin2 | 2022-06-27
-         
-        
-        <!-- 아이디가 같으면 -->
-        <button class="btn_white" onclick="window.open('/myapp/board/ccdel?ccno=24','hiddenframe1')">삭제</button>
-        
-        
-        
-    
-    
-         
-         
-         </td>
-         <td style="text-align: right;">추천:1
-         <button class="btn_white" onclick="window.open('/myapp/board/ccthumbup?ccno=24','hiddenframe1')">추천</button>
-         </td>
-         </tr>
-         <tr class="c_comment">
-         <td style="height: 50px; vertical-align: top;">대댓글입니다.</td>
-         </tr>
-         
-     
-    
-    
-    
-    
-    
+<c:forEach items="${CList }" var="CDTO" varStatus="status">
+<tr class="comment_main_info">
+<td colspan="2" class="comment_winfo">
+${CDTO.name } | <fmt:formatDate value="${CDTO.regdate }" pattern="YYYY-MM-dd"/>
+
+<button onclick="$('.cc_form').eq(${status.index}).css('display','block')">답글</button>
+<c:choose>
+	<c:when test="${sid==CDTO.name }">
+	<!-- 아이디가 같으면 -->
+	<button onclick="$('.c_con').eq(${status.index}).css('display','none');$('.cedit_form').eq(${status.index}).css('display','block')">수정</button>
+	<button onclick="window.open('${path}/Board/CommentDel?seq=${CDTO.seq }','hiddenframe1')">삭제</button>
+	</c:when>
+	
+	<c:when test="${fn:contains(sid,'admin') }">
+	<!-- 운영자면 -->
+	<button onclick="$('.c_con').eq(${status.index}).css('display','none');$('.cedit_form').eq(${status.index}).css('display','block')">수정</button>
+	<button onclick="window.open('${path}/Board/CommentDel?seq=${CDTO.seq }','hiddenframe1')">삭제</button>
+	</c:when>
+
+</c:choose>
+
+
+
+
+
+
+
+</td>
+<td class="comment_thumb">
+추천:${CDTO.rec }
+<button onclick="window.open('${path}/Board/CommentREC_UP?seq=${CDTO.seq }','hiddenframe1')">추천</button>
+</td>
+</tr>
+<tr class="comment_main_con">
+<td colspan="3">
+<span class="c_con">${CDTO.content }</span>
+<form action="${path }/Board/CommentEdit" class="cedit_form" method="POST" style="display: none;">
+<input type="hidden" name="seq" id="cno" value="${CDTO.seq }">
+<input type="text" name="content" id="con" class="input_con" value="${CDTO.content }">
+<button type="submit">수정</button>
+</form>
+</td>
+</tr>
+
+<tr class="cc_form" style="display:none;">
+<td>
+<form action="${path }/board/ccWrite" method="POST">
+<input type="hidden" name="cno" value="${CDTO.seq }">
+<input type="hidden" name="writer" value="${sid }">
+<input type="text" name="con">
+<button>작성</button>
+</form>
+</td>
+
+</tr>
+
+
+<%-- <c:forEach items="${c_cListbox }" var="List">
+ <c:forEach items="${List }" var="ccc">
+ 	<c:if test="${CDTO.cno == ccc.cno }">
+ 	<tr class="c_comment">
+ 	<td colspan="2"> ㄴ>&nbsp;&nbsp;&nbsp;${ccc.writer} | <fmt:formatDate value="${DTO.regdate }" pattern="YYYY-MM-dd"/>
+ 	<c:choose>
+	<c:when test="${sid==CDTO.writer }">
+	<!-- 아이디가 같으면 -->
+	<button onclick="window.open('${path}/board/ccdel?ccno=${ccc.ccno }','hiddenframe1')">삭제</button>
+	</c:when>
+	
+	<c:when test="${fn:contains(sid,'admin') }">
+	<!-- 운영자면 -->
+	<button onclick="window.open('${path}/board/ccdel?ccno=${ccc.ccno }','hiddenframe1')">삭제</button>
+	</c:when>
+
+</c:choose>
+ 	
+ 	
+ 	</td>
+ 	<td style="text-align: right;">추천:${ccc.thumb }
+ 	<button onclick="window.open('${path}/board/ccthumbup?ccno=${ccc.ccno }','hiddenframe1')">추천</button>
+ 	</td>
+ 	</tr>
+ 	<tr class="c_comment">
+ 	<td style="height: 50px; vertical-align: top;">${ccc.con }</td>
+ 	</tr>
+ 	</c:if>
+ </c:forEach>
+</c:forEach> --%>
+</c:forEach>
+
     </tbody>
     </table>
     
-    <form action="/myapp/board/cWrite" id="comment_form" method="post">
-    <input type="hidden" name="bno" value="196">
-    <input type="hidden" name="writer" value="admin2">
+    <form action="${path }/Board/CommentAdd" id="comment_form" method="post">
+    <input type="hidden" name="board_seq" value="${DTO.seq }">
+    <input type="hidden" name="cus_seq" value="${scus_seq }">
     <table class="comment_form">
     <tbody>
     <tr>
-    <td colspan="2" style="width:95%;"><input style="width: 100%;" type="text" name="con" id="con" class="con" placeholder="댓글을 작성해보세요" required></td>
+    <td colspan="2" style="width:95%;"><input style="width: 100%;" type="text" name="content" id="con" class="con" placeholder="댓글을 작성해보세요" required></td>
     <td style="padding-top: 10px; text-align: right;"><button class="btn_white" type="submit">작성</button></td>
     </tr>
     </tbody>

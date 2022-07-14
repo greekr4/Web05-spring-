@@ -3,8 +3,11 @@ package com.myshop.dto;
 import java.util.Date;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class ProductDTO {
 	private int seq;
 	private String pcode;
