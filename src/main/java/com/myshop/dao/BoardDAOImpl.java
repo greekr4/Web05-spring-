@@ -68,6 +68,27 @@ public class BoardDAOImpl implements BoardDAO {
 		
 	}
 
+	@Override
+	public void Board_REC_UP(int seq) throws Exception {
+		sqlSession.update(namespace+".Board_REC_UP",seq);
+	}
+
+	@Override
+	public void Board_CNT_UP(int seq) throws Exception {
+		sqlSession.update(namespace+".Board_CNT_UP",seq);
+	}
+
+	@Override
+	public List<BoardDTO> ReviewList(int p_seq) throws Exception {
+		return sqlSession.selectList(namespace+".ReviewList",p_seq);
+	}
+
+	@Override
+	public void ReviewAdd(BoardDTO DTO) throws Exception {
+		sqlSession.insert(namespace+".ReviewAdd",DTO);
+		
+	}
+
 
 	
 	

@@ -23,5 +23,17 @@ public interface BoardDAO {
 	public void QNA_DEL_ALL(int qna_seq) throws Exception;
 	//댓글 업데이트
 	public void Replay_Update(int seq) throws Exception;
+	//추천
+	public void Board_REC_UP(int seq) throws Exception;
+	//조회
+	public void Board_CNT_UP(int seq) throws Exception;
+	
+	////////////리뷰
+	//리뷰 리스트
+	public List<BoardDTO> ReviewList(int p_seq) throws Exception;
+	//리뷰 쓰기
+	public void ReviewAdd(BoardDTO DTO) throws Exception;
+	
+	
 	
 }

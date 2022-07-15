@@ -50,7 +50,6 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 <!-- 답변 원글 삭제시 -->
 <delete id="QNA_DEL_ALL">
 	delete from board where qna_seq = #{qna_seq}
-
 </delete>
 
 
@@ -68,6 +67,33 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 	where seq = #{seq}
 </update>
 
+<!-- 추천 -->
+<update id="Board_REC_UP">
+	update board set rec = rec + 1
+	where seq = #{seq}
+</update>
+
+
+<!-- 조회 -->
+<update id="Board_CNT_UP">
+	update board set cnt = cnt + 1
+	where seq = #{seq}
+</update>
+
+<!-- 이용후기 -->
+
+<select id="ReviewList" resultType="com.myshop.dto.BoardDTO">
+	select a.*,b.name,b.email  from Board a
+	inner join customer b
+	on (a.cus_seq = b.seq)
+	where type = 7 and p_seq = #{p_seq}
+	order by a.seq desc
+</select>
+
+<insert id="ReviewAdd">
+	insert into board (cus_seq,type,title,content,p_seq,star)
+	value (#{cus_seq},7,#{title},#{content},#{p_seq},#{star})
+</insert>
 	
 
 </mapper>

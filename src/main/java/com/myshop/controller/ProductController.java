@@ -15,9 +15,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.myshop.dto.CustomerDTO;
+import com.myshop.dto.BoardDTO;
 import com.myshop.dto.ProductDTO;
 import com.myshop.service.BasketService;
+import com.myshop.service.BoardService;
 import com.myshop.service.ProductService;
 import com.myshop.service.RecentlyService;
 import com.myshop.util.ScriptUtils;
@@ -39,6 +40,8 @@ public class ProductController {
 	
 	@Inject
 	private BasketService BasketService;
+	
+	@Inject BoardService BoardService;
 	
 	@Inject
 	private HttpSession session;
@@ -63,14 +66,16 @@ public class ProductController {
 	@RequestMapping("/ProductMore")
 	public String ProductMore(Model model,@RequestParam int seq,HttpServletResponse response) throws Exception{
 		ProductDTO DTO = service.ProductMore(seq);
-		if (session.getAttribute("sdto") == null) {
+		if (session.getAttribute("scus_seq") == null) {
 			ScriptUtils.alertAndMovePage(response, "로그인 해주세요!", "../Customer/LoginForm");
 		}
-		CustomerDTO DTO2 = (CustomerDTO) session.getAttribute("sdto");
-		int cus_seq = DTO2.getSeq();
+		int scus_seq = (Integer) session.getAttribute("scus_seq");
 		String pcode = DTO.getPcode();
-		service2.RecentlyAdd(cus_seq, pcode);
+		service2.RecentlyAdd(scus_seq, pcode);
+		
+		List<BoardDTO> List = BoardService.ReviewList(seq);
 		model.addAttribute("DTO",DTO);
+		model.addAttribute("List",List);
 		return "/Product/ProductMore";
 	}
 	

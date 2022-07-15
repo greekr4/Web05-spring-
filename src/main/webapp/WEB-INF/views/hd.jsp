@@ -95,9 +95,8 @@
                         <label class="main_label">커뮤니티</label>
                         <ul>
                             <li class="sub"><a href="${path }/Board/List?type=1">공지사항</a></li>
-                            <li class="sub"><a href="">문의게시판</a></li>
-                            <li class="sub"><a href="">동협게시판</a></li>
-                            <li class="sub"><a href="">재영게시판</a></li>
+                            <li class="sub"><a href="${path }/Board/List?type=3">F A Q</a></li>
+                            <li class="sub"><a href="${path }/Board/List?type=5">Q & A</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -134,7 +133,6 @@
                 <!-- 헤더끝 -->
 
                 <script>
-           
 
                 	$.ajax({				
                 		url : "${path }/Category/list_json", // MemberJSONCtrl의 JSONObject 값을 가져옴
@@ -196,7 +194,7 @@
                     		$('.main').eq(6).outerWidth() +
                     		270;
     						$('.sub_box').css('width',box_width);
-                    	
+                    		
                         //$(this).find('ul').css('display','block');
                         $('.main').find('ul').slideUp('fast');
                         $('.main2').find('ul').slideUp('fast');

@@ -467,8 +467,9 @@ response.setCharacterEncoding("utf-8");
                                 <th>번호</th>
                                 <th>제목</th>
                                 <th>글쓴이</th>
-                                <th>조회</th>
-                                <th>날짜</th>
+                                <th style="width: 10%">조회</th>
+                                <th style="width: 10%">추천</th>
+                                <th style="width: 10%">날짜</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -492,6 +493,7 @@ response.setCharacterEncoding("utf-8");
                                 </td>
                                 <td class="td_name sv_use"><span class="sv_member">${DTO.email }</span></td>
                                 <td class="td_num">${DTO.cnt }</td>
+                                <td class="td_num">${DTO.rec }</td>
                                 <td class="td_datetime"><fmt:formatDate value="${DTO.regdate }" pattern="YY-MM-dd"/></td>
                         		</tr>
                         		
@@ -540,6 +542,7 @@ response.setCharacterEncoding("utf-8");
                                 </td>
                                 <td class="td_name sv_use"><span class="sv_member">${DTO.email }</span></td>
                                 <td class="td_num">${DTO.cnt }</td>
+                                <td class="td_num">${DTO.rec }</td>
                                 <td class="td_datetime"><fmt:formatDate value="${DTO.regdate }" pattern="YY-MM-dd"/></td>
                         </tr>
                         </c:forEach>

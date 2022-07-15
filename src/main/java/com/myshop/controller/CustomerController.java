@@ -91,14 +91,13 @@ public class CustomerController {
 	//마이페이지
 	@RequestMapping(value = "/Mypage",method = RequestMethod.GET)
 	public String Mypage(Model model,HttpServletResponse response) throws Exception{
-		if (session.getAttribute("sdto") == null) {
+		if (session.getAttribute("scus_seq") == null) {
 			ScriptUtils.alertAndMovePage(response, "로그인 해주세요!", "../Customer/LoginForm");
 		}
 		String sid = (String)session.getAttribute("sid");
-		CustomerDTO sdto = (CustomerDTO) session.getAttribute("sdto");
+		int scus_seq = (Integer) session.getAttribute("scus_seq"); 
 		CustomerDTO DTO = new CustomerDTO();
-		System.out.println("결과 : " + sdto.getSeq());
-		List<RecentlyDTO> RecenList = RecentlyService.RecentlyList(sdto.getSeq());
+		List<RecentlyDTO> RecenList = RecentlyService.RecentlyList(scus_seq);
 		DTO.setEmail(sid);
 		DTO = CustomerService.CustomerInfo(DTO);
 		model.addAttribute("DTO",DTO);

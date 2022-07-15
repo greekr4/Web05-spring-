@@ -23,10 +23,10 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardDTO> BoardList(int type) throws Exception {
 		return dao.BoardList(type);
 	}
-
+	//@Transactional
 	@Override
 	public BoardDTO BoardMore(int seq) throws Exception {
-
+		//dao.Board_CNT_UP(seq);
 		return dao.BoardMore(seq);
 	}
 
@@ -69,6 +69,26 @@ public class BoardServiceImpl implements BoardService {
 	public void Replay_Update(int seq) throws Exception {
 		dao.Replay_Update(seq);
 		
+	}
+
+	@Override
+	public void Board_REC_UP(int seq) throws Exception {
+		dao.Board_REC_UP(seq);
+		
+	}
+
+	@Override
+	public void Board_CNT_UP(int seq) throws Exception {
+		dao.Board_CNT_UP(seq);
+		
+	}
+	@Override
+	public List<BoardDTO> ReviewList(int p_seq) throws Exception {
+		return dao.ReviewList(p_seq);
+	}
+	@Override
+	public void ReviewAdd(BoardDTO DTO) throws Exception {
+		dao.ReviewAdd(DTO);
 	}
 
 

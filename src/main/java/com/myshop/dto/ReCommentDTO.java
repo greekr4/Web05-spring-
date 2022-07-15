@@ -10,8 +10,10 @@ import lombok.Setter;
 public class ReCommentDTO {
 	private int seq;
 	private int cus_seq;
-	private int board_seq;
+	private int comment_seq;
 	private String content;
 	private int rec;
 	private Date regdate;
+	private String name;
+	private String email;
 }

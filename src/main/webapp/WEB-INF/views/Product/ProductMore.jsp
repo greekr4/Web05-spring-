@@ -75,6 +75,7 @@ response.setCharacterEncoding("utf-8");
             font-size: 16px;
             text-align: left;
             margin-left: 100px;
+            
         }
 
         .product_tr {
@@ -338,6 +339,7 @@ response.setCharacterEncoding("utf-8");
             margin: 0 auto;
             text-align: center;
             font-weight: 600;
+            border-collapse: collapse;
         }
         .review_board_detail tbody{
             font-weight: 100;
@@ -604,16 +606,16 @@ response.setCharacterEncoding("utf-8");
                                 <div class="review_board_tit">
                                     <h3>PRODUCT REVIEW</h3>
                                     <p>상품에 대한 문의를 남기는 공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로 이동될 수 있습니다.</p>
-                                    <p>배송관련,주문(취소/교환/환불)관련 문의 및 요청사항은 마이컬리 내 1:1문의에 남겨주세요.</p>
+                                    <p>배송관련,주문(취소/교환/환불)관련 문의 및 요청사항은 Q&A 문의에 남겨주세요.</p>
                                 </div>
                                 <table class="review_board_detail">
                                     <colgroup>
-                                        <col style="width:1%;">
+                                        <col style="width:5%;">
                                         <col>
                                         <col style="width:10%;">
                                         <col style="width:10%;">
                                         <col style="width:10%;">
-                                        <col style="width:1%;">
+                                        <col style="width:5%;">
                                     </colgroup>
                                     <thead>
                                         <tr>
@@ -621,83 +623,33 @@ response.setCharacterEncoding("utf-8");
                                             <th>제목</th>
                                             <th>작성자</th>
                                             <th>작성일</th>
-                                            <th>도움</th>
+                                            <th>추천</th>
                                             <th>조회</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    	<c:choose>
+                                    	<c:when test="${fn:length(List) > 0 }">
+                                    	<c:forEach items="${List }" var="DTO">
+                                        <tr class="dto">
+                                            <th>${DTO.seq }</th>
+                                            <td class="review_read" style="text-align:left; padding-left: 70px; ">${DTO.title }</td>
+                                            <td>${DTO.name }</td>
+                                            <td><fmt:formatDate value="${DTO.regdate }" pattern="YYYY-MM-dd"/></td>
+                                            <td>${DTO.rec }</td>
+                                            <td>${DTO.cnt }</td>
+                                        </tr>
+                                        </c:forEach>
+                                        </c:when>
+                                        <c:otherwise>
                                         <tr>
-                                            <th>공지</th>
-                                            <td class="review_read" style="text-align:left; padding-left: 70px; ">금주의 Best후기 안내</td>
-                                            <td>MarketBn2U</td>
-                                            <td>2019-11-01</td>
-                                            <td>0</td>
-                                            <td>572300</td>
+                                        	<th colspan="6">아직 리뷰가 없습니다~</th>
                                         </tr>
-                                        <tr>
-                                            <th>공지</th>
-                                            <td style="text-align:left; padding-left: 70px;">금주의 Best후기 안내</td>
-                                            <td>MarketBn2U</td>
-                                            <td>2019-11-01</td>
-                                            <td>0</td>
-                                            <td>572300</td>
-                                        </tr>
-                                        <tr>
-                                            <th>공지</th>
-                                            <td style="text-align:left; padding-left: 70px;">상품 후기 적립금 정책 안내</td>
-                                            <td>MarketBn2U</td>
-                                            <td>2019-11-01</td>
-                                            <td>1</td>
-                                            <td>305069</td>
-                                        </tr>
-                                        <tr>
-                                            <th>1266</th>
-                                            <td style="text-align:left; padding-left: 70px;">좋아요~</td>
-                                            <td>김*지</td>
-                                            <td>2022-06-29</td>
-                                            <td>0</td>
-                                            <td>2</td>
-                                        </tr>
-                                        <tr>
-                                            <th>1265</th>
-                                            <td style="text-align:left; padding-left: 70px;">오리로스 좋아요</td>
-                                            <td>김*주</td>
-                                            <td>2022-06-28</td>
-                                            <td>0</td>
-                                            <td>572300</td>
-                                        </tr>
-                                        <tr>
-                                            <th>1264</th>
-                                            <td style="text-align:left; padding-left: 70px;">별로네요</td>
-                                            <td>김*임</td>
-                                            <td>2022-06-25</td>
-                                            <td>0</td>
-                                            <td>15</td>
-                                        </tr>
-                                        <tr>
-                                            <th>1263</th>
-                                            <td style="text-align:left; padding-left: 70px;">굿</td>
-                                            <td>박*현</td>
-                                            <td>2022-06-23</td>
-                                            <td>0</td>
-                                            <td>2</td>
-                                        </tr>
-                                        <tr style="border-bottom: 2px solid purple;">
-                                            <th>1262</th>
-                                            <td style="text-align:left; padding-left: 70px;">첫구매</td>
-                                            <td>한*정</td>
-                                            <td>2022-06-21</td>
-                                            <td>0</td>
-                                            <td>12</td>
-                                        </tr>
-                                        <tr>
-                                            <td style="border-bottom: none;">
-                                                <button class="btn_review" >후기쓰기</button>
-                                            </td>
-                                        </tr>
+                                        </c:otherwise>
+                                        </c:choose>
                                     </tbody>
                                 </table>
-                                <div class="page_move" style="margin-top: 50px;">
+<!--                                 <div class="page_move" style="margin-top: 50px;">
                                     <a href="" class="first_btn"></a>
                                     <a href="" class="prev_btn"></a>
                                     <a href="">1</a>
@@ -712,7 +664,7 @@ response.setCharacterEncoding("utf-8");
                                     <a href="">10</a>
                                     <a href="" class="next_btn"></a>
                                     <a href="" class="last_btn"></a>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -720,6 +672,23 @@ response.setCharacterEncoding("utf-8");
             </div>
         </div>
 <script type="text/javascript">
+
+
+more();
+function more() {
+	$.ajax({				
+		url : "${path }/Board/Review_json?seq=32", // MemberJSONCtrl의 JSONObject 값을 가져옴
+		dataType : "json", // 데이터 타입을 json
+		contentType: 'application/x-www-form-urlencoded; charset=euc-kr', // UTF-8처리
+		cache : false, // true : 새로 고침 동작을 하지 않고, 저장된 캐시에서 불러오게됨, false:새로 불러옴 
+		success : function(data) {
+		$('.dto').after("<tr style='height: 200px;'><td colspan='6'>"+data.DTO.content+"</td></tr>");
+		}
+	
+		})//ajax끝
+}
+
+
 function OrderAdd() {
 	var seq = '${DTO.seq}';
 	var qty = $('.qty').val();

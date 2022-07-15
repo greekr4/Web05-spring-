@@ -21,6 +21,8 @@ public class BoardDTO {
 	private String name;
 	private String email;
 	private int reply_cnt;
+	private int p_seq;
+	private int star;
 							
 							
 

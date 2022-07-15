@@ -205,10 +205,6 @@ response.setCharacterEncoding("utf-8");
 
 
 
-       
-
-
-
             //BEST PRODUCTS BTN
             var best_eq = 1;
             var best_max = $('.best_item').length / 3;

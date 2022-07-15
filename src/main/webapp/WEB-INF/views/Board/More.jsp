@@ -96,21 +96,24 @@ response.setCharacterEncoding("utf-8");
         border-bottom: 1px solid #777;
         padding-bottom: 10px;
         }
-        .comment .comment_main_info{
+        .comment_main_info{
         color: #777;
         }
         .comment .comment_main_info td{
         padding-top: 12px;
         }
-        .comment .comment_main_con td{
+        .comment_main_con td{
         padding-top: 12px;
         height: 100px;
         vertical-align: top;
+        border-bottom: 1px solid #dbdbdb;
         }
         table.comment_form{
         margin-top: 50px;
         }
-        .c_comment td {padding-left: 30px;}
+        .c_comment td {
+        padding-left: 30px;
+        }
  
     </style>
 </head>
@@ -170,7 +173,7 @@ response.setCharacterEncoding("utf-8");
     </tr>
     <tr>
     <th colspan="3" class="main_btn">
-    <button class="btn_white" onclick="window.open('/myapp/board/thumbup?no=196','hiddenframe1')">추천</button>
+    <button class="btn_white" onclick="window.open('${path}/Board/REC_UP?seq=${DTO.seq }','hiddenframe1')">추천</button>
     <c:if test="${DTO.type eq 5 && DTO.qna_code eq 1 }">
     <button class="btn_white" onclick="location.href='${path}/Board/AddForm_QNA?qna_seq=${DTO.seq }'">답글</button>
     </c:if>
@@ -249,10 +252,10 @@ ${CDTO.name } | <fmt:formatDate value="${CDTO.regdate }" pattern="YYYY-MM-dd"/>
 
 <tr class="cc_form" style="display:none;">
 <td>
-<form action="${path }/board/ccWrite" method="POST">
-<input type="hidden" name="cno" value="${CDTO.seq }">
-<input type="hidden" name="writer" value="${sid }">
-<input type="text" name="con">
+<form action="${path }/Board/ReCommentAdd" method="POST">
+<input type="hidden" name="comment_seq" value="${CDTO.seq }">
+<input type="hidden" name="cus_seq" value="${scus_seq }">
+<input type="text" name="content">
 <button>작성</button>
 </form>
 </td>
@@ -260,36 +263,38 @@ ${CDTO.name } | <fmt:formatDate value="${CDTO.regdate }" pattern="YYYY-MM-dd"/>
 </tr>
 
 
-<%-- <c:forEach items="${c_cListbox }" var="List">
- <c:forEach items="${List }" var="ccc">
- 	<c:if test="${CDTO.cno == ccc.cno }">
- 	<tr class="c_comment">
- 	<td colspan="2"> ㄴ>&nbsp;&nbsp;&nbsp;${ccc.writer} | <fmt:formatDate value="${DTO.regdate }" pattern="YYYY-MM-dd"/>
+
+<c:forEach items="${RECList }" var="List">
+ <c:forEach items="${List }" var="RCDTO">
+ 	<c:if test="${CDTO.seq == RCDTO.comment_seq }">
+ 	<tr class="c_comment comment_main_info">
+ 	<td colspan="2" class="comment_winfo"> ㄴ>&nbsp;&nbsp;&nbsp;${RCDTO.name} | <fmt:formatDate value="${RCDTO.regdate }" pattern="YYYY-MM-dd"/>
  	<c:choose>
-	<c:when test="${sid==CDTO.writer }">
+	<c:when test="${sid==RCDTO.email }">
 	<!-- 아이디가 같으면 -->
-	<button onclick="window.open('${path}/board/ccdel?ccno=${ccc.ccno }','hiddenframe1')">삭제</button>
+	<button onclick="window.open('${path}/Board/ReCommentDel?seq=${RCDTO.seq }','hiddenframe1')">삭제</button>
 	</c:when>
 	
 	<c:when test="${fn:contains(sid,'admin') }">
 	<!-- 운영자면 -->
-	<button onclick="window.open('${path}/board/ccdel?ccno=${ccc.ccno }','hiddenframe1')">삭제</button>
+	<button onclick="window.open('${path}/Board/ReCommentDel?seq=${RCDTO.seq }','hiddenframe1')">삭제</button>
 	</c:when>
 
 </c:choose>
  	
  	
  	</td>
- 	<td style="text-align: right;">추천:${ccc.thumb }
- 	<button onclick="window.open('${path}/board/ccthumbup?ccno=${ccc.ccno }','hiddenframe1')">추천</button>
+ 	<td style="text-align: right;">추천:${RCDTO.rec }
+ 	<button onclick="window.open('${path}/Board/RECommentREC_UP?seq=${RCDTO.seq }','hiddenframe1')">추천</button>
  	</td>
  	</tr>
  	<tr class="c_comment">
- 	<td style="height: 50px; vertical-align: top;">${ccc.con }</td>
+ 	<td colspan="3" style="height: 50px; vertical-align: top; border-bottom: 1px solid #dbdbdb;">${RCDTO.content }</td>
  	</tr>
  	</c:if>
  </c:forEach>
-</c:forEach> --%>
+</c:forEach>
+
 </c:forEach>
 
     </tbody>

@@ -15,7 +15,6 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
     inner join customer b
     on (a.cus_seq = b.seq)
 	where a.board_seq = #{board_seq}
-    order by a.seq desc
 	</select>
 	
 	<insert id="CommentAdd">
@@ -50,5 +49,41 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 
 <!-- 대댓글 -->
 	
+	<!-- 대댓글조회 -->
+	<select id="Re_CommentList" resultType="com.myshop.dto.ReCommentDTO">
+	 	select a.*,c.name,c.email from re_comment a
+ 		inner join comment b
+ 		inner join customer c 
+ 		on (a.comment_seq = b.seq and a.cus_seq = c.seq)
+ 		where comment_seq = #{comment_seq}
+	</select>
+
+
+	<!-- 작성 -->
+	<insert id="Re_CommentAdd">
+	insert into re_comment (cus_seq,comment_seq,content)
+ 	values (#{cus_seq},#{comment_seq},#{content})
+	</insert>
+	
+	<!-- 추천 -->
+	<update id="Re_Comment_REC_UP">
+	update re_comment
+	set rec = rec + 1
+	where seq = #{seq}
+	</update>
+	
+	<!-- 대댓글 삭제 -->
+	<delete id="Re_CommentDel">
+	delete from re_comment
+	where seq = #{seq}
+	</delete>
+	
+	
+	
+	<!-- 본댓글 삭제시 -->
+	<delete id="Re_CommentDel_All">
+	delete from re_comment
+	where comment_seq = #{comment_seq}
+	</delete>
 
 </mapper>
