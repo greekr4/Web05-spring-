@@ -23,7 +23,5 @@ public class BoardDTO {
 	private int reply_cnt;
 	private int p_seq;
 	private int star;
-							
-							
 
 }
