@@ -250,7 +250,7 @@ response.setCharacterEncoding("utf-8");
 							    <th>선택</th>
 							  </tr>
 						<c:choose>
-						<c:when test="${List != null }">
+						<c:when test="${fn:length(List) != 0 }">
 							<c:forEach items="${List }" var="DTO" varStatus="status">
 							<tr>
 								<td><img alt="상품이미지" src="${path }/resources/upload/${DTO.pcode }/${DTO.s_img_desc }"></td>
@@ -280,17 +280,14 @@ response.setCharacterEncoding("utf-8");
 							</c:when>
 							<c:otherwise>
 								<tr>
-								<td>-</td>
-								<td class="detail">-</td>
-							    <td>-</td>
-							    <td>-</td>
-							    <td>-</td>
-							    <td class="gray_tit">-</td>
-							    <td>-</td>
-							    <td>-</td>
-							    <td>-</td>
-							</tr>
-							
+									<td colspan="9">&nbsp;</td>
+								</tr>
+								<tr>
+									<td colspan="9">장바구니에 추가하신 상품이 없습니다.</td>
+								</tr>
+								<tr>
+									<td colspan="9">&nbsp;</td>
+								</tr>								
 							</c:otherwise>
 						</c:choose>
 							</table>

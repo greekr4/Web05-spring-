@@ -62,7 +62,11 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 </update>
 
 <!-- 댓글 수 업데이트 -->
-
+<update id="Replay_Update">
+	update board set reply_cnt =
+	(select count(*) from comment where board_seq = #{seq})
+	where seq = #{seq}
+</update>
 
 	
 

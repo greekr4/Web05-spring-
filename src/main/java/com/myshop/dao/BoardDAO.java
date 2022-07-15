@@ -21,5 +21,7 @@ public interface BoardDAO {
 	public void QNA_CTN_UP(int seq) throws Exception;
 	//QNA 원글 삭제시
 	public void QNA_DEL_ALL(int qna_seq) throws Exception;
+	//댓글 업데이트
+	public void Replay_Update(int seq) throws Exception;
 	
 }

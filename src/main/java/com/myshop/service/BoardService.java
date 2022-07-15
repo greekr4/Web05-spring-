@@ -19,4 +19,6 @@ public interface BoardService {
 	public void BoardAdd_QNA(BoardDTO DTO) throws Exception;
 	//QNA_CTN_UP
 	public void QNA_CTN_UP(int seq) throws Exception;
+	//댓글 업데이트
+	public void Replay_Update(int seq) throws Exception;
 }

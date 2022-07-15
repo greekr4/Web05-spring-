@@ -62,6 +62,12 @@ public class BoardDAOImpl implements BoardDAO {
 		
 	}
 
+	@Override
+	public void Replay_Update(int seq) throws Exception {
+		sqlSession.update(namespace+".Replay_Update",seq);
+		
+	}
+
 
 	
 	

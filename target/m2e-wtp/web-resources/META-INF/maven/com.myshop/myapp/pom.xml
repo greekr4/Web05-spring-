@@ -30,7 +30,6 @@
 			</exclusions>
 		</dependency>
 		
-		
 		<!-- Spring-webMVC : 스프링에서 MVC 방식으로 구현하기 위한 라이브러리 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -47,7 +46,7 @@
 		
 		<!-- Logging : 모든 자원의 접속 로그를 기록하기 위한 라이브러리 -->
 		<!-- *2 logback-classic 추가  log4 scope 각주처리 -->
-		<dependency>
+ 		<dependency>
 			<groupId>ch.qos.logback</groupId>
     		<artifactId>logback-classic</artifactId>
 		    <version>1.2.3</version>
@@ -63,7 +62,7 @@
 			<version>${org.slf4j-version}</version>
 			<scope>runtime</scope>
 		</dependency>
-		<dependency>
+ 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${org.slf4j-version}</version>

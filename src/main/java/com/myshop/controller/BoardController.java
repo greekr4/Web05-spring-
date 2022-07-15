@@ -45,6 +45,10 @@ public class BoardController {
 	@RequestMapping("List")
 	public String Board(Model model,@RequestParam int type) throws Exception {
 		List<BoardDTO> List = BoardService.BoardList(type);
+		for (int i=0;i<List.size();i++) {
+			BoardService.Replay_Update(List.get(i).getSeq());
+		}
+		
 		model.addAttribute("List",List);
 		model.addAttribute("type",type);
 		return "Board/List";
@@ -106,7 +110,7 @@ public class BoardController {
 	@RequestMapping("/Del")
 	public void Del(@RequestParam int seq,@RequestParam int type,HttpServletResponse response) throws Exception{
 		BoardService.BoardDel(seq);
-		CommentService.CommentDel_All(seq);
+		//CommentService.CommentDel_All(seq);
 		String alertText = "삭제되었습니다.";
 		String nextPage = "./List?type="+type;
 		ScriptUtils.alertAndMovePage(response, alertText, nextPage);

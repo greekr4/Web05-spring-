@@ -181,7 +181,7 @@ response.setCharacterEncoding("utf-8");
     <tr class="foot_btn">
     <td colspan="3">
     
-    <button class="btn_white" class="btn_white" onclick="location.href = '/myapp/board/notice.html'">목록</button>
+    <button class="btn_white" class="btn_white" onclick="location.href = '${path}/Board/List?type=${DTO.type }'">목록</button>
     
     
     
