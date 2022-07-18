@@ -13,8 +13,10 @@
 		<java-version>1.8</java-version>
 		<org.springframework-version>5.0.7.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
-		<org.slf4j-version>1.6.6</org.slf4j-version>
+		<org.slf4j-version>1.7.16</org.slf4j-version>
 	</properties>
+	
+	
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
@@ -29,6 +31,9 @@
 				 </exclusion>
 			</exclusions>
 		</dependency>
+		
+		
+		
 		
 		<!-- Spring-webMVC : 스프링에서 MVC 방식으로 구현하기 위한 라이브러리 -->
 		<dependency>
@@ -46,11 +51,13 @@
 		
 		<!-- Logging : 모든 자원의 접속 로그를 기록하기 위한 라이브러리 -->
 		<!-- *2 logback-classic 추가  log4 scope 각주처리 -->
- 		<dependency>
+<!--  		<dependency>
 			<groupId>ch.qos.logback</groupId>
     		<artifactId>logback-classic</artifactId>
 		    <version>1.2.3</version>
-		</dependency>
+		</dependency> -->
+		
+		
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -62,12 +69,13 @@
 			<version>${org.slf4j-version}</version>
 			<scope>runtime</scope>
 		</dependency>
- 		<dependency>
+<!--  		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${org.slf4j-version}</version>
 			<scope>runtime</scope>
-		</dependency>
+		</dependency> -->
+		
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -103,8 +111,8 @@
 		<!-- Servlet : java servlet을 활용하여 controller를 생성하고, 번역해주는 라이브러리 -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -124,7 +132,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.13</version>
+			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
 		
@@ -145,7 +153,7 @@
 		<dependency>
 		    <groupId>org.projectlombok</groupId>
 		    <artifactId>lombok</artifactId>
-		    <version>1.18.22</version>
+		    <version>1.18.24</version>
 		    <scope>provided</scope>
 		</dependency>	
 		<!-- *7 log4jdbc : DB로 log작성해줌 -->	  
@@ -344,8 +352,7 @@
 		
 
 
-	
-	
+
 	
 	
 	

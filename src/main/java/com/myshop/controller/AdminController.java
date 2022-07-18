@@ -486,4 +486,18 @@ public class AdminController {
 	    
 
 	
+	    
+	    
+	    
+	    /////////////////////////////////////
+	    
+	    
+		@RequestMapping(value = "test", method = RequestMethod.GET)
+		public String test(Locale locale,Model model) throws Exception{
+			List<CustomerDTO> List = CustomerService.CustomerList();
+			int cnt = List.size();
+			model.addAttribute("cnt",cnt);
+			model.addAttribute("sampleList",List);
+			return "/test";
+		}
 }

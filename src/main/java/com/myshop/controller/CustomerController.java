@@ -216,11 +216,9 @@ public class CustomerController {
 				return "redirect:../";
 			}else {
 				//비번틀림
-				System.out.println("비밀번호X");
 			}
 		}else {
 			//아이디 없음
-			System.out.println("아이디X");
 		}
 		
 		return "redirect:LoginForm";

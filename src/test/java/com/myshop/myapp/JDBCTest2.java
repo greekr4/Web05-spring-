@@ -6,7 +6,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import org.springframework.test.context.ContextConfiguration;
 
-
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
 public class JDBCTest2 {
 	@Inject
@@ -15,7 +14,7 @@ public class JDBCTest2 {
 	
 	@Test
 	public void testConnection() {
-		System.out.println(sqlsession.selectList("com.myshop.mySqlTestMapper.testlist"));
+		System.out.println(sqlsession.selectList("com.myshop.CustomerMapper.CustomerList"));
 	
 	}
 }
