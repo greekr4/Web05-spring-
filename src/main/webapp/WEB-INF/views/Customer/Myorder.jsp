@@ -253,35 +253,25 @@ response.setCharacterEncoding("utf-8");
 								
 								<c:choose>
 								<c:when test="${DTO.payment_status eq 1 }">
-								<button class="btn_white" onclick="location.href='${path}/Customer/PaySystem?price=${DTO.price }&seq=${DTO.seq }'">결제하기</button>
+								<button class="btn_black" onclick="location.href='${path}/Customer/PaySystem?price=${DTO.price }&seq=${DTO.seq }'">결제하기</button>
 								<button class="btn_white">주문취소</button>
 								</c:when>
-								<c:otherwise>
+								<c:when test="${DTO.payment_status eq 3 and DTO.order_step eq 1 }">
+								<button class="btn_black" onclick="location.href='${path}/Customer/PaySystem?price=${DTO.price }&seq=${DTO.seq }'"></button>
+								<button class="btn_white">환불요청</button>
+								</c:when>
+								<c:when test="${DTO.payment_status eq 3 and DTO.order_step eq 3 }">
+								<button class="btn_black" onclick="location.href='${path}/Customer/PaySystem?price=${DTO.price }&seq=${DTO.seq }'">배송확인</button>
 								<button class="btn_white">반품요청</button>
+								</c:when>
+								<c:otherwise>
+								<button class="btn_black">후기작성</button>
 								<button class="btn_white">반품요청</button>
 								</c:otherwise>
 								</c:choose>
 								</td>
 							</tr>
 							</c:forEach>
-							<tr class="more">
-								<td colspan="2">상품이미지</td>
-							    <td>상품명</td>
-							    <td>상품가격</td>
-							    <td>주문수량</td>
-							</tr>
-							<tr class="more">
-								<td colspan="2"><img alt="dd" src="${path }/resources/upload/p0001/1656427630593l0.jpg"></td>
-							    <td>샘플 소고기</td>
-							    <td>20,000원</td>
-							    <td>1개</td>
-							</tr>
-							<tr class="more">
-								<td colspan="2"><img alt="dd" src="${path }/resources/upload/p0001/1656427630593l0.jpg"></td>
-							    <td>샘플 소고기</td>
-							    <td>20,000원</td>
-							    <td>1개</td>
-							</tr>
 							
 					
 							</table>

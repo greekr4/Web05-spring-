@@ -80,6 +80,24 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 	<update id="UpdateOrder">
 		update order_master set order_step = #{order_step} where seq = #{seq}	
 	</update>
+	
+	<!-- 오더검색 -->
+	<select id="OrderList_search" resultType="com.myshop.dto.OrderDTO">
+		select a.*,b.name as 'payment_val',c.name as 'order_val' from order_master a
+		inner join codemaster b
+		on (a.payment_status = b.value and b.code='omps')
+		inner join codemaster c 
+		on (a.order_step = c.value and c.code='omos')
+		<if test="search_type == 1">
+		<!-- 이름 -->
+		where a.delivery_cus like '%${search_text}%'
+		</if>
+		<if test="search_type == 2">
+		<!-- 주문번호 -->
+		where a.seq like #{search_text}
+		</if>
+		order by a.seq desc 
+	</select>
 
 	
 

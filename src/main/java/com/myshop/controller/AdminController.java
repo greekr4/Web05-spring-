@@ -140,6 +140,25 @@ public class AdminController {
 		ScriptUtils.alertAndClose(response, "수정되었습니다.");
 	}
 	
+	//오더리스트 검색
+	@RequestMapping("OrderList_search")
+	public String OrderList_search(Model model,OrderDTO DTO) throws Exception{
+		List<OrderDTO> all = OrderService.OrderList();
+		List<OrderDTO> pok = OrderService.OrderList_PayOk();
+		List<OrderDTO> ok = OrderService.OrderList_Ok();
+		int OrderCnt = all.size();
+		int PayOkCnt = pok.size();
+		int OkCnt = ok.size();
+		
+		List<OrderDTO> List = OrderService.OrderList_search(DTO);
+		
+		model.addAttribute("OkCnt",OkCnt);
+		model.addAttribute("OrderCnt",OrderCnt);
+		model.addAttribute("PayOkCnt",PayOkCnt);
+		model.addAttribute("List",List);
+		return "/Admin/OrderList";
+	}
+	
 	//회원리스트
 	@RequestMapping(value = "CusList", method = RequestMethod.GET)
 	public String CusList(Locale locale,Model model) throws Exception{
@@ -498,6 +517,7 @@ public class AdminController {
 			int cnt = List.size();
 			model.addAttribute("cnt",cnt);
 			model.addAttribute("sampleList",List);
+			
 			return "/test";
 		}
 }

@@ -78,6 +78,11 @@ public class OrderDAOImpl implements OrderDAO {
 		return sqlSession.selectList(namespace+".OrderList_Ok");
 	}
 
+	@Override
+	public List<OrderDTO> OrderList_search(OrderDTO DTO) throws Exception {
+		return sqlSession.selectList(namespace+".OrderList_search",DTO);
+	}
+
 
 	
 	

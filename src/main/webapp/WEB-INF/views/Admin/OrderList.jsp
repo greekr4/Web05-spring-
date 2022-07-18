@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <%
 request.setCharacterEncoding("utf-8");
@@ -156,13 +157,12 @@ response.setCharacterEncoding("utf-8");
                         <div class="page_content">
                              <!-- 검색 -->
                             <div class="search_box">
-                                <form action="/myapp/board/news_search" method="POST">
+                                <form action="${path }/Admin/OrderList_search" method="POST">
                                     <select name="search_type">
                                         <option value="1">이름</option>
                                         <option value="2">주문번호</option>
                                     </select>
-                                    <input type="hidden" id="type" name="type" value="2">
-                                    <input type="text" id="search" name="search">
+                                    <input type="text" id="search_text" name="search_text">
                                     <button type="submit" class="btn_clear">검색</button>
                                     <button type="button" class="btn_clear" style="float: right; width: 100px; margin-right: 3%;" onclick="location.href='${path}/Admin/OrderList?type=3';">처리완료 (${OkCnt })</button>
                                     <button type="button" class="btn_clear" style="float: right; width: 100px; margin-right: 1%;" onclick="location.href='${path}/Admin/OrderList?type=2';">입금확인 (${PayOkCnt })</button>

@@ -130,6 +130,11 @@ public class BoardController {
 		model.addAttribute("qna_seq",qna_seq);
 		return "Board/AddForm_QNA";
 	}
+	@RequestMapping("/AddForm_Review")
+	public String AddForm_Review(@RequestParam int p_seq,Model model) throws Exception {
+		model.addAttribute("p_seq",p_seq);
+		return "Board/AddForm_Review";
+	}
 	
 	@RequestMapping("/EditForm")
 	public String EditForm(@RequestParam int seq,Model model) throws Exception {
@@ -155,6 +160,8 @@ public class BoardController {
 		String nextPage = "./List?type="+DTO.getType();
 		ScriptUtils.alertAndMovePage(response, alertText, nextPage);
 	}
+	
+
 	
 	@RequestMapping("/Edit")
 	public void Edit(BoardDTO DTO,HttpServletResponse response) throws Exception{
@@ -196,6 +203,7 @@ public class BoardController {
 	            oldCookie.setMaxAge(60 * 60 * 24);
 	            response.addCookie(oldCookie);
 	            ScriptUtils.alertAndClose(response, "글을 추천하셨습니다.");
+	            return;
 	        } 
 		} else {
 			BoardService.Board_REC_UP(seq);
@@ -204,6 +212,7 @@ public class BoardController {
             newCookie.setMaxAge(60 * 60 * 24);
             response.addCookie(newCookie);
             ScriptUtils.alertAndClose(response, "글을 추천하셨습니다.");
+            return;
         }
 		ScriptUtils.alertAndClose(response, "이미 추천하셨습니다.");
 		

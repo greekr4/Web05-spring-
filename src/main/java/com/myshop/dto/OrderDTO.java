@@ -29,5 +29,7 @@ public class OrderDTO {
 	private Date regdate;
 	private String pcode;
 	private int qty;
+	private int search_type;
+	private String search_text;
 	
 }

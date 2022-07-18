@@ -29,4 +29,6 @@ public interface OrderDAO {
 	public List<OrderDTO> OrderList_PayOk() throws Exception;
 	//오더리스트 완료
 	public List<OrderDTO> OrderList_Ok() throws Exception;
+	//오더리스트 서치
+	public List<OrderDTO> OrderList_search(OrderDTO DTO) throws Exception;
 }

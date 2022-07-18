@@ -597,22 +597,23 @@ response.setCharacterEncoding("utf-8");
                                         <p>
                                             24시간 접수 가능<br>로그인 > 커뮤니티 > 1:1 문의<br><br>
                                             <span>고객센터 운영 시간에 순차적으로<br>
-                                            답변해드리겠습니다.</span>
+                                           	 답변해드리겠습니다.</span>
                                         </p>
                                     </div>
                                 </div>
                             </div>
                             <div class="review_board" style="margin-top: 140px;">
-                                <div class="review_board_tit">
+                                <div class="review_board_tit" style="height: 85px;">
                                     <h3>PRODUCT REVIEW</h3>
                                     <p>상품에 대한 문의를 남기는 공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로 이동될 수 있습니다.</p>
-                                    <p>배송관련,주문(취소/교환/환불)관련 문의 및 요청사항은 Q&A 문의에 남겨주세요.</p>
+                                    <p style="float: left;">배송관련,주문(취소/교환/환불)관련 문의 및 요청사항은 Q&A 문의에 남겨주세요.</p>
+                                    <!-- <p style="float: right;"><button class="btn_clear" style="width: 100px; height: 30px">후기 작성</button></p> -->
                                 </div>
                                 <table class="review_board_detail">
                                     <colgroup>
                                         <col style="width:5%;">
-                                        <col>
                                         <col style="width:10%;">
+                                        <col>
                                         <col style="width:10%;">
                                         <col style="width:10%;">
                                         <col style="width:5%;">
@@ -620,24 +621,47 @@ response.setCharacterEncoding("utf-8");
                                     <thead>
                                         <tr>
                                             <th>번호</th>
+                                            <th>별점</th>
                                             <th>제목</th>
                                             <th>작성자</th>
                                             <th>작성일</th>
                                             <th>추천</th>
-                                            <th>조회</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    
                                     	<c:choose>
                                     	<c:when test="${fn:length(List) > 0 }">
-                                    	<c:forEach items="${List }" var="DTO">
+                                    	<c:forEach items="${List }" var="DTO" varStatus="status">
                                         <tr class="dto">
                                             <th>${DTO.seq }</th>
-                                            <td class="review_read" style="text-align:left; padding-left: 70px; ">${DTO.title }</td>
+                                            <th>
+                                            <c:choose>
+ 											<c:when test="${DTO.star == 5 }">
+ 											★★★★★
+ 											</c:when>
+ 											<c:when test="${DTO.star == 4 }">
+ 											★★★★☆
+ 											</c:when>
+ 											<c:when test="${DTO.star == 3 }">
+ 											★★★☆☆
+ 											</c:when>
+ 											<c:when test="${DTO.star == 2 }">
+ 											★★☆☆☆
+ 											</c:when>
+ 											<c:when test="${DTO.star == 1 }">
+ 											★☆☆☆☆
+ 											</c:when>
+ 											</c:choose>
+                                            </th>
+                                            <td class="review_read" style="text-align:left; padding-left: 70px; ">
+                                            <a onclick="more(${DTO.seq },${status.index})">
+                                            ${DTO.title }
+                                            </a>                 
+                                            </td>
                                             <td>${DTO.name }</td>
                                             <td><fmt:formatDate value="${DTO.regdate }" pattern="YYYY-MM-dd"/></td>
                                             <td>${DTO.rec }</td>
-                                            <td>${DTO.cnt }</td>
                                         </tr>
                                         </c:forEach>
                                         </c:when>
@@ -649,22 +673,7 @@ response.setCharacterEncoding("utf-8");
                                         </c:choose>
                                     </tbody>
                                 </table>
-<!--                                 <div class="page_move" style="margin-top: 50px;">
-                                    <a href="" class="first_btn"></a>
-                                    <a href="" class="prev_btn"></a>
-                                    <a href="">1</a>
-                                    <a href="">2</a>
-                                    <a href="">3</a>
-                                    <a href="">4</a>
-                                    <a href="">5</a>
-                                    <a href="">6</a>
-                                    <a href="">7</a>
-                                    <a href="">8</a>
-                                    <a href="">9</a>
-                                    <a href="">10</a>
-                                    <a href="" class="next_btn"></a>
-                                    <a href="" class="last_btn"></a>
-                                </div> -->
+
                             </div>
                         </div>
                     </div>
@@ -674,18 +683,31 @@ response.setCharacterEncoding("utf-8");
 <script type="text/javascript">
 
 
-more();
-function more() {
-	$.ajax({				
-		url : "${path }/Board/Review_json?seq=32", // MemberJSONCtrl의 JSONObject 값을 가져옴
-		dataType : "json", // 데이터 타입을 json
-		contentType: 'application/x-www-form-urlencoded; charset=euc-kr', // UTF-8처리
-		cache : false, // true : 새로 고침 동작을 하지 않고, 저장된 캐시에서 불러오게됨, false:새로 불러옴 
-		success : function(data) {
-		$('.dto').after("<tr style='height: 200px;'><td colspan='6'>"+data.DTO.content+"</td></tr>");
-		}
+
+
+
+
+function more(p_seq,index) {
+	if( $('.more_box'+index).before().text() == '' ){
+		
+		$.ajax({				
+			url : "${path }/Board/Review_json?seq="+p_seq, // MemberJSONCtrl의 JSONObject 값을 가져옴
+			dataType : "json", // 데이터 타입을 json
+			contentType: 'application/x-www-form-urlencoded; charset=euc-kr', // UTF-8처리
+			cache : false, // true : 새로 고침 동작을 하지 않고, 저장된 캐시에서 불러오게됨, false:새로 불러옴 
+			success : function(data) {
+			var REC_UP ="${path}/Board/REC_UP?seq="+data.DTO.seq
+			$('.dto').eq(index).after("<tr class='more_box"+index+"'><td colspan='5' style='border-top'><button class='btn_white' style='width:9em;height:3em;' onclick=\"window.open('"+ REC_UP +"' ,'hiddenf')\">도움이 되었어요</button></td></tr>");
+			$('.dto').eq(index).after("<tr class='more_box"+index+"' style='height: 200px;'><td colspan='5'>"+data.DTO.content+"</td></tr>");
+			}
+		
+			})//ajax끝
+	}else{
+		$('.more_box'+index).remove();
+	}
 	
-		})//ajax끝
+
+
 }
 
 
