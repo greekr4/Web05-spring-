@@ -280,14 +280,8 @@ response.setCharacterEncoding("utf-8");
 							</c:when>
 							<c:otherwise>
 								<tr>
-									<td colspan="9">&nbsp;</td>
-								</tr>
-								<tr>
-									<td colspan="9">장바구니에 추가하신 상품이 없습니다.</td>
-								</tr>
-								<tr>
-									<td colspan="9">&nbsp;</td>
-								</tr>								
+									<td colspan="9" style="height: 100px;">장바구니에 추가하신 상품이 없습니다.</td>
+								</tr>						
 							</c:otherwise>
 						</c:choose>
 							</table>
@@ -351,6 +345,8 @@ response.setCharacterEncoding("utf-8");
     </div>
 
 <script type="text/javascript">
+
+$('.gnb_sub_menu').eq(1).find('a').css('font-weight','bold');
 
 function AGOF() {
 	var seq = [];

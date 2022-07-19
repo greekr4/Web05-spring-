@@ -321,6 +321,8 @@ response.setCharacterEncoding("utf-8");
     </div>
 
 <script type="text/javascript">
+$('.gnb_sub_menu').eq(2).find('a').css('font-weight','bold');
+
 function AmountCommas(val) {
     return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }

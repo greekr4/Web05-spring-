@@ -100,6 +100,30 @@ public class CustomerController {
 		List<RecentlyDTO> RecenList = RecentlyService.RecentlyList(scus_seq);
 		DTO.setEmail(sid);
 		DTO = CustomerService.CustomerInfo(DTO);
+		//
+		List<OrderDTO> OrderCNT = OrderService.OrderList_cus(scus_seq);
+		int OrderCnt1 = 0;
+		int OrderCnt2 = 0;
+		int OrderCnt3 = 0;
+		int OrderCnt4 = 0;
+		
+		for (int i=0;i<OrderCNT.size();i++) {
+			if(OrderCNT.get(i).getPayment_status() == 1) {
+				OrderCnt1++;
+			}else if(OrderCNT.get(i).getPayment_status() == 3 && OrderCNT.get(i).getOrder_step() == 1) {
+				OrderCnt2++;
+			}else if(OrderCNT.get(i).getPayment_status() == 3 && OrderCNT.get(i).getOrder_step() == 3) {
+				OrderCnt3++;
+			}else if(OrderCNT.get(i).getPayment_status() == 3 && OrderCNT.get(i).getOrder_step() == 5) {
+				OrderCnt4++;
+			}
+			
+		}
+		
+		model.addAttribute("OrderCnt1",OrderCnt1);
+		model.addAttribute("OrderCnt2",OrderCnt2);
+		model.addAttribute("OrderCnt3",OrderCnt3);
+		model.addAttribute("OrderCnt4",OrderCnt4);
 		model.addAttribute("DTO",DTO);
 		model.addAttribute("RecenList",RecenList);
 		

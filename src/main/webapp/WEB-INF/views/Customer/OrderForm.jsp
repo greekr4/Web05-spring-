@@ -480,6 +480,8 @@ response.setCharacterEncoding("utf-8");
     </div>
 
 <script type="text/javascript">
+$('.gnb_sub_menu').eq(2).find('a').css('font-weight','bold');
+
 
 function Order(){
 var price = tot_sum();

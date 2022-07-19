@@ -131,6 +131,7 @@ response.setCharacterEncoding("utf-8");
         .order_info ul li{float: left; width: 10%; height: auto; margin-right: 20%; position: relative;}
         .order_info ul li:last-child{margin-right: 0;}
         .order_info ul li img{width: 100%; height: auto;}
+        .order_info p {text-align: center;}
         /* /입금/결제 */
 	
 	.lately_detail{
@@ -227,28 +228,31 @@ response.setCharacterEncoding("utf-8");
                             <h4 class="info-title">주문 정보</h4>
                             <ul>
                                 <li>
-                                    <a href="">
                                         <img src="${path }/resources/img/mypage/orderlist.png" alt="img1">
-                                        <p>입금/결제</p>n건
-                                    </a>
+                                        <p>입금/결제</p>
+                                        <p>${OrderCnt1 }건</p>
+
                                 </li>
                                 <li>
-                                    <a href="">
+
                                         <img src="${path }/resources/img/mypage/delivery_wait.png" alt="img2">
-                                        <p>배송준비중</p>n건
-                                    </a>
+                                        <p>배송준비중</p>
+                                        <p>${OrderCnt2 }건</p>
+
                                 </li>
                                 <li>
-                                    <a href="">
+
                                         <img src="${path }/resources/img/mypage/delivery_ing.png" alt="img3">
-                                        <p>배송중</p>n건
-                                    </a>
+                                        <p>배송중</p>
+                                        <p>${OrderCnt3 }건</p>
+
                                 </li>
                                 <li>
-                                    <a href="">
+
                                         <img src="${path }/resources/img/mypage/delivery_fin.png" alt="img4">
-                                        <p>배송완료</p>n건
-                                    </a>
+                                        <p>배송완료</p>
+                                        <p>${OrderCnt4 }건</p>
+
                                 </li>
                             </ul>
                         </article>
@@ -271,7 +275,11 @@ response.setCharacterEncoding("utf-8");
     </footer>
     </div>
 
-</div>
+
+<script type="text/javascript">
+$('.gnb_sub_menu').eq(0).find('a').css('font-weight','bold');
+
+</script>
 
  </body>
 </html>
