@@ -63,6 +63,8 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 	where pcode = #{pcode}
 	</update>
 	
+
+	
 	<!-- 오더라인조회 -->
 	<select id="OrderLineList" resultType="com.myshop.dto.OrderLineDTO">
 		select a.*,b.pname,b.price,b.s_img_desc,b.seq as 'p_seq'  from order_line a
@@ -99,6 +101,24 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 		order by a.seq desc 
 	</select>
 
+
+	<!-- 주문취소 -->
+	<delete id="OrderDel">
+	delete from order_master
+	where seq = #{seq}
+	</delete>
+
+	<delete id="OrderLineDel">
+	delete from order_line
+	where order_no = #{order_no}
+	</delete>
 	
+	<!-- 제품 재고 할당 취소하기 -->
+	<update id="InvtToAllocate_rollback">
+	update product set
+	invt = invt + #{qty} ,
+	allocate_invt = allocate_invt - #{qty}
+	where pcode = #{pcode}
+	</update>
 
 </mapper>

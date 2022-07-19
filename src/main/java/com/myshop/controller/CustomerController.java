@@ -147,9 +147,11 @@ public class CustomerController {
 	
 	//주문 Form으로
 	@RequestMapping("/OrderForm")
-	public String OrderForm(Model model,@RequestParam int[] obj) throws Exception{
+	public String OrderForm(Model model,@RequestParam int[] obj, HttpServletResponse response) throws Exception{
+		if (session.getAttribute("sdto") == null) {
+			ScriptUtils.alertAndMovePage(response, "세션이 누락되었습니다. 다시 로그인 해주세요!", "../Customer/LoginForm");
+		}
 		List<ProductDTO> List = new ArrayList<>();
-		
 		for(int i=0;i<obj.length;i=i+2) {
 			ProductDTO DTO = ProductService.ProductMore(obj[i]);
 			DTO.setQty(obj[i+1]);

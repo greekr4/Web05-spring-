@@ -21,7 +21,7 @@ response.setCharacterEncoding("utf-8");
     <link rel="stylesheet" href="${path }/resources/css/common.css">
     <link rel="stylesheet" href="${path }/resources/css/main.css">
     <link rel="stylesheet" href="${path }/resources/css/style.css">
-  <style>
+ <style>
         /* 초기화 */
         * { margin: 0; padding: 0;}
         ul { list-style: none; } 
@@ -139,6 +139,39 @@ response.setCharacterEncoding("utf-8");
             font-size: 14px;
         }
         /* 게시판관리 - 공지사항 */
+        
+        .page_move{
+            display: flex;
+            justify-content: center;
+        }
+        .page_move a{
+            text-align: center;
+            border: 1px solid lightgray;
+            width: 30px;
+            height: 30px;
+            margin-bottom: 100px;
+        }
+        .first_btn{
+            background-image: url("${path}/resources/img/product/icon-pagination-first.png");
+            background-repeat: no-repeat;
+            background-position: 50% 50%
+            
+        }
+        .prev_btn{
+            background-image: url("${path}/resources/img/product/icon-pagination-prev.png");
+            background-repeat: no-repeat;
+            background-position: 50% 50%
+        }
+        .next_btn{
+            background-image: url("${path}/resources/img/product/icon-pagination-next.png");
+            background-repeat: no-repeat;
+            background-position: 50% 50%
+        }
+        .last_btn{
+            background-image: url("${path}/resources/img/product/icon-pagination-last.png");
+            background-repeat: no-repeat;
+            background-position: 50% 50%
+        }
     </style>
 </head>
 <body>
@@ -155,8 +188,8 @@ response.setCharacterEncoding("utf-8");
             <div id="container_wrap">
 	       <section class="main_wrap">
 					<jsp:include page="./LeftMenu.jsp"/>
-					<!-- faq 게시판 목록 -->
-			       <article class="page">
+                     <!-- 게시판관리 - 공지사항 -->
+                    <article class="page">
                         <div class="page_content">
                             <!-- 검색 -->
                             <div class="search_box">
@@ -168,37 +201,85 @@ response.setCharacterEncoding("utf-8");
                                     <input type="hidden" id="type" name="type" value="2">
                                     <input type="text" id="search" name="search">
                                     <button type="submit" class="btn_clear">검색</button>
+                                  <select onchange="CPP();" id="cpp">
+                                    <option <c:if test="${vo.cntPerPage eq 10 }"> selected </c:if> value="10">10개씩 보기</option>
+                                    <option <c:if test="${vo.cntPerPage eq 15 }"> selected </c:if> value="15">15개씩 보기</option>
+                                    <option <c:if test="${vo.cntPerPage eq 20 }"> selected </c:if> value="20">20개씩 보기</option>
+                                  </select>
                                 </form>
+                                
                             </div>
                             <!-- /검색 -->
-                            
+                            <!-- 제품 목록 -->
                             <table class="table">
+                                <colgroup>
+		                            <col style="width:10%;">
+		                            <col>
+		                            <col style="width:10%;">
+		                            <col style="width:10%;">
+		                            <col style="width:10%;">
+		                            <col style="width:10%;">
+                                </colgroup>
                                 <thead>
+
                                     <tr>
-                                        <th>no</th>
-                                        <th>제목</th>
-                                        <th>조회수</th>
-                                        <th>작성일</th>
-                                        <th>작성자</th>
+		                                <th>번호</th>
+		                                <th>제목</th>
+		                                <th>글쓴이</th>
+		                                <th>조회</th>
+		                                <th>추천</th>
+		                                <th>날짜</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>3</td>
-                                        <td><a href="/myapp/board/more2.html">동협이가 먹는 꿀커피 솔직 리뷰입니다.</a></td>
-                                        <td>8080</td>
-                                        <td>2022-06-30</td>
-                                        <td>관리자</td>
-                                    </tr>                            
+                                <c:choose>
+                                	<c:when test="${fn:length(List) eq 0 }">
+                                	<td colspan="6">게시글이 없습니다.</td>
+                                	</c:when>
+                                	<c:otherwise>
+									<c:forEach items="${List }" var="DTO" varStatus="status">
+									<tr>
+										<td>${DTO.seq }</td>
+										<td style="text-align: left;">${DTO.title }</td>
+										<td>${DTO.name }</td>
+										<td>${DTO.cnt }</td>
+										<td>${DTO.rec }</td>
+										<td><fmt:formatDate value="${DTO.regdate }" pattern="YY-MM-dd"/></td>
+									</tr>
+									</c:forEach>  
+									</c:otherwise>
+								</c:choose>                         
                                 </tbody>
                             </table>
-                            
+                                      <div class="page_move" style="margin-top: 50px;">
+                                    <a href="${path }/Admin/NoticeList?nowPage=1&cntPerPage=${vo.cntPerPage}" class="first_btn"></a>
+                                    <c:if test="${vo.startPage != 1 }">
+										<a href="${path }/Admin/NoticeList?nowPage=${vo.startPage - 1 }&cntPerPage=${vo.cntPerPage}" class="prev_btn"></a>
+									</c:if>
+                                    
+									<c:forEach begin="${vo.startPage }" end="${vo.endPage }" var="p">
+										<c:choose>
+											<c:when test="${p == vo.nowPage }">
+												<a href="" style="font-weight: bold;">${p }</a>
+											</c:when>
+											<c:when test="${p != vo.nowPage }">
+												<a href="${path }/Admin/NoticeList?nowPage=${p}&cntPerPage=${vo.cntPerPage}">${p }</a>
+											</c:when>
+										</c:choose>
+									</c:forEach>
+									<c:if test="${vo.endPage != vo.lastPage}">
+										<a href="${path }/Admin/NoticeList?nowPage=${vo.endPage+1 }&cntPerPage=${vo.cntPerPage}" class="next_btn"></a>
+									</c:if>
+                                    
+                                    <a href="${path }/Admin/NoticeList?nowPage=${vo.lastPage }&cntPerPage=${vo.cntPerPage}" class="last_btn"></a>
+                    			</div>
+                            <!-- /제품 목록 -->
                             <div class="btn_group">
                                 <input type="button" class="btn_black" value="등록">
                             </div>
                         </div>
                     </article>
-                    <!-- /faq 게시판 목록 -->
+                    <!-- /게시판관리 - 공지사항 -->
                 </section>
 
             </div>
@@ -215,6 +296,14 @@ response.setCharacterEncoding("utf-8");
 
 <script type="text/javascript">
 $('.gnb_sub_menu').eq(10).find('a').css('font-weight','bold');
+
+
+function CPP() {
+	var opval = $('#cpp').val();
+	location.href='${path}/Admin/NoticeList?nowPage=${vo.nowPage}&cntPerPage='+opval;
+	
+}
+
 </script>
  </body>
 </html>

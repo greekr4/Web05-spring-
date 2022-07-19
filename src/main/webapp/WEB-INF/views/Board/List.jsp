@@ -403,7 +403,7 @@ response.setCharacterEncoding("utf-8");
             font-size: 14px;
         }
         /* /검색 */
-                .page_move{
+        .page_move{
             display: flex;
             justify-content: center;
         }
@@ -498,6 +498,7 @@ response.setCharacterEncoding("utf-8");
                             <col style="width:10%;">
                             <col style="width:10%;">
                             <col style="width:10%;">
+                            <col style="width:10%;">
                         </colgroup>
                         <thead>
                             <tr class="table_top">
@@ -512,6 +513,9 @@ response.setCharacterEncoding("utf-8");
                         <tbody>
                         
                         <c:choose>
+                        <c:when test="${fn:length(List) eq 0 }">
+                        	<tr><td colspan="6">아직 게시글이 없습니다.</td></tr>
+                        </c:when>
                         <c:when test="${type eq 5 }"> 	<!-- QNA일때 -->
                         	<c:forEach items="${List }" var="DTO">
                         	<c:if test="${DTO.qna_code eq 1 }">

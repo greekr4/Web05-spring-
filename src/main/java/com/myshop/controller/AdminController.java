@@ -37,16 +37,19 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.myshop.dto.BoardDTO;
 import com.myshop.dto.CategoryDTO;
 import com.myshop.dto.CustomerDTO;
 import com.myshop.dto.OrderDTO;
 import com.myshop.dto.OrderLineDTO;
 import com.myshop.dto.ProductDTO;
+import com.myshop.service.BoardService;
 import com.myshop.service.CategoryService;
 import com.myshop.service.CustomerService;
 import com.myshop.service.OrderService;
 import com.myshop.service.ProductService;
 import com.myshop.util.MailService;
+import com.myshop.util.PagingVO;
 import com.myshop.util.ScriptUtils;
 
 /**
@@ -75,6 +78,9 @@ public class AdminController {
 	
 	@Inject
 	private MailService mailservice;
+	
+	@Inject
+	private BoardService BoardService;
 	
 	@Inject
 	private HttpSession session;
@@ -313,25 +319,117 @@ public class AdminController {
 	
 	//공지사항
 	@RequestMapping(value = "NoticeList", method = RequestMethod.GET)
-	public String NoticeList(Locale locale,Model model) throws Exception{
+	public String NoticeList(Model model,PagingVO vo
+			,@RequestParam(value="nowPage",required = false) String nowPage
+			,@RequestParam(value="cntPerPage",required = false) String cntPerPage) throws Exception {
+		int type = 1;
+		int total = BoardService.Boardcnt(type);
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "10";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "10";
+		}
+		
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		vo.setType(type);
+		vo.setCntPage(Integer.parseInt(cntPerPage));
+		List<BoardDTO> List = BoardService.selectBoard(vo);
+		for (int i=0;i<List.size();i++) {
+		BoardService.Replay_Update(List.get(i).getSeq());
+		}
+		List = BoardService.selectBoard(vo);
+		model.addAttribute("vo",vo);
+		model.addAttribute("List",List);
+		
 		return "/Admin/NoticeList";
 	}
 	
 	//FAQList
 	@RequestMapping(value = "FAQList", method = RequestMethod.GET)
-	public String FAQList(Locale locale,Model model) throws Exception{
+	public String FAQList(Model model,PagingVO vo
+			,@RequestParam(value="nowPage",required = false) String nowPage
+			,@RequestParam(value="cntPerPage",required = false) String cntPerPage) throws Exception {
+		int type = 3;
+		int total = BoardService.Boardcnt(type);
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "10";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "10";
+		}
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		vo.setType(type);
+		vo.setCntPage(Integer.parseInt(cntPerPage));
+		List<BoardDTO> List = BoardService.selectBoard(vo);
+		for (int i=0;i<List.size();i++) {
+		BoardService.Replay_Update(List.get(i).getSeq());
+		}
+		List = BoardService.selectBoard(vo);
+		model.addAttribute("vo",vo);
+		model.addAttribute("List",List);
+		
 		return "/Admin/FAQList";
 	}
 	
 	//QNAList
 	@RequestMapping(value = "QNAList", method = RequestMethod.GET)
-	public String QNAList(Locale locale,Model model) throws Exception{
+	public String QNAList(Model model,PagingVO vo
+			,@RequestParam(value="nowPage",required = false) String nowPage
+			,@RequestParam(value="cntPerPage",required = false) String cntPerPage) throws Exception {
+		int type = 5;
+		int total = BoardService.Boardcnt(type);
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "10";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "10";
+		}
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		vo.setType(type);
+		vo.setCntPage(Integer.parseInt(cntPerPage));
+		List<BoardDTO> List = BoardService.selectBoard(vo);
+		for (int i=0;i<List.size();i++) {
+		BoardService.Replay_Update(List.get(i).getSeq());
+		}
+		List = BoardService.selectBoard(vo);
+		model.addAttribute("vo",vo);
+		model.addAttribute("List",List);
+		
 		return "/Admin/QNAList";
 	}
 	
 	//후기관리
 	@RequestMapping(value = "ReviewList", method = RequestMethod.GET)
-	public String ReviewList(Locale locale,Model model) throws Exception{
+	public String ReviewList(Model model,PagingVO vo
+			,@RequestParam(value="nowPage",required = false) String nowPage
+			,@RequestParam(value="cntPerPage",required = false) String cntPerPage) throws Exception {
+		int type = 7;
+		int total = BoardService.Boardcnt(type);
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "10";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "10";
+		}
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		vo.setType(type);
+		vo.setCntPage(Integer.parseInt(cntPerPage));
+		List<BoardDTO> List = BoardService.selectBoard(vo);
+		for (int i=0;i<List.size();i++) {
+		BoardService.Replay_Update(List.get(i).getSeq());
+		}
+		List = BoardService.selectBoard(vo);
+		model.addAttribute("vo",vo);
+		model.addAttribute("List",List);
 		return "/Admin/ReviewList";
 	}
 	
