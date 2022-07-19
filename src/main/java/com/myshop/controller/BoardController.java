@@ -49,36 +49,41 @@ public class BoardController {
 	
 	// JSP 연결
 	
-	@RequestMapping("List")
-	public String Board(Model model,@RequestParam int type) throws Exception {
-		List<BoardDTO> List = BoardService.BoardList(type);
-		for (int i=0;i<List.size();i++) {
-			BoardService.Replay_Update(List.get(i).getSeq());
-		}
-		List = BoardService.BoardList(type);
-		model.addAttribute("List",List);
-		model.addAttribute("type",type);
-		return "Board/List";
-	}
+//	@RequestMapping("List")
+//	public String Board(Model model,@RequestParam int type) throws Exception {
+//		List<BoardDTO> List = BoardService.BoardList(type);
+//		for (int i=0;i<List.size();i++) {
+//			BoardService.Replay_Update(List.get(i).getSeq());
+//		}
+//		List = BoardService.BoardList(type);
+//		model.addAttribute("List",List);
+//		model.addAttribute("type",type);
+//		return "Board/List";
+//	}
 	
-	@RequestMapping("List_test")
+	@RequestMapping("List")
 	public String List_test(Model model,PagingVO vo
 			,@RequestParam int type
-			,@RequestParam(value="nowPage",required = false) int nowPage
-			,@RequestParam(value="cntPerPage",required = false) int cntPerPage) throws Exception {
+			,@RequestParam(value="nowPage",required = false) String nowPage
+			,@RequestParam(value="cntPerPage",required = false) String cntPerPage) throws Exception {
 		int total = BoardService.Boardcnt(type);
-		if (nowPage == 0 && cntPerPage == 0) {
-			nowPage = 1;
-			cntPerPage = 10;
-		} else if (nowPage == 0) {
-			nowPage = 1;
-		} else if (cntPerPage == 0) { 
-			cntPerPage = 10;
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "10";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "10";
 		}
-		vo = new PagingVO(total, nowPage, cntPerPage);
+		
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		vo.setType(type);
-		vo.setCntPage(cntPerPage);
+		vo.setCntPage(Integer.parseInt(cntPerPage));
 		List<BoardDTO> List = BoardService.selectBoard(vo);
+		for (int i=0;i<List.size();i++) {
+		BoardService.Replay_Update(List.get(i).getSeq());
+		}
+		List = BoardService.selectBoard(vo);
 		model.addAttribute("vo",vo);
 		model.addAttribute("List",List);
 		model.addAttribute("type",type);

@@ -240,7 +240,7 @@ response.setCharacterEncoding("utf-8");
 							</tr>
 							
 							<c:forEach items="${List }" var="DTO" varStatus="status">
-							<tr>
+							<tr class="listline">
 								<td><fmt:formatDate value="${DTO.regdate }" pattern="YY-MM-dd"/></td>
 								<td>
 								<p style="color: #aaa; font-size: 0.8em">주문번호 : ${DTO.seq }</p>
@@ -284,7 +284,7 @@ response.setCharacterEncoding("utf-8");
 								<button class="btn_white">배송확인</button>
 								</c:when>
 								<c:otherwise>
-								<button class="btn_white">반품요청</button>
+								<button class="btn_white" onclick="LineView(${status.index},${DTO.seq });">후기작성</button>
 								</c:otherwise>
 								</c:choose>
 								</td>
@@ -326,17 +326,17 @@ function AmountCommas(val) {
 }
 
 function LineView(eqindex,order_no) {
-	if($('.line').text() == ''){
+	if($('.line'+eqindex).text() == ''){
 		
 	
 		
-		$('.line').remove();
+		$('.line'+eqindex).remove();
 		$.ajax({
 			url : '${path}/Admin/OrderLine_json?order_no='+ order_no,
 			dataType : 'json',
 			success : function(data) {
 				$.each(data.OLList, function(index,OLList){
-				$('.table > tbody > tr').eq(eqindex+1).after("<tr class='more line'>"
+				$('.listline').eq(eqindex).after("<tr class='more line"+eqindex+"'>"
 				+"<td><img alt='썸네일' src='${path }/resources/upload/"+OLList.pcode+"/"+OLList.s_img_desc+"'></td>"
 				+"<td>"+OLList.pname+"</td>"
 				+"<td>"+AmountCommas(OLList.price)+"원</td>"
@@ -345,7 +345,7 @@ function LineView(eqindex,order_no) {
 				+"</tr>"
 				);	
 				})//end each
-				$('.table > tbody > tr').eq(eqindex+1).after("<tr class='line more'>"
+				$('.listline').eq(eqindex).after("<tr class='more line"+eqindex+"'>"
 						+"<td>상품이미지</td>"
 						+"<td>상품명</td>"
 						+"<td>상품가격</td>"
@@ -356,7 +356,7 @@ function LineView(eqindex,order_no) {
 	
 	})//end ajax
 	}else{
-		$('.line').remove();
+		$('.line'+eqindex).remove();
 	}
 
 }

@@ -403,6 +403,38 @@ response.setCharacterEncoding("utf-8");
             font-size: 14px;
         }
         /* /검색 */
+                .page_move{
+            display: flex;
+            justify-content: center;
+        }
+        .page_move a{
+            text-align: center;
+            border: 1px solid lightgray;
+            width: 30px;
+            height: 30px;
+            margin-bottom: 100px;
+        }
+        .first_btn{
+            background-image: url("${path}/resources/img/product/icon-pagination-first.png");
+            background-repeat: no-repeat;
+            background-position: 50% 50%
+            
+        }
+        .prev_btn{
+            background-image: url("${path}/resources/img/product/icon-pagination-prev.png");
+            background-repeat: no-repeat;
+            background-position: 50% 50%
+        }
+        .next_btn{
+            background-image: url("${path}/resources/img/product/icon-pagination-next.png");
+            background-repeat: no-repeat;
+            background-position: 50% 50%
+        }
+        .last_btn{
+            background-image: url("${path}/resources/img/product/icon-pagination-last.png");
+            background-repeat: no-repeat;
+            background-position: 50% 50%
+        }
     </style>
 </head>
 <body>
@@ -450,6 +482,11 @@ response.setCharacterEncoding("utf-8");
                                     <input type="hidden" id="type" name="type" value="2">
                                     <input type="text" id="search" name="search">
                                     <button type="submit" class="btn_clear">검색</button>
+                                    <select onchange="CPP();" id="cpp">
+                                    <option <c:if test="${vo.cntPerPage eq 10 }"> selected </c:if> value="10">10개씩 보기</option>
+                                    <option <c:if test="${vo.cntPerPage eq 15 }"> selected </c:if> value="15">15개씩 보기</option>
+                                    <option <c:if test="${vo.cntPerPage eq 20 }"> selected </c:if> value="20">20개씩 보기</option>
+                                    </select>
                                     <button type="button" style="float: right;" onclick="location.href='${path}/Board/AddForm?type=${type }'" class="btn_clear">글쓰기</button>
                                 </form>
                             </div>
@@ -506,8 +543,8 @@ response.setCharacterEncoding("utf-8");
 			                                    <div class="bo_tit"><span style="padding-left: 2em; font-weight: bold;">A.</span>
 			                                        <a href="${path }/Board/More?seq=${DTO2.seq}">${DTO2.title }
 			
-													<c:if test="${DTO.reply_cnt > 0 }">
-		                                            	(<span style="color: red;">${DTO.reply_cnt }</span>)
+													<c:if test="${DTO2.reply_cnt > 0 }">
+		                                            	(<span style="color: red;">${DTO2.reply_cnt }</span>)
 		                                            </c:if>
 			
 			                                        </a>
@@ -515,6 +552,7 @@ response.setCharacterEncoding("utf-8");
 			                                </td>
 			                                <td class="td_name sv_use"><span class="sv_member">${DTO2.email }</span></td>
 			                                <td class="td_num">${DTO2.cnt }</td>
+			                                <td class="td_num">${DTO2.rec }</td>
 			                                <td class="td_datetime"><fmt:formatDate value="${DTO2.regdate }" pattern="YY-MM-dd"/></td>
 			                        		</tr>
                         		   		
@@ -554,12 +592,41 @@ response.setCharacterEncoding("utf-8");
 
                         </tbody>
                     </table>
+                     <div class="page_move" style="margin-top: 50px;">
+                                    <a href="${path }/Board/List?type=${type}&nowPage=1&cntPerPage=${vo.cntPerPage}" class="first_btn"></a>
+                                    <c:if test="${vo.startPage != 1 }">
+										<a href="${path }/Board/List?type=${type }&nowPage=${vo.startPage - 1 }&cntPerPage=${vo.cntPerPage}" class="prev_btn"></a>
+									</c:if>
+                                    
+									<c:forEach begin="${vo.startPage }" end="${vo.endPage }" var="p">
+										<c:choose>
+											<c:when test="${p == vo.nowPage }">
+												<a href="" style="font-weight: bold;">${p }</a>
+											</c:when>
+											<c:when test="${p != vo.nowPage }">
+												<a href="${path }/Board/List?type=${type}&nowPage=${p}&cntPerPage=${vo.cntPerPage}">${p }</a>
+											</c:when>
+										</c:choose>
+									</c:forEach>
+									<c:if test="${vo.endPage != vo.lastPage}">
+										<a href="${path }/Board/List?type=${type }&nowPage=${vo.endPage+1 }&cntPerPage=${vo.cntPerPage}" class="next_btn"></a>
+									</c:if>
+                                    
+                                    <a href="${path }/Board/List?type=${type}&nowPage=${vo.lastPage }&cntPerPage=${vo.cntPerPage}" class="last_btn"></a>
+                    </div>
                 </div>
                 </div>
                 </section>
             </div>
         </div>
 <script type="text/javascript">
+
+function CPP() {
+	
+	var opval = $('#cpp').val();
+	location.href='${path}/Board/List?type=${type}&nowPage=${vo.nowPage}&cntPerPage='+opval;
+	
+}
 
 //네이게이션바
 $('.location_select').eq(0).click(function () {

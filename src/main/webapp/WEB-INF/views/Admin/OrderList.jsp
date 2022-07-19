@@ -184,8 +184,8 @@ response.setCharacterEncoding("utf-8");
                                 </thead>
                                 <tbody>
                                 <c:forEach items="${List }" var="DTO" varStatus="status">
-                                    <tr>
-                                        <td><a style="color: blue; cursor: pointer;" onclick="LineView(${status.index},${DTO.seq });">${DTO.seq }</a></td>
+                                    <tr class="listline">
+                                        <td><a class="addline" style="color: blue; cursor: pointer;" onclick="LineView(${status.index},${DTO.seq });">${DTO.seq }</a></td>
                                         <td>
                                         
                                         <c:choose>
@@ -280,17 +280,16 @@ function AmountCommas(val) {
 
 
 function LineView(eqindex,order_no) {
-	if($('.line').text() == ''){
+	if($('.line'+eqindex).text() == ''){
 		
 	
-		
-		$('.line').remove();
+		$('.line'+eqindex).remove();
 		$.ajax({
 			url : '${path}/Admin/OrderLine_json?order_no='+ order_no,
 			dataType : 'json',
 			success : function(data) {
 				$.each(data.OLList, function(index,OLList){
-				$('.table > tbody > tr').eq(eqindex).after("<tr class='more line'>"
+				$('.listline').eq(eqindex).after("<tr class='more line"+eqindex+"'>"
 				+"<td colspan='2'><img alt='썸네일' src='${path }/resources/upload/"+OLList.pcode+"/"+OLList.s_img_desc+"'></td>"
 				+"<td>"+OLList.pname+"</td>"
 				+"<td>"+AmountCommas(OLList.price)+"원</td>"
@@ -299,7 +298,7 @@ function LineView(eqindex,order_no) {
 				+"</tr>"
 				);	
 				})//end each
-				$('.table > tbody > tr').eq(eqindex).after("<tr class='more line'>"
+				$('.listline').eq(eqindex).after("<tr class='more line"+eqindex+"'>"
 						+"<td colspan='2'>상품이미지</td>"
 						+"<td>상품명</td>"
 						+"<td>상품가격</td>"
@@ -310,7 +309,7 @@ function LineView(eqindex,order_no) {
 	
 	})//end ajax
 	}else{
-		$('.line').remove();
+		$('.line'+eqindex).remove();
 	}
 
 }
