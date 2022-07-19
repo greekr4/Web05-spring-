@@ -3,6 +3,7 @@ package com.myshop.dao;
 import java.util.List;
 
 import com.myshop.dto.BoardDTO;
+import com.myshop.util.PagingVO;
 
 public interface BoardDAO {
 	//보드리스트
@@ -33,6 +34,13 @@ public interface BoardDAO {
 	public List<BoardDTO> ReviewList(int p_seq) throws Exception;
 	//리뷰 쓰기
 	public void ReviewAdd(BoardDTO DTO) throws Exception;
+	
+	
+	//////////페이징
+	//게시글 수
+	public int Boardcnt(int type) throws Exception;
+	//페이징 처리 후 게시글 조회
+	public List<BoardDTO> selectBoard(PagingVO vo) throws Exception;
 	
 	
 	

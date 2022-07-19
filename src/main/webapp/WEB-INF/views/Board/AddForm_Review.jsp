@@ -76,16 +76,7 @@ response.setCharacterEncoding("utf-8");
             <div id="container_wrap">
   	        <section class="page1">
   	        	
-				<form 
-				<c:choose>
-				<c:when test="${type eq 5}">
-				action="${path }/Board/AddQNA"
-				</c:when>
-				<c:otherwise>
-				action="${path }/Board/Add"
-				</c:otherwise>
-				</c:choose>
-				method="post" >
+				<form method="post" action="${path }/Board/AddReview">
                     <div class="table_form_wrap">
                         <table class="table_form">
                             <tbody>

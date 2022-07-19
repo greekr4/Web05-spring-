@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.myshop.dao.BoardDAO;
 import com.myshop.dao.CommentDAO;
 import com.myshop.dto.BoardDTO;
+import com.myshop.util.PagingVO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -89,6 +90,14 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void ReviewAdd(BoardDTO DTO) throws Exception {
 		dao.ReviewAdd(DTO);
+	}
+	@Override
+	public int Boardcnt(int type) throws Exception {
+		return dao.Boardcnt(type);
+	}
+	@Override
+	public List<BoardDTO> selectBoard(PagingVO vo) throws Exception {
+		return dao.selectBoard(vo);
 	}
 
 

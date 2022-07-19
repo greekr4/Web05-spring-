@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.json.JsonObject;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +23,7 @@ import com.myshop.dto.CommentDTO;
 import com.myshop.dto.ReCommentDTO;
 import com.myshop.service.BoardService;
 import com.myshop.service.CommentService;
+import com.myshop.util.PagingVO;
 import com.myshop.util.ScriptUtils;
 
 /**
@@ -60,6 +60,32 @@ public class BoardController {
 		model.addAttribute("type",type);
 		return "Board/List";
 	}
+	
+	@RequestMapping("List_test")
+	public String List_test(Model model,PagingVO vo
+			,@RequestParam int type
+			,@RequestParam(value="nowPage",required = false) int nowPage
+			,@RequestParam(value="cntPerPage",required = false) int cntPerPage) throws Exception {
+		int total = BoardService.Boardcnt(type);
+		if (nowPage == 0 && cntPerPage == 0) {
+			nowPage = 1;
+			cntPerPage = 10;
+		} else if (nowPage == 0) {
+			nowPage = 1;
+		} else if (cntPerPage == 0) { 
+			cntPerPage = 10;
+		}
+		vo = new PagingVO(total, nowPage, cntPerPage);
+		vo.setType(type);
+		vo.setCntPage(cntPerPage);
+		List<BoardDTO> List = BoardService.selectBoard(vo);
+		model.addAttribute("vo",vo);
+		model.addAttribute("List",List);
+		model.addAttribute("type",type);
+		return "Board/List";
+	}
+	
+	
 	
 	@RequestMapping("/More")
 	public String BoardMore(Model model,@RequestParam int seq,HttpServletResponse response,HttpServletRequest request) throws Exception{
@@ -158,6 +184,14 @@ public class BoardController {
 		//BoardService.QNA_CTN_UP(seq);
 		String alertText = "작성되었습니다.";
 		String nextPage = "./List?type="+DTO.getType();
+		ScriptUtils.alertAndMovePage(response, alertText, nextPage);
+	}
+	
+	@RequestMapping("/AddReview")
+	public void AddReview(BoardDTO DTO,HttpServletResponse response) throws Exception{
+		BoardService.ReviewAdd(DTO);
+		String alertText = "작성되었습니다.";
+		String nextPage = "../Customer/Myorder";
 		ScriptUtils.alertAndMovePage(response, alertText, nextPage);
 	}
 	

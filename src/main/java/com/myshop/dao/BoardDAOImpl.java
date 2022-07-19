@@ -1,8 +1,6 @@
 package com.myshop.dao;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -10,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.myshop.dto.BoardDTO;
-import com.myshop.dto.RecentlyDTO;
+import com.myshop.util.PagingVO;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
@@ -87,6 +85,16 @@ public class BoardDAOImpl implements BoardDAO {
 	public void ReviewAdd(BoardDTO DTO) throws Exception {
 		sqlSession.insert(namespace+".ReviewAdd",DTO);
 		
+	}
+
+	@Override
+	public int Boardcnt(int type) throws Exception {
+		return sqlSession.selectOne(namespace+".Boardcnt",type);
+	}
+
+	@Override
+	public List<BoardDTO> selectBoard(PagingVO vo) throws Exception {
+		return sqlSession.selectList(namespace+".selectBoard",vo);
 	}
 
 

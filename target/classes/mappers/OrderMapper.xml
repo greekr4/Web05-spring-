@@ -65,7 +65,7 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 	
 	<!-- 오더라인조회 -->
 	<select id="OrderLineList" resultType="com.myshop.dto.OrderLineDTO">
-		select a.*,b.pname,b.price,b.s_img_desc  from order_line a
+		select a.*,b.pname,b.price,b.s_img_desc,b.seq as 'p_seq'  from order_line a
 		inner join v_product b 
 		on(a.pcode = b.pcode)
 		where order_no=#{order_no}

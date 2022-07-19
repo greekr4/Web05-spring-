@@ -16,4 +16,5 @@ public class OrderLineDTO {
 	private int price;
 	private int qty;
 	private String s_img_desc;
+	private int p_seq;
 }

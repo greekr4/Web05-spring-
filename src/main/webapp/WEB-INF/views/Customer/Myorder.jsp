@@ -203,6 +203,8 @@ response.setCharacterEncoding("utf-8");
 		color: #999;
 		}
 		
+
+		
 </style>
 </head>
 <body>
@@ -246,8 +248,27 @@ response.setCharacterEncoding("utf-8");
 								</td>
 								<td><fmt:formatNumber value="${DTO.price }" pattern="#,###" />원</td>
 								<td>
-								${DTO.payment_val }<br><br>
-								${DTO.order_val }
+								<c:choose>
+									<c:when test="${DTO.payment_status eq 1 }">
+									<img style="width: 100px; height: 100px;" alt="입금대기" src="${path }/resources/img/mypage/orderlist.png">
+									<p style="margin-bottom: 10px;">입금대기</p>
+									</c:when>
+									
+									<c:when test="${DTO.payment_status eq 3 && DTO.order_step eq 1 }">
+									<img style="width: 100px; height: 100px;" alt="배송준비중" src="${path }/resources/img/mypage/delivery_wait.png">
+									<p style="margin-bottom: 10px;">배송준비중</p>
+									</c:when>	
+										
+									<c:when test="${DTO.payment_status eq 3 && DTO.order_step eq 3 }">
+									<img style="width: 100px; height: 100px;" alt="배송중" src="${path }/resources/img/mypage/delivery_ing.png">
+									<p style="margin-bottom: 10px;">배송중</p>
+									</c:when>
+									
+									<c:when test="${DTO.payment_status eq 3 && DTO.order_step eq 5 }">
+									<img style="width: 100px; height: 100px;" alt="배송완료" src="${path }/resources/img/mypage/delivery_fin.png">
+									<p style="margin-bottom: 10px;">배송완료</p>
+									</c:when>										
+								</c:choose>
 								</td>
 								<td>
 								
@@ -257,15 +278,12 @@ response.setCharacterEncoding("utf-8");
 								<button class="btn_white">주문취소</button>
 								</c:when>
 								<c:when test="${DTO.payment_status eq 3 and DTO.order_step eq 1 }">
-								<button class="btn_black" onclick="location.href='${path}/Customer/PaySystem?price=${DTO.price }&seq=${DTO.seq }'"></button>
-								<button class="btn_white">환불요청</button>
+								<button class="btn_white">주문취소</button>
 								</c:when>
 								<c:when test="${DTO.payment_status eq 3 and DTO.order_step eq 3 }">
-								<button class="btn_black" onclick="location.href='${path}/Customer/PaySystem?price=${DTO.price }&seq=${DTO.seq }'">배송확인</button>
-								<button class="btn_white">반품요청</button>
+								<button class="btn_white">배송확인</button>
 								</c:when>
 								<c:otherwise>
-								<button class="btn_black">후기작성</button>
 								<button class="btn_white">반품요청</button>
 								</c:otherwise>
 								</c:choose>
@@ -323,7 +341,7 @@ function LineView(eqindex,order_no) {
 				+"<td>"+OLList.pname+"</td>"
 				+"<td>"+AmountCommas(OLList.price)+"원</td>"
 				+"<td>"+OLList.qty+"개</td>"
-				+"<td></td>"
+				+"<td><button class='btn_black' onclick=\"location.href='${path}/Board/AddForm_Review?p_seq="+OLList.p_seq+ "'\">후기작성</button></td>"
 				+"</tr>"
 				);	
 				})//end each

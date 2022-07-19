@@ -109,11 +109,10 @@ public class CustomerController {
 	//장바구니로
 	@RequestMapping("/Mybasket")
 	public String Mybasket(Model model,HttpServletResponse response) throws Exception {
-		if (session.getAttribute("sdto") == null) {
+		if (session.getAttribute("scus_seq") == null) {
 			ScriptUtils.alertAndMovePage(response, "로그인 해주세요!", "../Customer/LoginForm");
 		}
-		CustomerDTO sdto = (CustomerDTO) session.getAttribute("sdto");
-		int cus_seq = sdto.getSeq();
+		int cus_seq = (Integer)session.getAttribute("scus_seq");
 		
 		List<BasketDTO> List = BasketService.BasketList(cus_seq);
 		
