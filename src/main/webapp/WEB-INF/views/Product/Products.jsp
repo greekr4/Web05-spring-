@@ -400,8 +400,12 @@ response.setCharacterEncoding("utf-8");
                             </ul>
                         </div>
                         <div class="goods_list">
+                        	<c:choose>
+                        	<c:when test="${fn:length(List) eq 0 }">
+                        	<h2 style="text-align: center; width: 100%; margin: 50px 0;">상품 준비중입니다.</h2>
+                        	</c:when>
+                        	<c:otherwise>
                         	<c:forEach items="${List }" var="DTO">
-                        	
                             <div class="item" onclick="location.href = '${path}/Product/ProductMore?seq=${DTO.seq }'" style="cursor: pointer;">
                                 <div class="goods">
                                         <img src="${path}/resources/upload/${DTO.pcode }/${DTO.s_img_desc}" alt="Product_img">
@@ -413,8 +417,10 @@ response.setCharacterEncoding("utf-8");
                                     <span class="tag"></span>
                                 </div>
                             </div>
-                           
                             </c:forEach>
+                        	</c:otherwise>
+                        	</c:choose>
+
                     </div>
                     </div>
                 </section>
