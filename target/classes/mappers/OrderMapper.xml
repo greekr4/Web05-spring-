@@ -108,6 +108,7 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 	where seq = #{seq}
 	</delete>
 
+	<!-- 주문취소 오더라인삭제 -->
 	<delete id="OrderLineDel">
 	delete from order_line
 	where order_no = #{order_no}

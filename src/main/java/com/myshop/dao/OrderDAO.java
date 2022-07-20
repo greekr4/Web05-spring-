@@ -31,4 +31,13 @@ public interface OrderDAO {
 	public List<OrderDTO> OrderList_Ok() throws Exception;
 	//오더리스트 서치
 	public List<OrderDTO> OrderList_search(OrderDTO DTO) throws Exception;
+	
+	
+	//주문취소
+	public void OrderDel(int seq) throws Exception;
+	//주문취소_오더라인 삭제
+	public void OrderLineDel(int order_no) throws Exception;
+	//제품 재고 할당 취소
+	public void InvtToAllocate_rollback(Map<String,Object> map) throws Exception;
+	
 }

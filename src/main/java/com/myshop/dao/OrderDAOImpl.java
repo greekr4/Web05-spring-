@@ -83,6 +83,21 @@ public class OrderDAOImpl implements OrderDAO {
 		return sqlSession.selectList(namespace+".OrderList_search",DTO);
 	}
 
+	@Override
+	public void OrderDel(int seq) throws Exception {
+		sqlSession.delete(namespace+".OrderDel",seq);
+	}
+
+	@Override
+	public void OrderLineDel(int order_no) throws Exception {
+		sqlSession.delete(namespace+".OrderLineDel",order_no);
+	}
+
+	@Override
+	public void InvtToAllocate_rollback(Map<String, Object> map) throws Exception {
+		sqlSession.update(namespace+".InvtToAllocate_rollback",map);
+	}
+
 
 	
 	

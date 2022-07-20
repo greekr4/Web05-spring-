@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.myshop.dto.BasketDTO;
 import com.myshop.dto.CustomerDTO;
 import com.myshop.dto.OrderDTO;
+import com.myshop.dto.OrderLineDTO;
 import com.myshop.dto.ProductDTO;
 import com.myshop.dto.RecentlyDTO;
 import com.myshop.service.BasketService;
@@ -192,6 +193,22 @@ public class CustomerController {
 		OrderService.OrderAdd(DTO);
 		out.println("주문요청 되었습니다.");
 		return;
+	}
+	
+	//주문 취소
+	@RequestMapping("/OrderDel")
+	public void OrderDel(@RequestParam int order_no,HttpServletResponse response) throws Exception{
+		Map<String,Object> map = new HashMap<String, Object>();
+		List<OrderLineDTO> OrderLine = OrderService.OrderLineList(order_no);
+		for(int i=0;i<OrderLine.size();i++) {
+			map.put("qty", OrderLine.get(i).getQty());
+			map.put("pcode",OrderLine.get(i).getPcode());
+			OrderService.InvtToAllocate_rollback(map);
+		}
+		OrderService.OrderDel(order_no);
+		OrderService.OrderLineDel(order_no);
+		
+		ScriptUtils.alertAndClose(response, "주문 취소되었습니다.");
 	}
 	
 	//Myorder

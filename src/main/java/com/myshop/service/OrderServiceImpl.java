@@ -80,6 +80,24 @@ public class OrderServiceImpl implements OrderService {
 		return dao.OrderList_search(DTO);
 	}
 
+	@Override
+	public void OrderDel(int seq) throws Exception {
+		dao.OrderDel(seq);
+		
+	}
+
+	@Override
+	public void OrderLineDel(int order_no) throws Exception {
+		dao.OrderLineDel(order_no);
+		
+	}
+
+	@Override
+	public void InvtToAllocate_rollback(Map<String, Object> map) throws Exception {
+		dao.InvtToAllocate_rollback(map);
+		
+	}
+
 
 	
 
