@@ -228,7 +228,7 @@ response.setCharacterEncoding("utf-8");
 	                    <div class="order_tit_box">
 	                    	<h1>${sid }님의 주문목록</h1>   
 	                    </div>
-	                    
+
 	                    <div class="order_indi_wrap">
 	                    <table class="table">
 							<tr>
@@ -238,7 +238,13 @@ response.setCharacterEncoding("utf-8");
 							    <th style="width: 15%;">상태</th>
 							    <th style="width: 15%;">버튼</th>
 							</tr>
-							
+							<c:choose>
+							<c:when test="${fn:length(List) eq 0 }">
+							<tr>
+		                    	<td colspan="5" style="height: 50px;">주문하신 내역이 없습니다.</td>
+		                    </tr>
+							</c:when>
+							<c:otherwise>
 							<c:forEach items="${List }" var="DTO" varStatus="status">
 							<tr class="listline">
 								<td><fmt:formatDate value="${DTO.regdate }" pattern="YY-MM-dd"/></td>
@@ -275,7 +281,7 @@ response.setCharacterEncoding("utf-8");
 								<c:choose>
 								<c:when test="${DTO.payment_status eq 1 }">
 								<button class="btn_black" onclick="location.href='${path}/Customer/PaySystem?price=${DTO.price }&seq=${DTO.seq }'">결제하기</button>
-								<button class="btn_white">주문취소</button>
+								<button class="btn_white" onclick="window.open('${path}/Customer/OrderDel?order_no=${DTO.seq }','hiddenf');">주문취소</button>
 								</c:when>
 								<c:when test="${DTO.payment_status eq 3 and DTO.order_step eq 1 }">
 								<button class="btn_white">주문취소</button>
@@ -290,6 +296,9 @@ response.setCharacterEncoding("utf-8");
 								</td>
 							</tr>
 							</c:forEach>
+							</c:otherwise>
+							</c:choose>
+							
 							
 					
 							</table>
