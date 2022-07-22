@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.myshop.BasketMapper">
+
+ 	<!-- 정산리스트 조회 -->
+ 	<select id="SettlementList" resultType="SettlementDTO">
+ 		select * from settlement order by seq
+ 	</select>
+	
+	<!-- 정산추가 -->
+	<insert id="SettlementAdd">
+	insert into settlement (cus_seq,o_seq,price)
+	values(#{cus_seq},#{o_seq},#{price})									
+	</insert>
+	
+	<delete id="SettlementDel">
+	delete from settlement where seq = #{seq}
+	</delete>
+	
+
+	
+
+	
+
+</mapper>
