@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="com.myshop.BasketMapper">
+<mapper namespace="com.myshop.SettlementMapper">
 
  	<!-- 정산리스트 조회 -->
  	<select id="SettlementList" resultType="SettlementDTO">
