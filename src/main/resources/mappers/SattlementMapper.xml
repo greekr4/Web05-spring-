@@ -11,12 +11,12 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
  		select * from settlement order by seq
  	</select>
 	
-	<!-- 정산추가 -->
+	<!-- 정산 추가 -->
 	<insert id="SettlementAdd">
 	insert into settlement (cus_seq,o_seq,price)
 	values(#{cus_seq},#{o_seq},#{price})									
 	</insert>
-	
+	<!-- 정산 삭제 -->
 	<delete id="SettlementDel">
 	delete from settlement where seq = #{seq}
 	</delete>
