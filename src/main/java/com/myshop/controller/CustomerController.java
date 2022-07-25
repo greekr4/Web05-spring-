@@ -198,18 +198,11 @@ public class CustomerController {
 		BasketService.BasketDel(map);
 		}
 		}
-		
-
-
-		SettlementDTO DTO2 = new SettlementDTO();
-		DTO2.setCus_seq(DTO.getCus_seq());
-		DTO2.setPrice(DTO.getPrice());
-		DTO2.setO_seq(order_no);
-		System.out.println("결과 : ");
-		System.out.println(DTO2.getCus_seq());
-		System.out.println(DTO2.getPrice());
-		System.out.println(DTO2.getO_seq());
-		SettlementService.SettlementAdd(DTO2);
+//		SettlementDTO DTO2 = new SettlementDTO();
+//		DTO2.setCus_seq(DTO.getCus_seq());
+//		DTO2.setPrice(DTO.getPrice());
+//		DTO2.setO_seq(order_no);
+//		SettlementService.SettlementAdd(DTO2);
 		OrderService.OrderAdd(DTO);
 		out.println("주문요청 되었습니다.");
 		return;
