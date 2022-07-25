@@ -29,11 +29,13 @@ import com.myshop.dto.OrderDTO;
 import com.myshop.dto.OrderLineDTO;
 import com.myshop.dto.ProductDTO;
 import com.myshop.dto.RecentlyDTO;
+import com.myshop.dto.SettlementDTO;
 import com.myshop.service.BasketService;
 import com.myshop.service.CustomerService;
 import com.myshop.service.OrderService;
 import com.myshop.service.ProductService;
 import com.myshop.service.RecentlyService;
+import com.myshop.service.SettlementService;
 import com.myshop.util.ScriptUtils;
 
 /**
@@ -62,6 +64,9 @@ public class CustomerController {
 	
 	@Inject
 	private OrderService OrderService;
+	
+	@Inject
+	private SettlementService SettlementService; 
 	
 	@Inject
 	private HttpSession session;
@@ -170,7 +175,10 @@ public class CustomerController {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; utf-8");
 		PrintWriter out = response.getWriter();
-		int order_no = OrderService.LastOrderNo()+1;
+		int order_no = 1;
+		if (!OrderService.OrderList().isEmpty()) {
+		order_no = OrderService.LastOrderNo()+1;
+		} 
 		DTO.setOrder_no(order_no);
 		map.put("cus_seq", DTO.getCus_seq());
 		
@@ -190,6 +198,18 @@ public class CustomerController {
 		BasketService.BasketDel(map);
 		}
 		}
+		
+
+
+		SettlementDTO DTO2 = new SettlementDTO();
+		DTO2.setCus_seq(DTO.getCus_seq());
+		DTO2.setPrice(DTO.getPrice());
+		DTO2.setO_seq(order_no);
+		System.out.println("결과 : ");
+		System.out.println(DTO2.getCus_seq());
+		System.out.println(DTO2.getPrice());
+		System.out.println(DTO2.getO_seq());
+		SettlementService.SettlementAdd(DTO2);
 		OrderService.OrderAdd(DTO);
 		out.println("주문요청 되었습니다.");
 		return;

@@ -41,7 +41,7 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 	<!-- 오더추가 -->
 	<insert id="OrderAdd">
 		insert into order_master(order_no,payment_status,price,use_point,save_point,total_price,cus_seq,delivery_cus,delivery_addr1,delivery_addr2,delivery_zipcode,delivery_memo,regdate)
-		values(0,1,#{price},0,0,#{price},#{cus_seq},#{delivery_cus},#{delivery_addr1},#{delivery_addr2},#{delivery_zipcode},#{delivery_memo},now())																							
+		values(#{order_no},1,#{price},0,0,#{price},#{cus_seq},#{delivery_cus},#{delivery_addr1},#{delivery_addr2},#{delivery_zipcode},#{delivery_memo},now())																							
 	</insert>
 	
 	<!-- 오더마지막 번호 불러오기 -->
