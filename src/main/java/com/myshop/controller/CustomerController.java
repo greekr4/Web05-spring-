@@ -301,7 +301,7 @@ public class CustomerController {
 				//가입성공
 				return "redirect:../Customer/JoinOK";
 			}else {
-				//가입실패 어차피 500뜨긴함
+				//가입실패// 어차피 500뜨긴함
 				return "/Customer/JoinForm";
 			}
 		}else {
