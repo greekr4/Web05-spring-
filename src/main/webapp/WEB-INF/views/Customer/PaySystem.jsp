@@ -164,7 +164,7 @@ response.setCharacterEncoding("utf-8");
 						  </tr>
 						  <tr>
 						  <td style="text-align: center;">
-						  <button class="btn_white" onclick="location.href='${path}/Customer/PaySystemUpdate?seq=${seq }'">결제요청</button>
+						  <button class="btn_white" onclick="location.href='${path}/Customer/PaySystemUpdate?seq=${seq }&price=${price }'">결제요청</button>
 						  </td> 
 						  	
 						  </tr>

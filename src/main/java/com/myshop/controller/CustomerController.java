@@ -244,7 +244,12 @@ public class CustomerController {
 	
 	//결제완료
 	@RequestMapping("/PaySystemUpdate")
-	public String PaySystemUpdate(Model model, @RequestParam int seq) throws Exception{
+	public String PaySystemUpdate(Model model, @RequestParam int seq, @RequestParam int price) throws Exception{
+		SettlementDTO DTO = new SettlementDTO();
+		DTO.setCus_seq((Integer)session.getAttribute("scus_seq"));
+		DTO.setPrice(price);
+		DTO.setO_seq(seq);
+		SettlementService.SettlementAdd(DTO);
 		OrderService.UpdatePayment(seq);
 		return "redirect:./Myorder";
 	}
