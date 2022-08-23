@@ -43,11 +43,13 @@ import com.myshop.dto.CustomerDTO;
 import com.myshop.dto.OrderDTO;
 import com.myshop.dto.OrderLineDTO;
 import com.myshop.dto.ProductDTO;
+import com.myshop.dto.SettlementDTO;
 import com.myshop.service.BoardService;
 import com.myshop.service.CategoryService;
 import com.myshop.service.CustomerService;
 import com.myshop.service.OrderService;
 import com.myshop.service.ProductService;
+import com.myshop.service.SettlementService;
 import com.myshop.util.MailService;
 import com.myshop.util.PagingVO;
 import com.myshop.util.ScriptUtils;
@@ -81,6 +83,9 @@ public class AdminController {
 	
 	@Inject
 	private BoardService BoardService;
+	
+	@Inject
+	private SettlementService SettlementService;
 	
 	@Inject
 	private HttpSession session;
@@ -606,6 +611,9 @@ public class AdminController {
 	    
 	    
 	    
+	    
+	    
+	    
 	    /////////////////////////////////////
 	    
 	    
@@ -618,4 +626,16 @@ public class AdminController {
 			
 			return "/test";
 		}
+		
+		
+		///정산
+		
+		@RequestMapping("/SettleList")
+		public String SettleList(Model model) throws Exception{
+			List<SettlementDTO> List = SettlementService.SettlementList();
+			model.addAttribute("List",List);
+			return "/Admin/SettleList";
+		}
+		
+		
 }

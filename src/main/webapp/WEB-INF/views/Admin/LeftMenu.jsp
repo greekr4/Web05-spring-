@@ -45,7 +45,7 @@ response.setCharacterEncoding("utf-8");
                             <li class="gnb_menu">
                                 <a href="">정산관리</a>
                                 <ul>
-                                    <li class="gnb_sub_menu"><a href="${path }/Admin/NoticeList">정산관리</a></li>
+                                    <li class="gnb_sub_menu"><a href="${path }/Admin/SettleList">정산관리</a></li>
                                 </ul>
                             </li>
                         </ul>
