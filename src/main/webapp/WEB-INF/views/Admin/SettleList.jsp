@@ -195,8 +195,8 @@ response.setCharacterEncoding("utf-8");
                             <div class="search_box">
                                 <form action="/myapp/board/news_search" method="POST">
                                     <select name="search_type">
-                                        <option value="1">제목</option>
-                                        <option value="2">내용</option>
+                                        <option value="1">이름</option>
+                                        <option value="2">주문번호</option>
                                     </select>
                                     <input type="hidden" id="type" name="type" value="2">
                                     <input type="text" id="search" name="search">
