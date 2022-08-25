@@ -14,7 +14,7 @@ response.setCharacterEncoding("utf-8");
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insert title here</title>
+<title>Bn2U</title>
     <script src="https://code.jquery.com/jquery-latest.js"></script>
     <link rel="stylesheet" href="${path }/resources/css/common.css">
     <link rel="stylesheet" href="${path }/resources/css/main.css">
@@ -172,7 +172,7 @@ response.setCharacterEncoding("utf-8");
                         <div class="sale_prod">
                             <div class="event_txt">
                             <h1>sale products</h1>
-                            <h2>#특가&nbsp&nbsp#세일&nbsp&nbsp#재영이&nbsp&nbsp#동협이</h2>
+                            <h2>#특가&nbsp&nbsp#세일&nbsp&nbsp#할인</h2>
                             </div>
                             <div class="event_btn">
                                 <div class="arrow">
@@ -185,7 +185,7 @@ response.setCharacterEncoding("utf-8");
                         <div class="new_prod">
                             <div class="event_txt">
                             <h1>new products</h1>
-                            <h2>#신상품&nbsp&nbsp#누구보다빠르게&nbsp&nbsp#남들보다&nbsp&nbsp#조재영</h2>
+                            <h2>#신상품&nbsp&nbsp#New</h2>
                             </div>
                             <div class="event_btn">
                                 <div class="arrow">

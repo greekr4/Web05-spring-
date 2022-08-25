@@ -14,7 +14,7 @@ response.setCharacterEncoding("utf-8");
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insert title here</title>
+<title>Bn2U</title>
     <script src="https://code.jquery.com/jquery-latest.js"></script>
     <link rel="stylesheet" href="${path }/resources/css/common.css">
     <link rel="stylesheet" href="${path }/resources/css/admin_common.css">

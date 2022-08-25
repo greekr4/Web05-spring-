@@ -22,7 +22,7 @@ String filePath = defaultPath + "ckEimg" + File.separator;
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insert title here</title>
+<title>Bn2U</title>
     <script src="https://code.jquery.com/jquery-latest.js"></script>
 	<script src="${path }/ckeditor/ckeditor.js"></script>
     <link rel="stylesheet" href="${path }/resources/css/common.css">
