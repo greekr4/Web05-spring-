@@ -286,6 +286,7 @@ width: 100%;
     color: #222;
     transition: 0.5s;
 }
+/** */
 .event .sale_prod:hover, .event .new_prod:hover{
   transform: scale(1.1);
 }
