@@ -284,7 +284,7 @@ response.setCharacterEncoding("utf-8");
 								<button class="btn_white" onclick="window.open('${path}/Customer/OrderDel?order_no=${DTO.seq }','hiddenf');">주문취소</button>
 								</c:when>
 								<c:when test="${DTO.payment_status eq 3 and DTO.order_step eq 1 }">
-								<button class="btn_white">주문취소</button>
+								<button class="btn_white" onclick="window.open('${path}/Customer/OrderDel2?order_no=${DTO.seq }','hiddenf');">주문취소</button> <!-- 정산 취소 -->
 								</c:when>
 								<c:when test="${DTO.payment_status eq 3 and DTO.order_step eq 3 }">
 								<button class="btn_white">배송확인</button>

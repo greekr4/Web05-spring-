@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mpper 3.0//EN"
 	</insert>
 	<!-- 정산 삭제 -->
 	<delete id="SettlementDel">
-	delete from settlement where seq = #{seq}
+	delete from settlement where o_seq = #{seq}
 	</delete>
 	
 
