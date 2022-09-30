@@ -240,7 +240,7 @@ response.setCharacterEncoding("utf-8");
 									<c:forEach items="${List }" var="DTO" varStatus="status">
 									<tr>
 										<td>${DTO.seq }</td>
-										<td style="text-align: left;">${DTO.title }</td>
+										<td style="text-align: left;"><a href="${path }/Board/More?seq=${DTO.seq}">${DTO.title }</a></td>
 										<td>${DTO.name }</td>
 										<td>${DTO.cnt }</td>
 										<td>${DTO.rec }</td>
@@ -275,7 +275,7 @@ response.setCharacterEncoding("utf-8");
                     			</div>
                             <!-- /제품 목록 -->
                             <div class="btn_group">
-                                <input type="button" class="btn_black" value="등록">
+                                <input type="button" class="btn_black" value="등록" onclick="location.href='${path}/Board/AddForm?type=2'">
                             </div>
                         </div>
                     </article>

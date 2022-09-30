@@ -455,7 +455,7 @@ public class AdminController {
 	    		byte[] bytes = upload.getBytes();
 	    		
 	    		//이미지 경로 생성
-	    		String path = "D:\\Taek\\springpj\\web05\\src\\main\\webapp\\resources\\upload\\";	// 이미지 경로 설정(폴더 자동 생성)
+	    		String path = "C:\\Users\\user\\Desktop\\JAVA\\springpj\\web05\\src\\main\\webapp\\resources\\upload\\";	// 이미지 경로 설정(폴더 자동 생성)
 	    		
 	    		String ckUploadPath = path + uid + "_" + fileName;
 	    		File folder = new File(path);
@@ -504,7 +504,7 @@ public class AdminController {
 	        System.out.println("현재 프로젝트의 경로 : "+rootPath );
 	    	
 	    	
-	    	String path = "D:\\Taek\\springpj\\web05\\src\\main\\webapp\\resources\\upload\\";	// 저장된 이미지 경로
+	    	String path = "C:\\Users\\user\\Desktop\\JAVA\\springpj\\web05\\src\\main\\webapp\\resources\\upload\\";	// 저장된 이미지 경로
 	    	System.out.println("path:"+path);
 	    	String sDirPath = path + uid + "_" + fileName;
 	    	
@@ -547,7 +547,7 @@ public class AdminController {
 	    
 	    @PostMapping("/ajaxUpload")
 	    public void ajaxUpload(MultipartFile[] uploadfile,@RequestParam String code_path,HttpServletResponse response) {
-	    	String uploadFolder = "D:\\Taek\\springpj\\web05\\src\\main\\webapp\\resources\\upload\\"+code_path;
+	    	String uploadFolder = "C:\\Users\\user\\Desktop\\JAVA\\springpj\\web05\\src\\main\\webapp\\resources\\upload\\"+code_path;
 	    	
 	    	
 	    	File folder = new File(uploadFolder);
@@ -573,7 +573,7 @@ public class AdminController {
 	    
 	    @PostMapping("/ajaxDel")
 	    public void ajaxDel(MultipartFile[] uploadfile,@RequestParam String code_path,HttpServletResponse response) {
-	    	String uploadFolder = "D:\\Taek\\springpj\\web05\\src\\main\\webapp\\resources\\upload\\"+code_path;
+	    	String uploadFolder = "C:\\Users\\user\\Desktop\\JAVA\\springpj\\web05\\src\\main\\webapp\\resources\\upload\\"+code_path;
 	    	
 	    	
 	    	//업로드할 시 폴더 삭제 후 재생성

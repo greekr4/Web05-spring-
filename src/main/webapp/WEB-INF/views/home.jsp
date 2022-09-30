@@ -104,8 +104,8 @@ response.setCharacterEncoding("utf-8");
                             <fmt:parseNumber var="List_length" integerOnly="true" value="${fn:length(List)/3 }"/>
                             
                            <c:choose>
-                           	<c:when test="${List_length > 2}">
-                            <c:forEach items="${List }" var="DTO" begin="1" end="${List_length *3}">
+                           	<c:when test="${List_length >= 1}">
+                            <c:forEach items="${List }" var="DTO" begin="0" end="${List_length *3}">
                              <div class="best_item">
                                 <a href="${path }/Product/ProductMore?seq=${DTO.seq}"><img src="${path}/resources/upload/${DTO.pcode }/${DTO.s_img_desc}" alt="${DTO.pcode }"></a>
                                 <h2>${DTO.pname }</h2>
@@ -166,7 +166,7 @@ response.setCharacterEncoding("utf-8");
                         </div>
                     </div>
                 </div>
-                <div class="event_wrap">
+<!--                 <div class="event_wrap">
                     <div class="event">
                         <a href="#">
                         <div class="sale_prod">
@@ -198,7 +198,7 @@ response.setCharacterEncoding("utf-8");
                     </div>
 
 
-                </div>
+                </div> -->
             </div>
         </div>
         <script>

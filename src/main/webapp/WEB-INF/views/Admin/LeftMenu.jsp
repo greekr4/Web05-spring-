@@ -15,7 +15,7 @@ response.setCharacterEncoding("utf-8");
                                 <a href="">주문관리</a>
                                 <ul>
                                     <li class="gnb_sub_menu"><a href="${path }/Admin/OrderList?type=1">주문관리</a></li>
-                                    <li class="gnb_sub_menu"><a href="${path }/Admin/CusList">1:1 상담</a></li>
+                                    <li class="gnb_sub_menu" style="display: none;"><a href="${path }/Admin/CusList">1:1 상담</a></li>
                                 </ul>
                             </li>
                             <li class="gnb_menu">
@@ -42,10 +42,10 @@ response.setCharacterEncoding("utf-8");
                                     <li class="gnb_sub_menu"><a href="${path }/Admin/ReviewList">후기관리</a></li>
                                 </ul>
                             </li>
-                            <li class="gnb_menu">
+                            <li class="gnb_menu" style="display: none;">
                                 <a href="">정산관리</a>
                                 <ul>
-                                    <li class="gnb_sub_menu"><a href="${path }/Admin/SettleList">정산관리</a></li>
+                                    <li class="gnb_sub_menu" style="display: none;"><a href="${path }/Admin/SettleList">정산관리</a></li>
                                 </ul>
                             </li>
                         </ul>
