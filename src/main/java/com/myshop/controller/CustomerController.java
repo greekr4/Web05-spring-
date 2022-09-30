@@ -93,6 +93,17 @@ public class CustomerController {
 		return "/Customer/JoinForm";
 	}
 	
+	//정보수정 폼
+	@RequestMapping("/EditForm")
+	public String EditForm(@ModelAttribute("CustomerDTO") CustomerDTO DTO,Model model,BindingResult result) throws Exception {
+		String sid = (String)session.getAttribute("sid");
+		CustomerDTO DTO2 = new CustomerDTO();
+		DTO2.setEmail(sid);
+		DTO2 = CustomerService.CustomerInfo(DTO2);
+		model.addAttribute("DTO2",DTO2);
+		return "/Customer/EditForm";
+	}
+	
 
 	//마이페이지
 	@RequestMapping(value = "/Mypage",method = RequestMethod.GET)
@@ -361,13 +372,20 @@ public class CustomerController {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;utf-8");
 		
-		DTO.setPw(pw);		DTO.setName(name);		DTO.setPhonenum(phonenum);
+		DTO.setName(name);		DTO.setPhonenum(phonenum);
 		DTO.setAddr1(addr1);		DTO.setAddr2(addr2);		DTO.setZipcode(zipcode);
 		DTO.setGrade(grade);		DTO.setSeq(seq);
+		if(pw.length() < 60) {
+		DTO.setPw(pwdEncoder.encode(pw)); //암호화
+		}else {
+		DTO.setPw(pw);
+		}
+		
 		CustomerService.CustomerEdit(DTO);
 		PrintWriter out = response.getWriter();
 		out.println("<script>"
 				+ "alert('수정되었습니다.');"
+				+ "history.back();"
 				+ "opener.location.reload();"
 				+ "</script>");
 	}
@@ -385,6 +403,9 @@ public class CustomerController {
 				+ "</script>");
 		
 	}
+	
+	
+	
 	
 	
 

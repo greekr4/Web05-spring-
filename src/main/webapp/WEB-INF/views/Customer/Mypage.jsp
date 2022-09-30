@@ -114,7 +114,7 @@ response.setCharacterEncoding("utf-8");
         }
 
         .table .btn_black{
-        	margin: 0 8%;
+        	margin: 0 160px;
             width: 150px;
             height: 35px;
         }
@@ -198,8 +198,7 @@ response.setCharacterEncoding("utf-8");
                                     </tr>
                                     <tr>
                                         <td colspan="4">
-                                        <input type="button" value="1:1문의" class="btn_black">
-                                        <input type="button" value="정보수정" class="btn_black">
+                                        <input type="button" value="정보수정" class="btn_black" onclick="location.href='${path}/Customer/EditForm'">
                                         </td>
                                     </tr>
                                 </tbody>

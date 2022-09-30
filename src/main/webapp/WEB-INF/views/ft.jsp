@@ -41,14 +41,14 @@
                             </dl>
                             <dl>
                                 <dt>전화 : </dt>
-                                <dd>031-123-4567</dd>
+                                <dd>031-111-1111</dd>
                             </dl>
                         </div>
                     </div>
                     <div class="ft_info_box2">
                         <h1>CS CENTER</h1>
                         <div class="ft_info_list3">
-                        <h2>031-958-1611</h2>
+                        <h2>031-111-1111</h2>
                         <h3>평일 10:00 ~ 18:20 (점심 12:50 ~ 13:30)</h3>
                         </div>
                     </div>
